@@ -5,7 +5,6 @@
 # include "./ft_printf_fd/ft_printf.h"
 # include "./mlx_linux/mlx.h"
 # include "./mlx_linux/mlx_int.h"
-
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <unistd.h>
@@ -13,6 +12,29 @@
 # include <stdlib.h>
 # include <string.h>
 # include <math.h>
+
+# define ESCAPE 65307
+# define ON_W 119
+# define ON_A 97
+# define ON_S 115
+# define ON_D 100
+# define KEY_UP 65362
+# define KEY_LEFT 65361
+# define KEY_DOWN 65364
+# define KEY_RIGHT 65363
+
+# define ON_KEYPRESS 2
+# define ON_DESTROY 17
+
+typedef struct s_mlx
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+}				t_mlx;
+
+/*	hooks.c */
+int	window_cross(t_mlx *mlx);
+int free_stuff(t_mlx *mlx);
 
 
 #endif
