@@ -2,16 +2,10 @@
 
 int main()
 {
-	int fd = open("test.txt", O_RDONLY);
+	void *mlx;
+
+	mlx = mlx_init();
+	printf("%p\n", mlx);
 	
-	char *str = get_next_line(fd);
-	ft_printf_fd(1, "%s\n", str);
-	free(str);
-
-	str = get_next_line(fd);
-	ft_printf_fd(1, "%s\n", str);
-	free(str);
-
-	close(fd);
 	return (0);
 }

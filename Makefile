@@ -1,18 +1,20 @@
 NAME = cub3d # The Cubed!!
-
+CC = cc
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 RM = rm -f
 LIBFT = ./include/libft/libft.a
 MINILIBX = ./include/mlx_linux/libmlx_Linux.a
 FT_PRINTF_FD = ./include/ft_printf_fd/libftprintf.a
+INC = -lXext -lX11
+
 FILESC = ./src/main.c
 
 OBJS = $(FILESC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(FT_PRINTF_FD) $(MINILIBX) $(OBJS)
-	$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(LIBFT) $(FT_PRINTF_FD) $(MINILIBX)
+$(NAME): $(LIBFT) $(MINILIBX) $(FT_PRINTF_FD) $(OBJS)
+	$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(LIBFT) $(FT_PRINTF_FD) $(MINILIBX) $(INC)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
@@ -24,22 +26,20 @@ $(FT_PRINTF_FD):
 	$(MAKE) -C ./include/ft_printf_fd
 
 $(MINILIBX): 
-	$(MAKE) -C mlx_linux
+	$(MAKE) -C ./include/mlx_linux
 
 clean:
 	$(RM) -f $(OBJS)
-	$(MAKE) -C include/libft clean
+	$(MAKE) -C ./include/libft clean
 	$(MAKE) -C ./include/ft_printf_fd clean
+	$(MAKE) -C ./include/mlx_linux clean
 	
 fclean: clean
 	$(MAKE) -C include/libft fclean
 	$(MAKE) -C ./include/ft_printf_fd fclean
+	$(MAKE) -C ./include/mlx_linux clean
 	$(RM) $(NAME)
 
 re: fclean all
 
-# Leak checker without leaks from readline :D
-l: $(NAME)
-	valgrind --leak-check=full --show-leak-kinds=all --suppressions=.ignore_readline --track-origins=yes --log-file="valgrind.txt ./$(NAME)
-
-.PHONY: all clean fclean re bonus l
+.PHONY: all clean fclean re

@@ -3,7 +3,8 @@
 
 # include "./libft/includes/libft.h"
 # include "./ft_printf_fd/ft_printf.h"
-
+# include "./mlx_linux/mlx.h"
+# include "./mlx_linux/mlx_int.h"
 
 # include <sys/stat.h>
 # include <fcntl.h>
