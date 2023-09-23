@@ -36,11 +36,15 @@ typedef struct s_mlx
 /*			hooks.c		 */
 int	window_cross(t_mlx *mlx);
 int	keypress_hook(int keycode, t_mlx *mlx);
+
 /*			init.c		*/
 void	init_mlx_struct(t_mlx *mlx);
 
 /*			free.c		*/
 int free_stuff(t_mlx *mlx);
+
+/*		./parser/parser.c */
+void parser(t_mlx *mlx, char *arg);
 
 
 #endif
