@@ -1,8 +1,9 @@
 NAME = cub3d # The Cubed!!
 
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
-RM = rm
+RM = rm -f
 LIBFT = ./include/libft/libft.a
+MINILIBX = ./include/mlx_linux/libmlx_Linux.a
 FT_PRINTF_FD = ./include/ft_printf_fd/libftprintf.a
 FILESC = ./src/main.c
 
@@ -10,8 +11,8 @@ OBJS = $(FILESC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(FT_PRINTF_FD) $(OBJS)
-	$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(LIBFT) $(FT_PRINTF_FD)
+$(NAME): $(LIBFT) $(FT_PRINTF_FD) $(MINILIBX) $(OBJS)
+	$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(LIBFT) $(FT_PRINTF_FD) $(MINILIBX)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
@@ -21,6 +22,9 @@ $(LIBFT):
 
 $(FT_PRINTF_FD):
 	$(MAKE) -C ./include/ft_printf_fd
+
+$(MINILIBX): 
+	$(MAKE) -C mlx_linux
 
 clean:
 	$(RM) -f $(OBJS)

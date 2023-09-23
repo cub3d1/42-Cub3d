@@ -1,5 +1,5 @@
 **/*.o
-*.txt
+**/*.txt
 cub3d
 *.a
 .vscode/

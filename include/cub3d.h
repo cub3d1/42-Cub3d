@@ -1,7 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "./libft/libft.h"
+# include "./libft/includes/libft.h"
 # include "./ft_printf_fd/ft_printf.h"
 
 
