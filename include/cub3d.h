@@ -28,12 +28,18 @@
 
 typedef struct s_mlx
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	unsigned char	**map;
 }				t_mlx;
 
-/*	hooks.c */
+/*			hooks.c		 */
 int	window_cross(t_mlx *mlx);
+int	keypress_hook(int keycode, t_mlx *mlx);
+/*			init.c		*/
+void	init_mlx_struct(t_mlx *mlx);
+
+/*			free.c		*/
 int free_stuff(t_mlx *mlx);
 
 
