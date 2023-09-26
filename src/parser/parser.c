@@ -1,5 +1,5 @@
 #include "../../include/cub3d.h"
-
+/*
 static void	skip_empty_lines(int map_fd, char **line)
 {
 	while (*line && **line == '\n')
@@ -8,7 +8,7 @@ static void	skip_empty_lines(int map_fd, char **line)
 		*line = get_next_line(map_fd);
 	}
 }
-
+*/
 static int cub_check(char *arg)
 {
 	int i;
@@ -45,11 +45,11 @@ static bool	file_content_ok(char *arg)
 	map_fd = open(arg, O_RDONLY);
 	if (map_fd == -1)
 		exit(2);
-	if (!map_pos_ok(map_fd, arg))
+	if (!map_pos_ok(map_fd))
 		return (false);
 	return (true);
 }
-
+/*
 static bool	map_layout_ok(char *arg)
 {
 	int	map_offset;
@@ -57,6 +57,7 @@ static bool	map_layout_ok(char *arg)
 	map_offset = find_map_offset(arg); //	return -1 if map not found
 	if (map_offset == -1)
 		return (false);
+*/
 /*
 	must check if:
 		all characters are valid
@@ -65,10 +66,10 @@ static bool	map_layout_ok(char *arg)
 		map has no empty lines
 		only 1 player tile
 */
-	(void)arg;
+/*	(void)arg;
 	return (true);
 }
-
+*/
 void	parser(t_mlx *mlx, char *arg)
 {
 	/*	check file format			*/
@@ -77,12 +78,12 @@ void	parser(t_mlx *mlx, char *arg)
 	/*	check file content layout	*/
 	if (!file_content_ok(arg))
 	{
-		ft_putstr_fd(2, "Error\nInvalid map file content\n");
+		ft_printf_fd(2, "Error\nInvalid map file content\n");
 		exit(0);
 	}
 	/*	check map layout			*/
-	if (!map_layout_ok(arg))
-		exit(0);
+//	if (!map_layout_ok(arg))
+//		exit(0);
 	/*	load map into ram			*/
 	// load_map(mlx, arg);
 	(void)mlx;	//	remove when done

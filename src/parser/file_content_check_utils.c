@@ -48,6 +48,8 @@ bool	color_vals_ok(char *line)
 	int		i;
 
 	i = 0;
+	while (*line && *line == ' ')
+		line++;
 	while (i < 3)
 	{
 		len = 0;
@@ -60,4 +62,25 @@ bool	color_vals_ok(char *line)
 		i++;
 	}
 	return (true);
+}
+
+bool	map_start(char *line)
+{
+	int	i;
+
+	while (*line && *line == ' ')
+		line++;
+	if (*line == 'F' || *line == 'C')
+		return (false);
+	i = 0;
+	while (i < 4)
+	{
+		if (ft_strncmp(line, TEXTURE_TKNS[i], 3) == 0)
+			return (false);
+		i++;
+	}
+	if (ft_strchr(line, '1'))
+		return (true);
+	else
+		return (false);
 }

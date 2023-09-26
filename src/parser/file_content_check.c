@@ -23,7 +23,7 @@ static bool	tex_tkn_check(char *line, bool *found)
 		{
 			if (found[i])
 				return (false);
-			if (ft_strlen(line < 4))
+			if (ft_strlen(line) < 4)
 				return (false);
 			found[i] = true;
 			break ;
@@ -54,7 +54,7 @@ bool	textures_ok(int map_fd)
 		line = get_next_line(map_fd);
 	}
 	if (close(map_fd == -1))
-		exit(3)
+		exit(3);
 	if (ft_memchr(tkns_found, 0, 4))
 		ok = false;
 	return (ok);
@@ -66,13 +66,18 @@ static bool	color_tkn_check(char *line, bool *found)
 	int	i;
 
 	i = 0;
+	while (*line && *line == ' ')
+		line++;
 	while (i < 2)
 	{
 		if (ft_strncmp(line, COLOR_TKNS[i], 2) == 0)
 		{
 			if (found[i])
 				return (false);
-			if (!color_format_ok(line) || !color_vals_ok(line))
+			line += 2;
+			while (*line && *line == ' ')
+				line++;
+			if (!color_format_ok(line + 2) || !color_vals_ok(line + 2))
 				return (false);
 			found[i] = true;
 			break ;
@@ -82,7 +87,7 @@ static bool	color_tkn_check(char *line, bool *found)
 	return (true);
 }
 
-bool	color_ok(int map_fd, char **line)
+bool	color_ok(int map_fd)
 {
 	bool	ok;
 	bool	tkns_found[2];
@@ -107,4 +112,32 @@ bool	color_ok(int map_fd, char **line)
 	if (ft_memchr(tkns_found, 0, 2))
 		ok = false;
 	return (ok);
+}
+
+bool	map_pos_ok(int map_fd)
+{
+	char	*line;
+
+	line = get_next_line(map_fd);
+	while (line && (*line == '\n' || !map_start(line)))
+	{
+		free(line);
+		line = get_next_line(map_fd);
+	}
+	while (line && ft_strchr(line, '1'))
+	{
+		free(line);
+		line = get_next_line(map_fd);
+	}
+	while (line)
+	{
+		if (*line != '\n')
+		{
+			free(line);
+			return (false);
+		}
+		free(line);
+		line = get_next_line(map_fd);
+	}
+	return (true);
 }
