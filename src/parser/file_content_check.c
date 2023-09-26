@@ -12,83 +12,71 @@
 
 #include "../../include/cub3d.h"
 
-bool	textures_ok(int map_fd, char **line)
+static bool	tex_tkn_check(char *line, bool *found)
 {
-	const char	*textures[4] = {"NO ", "SO ", "WE ", "EA "};
 	int	i;
 
 	i = 0;
-	while (*line && **line && i < 4)
+	while (i < 4)
 	{
-		if (ft_strlen(*line) < 3 || ft_strncmp(*line, textures[i], 3) != 0)
+		if (ft_strncmp(line, TEXTURE_TKNS[i], 3) == 0)
 		{
-			ft_printf_fd(2, "Error\nInvalid texture identifier\n");
-			free(*line);
-			return (false);
-		}
-		if (ft_strlen(*line + 3) == 0)
-		{
-			ft_printf_fd(2, "Error\nFile path not specified\n");
-			free(*line);
-			return (false);
-		}
-		free(*line);
-		*line = get_next_line(map_fd);
-		i++;
-	}
-	if (i < 4)
-	{
-		ft_printf_fd(2, "Error\nMissing texture paths\n");
-		return (false);
-	}
-	return (true);
-}
-
-static bool	color_format_ok(char *line)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	i = 0;
-	j = 0;
-	k = 0;
-	while (line[i] && line[i] != '\n')
-	{
-		if (ft_isdigit(line[i]))
-			j++;
-		else if (line[i] == ',')
-		{
-			k++;
-			j = 0;
-			if (!ft_isdigit(line[i + 1]))
+			if (found[i])
 				return (false);
+			if (ft_strlen(line < 4))
+				return (false);
+			found[i] = true;
+			break ;
 		}
-		else
-			return (false);
-		if (j == 4 || k == 3)
-			return (false);
 		i++;
 	}
 	return (true);
 }
 
-static bool color_vals_ok(char *line)
+bool	textures_ok(int map_fd)
 {
-	char	val[3];
-	int		len;
-	int		i;
+	bool	ok;
+	bool	tkns_found[4];
+	char	*line;
+
+	ok = true;
+	ft_memset(tkns_found, 0, 4);
+	line = get_next_line(map_fd);
+	while (line)
+	{
+		if (!tex_tkn_check(line, tkns_found))
+		{
+			ok = false;
+			free(line);
+			break ;
+		}
+		free(line);
+		line = get_next_line(map_fd);
+	}
+	if (close(map_fd == -1))
+		exit(3)
+	if (ft_memchr(tkns_found, 0, 4))
+		ok = false;
+	return (ok);
+}
+
+
+static bool	color_tkn_check(char *line, bool *found)
+{
+	int	i;
 
 	i = 0;
-	while (i < 3)
+	while (i < 2)
 	{
-		len = 0;
-		while (ft_isdigit(line[len]))
-			len++;
-		ft_strlcpy(val, line, len + 1);
-		if (ft_atoi(val) > 255)
-			return (false);
-		line += len + 1;
+		if (ft_strncmp(line, COLOR_TKNS[i], 2) == 0)
+		{
+			if (found[i])
+				return (false);
+			if (!color_format_ok(line) || !color_vals_ok(line))
+				return (false);
+			found[i] = true;
+			break ;
+		}
 		i++;
 	}
 	return (true);
@@ -96,34 +84,27 @@ static bool color_vals_ok(char *line)
 
 bool	color_ok(int map_fd, char **line)
 {
-	const char	*surfaces[2] = {"F ", "C "};
-	int			i;
+	bool	ok;
+	bool	tkns_found[2];
+	char	*line;
 
-	i = 0;
-	while (*line && i < 2)
+	ok = true;
+	ft_memset(tkns_found, 0, 2);
+	line = get_next_line(map_fd);
+	while (line)
 	{
-		if (ft_strncmp(*line, surfaces[i], 2) != 0)
+		if (!color_tkn_check(line, tkns_found))
 		{
-			ft_printf_fd(2, "Error\nInvalid surface color identifier\n");
-			free(*line);
-			return (false);
+			ok = false;
+			free(line);
+			break ;
 		}
-		// ft_printf_fd(1, "%s\n", *line);
-		if (!color_format_ok(*line + 2))
-		{
-			ft_printf_fd(2, "Error\nInvalid surface color format\n");
-			free(*line);
-			return (false);
-		}
-		if (!color_vals_ok(*line + 2))
-		{
-			ft_printf_fd(2, "Error\nInvalid surface color value\n");
-			free(*line);
-			return (false);
-		}
-		free(*line);
-		*line = get_next_line(map_fd);
-		i++;
+		free(line);
+		line = get_next_line(map_fd);
 	}
-	return (true);
+	if (close(map_fd) == -1)
+		exit(3);
+	if (ft_memchr(tkns_found, 0, 2))
+		ok = false;
+	return (ok);
 }

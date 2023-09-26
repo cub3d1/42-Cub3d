@@ -13,6 +13,7 @@
 # include <string.h>
 # include <math.h>
 
+/*		keystrokes		*/
 # define ESCAPE 65307
 # define ON_W 119
 # define ON_A 97
@@ -25,6 +26,13 @@
 
 # define ON_KEYPRESS 2
 # define ON_DESTROY 17
+
+/*		map tokens		*/
+# define TEXTURE_TKNS {"NO ", "SO ", "WE ", "EA "}
+# define COLOR_TKNS {"F ", "C "}
+# define MAP_TKNS {'0', '1'}
+# define PLAYER_TKNS {'N', 'S', 'E', 'W'}
+
 
 typedef struct s_mlx
 {
@@ -46,10 +54,15 @@ int 	free_stuff(t_mlx *mlx);
 /*		./parser/parser.c */
 void 	parser(t_mlx *mlx, char *arg);
 
-/*	./parser/file_check.c	*/
-bool	textures_ok(int map_fd, char **line);
-bool	color_ok(int map_fd, char **line);
-int		find_map_offset(char *arg);
+/*	./parser/file_content_check.c	*/
+bool	textures_ok(int map_fd);
+bool	color_ok(int map_fd);
+int		map_pos_ok(char *arg);
+
+/*	./parser/file_content_check_utils.c	*/
+bool	color_format_ok(char *line);
+bool	color_vals_ok(char *line);
+
 #endif
 
 /*		error codes

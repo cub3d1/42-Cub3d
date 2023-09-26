@@ -30,31 +30,23 @@ static int cub_check(char *arg)
 //	must be able to parse in any order...
 static bool	file_content_ok(char *arg)
 {
-	int		map_fd;
-	char	*line;
+	int	map_fd;
 
 	map_fd = open(arg, O_RDONLY);
 	if (map_fd == -1)
 		exit(2);
-	line = get_next_line(map_fd);
-	skip_empty_lines(map_fd, &line);
-	/*	check if texture data in file	*/
-	if (!line || !textures_ok(map_fd, &line))
+	if (!textures_ok(map_fd))
 		return (false);
-	skip_empty_lines(map_fd, &line);
-	/*	check if color data in file		*/
-	if (!line || !color_ok(map_fd, &line))
+	map_fd = open(arg, O_RDONLY);
+	if (map_fd == -1)
+		exit(2);
+	if (!color_ok(map_fd))
 		return (false);
-	skip_empty_lines(map_fd, &line);
-	if (close(map_fd) == -1)
-		exit(3);
-	if (!line)
-	{
-		ft_printf_fd(2, "Error\nMap layout not found\n");
+	map_fd = open(arg, O_RDONLY);
+	if (map_fd == -1)
+		exit(2);
+	if (!map_pos_ok(map_fd, arg))
 		return (false);
-	}
-	else
-		free(line);
 	return (true);
 }
 
@@ -84,7 +76,10 @@ void	parser(t_mlx *mlx, char *arg)
 		exit(0);
 	/*	check file content layout	*/
 	if (!file_content_ok(arg))
+	{
+		ft_putstr_fd(2, "Error\nInvalid map file content\n");
 		exit(0);
+	}
 	/*	check map layout			*/
 	if (!map_layout_ok(arg))
 		exit(0);

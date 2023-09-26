@@ -7,17 +7,25 @@ MINILIBX = ./include/mlx_linux/libmlx_Linux.a
 FT_PRINTF_FD = ./include/ft_printf_fd/libftprintf.a
 INC = -lXext -lX11
 
-FILESC = ./src/main.c ./src/hooks.c ./src/free.c ./src/init.c ./src/parser/parser.c ./src/parser/file_content_check.c src/parser/map_layout_check.c
+SRCDIR = ./src/
+PARSERDIR = $(SRCDIR)parser/
 
-OBJS = $(FILESC:.c=.o)
+COREFILES = main.c hooks.c free.c init.c
+PARSERFILES = parser.c file_content_check.c map_layout_check.c map_content_check_utils.c
+SRC = $(COREFILES) $(PARSERFILES)
+
+FILESC = $(addprefix $(SRCDIR), $(COREFILES)) \
+			$(addprefix $(PARSERDIR), $(PARSERFILES))
+
+OBJS = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(MINILIBX) $(FT_PRINTF_FD) $(OBJS)
 	$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(LIBFT) $(FT_PRINTF_FD) $(MINILIBX) $(INC)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+$(OBJS): $(FILESC)
+	$(CC) $(CFLAGS) -c $(FILESC)
 
 $(LIBFT):
 	$(MAKE) -C ./include/libft
