@@ -34,17 +34,27 @@ typedef struct s_mlx
 }				t_mlx;
 
 /*			hooks.c		 */
-int	window_cross(t_mlx *mlx);
-int	keypress_hook(int keycode, t_mlx *mlx);
+int		window_cross(t_mlx *mlx);
+int		keypress_hook(int keycode, t_mlx *mlx);
 
 /*			init.c		*/
 void	init_mlx_struct(t_mlx *mlx);
 
 /*			free.c		*/
-int free_stuff(t_mlx *mlx);
+int 	free_stuff(t_mlx *mlx);
 
 /*		./parser/parser.c */
-void parser(t_mlx *mlx, char *arg);
+void 	parser(t_mlx *mlx, char *arg);
 
-
+/*	./parser/file_check.c	*/
+bool	textures_ok(int map_fd, char **line);
+bool	color_ok(int map_fd, char **line);
+int		find_map_offset(char *arg);
 #endif
+
+/*		error codes
+ *
+ *	1 - invalid file format
+ *	2 - open error
+ *	3 - close error
+ */

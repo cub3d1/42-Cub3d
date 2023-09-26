@@ -1,13 +1,13 @@
 NAME = cub3d # The Cubed!!
 CC = cc
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -ggdb -fsanitize=address
 RM = rm -f
 LIBFT = ./include/libft/libft.a
 MINILIBX = ./include/mlx_linux/libmlx_Linux.a
 FT_PRINTF_FD = ./include/ft_printf_fd/libftprintf.a
 INC = -lXext -lX11
 
-FILESC = ./src/main.c ./src/hooks.c ./src/free.c ./src/init.c ./src/parser/parser.c
+FILESC = ./src/main.c ./src/hooks.c ./src/free.c ./src/init.c ./src/parser/parser.c ./src/parser/file_content_check.c src/parser/map_layout_check.c
 
 OBJS = $(FILESC:.c=.o)
 

@@ -4,15 +4,18 @@ int main(int argc, char **argv)
 {
 	t_mlx	mlx;
 
+	/*	ARGUMENT CHECK	*/
+	/*	argc check	*/
 	if (argc != 2)
 	{
 		ft_printf_fd(1, "Error\nWrong number of arguments\n");
 		return (0);
 	}
-
+	/*	map check	*/
 	parser(&mlx, argv[1]);
-
+	/*	init struct	*/
 	init_mlx_struct(&mlx);
+	/*	init mlx	*/
 	mlx.mlx_ptr = mlx_init();
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 500, 250, "Hello world!");
 
