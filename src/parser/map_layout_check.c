@@ -12,7 +12,7 @@
 
 #include "../../include/cub3d.h"
 
-int	find_map_offset(char *arg)
+int	find_map_offset(t_mlx *mlx, char *arg)
 {
 	int		map_fd;
 	char	*line;
@@ -20,7 +20,7 @@ int	find_map_offset(char *arg)
 
 	map_fd = open(arg, O_RDONLY);
 	if (map_fd == -1)
-		exit(2);
+		exit_err(mlx, 2);
 	line = get_next_line(map_fd);
 	i = 0;
 	while (line)
@@ -37,6 +37,6 @@ int	find_map_offset(char *arg)
 	//	read file until map is found, return line nr
 
 	if (close(map_fd) == -1)
-		exit(3);
+		exit_err(mlx, 3);
 	return (-1);
 }

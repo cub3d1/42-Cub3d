@@ -7,8 +7,9 @@ MINILIBX = ./include/mlx_linux/libmlx_Linux.a
 FT_PRINTF_FD = ./include/ft_printf_fd/libftprintf.a
 INC = -lXext -lX11
 
-FILESC = ./src/main.c ./src/hooks.c ./src/free.c ./src/init.c ./src/parser/parser.c ./src/parser/file_content_check.c src/parser/map_layout_check.c
-
+FILESC = ./src/main.c ./src/hooks.c ./src/free.c ./src/init.c \
+		./src/parser/parser.c ./src/parser/file_content_check.c ./src/parser/map_layout_check.c src/parser/load_map.c \
+		./src/exit_err.c
 OBJS = $(FILESC:.c=.o)
 
 all: $(NAME)

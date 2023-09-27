@@ -35,7 +35,7 @@ static bool	file_content_ok(char *arg)
 
 	map_fd = open(arg, O_RDONLY);
 	if (map_fd == -1)
-		exit(2);
+		exit_err(NULL, 2);
 	line = get_next_line(map_fd);
 	skip_empty_lines(map_fd, &line);
 	/*	check if texture data in file	*/
@@ -47,7 +47,7 @@ static bool	file_content_ok(char *arg)
 		return (false);
 	skip_empty_lines(map_fd, &line);
 	if (close(map_fd) == -1)
-		exit(3);
+		exit_err(NULL, 3);
 	if (!line)
 	{
 		ft_printf_fd(2, "Error\nMap layout not found\n");
@@ -58,11 +58,11 @@ static bool	file_content_ok(char *arg)
 	return (true);
 }
 
-static bool	map_layout_ok(char *arg)
+static bool	map_layout_ok(t_mlx *mlx, char *arg)
 {
 	int	map_offset;
 
-	map_offset = find_map_offset(arg); //	return -1 if map not found
+	map_offset = find_map_offset(mlx, arg); //	return -1 if map not found
 	if (map_offset == -1)
 		return (false);
 /*
@@ -86,9 +86,10 @@ void	parser(t_mlx *mlx, char *arg)
 	if (!file_content_ok(arg))
 		exit(0);
 	/*	check map layout			*/
-	if (!map_layout_ok(arg))
+	if (!map_layout_ok(mlx, arg))
 		exit(0);
 	/*	load map into ram			*/
-	// load_map(mlx, arg);
-	(void)mlx;	//	remove when done
+	if (load_map(mlx, arg))
+		free_stuff(mlx, 4);
+	// (void)mlx;	//	remove when done
 }

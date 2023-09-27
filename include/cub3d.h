@@ -33,6 +33,9 @@ typedef struct s_mlx
 	unsigned char	**map;
 }				t_mlx;
 
+/*			exit_err.c 	*/
+void	exit_err(t_mlx *mlx, int err_code);
+
 /*			hooks.c		 */
 int		window_cross(t_mlx *mlx);
 int		keypress_hook(int keycode, t_mlx *mlx);
@@ -41,7 +44,7 @@ int		keypress_hook(int keycode, t_mlx *mlx);
 void	init_mlx_struct(t_mlx *mlx);
 
 /*			free.c		*/
-int 	free_stuff(t_mlx *mlx);
+int 	free_stuff(t_mlx *mlx, int err_code);
 
 /*		./parser/parser.c */
 void 	parser(t_mlx *mlx, char *arg);
@@ -49,7 +52,11 @@ void 	parser(t_mlx *mlx, char *arg);
 /*	./parser/file_check.c	*/
 bool	textures_ok(int map_fd, char **line);
 bool	color_ok(int map_fd, char **line);
-int		find_map_offset(char *arg);
+int		find_map_offset(t_mlx *mlx, char *arg);
+
+/*	./parser/load_map.c	*/
+int		load_map(t_mlx *mlx, char *path);
+
 #endif
 
 /*		error codes
