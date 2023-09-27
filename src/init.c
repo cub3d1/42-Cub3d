@@ -7,3 +7,14 @@ void	init_mlx_struct(t_mlx *mlx)
 	mlx->win_ptr = NULL;
 	mlx->map = NULL;
 }
+
+t_cubed	*init_cubed(void)
+{
+	t_cubed	*cub;
+
+	cub = malloc(sizeof(t_cubed));
+	if (!cub)
+		return (NULL);
+
+	return (cub);
+}

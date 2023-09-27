@@ -28,23 +28,23 @@ static int cub_check(char *arg)
 	return (0);
 }
 //	must be able to parse in any order...
-static bool	file_content_ok(char *arg)
+static bool	file_content_ok(char *arg, t_cubed *cubed)
 {
 	int	map_fd;
 
 	map_fd = open(arg, O_RDONLY);
 	if (map_fd == -1)
-		exit(2);
-	if (!textures_ok(map_fd))
+		abort_init(2, cubed);
+	if (!textures_ok(map_fd, cubed))
 		return (false);
 	map_fd = open(arg, O_RDONLY);
 	if (map_fd == -1)
-		exit(2);
+		abort_init(2, cubed);
 	if (!color_ok(map_fd))
 		return (false);
 	map_fd = open(arg, O_RDONLY);
 	if (map_fd == -1)
-		exit(2);
+		abort_init(2, cubed);
 	if (!map_pos_ok(map_fd))
 		return (false);
 	return (true);
@@ -70,13 +70,13 @@ static bool	map_layout_ok(char *arg)
 	return (true);
 }
 */
-void	parser(t_mlx *mlx, char *arg)
+void	parser(t_cubed *cubed, char *arg)
 {
 	/*	check file format			*/
 	if (cub_check(arg) == 1)
 		exit(0);
 	/*	check file content layout	*/
-	if (!file_content_ok(arg))
+	if (!file_content_ok(arg, cubed))
 	{
 		ft_printf_fd(2, "Error\nInvalid map file content\n");
 		exit(0);
@@ -85,6 +85,5 @@ void	parser(t_mlx *mlx, char *arg)
 //	if (!map_layout_ok(arg))
 //		exit(0);
 	/*	load map into ram			*/
-	// load_map(mlx, arg);
-	(void)mlx;	//	remove when done
+	load_map(cubed, arg);
 }

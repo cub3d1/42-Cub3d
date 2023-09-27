@@ -33,7 +33,7 @@ static bool	tex_tkn_check(char *line, bool *found)
 	return (true);
 }
 
-bool	textures_ok(int map_fd)
+bool	textures_ok(int map_fd, t_cubed *cubed)
 {
 	bool	ok;
 	bool	tkns_found[4];
@@ -54,7 +54,7 @@ bool	textures_ok(int map_fd)
 		line = get_next_line(map_fd);
 	}
 	if (close(map_fd == -1))
-		exit(3);
+		abort_init(3, cubed);
 	if (ft_memchr(tkns_found, 0, 4))
 		ok = false;
 	return (ok);
@@ -87,7 +87,7 @@ static bool	color_tkn_check(char *line, bool *found)
 	return (true);
 }
 
-bool	color_ok(int map_fd)
+bool	color_ok(int map_fd, t_cubed *cubed)
 {
 	bool	ok;
 	bool	tkns_found[2];
@@ -108,7 +108,7 @@ bool	color_ok(int map_fd)
 		line = get_next_line(map_fd);
 	}
 	if (close(map_fd) == -1)
-		exit(3);
+		abort_init(3, cubed);
 	if (ft_memchr(tkns_found, 0, 2))
 		ok = false;
 	return (ok);
@@ -139,5 +139,7 @@ bool	map_pos_ok(int map_fd)
 		free(line);
 		line = get_next_line(map_fd);
 	}
+	if (close(map_fd) == -1)
+		abort_init(3, cubed);
 	return (true);
 }

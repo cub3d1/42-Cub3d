@@ -12,3 +12,16 @@ int free_stuff(t_mlx *mlx)
 	exit(0);
 	return (0);
 }
+
+void	abort_init(int status, t_cubed *cubed)
+{
+	if (cubed)
+	{
+		if (cubed->texture_paths)
+			ft_free_split(cubed->texture_paths);
+		if (cubed->map)
+			ft_free_split(cubed->map);
+		free(cubed);
+	}
+	exit(status);
+}

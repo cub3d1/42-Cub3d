@@ -41,23 +41,42 @@ typedef struct s_mlx
 	unsigned char	**map;
 }				t_mlx;
 
+typedef struct s_cubed
+{
+	char	**texture_paths;
+	int		surface_colors[2][3];
+	char	**map;
+	int		start_pos[2];
+	/*
+	 *
+	 *	needs to store 
+	 *		paths to textures
+	 *		values of colors
+	 *		matrix of map
+	 *		player start position
+	 *
+	 */
+}				t_cubed;
+
 /*			hooks.c		 */
 int		window_cross(t_mlx *mlx);
 int		keypress_hook(int keycode, t_mlx *mlx);
 
 /*			init.c		*/
 void	init_mlx_struct(t_mlx *mlx);
+t_cubed	*init_cubed(void);
 
 /*			free.c		*/
 int 	free_stuff(t_mlx *mlx);
+void	abort_init(int status, t_cubed *cubed);
 
 /*		./parser/parser.c */
-void 	parser(t_mlx *mlx, char *arg);
+void 	parser(t_cubed *cubed, char *arg);
 
 /*	./parser/file_content_check.c	*/
-bool	textures_ok(int map_fd);
-bool	color_ok(int map_fd);
-bool		map_pos_ok(int map_fd);
+bool	textures_ok(int map_fd, t_cubed *cubed);
+bool	color_ok(int map_fd, t_cubed *cubed);
+bool	map_pos_ok(int map_fd);
 
 /*	./parser/file_content_check_utils.c	*/
 bool	color_format_ok(char *line);
@@ -71,4 +90,6 @@ bool	map_start(char *line);
  *	1 - invalid file format
  *	2 - open error
  *	3 - close error
+ *	4 - malloc fail
+ *
  */

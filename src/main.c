@@ -3,6 +3,7 @@
 int main(int argc, char **argv)
 {
 	t_mlx	mlx;
+	t_cubed	*cubed;
 
 	/*	ARGUMENT CHECK	*/
 	/*	argc check	*/
@@ -11,8 +12,12 @@ int main(int argc, char **argv)
 		ft_printf_fd(1, "Error\nWrong number of arguments\n");
 		return (0);
 	}
+	/*	init game struct	*/
+	cubed = init_cubed();
+	if (!cubed)
+		exit(4);
 	/*	map check	*/
-	parser(&mlx, argv[1]);
+	parser(cubed, argv[1]);
 	/*	init struct	*/
 	init_mlx_struct(&mlx);
 	/*	init mlx	*/

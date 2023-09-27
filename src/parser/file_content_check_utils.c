@@ -48,8 +48,6 @@ bool	color_vals_ok(char *line)
 	int		i;
 
 	i = 0;
-	while (*line && *line == ' ')
-		line++;
 	while (i < 3)
 	{
 		len = 0;
