@@ -17,10 +17,13 @@ int free_stuff(t_mlx *mlx, int err_code)
 		while (mlx->map[i])
 		{
 			free(mlx->map[i]);
+			mlx->map[i] = NULL;
 			i++;
 		}
 		free(mlx->map);
+		mlx->map = NULL;
 	}
+
 	if (err_code >= 0)
 		exit(err_code);
 	return (0);

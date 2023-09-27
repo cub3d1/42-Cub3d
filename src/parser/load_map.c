@@ -8,11 +8,9 @@ int load_map(t_mlx *mlx, char *path)
     if (map_fd == -1)
         exit_err(mlx, 2);
     
-    // mlx->map = (unsigned char **)malloc(sizeof(unsigned char *) * 1);
-    // if (!mlx->map)
-    //     exit_err(mlx, 4);
+    // mlx->map = (unsigned char **)malloc(sizeof(unsigned char *) * 2);
+
     if (close(map_fd) == -1)
         exit_err(mlx, 3);
-    (void)mlx;
     return (0);
 }
