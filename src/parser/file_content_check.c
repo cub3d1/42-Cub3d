@@ -124,7 +124,7 @@ bool	map_pos_ok(int map_fd)
 		free(line);
 		line = get_next_line(map_fd);
 	}
-	while (line && ft_strchr(line, '1'))
+	while (line && (ft_strchr(line, '1') || ft_strchr(line, '0')))
 	{
 		free(line);
 		line = get_next_line(map_fd);

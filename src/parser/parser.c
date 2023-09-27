@@ -49,41 +49,41 @@ static bool	file_content_ok(char *arg, t_cubed *cubed)
 		return (false);
 	return (true);
 }
-/*
-static bool	map_layout_ok(char *arg)
+
+static bool	map_layout_ok(char *arg, t_cubed *cubed)
 {
 	int	map_offset;
 
-	map_offset = find_map_offset(arg); //	return -1 if map not found
-	if (map_offset == -1)
+	map_offset = find_map_offset(arg);
+	if (!map_tokens_ok(arg, map_offset))
 		return (false);
-*/
+	if (!player_token_ok(arg, map_offset))
+		return (false);
+	if (!layout_enclosed(arg, map_offset))
+		return (false);
 /*
 	must check if:
 		all characters are valid
 		map is surrounded by walls - use flood fill?
-		map is at end of file (maybe that can be done in content_check?)
-		map has no empty lines
 		only 1 player tile
 */
-/*	(void)arg;
 	return (true);
 }
-*/
+
 void	parser(t_cubed *cubed, char *arg)
 {
 	/*	check file format			*/
 	if (cub_check(arg) == 1)
-		exit(0);
+		abort_init(0, cubed);
 	/*	check file content layout	*/
 	if (!file_content_ok(arg, cubed))
 	{
 		ft_printf_fd(2, "Error\nInvalid map file content\n");
-		exit(0);
+		abort_init(0, cubed);
 	}
 	/*	check map layout			*/
-//	if (!map_layout_ok(arg))
-//		exit(0);
+	if (!map_layout_ok(arg, cubed))
+		abort_init(0, cubed);
 	/*	load map into ram			*/
 	load_map(cubed, arg);
 }

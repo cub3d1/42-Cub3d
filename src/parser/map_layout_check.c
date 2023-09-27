@@ -23,20 +23,16 @@ int	find_map_offset(char *arg)
 		exit(2);
 	line = get_next_line(map_fd);
 	i = 0;
-	while (line)
+	while (line && (!ft_strchr(line, '1') && ft_strchr(line, '0')))
 	{
-		if (ft_strchr(line, '1'))
-		{
-			free(line);
-			return (i);
-		}
 		i++;
 		free(line);
 		line = get_next_line(map_fd);
 	}
-	//	read file until map is found, return line nr
-
+	if (line)
+		free(line);
 	if (close(map_fd) == -1)
 		exit(3);
-	return (-1);
+	return (i);
 }
+
