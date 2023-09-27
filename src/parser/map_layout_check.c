@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   map_layout_check.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmouronh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 08:46:02 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/09/25 08:46:22 by fmouronh         ###   ########.fr       */
+/*   Updated: 2023/09/27 23:27:25 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+// loop line 27:
+// read file until map is found, return line nr
 int	find_map_offset(t_mlx *mlx, char *arg)
 {
 	int		map_fd;
@@ -34,8 +36,6 @@ int	find_map_offset(t_mlx *mlx, char *arg)
 		free(line);
 		line = get_next_line(map_fd);
 	}
-	//	read file until map is found, return line nr
-
 	if (close(map_fd) == -1)
 		exit_err(mlx, 3);
 	return (-1);
