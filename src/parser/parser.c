@@ -52,21 +52,12 @@ static bool	file_content_ok(char *arg, t_cubed *cubed)
 
 static bool	map_layout_ok(char *arg, t_cubed *cubed)
 {
-	int	map_offset;
-
-	map_offset = find_map_offset(arg);
-	if (!map_tokens_ok(arg, map_offset))
+	if (!map_tokens_ok(cubed))
 		return (false);
-	if (!player_token_ok(arg, map_offset))
+	if (!player_token_ok(cubed))
 		return (false);
-	if (!layout_enclosed(arg, map_offset))
+	if (!layout_enclosed(cubed))
 		return (false);
-/*
-	must check if:
-		all characters are valid
-		map is surrounded by walls - use flood fill?
-		only 1 player tile
-*/
 	return (true);
 }
 
@@ -81,9 +72,9 @@ void	parser(t_cubed *cubed, char *arg)
 		ft_printf_fd(2, "Error\nInvalid map file content\n");
 		abort_init(0, cubed);
 	}
+	/*	load map into ram			*/
+	load_map(cubed, arg);
 	/*	check map layout			*/
 	if (!map_layout_ok(arg, cubed))
 		abort_init(0, cubed);
-	/*	load map into ram			*/
-	load_map(cubed, arg);
 }

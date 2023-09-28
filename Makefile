@@ -11,7 +11,7 @@ SRCDIR = ./src/
 PARSERDIR = $(SRCDIR)parser/
 
 COREFILES = main.c hooks.c free.c init.c
-PARSERFILES = parser.c file_content_check.c file_content_check_utils.c map_layout_check.c
+PARSERFILES = parser.c file_content_check.c file_content_check_utils.c map_layout_check.c flood_fill.c
 SRC = $(COREFILES) $(PARSERFILES)
 
 FILESC = $(addprefix $(SRCDIR), $(COREFILES)) \

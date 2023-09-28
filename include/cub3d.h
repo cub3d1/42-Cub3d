@@ -43,10 +43,11 @@ typedef struct s_mlx
 
 typedef struct s_cubed
 {
-	char	**texture_paths;
-	int		surface_colors[2][3];
-	char	**map;
-	int		start_pos[2];
+	char		**texture_paths;
+	int			surface_colors[2][3];
+	char		**map;
+	int			start_pos[2];
+	t_player	*player;
 	/*
 	 *
 	 *	needs to store 
@@ -57,6 +58,14 @@ typedef struct s_cubed
 	 *
 	 */
 }				t_cubed;
+
+typedef struct s_player
+{
+	float	pos_x;
+	float	pos_y;
+	//	direction
+	//	fov?
+}				t_player;
 
 /*			hooks.c		 */
 int		window_cross(t_mlx *mlx);
@@ -82,6 +91,14 @@ bool	map_pos_ok(int map_fd);
 bool	color_format_ok(char *line);
 bool	color_vals_ok(char *line);
 bool	map_start(char *line);
+
+/*	./parser/map_layout_check.c	*/
+bool	map_tokens_ok(char *path, int offset, t_cubed *cubed);
+bool	player_token_ok(char *path, int offset, t_cubed *cubed);
+bool	layout_enclosed(char *path, int offset, t_cubed *cubed);
+
+/*	./parser/flood_fill.c	*/
+void	flood_fill(char *map, int pos_x, int pos_y);
 
 #endif
 
