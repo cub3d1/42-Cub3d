@@ -26,6 +26,7 @@ int main(int argc, char **argv)
 	mlx_hook(mlx.win_ptr, ON_DESTROY, 1L << 17, window_cross, &mlx);
 
 	mlx_loop(mlx.mlx_ptr);
-	return (0);	
+	free_stuff(&mlx, 0);
+	return (0);
 	
 }

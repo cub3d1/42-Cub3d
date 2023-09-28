@@ -23,6 +23,18 @@ static int	get_max_map_lines(t_mlx *mlx, char *path)
 	return (max_line);
 }
 
+void advance_gnl_to_map(int map_fd)
+{
+	int	i;
+
+	i = 0;
+	while (i < 8)
+	{
+		free(get_next_line(map_fd));
+		i++;
+	}
+}
+
 int load_map(t_mlx *mlx, char *path)
 {
 	int		map_fd;
@@ -37,8 +49,15 @@ int load_map(t_mlx *mlx, char *path)
 	mlx->map = (unsigned char **)ft_calloc(sizeof(unsigned char *), (max_line - 8 + 1));
 	(void)line;
 	// printf("%d\n", max_line - 8);
+	advance_gnl_to_map(map_fd);
+	// mlx->map = get_map_to_array(map_fd, mlx->map);
+	
 
+	// line = get_next_line(map_fd);
+	// i = 0;
 
+	// while ()
+	// ft_printf_fd(1, "first line = %s\n", line);
 
 	if (close(map_fd) == -1)
 		exit_err(mlx, 3);
