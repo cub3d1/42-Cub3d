@@ -1,6 +1,6 @@
 #include "../../include/cub3d.h"
 
-static int	get_max_map_lines(t_mlx *mlx, char *path)
+static int	get_max_map_lines(t_cubed *cubed, char *path)
 {
 	int		map_fd;
 	char	*line;
@@ -8,7 +8,7 @@ static int	get_max_map_lines(t_mlx *mlx, char *path)
 
 	map_fd = open(path, O_RDONLY);
 	if (map_fd == -1)
-		exit_err(mlx, 2);
+		exit_err(cubed, 2);
 	line = NULL;
 	max_line = 0;
 	line = get_next_line(map_fd);
@@ -19,7 +19,7 @@ static int	get_max_map_lines(t_mlx *mlx, char *path)
 		max_line++;
 	}
 	if (close(map_fd) == -1)
-		exit_err(mlx, 3);
+		exit_err(cubed, 3);
 	return (max_line);
 }
 
@@ -35,7 +35,7 @@ void advance_gnl_to_map(int map_fd)
 	}
 }
 
-static void	get_map_to_array(int map_fd, int max_line, t_mlx *mlx)
+static void	get_map_to_array(int map_fd, int max_line, t_cubed *cubed)
 {
 	char	*line;
 	int		i;
@@ -44,7 +44,7 @@ static void	get_map_to_array(int map_fd, int max_line, t_mlx *mlx)
 	line = get_next_line(map_fd);
 	while (i < max_line)
 	{
-		mlx->map[i] = (unsigned char *)ft_strdup(line);
+		cubed->map[i] = (unsigned char *)ft_strdup(line);
 		free(line);
 		line = NULL;
 		if (++i < max_line)
@@ -54,34 +54,34 @@ static void	get_map_to_array(int map_fd, int max_line, t_mlx *mlx)
 		free(line);
 }
 
-// void print_map(t_mlx *mlx)
+// void print_map(t_cubed *cubed)
 // {
 // 	int i;
 
 // 	i = 0;
-// 	while (mlx->map[i])
+// 	while (cubed->map[i])
 // 	{
-// 		ft_printf_fd(1, "%s", mlx->map[i]);
+// 		ft_printf_fd(1, "%s", cubed->map[i]);
 // 		i++;
 // 	}
 // }
 
-int load_map(t_mlx *mlx, char *path)
+int load_map(t_cubed *cubed, char *path)
 {
 	int		map_fd;
 	int		max_line;
 
-	max_line = get_max_map_lines(mlx, path);
+	max_line = get_max_map_lines(cubed, path);
 	map_fd = open(path, O_RDONLY);
 	if (map_fd == -1)
-		exit_err(mlx, 2);
-	mlx->map = (unsigned char **)ft_calloc(sizeof(unsigned char *), (max_line - 8 + 1));
+		exit_err(cubed, 2);
+	cubed->map = (unsigned char **)ft_calloc(sizeof(unsigned char *), (max_line - 8 + 1));
 
 	advance_gnl_to_map(map_fd); /* advance the gnl fd to beginning of the map */
-	get_map_to_array(map_fd, max_line - 8, mlx); /* load map into variable mlx.map */
-	// print_map(mlx); /* print map to stdout */
+	get_map_to_array(map_fd, max_line - 8, cubed); /* load map into variable cubed.map */
+	// print_map(cubed); /* print map to stdout */
 
 	if (close(map_fd) == -1)
-		exit_err(mlx, 3);
+		exit_err(cubed, 3);
 	return (0);
 }
