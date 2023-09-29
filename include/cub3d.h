@@ -13,6 +13,10 @@
 # include <string.h>
 # include <math.h>
 
+/*		window size		*/
+# define WIN_W 500
+# define WIN_H 250
+
 /*		keystrokes		*/
 # define ESCAPE 65307
 # define ON_W 119
