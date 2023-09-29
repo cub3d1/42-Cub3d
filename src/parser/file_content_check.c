@@ -14,12 +14,13 @@
 
 static bool	tex_tkn_check(char *line, bool *found)
 {
+	const char	*tex_tkns = {"NO ", "SO ", "WE ", "EA "};
 	int	i;
 
 	i = 0;
 	while (i < 4)
 	{
-		if (ft_strncmp(line, TEXTURE_TKNS[i], 3) == 0)
+		if (ft_strncmp(line, tex_tkns[i], 3) == 0)
 		{
 			if (found[i])
 				return (false);
@@ -63,6 +64,7 @@ bool	textures_ok(int map_fd, t_cubed *cubed)
 
 static bool	color_tkn_check(char *line, bool *found)
 {
+	const char	*color_tkns = {"F ", "C "};
 	int	i;
 
 	i = 0;
@@ -70,7 +72,7 @@ static bool	color_tkn_check(char *line, bool *found)
 		line++;
 	while (i < 2)
 	{
-		if (ft_strncmp(line, COLOR_TKNS[i], 2) == 0)
+		if (ft_strncmp(line, color_tkns[i], 2) == 0)
 		{
 			if (found[i])
 				return (false);

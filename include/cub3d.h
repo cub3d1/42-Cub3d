@@ -28,17 +28,14 @@
 # define ON_DESTROY 17
 
 /*		map tokens		*/
-# define TEXTURE_TKNS (char*[4]){"NO ", "SO ", "WE ", "EA "}
-# define COLOR_TKNS (char*[2]){"F ", "C "}
-# define MAP_TKNS (char[2]){'0', '1'}
-# define PLAYER_TKNS (char[4]){'N', 'S', 'E', 'W'}
+# define MAP_TKNS "01"
+# define PLAYER_TKNS "NSEW"
 
 
 typedef struct s_mlx
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
-	unsigned char	**map;
 }				t_mlx;
 
 typedef struct s_cubed
