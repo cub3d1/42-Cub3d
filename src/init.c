@@ -5,16 +5,10 @@ void	init_mlx_struct(t_mlx *mlx)
 {
 	mlx->mlx_ptr = NULL;
 	mlx->win_ptr = NULL;
-	mlx->map = NULL;
 }
 
-t_cubed	*init_cubed(void)
+void	init_cubed(t_cubed *cubed)
 {
-	t_cubed	*cub;
-
-	cub = malloc(sizeof(t_cubed));
-	if (!cub)
-		return (NULL);
-
-	return (cub);
+	(void)cubed;
+	return ;
 }

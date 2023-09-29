@@ -12,8 +12,7 @@
 
 #include "../../include/cub3d.h"
 
-/*	remove this function				*/
-/*	use it before loading map to ram	*/
+/*
 int	find_map_offset(char *arg)
 {
 	int		map_fd;
@@ -37,6 +36,7 @@ int	find_map_offset(char *arg)
 		exit(3);
 	return (i);
 }
+*/
 
 static bool	valid_tkns(char token)
 {
@@ -84,8 +84,8 @@ static bool	player_found(char *line)
 {
 	while (*line)
 	{
-		if (*line == PLAYER_TKNS[0] || line == PLAYER_TKNS[1]
-			|| line == PLAYER_TKNS[2] || line == PLAYER_TKNS[3])
+		if (*line == PLAYER_TKNS[0] || *line == PLAYER_TKNS[1]
+			|| *line == PLAYER_TKNS[2] || *line == PLAYER_TKNS[3])
 			return (true);
 		line++;
 	}
@@ -115,9 +115,7 @@ bool	player_token_ok(t_cubed *cubed)
 
 bool	layout_enclosed(t_cubed *cubed)
 {
-	int	player_pos[2];
-
-	cubed-map[(int)cubed->player-pos_y][(int)cubed->player-pos_x] = '0';
+	cubed->map[(int)cubed->player->pos_y][(int)cubed->player->pos_x] = '0';
 	//	do a flood fill
 	flood_fill(cubed->map, (int)cubed->player->pos_x, (int)cubed->player->pos_y);
 	//	check if any masked '0' is adjacent to ' '

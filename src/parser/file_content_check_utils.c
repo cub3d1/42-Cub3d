@@ -64,7 +64,8 @@ bool	color_vals_ok(char *line)
 
 bool	map_start(char *line)
 {
-	int	i;
+	const char	tex_tkns[4][3] = {"NO ", "SO ", "WE ", "EA "};
+	int			i;
 
 	while (*line && *line == ' ')
 		line++;
@@ -73,7 +74,7 @@ bool	map_start(char *line)
 	i = 0;
 	while (i < 4)
 	{
-		if (ft_strncmp(line, TEXTURE_TKNS[i], 3) == 0)
+		if (ft_strncmp(line, tex_tkns[i], 3) == 0)
 			return (false);
 		i++;
 	}

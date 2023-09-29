@@ -1,6 +1,6 @@
 #include "../include/cub3d.h"
 
-void exit_err(t_mlx *mlx, int err_code)
+void exit_err(t_cubed *cubed, int err_code)
 {
 	if (err_code == 1)
 		ft_printf_fd(1, "Error\nInvalid file format\n");
@@ -10,7 +10,6 @@ void exit_err(t_mlx *mlx, int err_code)
 		ft_printf_fd(1, "Error\nFile couldn't be closed\n");
 	else if (err_code == 4)
 		ft_printf_fd(1, "Error\nMap load fail\n");
-	if (mlx != NULL)
-		free_stuff(mlx, -1);
+	free_stuff(cubed, -1);
 	exit(err_code);
 }

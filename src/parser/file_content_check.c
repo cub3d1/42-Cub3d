@@ -14,7 +14,7 @@
 
 static bool	tex_tkn_check(char *line, bool *found)
 {
-	const char	*tex_tkns = {"NO ", "SO ", "WE ", "EA "};
+	const char	tex_tkns[4][3] = {"NO ", "SO ", "WE ", "EA "};
 	int	i;
 
 	i = 0;
@@ -64,7 +64,7 @@ bool	textures_ok(int map_fd, t_cubed *cubed)
 
 static bool	color_tkn_check(char *line, bool *found)
 {
-	const char	*color_tkns = {"F ", "C "};
+	const char	color_tkns[2][2] = {"F ", "C "};
 	int	i;
 
 	i = 0;
@@ -116,7 +116,7 @@ bool	color_ok(int map_fd, t_cubed *cubed)
 	return (ok);
 }
 
-bool	map_pos_ok(int map_fd)
+bool	map_pos_ok(int map_fd, t_cubed *cubed)
 {
 	char	*line;
 
