@@ -56,7 +56,7 @@ static bool	valid_tkns(char token)
 			return (true);
 		i++;
 	}
-	if (token == ' ')
+	if (token == ' ' || token == '\n')
 		return (true);
 	return (false);
 }
@@ -109,11 +109,25 @@ bool	player_token_ok(t_cubed *cubed)
 			if (found)
 				return (false);
 			found = true;
+			init_player_struct(cubed->player, cubed->map[i], i);
 		}
+		i++;
 	}
 	if (!found)
 		return (false);
 	return (true);
+}
+/*	DELETE THIS	*/
+void	print_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		ft_printf_fd(1, "%s", map[i]);
+		i++;
+	}
 }
 
 bool	layout_enclosed(t_cubed *cubed)
@@ -121,6 +135,7 @@ bool	layout_enclosed(t_cubed *cubed)
 	cubed->map[(int)cubed->player->pos_y][(int)cubed->player->pos_x] = '0';
 	//	do a flood fill
 	flood_fill(cubed->map, (int)cubed->player->pos_x, (int)cubed->player->pos_y);
+	print_map(cubed->map);	//	DELETE THIS
 	//	check if any masked '0' is adjacent to ' '
 	if (!flood_fill_check(cubed->map))
 		return (false);

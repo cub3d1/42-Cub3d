@@ -73,8 +73,9 @@ int		window_cross(t_cubed *cubed);
 int		keypress_hook(int keycode, t_cubed *cubed);
 
 /*			init.c		*/
-void	init_mlx_struct(t_mlx *mlx);
 void	init_cubed(t_cubed *cubed);
+void	init_mlx_struct(t_mlx *mlx);
+void	init_player_struct(t_player *player, char *map_row, int y);
 
 /*		./parser/parser.c */
 void 	parser(t_cubed *cubed, char *arg);

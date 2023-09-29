@@ -11,10 +11,17 @@ void	init_mlx_struct(t_mlx *mlx)
 	mlx->text_W = NULL;
 }
 
-void	init_player_struct(t_player *player)
+void	init_player_struct(t_player *player, char *map_row, int y)
 {
-	player->pos_x = -1;
-	player->pos_y = -1;
+	int	x;
+
+	x = 0;
+	while (map_row[x] && map_row[x] !='N' && map_row[x] != 'S'
+			&& map_row[x] != 'E' && map_row[x] != 'W')
+		x++;
+	player->pos_x = (float)x + 0.5;
+	player->pos_y = (float)y + 0.5;
+	//	set player->direction according to token in map_row[x]
 }
 
 void	init_cubed(t_cubed *cubed)

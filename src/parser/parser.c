@@ -41,26 +41,25 @@ static bool	file_content_ok(char *arg, t_cubed *cubed)
 	return (true);
 }
 
-// static bool	map_layout_ok(t_cubed *cubed)
-// {
-
-// 	if (!map_tokens_ok(cubed))
-// 	{
-// 		ft_printf_fd(2, "Error\nInvalid map tokens\n");
-// 		return (false);
-// 	}
-// 	if (!player_token_ok(cubed))
-// 	{
-// 		ft_printf_fd(2, "Error\nInvalid player token\n");
-// 		return (false);
-// 	}
-// 	if (!layout_enclosed(cubed))
-// 	{
-// 		ft_printf_fd(2, "Error\nMap not enclosed\n");
-// 		return (false);
-// 	}
-// 	return (true);
-// }
+static bool	map_layout_ok(t_cubed *cubed)
+{
+	if (!map_tokens_ok(cubed))
+	{
+		ft_printf_fd(2, "Error\nInvalid map tokens\n");
+		return (false);
+	}
+	if (!player_token_ok(cubed))
+	{
+		ft_printf_fd(2, "Error\nInvalid player token\n");
+		return (false);
+	}
+	if (!layout_enclosed(cubed))
+	{
+		ft_printf_fd(2, "Error\nMap not enclosed\n");
+		return (false);
+	}
+	return (true);
+}
 
 void	parser(t_cubed *cubed, char *arg)
 {
@@ -77,6 +76,6 @@ void	parser(t_cubed *cubed, char *arg)
 	/*	load map into ram			*/
 	load_map(cubed, arg);
 	/*	check map layout			*/
-	// if (!map_layout_ok(cubed))
-	// 	exit_err(cubed, 0);
+	if (!map_layout_ok(cubed))
+		exit_err(cubed, 0);
 }
