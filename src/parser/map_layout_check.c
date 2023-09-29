@@ -56,6 +56,8 @@ static bool	valid_tkns(char token)
 			return (true);
 		i++;
 	}
+	if (token == ' ')
+		return (true);
 	return (false);
 }
 
