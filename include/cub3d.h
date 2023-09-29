@@ -46,8 +46,10 @@ typedef struct s_player
 {
 	float	pos_x;
 	float	pos_y;
+	float	dir_x;
+	float	dir_y;
 	//	direction
-	//	fov?
+	//	fov? we might need a camera vector for that
 }				t_player;
 
 
@@ -57,15 +59,6 @@ typedef struct s_cubed
 	char		**texture_paths;
 	t_mlx		*mlx;
 	t_player	*player;
-	/*
-	 *
-	 *	needs to store 
-	 *		paths to textures
-	 *		values of colors
-	 *		player start position
-	 *		matrix of map
-	 *
-	 */
 }				t_cubed;
 
 /*			hooks.c		 */
