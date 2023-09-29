@@ -41,9 +41,9 @@ static bool	file_content_ok(char *arg, t_cubed *cubed)
 	return (true);
 }
 
-
 static bool	map_layout_ok(t_cubed *cubed)
 {
+
 	if (!map_tokens_ok(cubed))
 		return (false);
 	if (!player_token_ok(cubed))
@@ -56,6 +56,7 @@ static bool	map_layout_ok(t_cubed *cubed)
 void	parser(t_cubed *cubed, char *arg)
 {
 	/*	check file format			*/
+
 	if (cub_check(arg) == 1)
 		abort_init(0, cubed);
 	/*	check file content layout	*/

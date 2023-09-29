@@ -66,6 +66,7 @@ bool	map_tokens_ok(t_cubed *cubed)
 
 	i = 0;
 	j = 0;
+
 	while (cubed->map[i])
 	{
 		while (cubed->map[i][j])

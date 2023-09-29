@@ -36,6 +36,10 @@ typedef struct s_mlx
 	void			*mlx_ptr;
 	void			*win_ptr;
 	unsigned char	surface_colors[2][3];
+	void			*text_N;
+	void			*text_S;
+	void			*text_E;
+	void			*text_W;
 }				t_mlx;
 
 typedef struct s_player
@@ -58,8 +62,8 @@ typedef struct s_cubed
 	 *	needs to store 
 	 *		paths to textures
 	 *		values of colors
-	 *		matrix of map
 	 *		player start position
+	 *		matrix of map
 	 *
 	 */
 }				t_cubed;

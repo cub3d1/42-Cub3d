@@ -1,16 +1,20 @@
 #include "../include/cub3d.h"
 
+void free_mlx(t_mlx *mlx)
+{
+	if (mlx->win_ptr)
+		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+	if (mlx->mlx_ptr)
+	{
+		mlx_destroy_display(mlx->mlx_ptr);
+		free(mlx->mlx_ptr);
+	}
+}
+
 int free_stuff(t_cubed *cubed, int err_code)
 {
 	int	i;
 
-	if (cubed->mlx->win_ptr)
-		mlx_destroy_window(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr);
-	if (cubed->mlx->mlx_ptr)
-	{
-		mlx_destroy_display(cubed->mlx->mlx_ptr);
-		free(cubed->mlx->mlx_ptr);
-	}
 	i = 0;
 	if (cubed->map)
 	{
@@ -29,12 +33,7 @@ int free_stuff(t_cubed *cubed, int err_code)
 
 void	abort_init(int status, t_cubed *cubed)
 {
-	if (cubed)
-	{
-		if (cubed->texture_paths)
-			ft_free_split(cubed->texture_paths);
-		if (cubed->map)
-			ft_free_split(cubed->map);
-	}
+	if (cubed->map)
+		ft_free_split(cubed->map);
 	exit(status);
 }
