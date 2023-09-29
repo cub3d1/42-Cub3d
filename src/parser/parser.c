@@ -25,49 +25,58 @@ static bool	file_content_ok(char *arg, t_cubed *cubed)
 
 	map_fd = open(arg, O_RDONLY);
 	if (map_fd == -1)
-		abort_init(2, cubed);
+		exit_err(cubed, 2);
 	if (!textures_ok(map_fd, cubed))
 		return (false);
 	map_fd = open(arg, O_RDONLY);
 	if (map_fd == -1)
-		abort_init(2, cubed);
+		exit_err(cubed, 2);
 	if (!color_ok(map_fd, cubed))
 		return (false);
 	map_fd = open(arg, O_RDONLY);
 	if (map_fd == -1)
-		abort_init(2, cubed);
+		exit_err(cubed, 2);
 	if (!map_pos_ok(map_fd, cubed))
 		return (false);
 	return (true);
 }
 
-static bool	map_layout_ok(t_cubed *cubed)
-{
+// static bool	map_layout_ok(t_cubed *cubed)
+// {
 
-	if (!map_tokens_ok(cubed))
-		return (false);
-	if (!player_token_ok(cubed))
-		return (false);
-	if (!layout_enclosed(cubed))
-		return (false);
-	return (true);
-}
+// 	if (!map_tokens_ok(cubed))
+// 	{
+// 		ft_printf_fd(2, "Error\nInvalid map tokens\n");
+// 		return (false);
+// 	}
+// 	if (!player_token_ok(cubed))
+// 	{
+// 		ft_printf_fd(2, "Error\nInvalid player token\n");
+// 		return (false);
+// 	}
+// 	if (!layout_enclosed(cubed))
+// 	{
+// 		ft_printf_fd(2, "Error\nMap not enclosed\n");
+// 		return (false);
+// 	}
+// 	return (true);
+// }
 
 void	parser(t_cubed *cubed, char *arg)
 {
 	/*	check file format			*/
 
 	if (cub_check(arg) == 1)
-		abort_init(0, cubed);
+		exit_err(cubed, 0);
 	/*	check file content layout	*/
 	if (!file_content_ok(arg, cubed))
 	{
 		ft_printf_fd(2, "Error\nInvalid map file content\n");
-		abort_init(0, cubed);
+		exit_err(cubed, 0);
 	}
 	/*	load map into ram			*/
 	load_map(cubed, arg);
 	/*	check map layout			*/
-	if (!map_layout_ok(cubed))
-		abort_init(0, cubed);
+	// if (!map_layout_ok(cubed))
+	// 	exit_err(cubed, 0);
 }

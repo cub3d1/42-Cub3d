@@ -55,7 +55,7 @@ bool	textures_ok(int map_fd, t_cubed *cubed)
 		line = get_next_line(map_fd);
 	}
 	if (close(map_fd == -1))
-		abort_init(3, cubed);
+		exit_err(cubed, 3);
 	if (ft_memchr(tkns_found, 0, 4))
 		ok = false;
 	return (ok);
@@ -110,7 +110,7 @@ bool	color_ok(int map_fd, t_cubed *cubed)
 		line = get_next_line(map_fd);
 	}
 	if (close(map_fd) == -1)
-		abort_init(3, cubed);
+		exit_err(cubed, 3);
 	if (ft_memchr(tkns_found, 0, 2))
 		ok = false;
 	return (ok);
@@ -142,6 +142,6 @@ bool	map_pos_ok(int map_fd, t_cubed *cubed)
 		line = get_next_line(map_fd);
 	}
 	if (close(map_fd) == -1)
-		abort_init(3, cubed);
+		exit_err(cubed, 3);
 	return (true);
 }

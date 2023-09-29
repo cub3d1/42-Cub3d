@@ -2,8 +2,8 @@
 
 int main(int argc, char **argv)
 {
-	t_cubed	cubed;
 
+	t_cubed	cubed;
 	/*	ARGUMENT CHECK	*/
 	/*	argc check	*/
 	if (argc != 2)

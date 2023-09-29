@@ -108,7 +108,6 @@ int		load_map(t_cubed *cubed, char *path);
 
 /*			free.c		*/
 int 	free_stuff(t_cubed *cubed, int err_code);
-void	abort_init(int status, t_cubed *cubed);
 
 /*			exit_err.c 	*/
 void	exit_err(t_cubed *cubed, int err_code);
