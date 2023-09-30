@@ -43,14 +43,16 @@
 //	also we need to define player movement and rotation speed
 typedef struct s_mlx
 {
-	void			*mlx_ptr;
-	void			*win_ptr;
-	int				ceiling_color[3];
-	int				floor_color[3];
-	void			*text_N;
-	void			*text_S;
-	void			*text_E;
-	void			*text_W;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	int		ceiling_color[3];
+	int		floor_color[3];
+	void	*text_N;
+	void	*text_S;
+	void	*text_E;
+	void	*text_W;
+	void	*minimap_wall;
+	void	*minimap_player;
 }				t_mlx;
 
 typedef struct s_player
