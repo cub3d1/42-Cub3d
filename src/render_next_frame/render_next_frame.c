@@ -48,13 +48,15 @@ static void	draw_floor(t_cubed *cubed)
 }
 
 
-void	print_frame_counter(int frame_counter)
+void	print_info(t_cubed *cubed, int frame_counter)
 {
 	char	*frame;
 
 	frame = ft_itoa(frame_counter);
 	ft_printf_fd(1, "frame = %s\n", frame);
 	free(frame);
+	// ft_printf_fd(1, "p.pos_x = %s\n", cubed->player->pos_x);
+	(void)cubed;
 }
 
 int	render_next_frame(t_cubed *cubed)
@@ -68,6 +70,6 @@ int	render_next_frame(t_cubed *cubed)
 	// Draw walls must get player pos and direction
 	// And then draw the correct walls that the play can see
 	// draw_walls(cubed);
-	print_frame_counter(frame_counter++);
+	print_info(cubed, frame_counter++);
 	return (0);
 }
