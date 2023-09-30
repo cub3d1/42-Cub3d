@@ -42,6 +42,7 @@
 # define KEY_TAB 65289
 
 # define ON_KEYPRESS 2
+# define ON_KEYRELEASE 3
 # define ON_DESTROY 17
 
 /*		map tokens		*/
@@ -65,6 +66,14 @@ typedef struct s_mlx
 	bool	show_minimap;
 }				t_mlx;
 
+typedef struct s_keys
+{
+	bool	w;
+	bool	a;
+	bool	s;
+	bool	d;
+}				t_keys;
+
 typedef struct s_player
 {
 	float	pos_x;
@@ -80,11 +89,13 @@ typedef struct s_cubed
 	char		**texture_paths;
 	t_mlx		*mlx;
 	t_player	*player;
+	t_keys		*keys;
 }				t_cubed;
 
 /*			hooks.c		 */
 int		window_cross(t_cubed *cubed);
 int		keypress_hook(int keycode, t_cubed *cubed);
+int		keyrelease_hook(int keycode, t_cubed *cubed);
 
 /*			init.c		*/
 void	init_cubed(t_cubed *cubed);

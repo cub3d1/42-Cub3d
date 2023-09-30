@@ -33,6 +33,7 @@ int main(int argc, char **argv)
 	/* 	Hooks para garantir clean destruction da janela	*/
 	mlx_do_key_autorepeatoff(cubed.mlx->mlx_ptr);
 	mlx_hook(cubed.mlx->win_ptr, ON_KEYPRESS, 1L << 0, keypress_hook, &cubed);
+	mlx_hook(cubed.mlx->win_ptr, ON_KEYRELEASE, 1L << 1, keyrelease_hook, &cubed);
 	mlx_hook(cubed.mlx->win_ptr, ON_DESTROY, 1L << 17, window_cross, &cubed);
 
 	mlx_loop_hook(cubed.mlx->mlx_ptr, render_next_frame, &cubed);

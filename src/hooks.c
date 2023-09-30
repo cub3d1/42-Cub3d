@@ -21,5 +21,26 @@ int	keypress_hook(int keycode, t_cubed *cubed)
 	// }
 	if (keycode == KEY_TAB)
 		cubed->mlx->show_minimap = !cubed->mlx->show_minimap;
+	if (keycode == ON_W || keycode == KEY_UP)
+		cubed->keys->w = true;
+	if (keycode == ON_A || keycode == KEY_LEFT)
+		cubed->keys->a = true;
+	if (keycode == ON_S || keycode == KEY_DOWN)
+		cubed->keys->s = true;
+	if (keycode == ON_D || keycode == KEY_RIGHT)
+		cubed->keys->d = true;
+	return (0);
+}
+
+int	keyrelease_hook(int keycode, t_cubed *cubed)
+{
+	if (keycode == ON_W || keycode == KEY_UP)
+		cubed->keys->w = false;
+	if (keycode == ON_A || keycode == KEY_LEFT)
+		cubed->keys->a = false;
+	if (keycode == ON_S || keycode == KEY_DOWN)
+		cubed->keys->s = false;
+	if (keycode == ON_D || keycode == KEY_RIGHT)
+		cubed->keys->d = false;
 	return (0);
 }

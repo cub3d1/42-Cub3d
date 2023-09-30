@@ -14,6 +14,14 @@ void	init_mlx_struct(t_mlx *mlx)
 	mlx->show_minimap = false;
 }
 
+void	init_key_struct(t_keys *keys)
+{
+	keys->w = false;
+	keys->a = false;
+	keys->s = false;
+	keys->d = false;
+}
+
 void	set_player_direction(t_player *player, char tkn)
 {
 	if (tkn == 'N')
@@ -72,9 +80,11 @@ void	init_cubed(t_cubed *cubed)
 {
 	cubed->mlx = malloc(sizeof(t_mlx));
 	cubed->player = malloc(sizeof(t_player));
-	if (!cubed->mlx || !cubed->player)
+	cubed->keys = malloc(sizeof(t_keys));
+	if (!cubed->mlx || !cubed->player || !cubed->keys)
 		exit_err(cubed, 5);
 	init_mlx_struct(cubed->mlx);
+	init_key_struct(cubed->keys);
 	cubed->map = NULL;
 	cubed->texture_paths = NULL;
 }
