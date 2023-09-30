@@ -63,7 +63,6 @@ typedef struct s_mlx
 	void	*text_w;
 	void	*minimap_wall;
 	void	*minimap_player;
-	bool	show_minimap;
 }				t_mlx;
 
 typedef struct s_keys
@@ -72,6 +71,7 @@ typedef struct s_keys
 	bool	a;
 	bool	s;
 	bool	d;
+	bool	show_minimap;
 }				t_keys;
 
 typedef struct s_player

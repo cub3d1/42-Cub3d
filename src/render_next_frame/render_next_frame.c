@@ -69,21 +69,31 @@ void	print_info(t_cubed *cubed, int frame_counter)
 	// printf("p.dir_x = %f | ", cubed->player->dir_x);
 	// printf("p.dir_y = %f | ", cubed->player->dir_y);
 	// printf("show_minimap = %d | ", cubed->mlx->show_minimap);
-	// printf("w = %d | ", cubed->keys->w);
-	// printf("a = %d | ", cubed->keys->a);
-	// printf("s = %d | ", cubed->keys->s);
-	// printf("d = %d\n", cubed->keys->d);
+	printf("w = %d | ", cubed->keys->w);
+	printf("a = %d | ", cubed->keys->a);
+	printf("s = %d | ", cubed->keys->s);
+	printf("d = %d\n", cubed->keys->d);
 	(void)cubed; (void)frame_counter;
 }
 
 int	render_next_frame(t_cubed *cubed)
 {
 	static int	frame_counter = 1;
+	static int	minimap = 0;
 
-
-	draw_ceiling(cubed->mlx, cubed->mlx->ceiling_color);
-	draw_floor(cubed->mlx, cubed->mlx->floor_color);
-	print_info(cubed, frame_counter++);
+	if (!cubed->keys->show_minimap)
+	{
+		if (minimap > 0)
+			minimap = 0;
+		draw_ceiling(cubed->mlx, cubed->mlx->ceiling_color);
+		draw_floor(cubed->mlx, cubed->mlx->floor_color);
+		print_info(cubed, frame_counter++);
+	}
+	else
+	{
+		if (minimap++ == 0)
+			mlx_clear_window(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr);
+	}
 	return (0);
 }
 
