@@ -73,6 +73,7 @@ void	parser(t_cubed *cubed, char *arg)
 		ft_printf_fd(2, "Error\nInvalid map file content\n");
 		exit_err(cubed, 0);
 	}
+	load_colors(cubed, arg);
 	/*	load map into ram			*/
 	load_map(cubed, arg);
 	/*	check map layout			*/

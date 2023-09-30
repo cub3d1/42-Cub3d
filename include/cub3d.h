@@ -45,7 +45,8 @@ typedef struct s_mlx
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
-	unsigned char	surface_colors[2][3];
+	int				ceiling_color[3];
+	int				floor_color[3];
 	void			*text_N;
 	void			*text_S;
 	void			*text_E;
@@ -110,6 +111,9 @@ int		find_map_offset(t_mlx *mlx, char *arg);
 
 /*	./parser/load_map.c	*/
 int		load_map(t_cubed *cubed, char *path);
+
+/*	./parser/load_colors.c	*/
+void	load_colors(t_cubed *cubed, char *path);
 
 /*	./render_next_frame.c */
 int	render_next_frame(t_cubed *cubed);
