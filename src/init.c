@@ -17,10 +17,10 @@ void	init_mlx_struct(t_mlx *mlx)
 {
 	mlx->mlx_ptr = NULL;
 	mlx->win_ptr = NULL;
-	mlx->text_N = NULL;
-	mlx->text_S = NULL;
-	mlx->text_E = NULL;
-	mlx->text_W = NULL;
+	mlx->text_n = NULL;
+	mlx->text_s = NULL;
+	mlx->text_e = NULL;
+	mlx->text_w = NULL;
 	mlx->minimap_wall = NULL;
 	mlx->minimap_player = NULL;
 }
