@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmouronh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
+/*   Updated: 2023/09/30 19:21:14 by fmouronh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
 static void	free_mlx(t_mlx *mlx)
@@ -27,7 +39,13 @@ static void	free_keys(t_keys *keys)
 		free(keys);
 }
 
-int free_stuff(t_cubed *cubed, int err_code)
+static void	free_keys(t_keys *keys)
+{
+	if (keys)
+		free(keys);
+}
+
+int	free_stuff(t_cubed *cubed, int err_code)
 {
 	free_mlx(cubed->mlx);
 	free_player(cubed->player);

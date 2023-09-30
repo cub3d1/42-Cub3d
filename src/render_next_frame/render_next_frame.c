@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_next_frame.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmouronh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
+/*   Updated: 2023/09/30 19:21:14 by fmouronh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 int	get_rgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
@@ -45,7 +57,6 @@ static void	draw_floor(t_mlx *mlx, int *color_f)
 	}
 }
 
-
 void	print_info(t_cubed *cubed, int frame_counter)
 {
 	// char	*frame;
@@ -71,12 +82,11 @@ int	render_next_frame(t_cubed *cubed)
 
 
 	draw_ceiling(cubed->mlx, cubed->mlx->ceiling_color);
-	draw_floor(cubed->mlx, cubed->mlx->floor_color);	
-
+	draw_floor(cubed->mlx, cubed->mlx->floor_color);
+	print_info(cubed, frame_counter++);
+	return (0);
+}
 
 	// Draw walls must get player pos and direction
 	// And then draw the correct walls that the play can see
 	// draw_walls(cubed);
-	print_info(cubed, frame_counter++);
-	return (0);
-}
