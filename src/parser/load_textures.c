@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmouronh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:26:58 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/09/30 21:27:14 by fmouronh         ###   ########.fr       */
+/*   Updated: 2023/09/30 23:22:37 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static void	set_texture(void *mlx_ptr, void *texture, char *line)
 		line++;
 	while (*line == ' ')
 		line++;
-
+	(void)mlx_ptr;
+	(void)texture;
 /*
 	width = n map cols / WIN_W
 	height = n map rows / WIN_H

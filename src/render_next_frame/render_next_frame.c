@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_next_frame.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmouronh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/09/30 19:21:14 by fmouronh         ###   ########.fr       */
+/*   Updated: 2023/09/30 23:29:42 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static void update_angle(t_cubed *cubed)
 {
 	int mouse_x;
 	int mouse_y;
-
 
 	if (cubed->keys->right && !cubed->keys->left)
 	{
@@ -124,12 +123,13 @@ void	print_info(t_cubed *cubed, int frame_counter)
 	// free(frame);
 	// printf("p.pos_x = %f | ", cubed->player->pos_x);
 	// printf("p.pos_y = %f | ", cubed->player->pos_y);
-	// printf("show_minimap = %d | ", cubed->mlx->show_minimap);
+	// printf("show_minimap = %d | ", cubed->keys->show_minimap);
 	// printf("w = %d | ", cubed->keys->w);
 	// printf("a = %d | ", cubed->keys->a);
 	// printf("s = %d | ", cubed->keys->s);
-	// printf("d = %d\n", cubed->keys->d);
-	// printf("angle = %f\n", cubed->player->angle);
+	// printf("d = %d |", cubed->keys->d);
+	// printf("angle = %f | ", cubed->player->angle);
+	// printf("\n");
 	(void)cubed; (void)frame_counter;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_colors.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmouronh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/09/30 19:21:14 by fmouronh         ###   ########.fr       */
+/*   Updated: 2023/09/30 23:22:07 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,9 @@ void	load_colors(t_cubed *cubed, char *path)
 {
 	int		fd;
 	char	*line;
-	int		i;
 
 	fd = open(path, O_RDONLY);
 	line = NULL;
-	i = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
