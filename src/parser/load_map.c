@@ -23,7 +23,7 @@ static int	get_max_map_lines(t_cubed *cubed, char *path)
 	return (max_line);
 }
 
-void advance_gnl_to_map(int map_fd)
+void	advance_gnl_to_map(int map_fd)
 {
 	int	i;
 
@@ -66,7 +66,7 @@ static void	get_map_to_array(int map_fd, int max_line, t_cubed *cubed)
 // 	}
 // }
 
-int load_map(t_cubed *cubed, char *path)
+int	load_map(t_cubed *cubed, char *path)
 {
 	int		map_fd;
 	int		max_line;
@@ -76,11 +76,8 @@ int load_map(t_cubed *cubed, char *path)
 	if (map_fd == -1)
 		exit_err(cubed, 2);
 	cubed->map = (char **)ft_calloc(sizeof(char *), (max_line - 8 + 1));
-
-	advance_gnl_to_map(map_fd); /* advance the gnl fd to beginning of the map */
-	get_map_to_array(map_fd, max_line - 8, cubed); /* load map into variable cubed.map */
-	// print_map(cubed); /* print map to stdout */
-
+	advance_gnl_to_map(map_fd);
+	get_map_to_array(map_fd, max_line - 8, cubed);
 	if (close(map_fd) == -1)
 		exit_err(cubed, 3);
 	return (0);

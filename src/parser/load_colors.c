@@ -2,7 +2,7 @@
 
 int	get_line_spaces(char *line)
 {
-	int i;
+	int	i;
 
 	i = 2;
 	while (line[i] == ' ')
@@ -10,9 +10,9 @@ int	get_line_spaces(char *line)
 	return (i);
 }
 
-static void get_color(t_cubed *cubed, char *line, int *color)
+static void	get_color(t_cubed *cubed, char *line, int *color)
 {
-	char **split;
+	char	**split;
 
 	split = NULL;
 	line += get_line_spaces(line);
@@ -30,7 +30,7 @@ static void get_color(t_cubed *cubed, char *line, int *color)
 	ft_free_split(split);
 }
 
-void load_colors(t_cubed *cubed, char *path)
+void	load_colors(t_cubed *cubed, char *path)
 {
 	int		fd;
 	char	*line;

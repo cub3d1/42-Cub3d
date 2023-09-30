@@ -20,7 +20,7 @@ char	**init_shadow_map(char **map)
 	i = 0;
 	while (map[i])
 		i++;
-	shadow = malloc((i + 1) * sizeof(char*));
+	shadow = malloc((i + 1) * sizeof(char *));
 	if (!shadow)
 		return (NULL);
 	i = 0;

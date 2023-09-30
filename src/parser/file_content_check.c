@@ -15,7 +15,7 @@
 static bool	tex_tkn_check(char *line, bool *found)
 {
 	const char	tex_tkns[4][3] = {"NO ", "SO ", "WE ", "EA "};
-	int	i;
+	int			i;
 
 	i = 0;
 	while (i < 4)
@@ -61,11 +61,10 @@ bool	textures_ok(int map_fd, t_cubed *cubed)
 	return (ok);
 }
 
-
 static bool	color_tkn_check(char *line, bool *found)
 {
 	const char	color_tkns[2][2] = {"F ", "C "};
-	int	i;
+	int			i;
 
 	i = 0;
 	while (*line && *line == ' ')
@@ -119,7 +118,9 @@ bool	color_ok(int map_fd, t_cubed *cubed)
 bool	map_pos_ok(int map_fd, t_cubed *cubed)
 {
 	char	*line;
+	bool	ok;
 
+	ok = true;
 	line = get_next_line(map_fd);
 	while (line && (*line == '\n' || !map_start(line)))
 	{
@@ -134,14 +135,11 @@ bool	map_pos_ok(int map_fd, t_cubed *cubed)
 	while (line)
 	{
 		if (*line != '\n')
-		{
-			free(line);
-			return (false);
-		}
+			ok = false;
 		free(line);
 		line = get_next_line(map_fd);
 	}
 	if (close(map_fd) == -1)
 		exit_err(cubed, 3);
-	return (true);
+	return (ok);
 }

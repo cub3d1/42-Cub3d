@@ -68,7 +68,6 @@ bool	map_tokens_ok(t_cubed *cubed)
 
 	i = 0;
 	j = 0;
-
 	while (cubed->map[i])
 	{
 		while (cubed->map[i][j])
@@ -133,14 +132,13 @@ bool	player_token_ok(t_cubed *cubed)
 
 bool	layout_enclosed(t_cubed *cubed)
 {
-	char	**shadow_map;
+	char		**shadow_map;
+	t_player	*player;
 
+	player = cubed->player;
 	shadow_map = init_shadow_map(cubed->map);
-	shadow_map[(int)cubed->player->pos_y][(int)cubed->player->pos_x] = '0';
-	//	do a flood fill
-	flood_fill(shadow_map, (int)cubed->player->pos_x, (int)cubed->player->pos_y);
-	// print_map(shadow_map);	//	DELETE THIS
-	//	check if any masked '0' is adjacent to ' '
+	shadow_map[(int)player->pos_y][(int)player->pos_x] = '0';
+	flood_fill(shadow_map, (int)player->pos_x, (int)player->pos_y);
 	if (!flood_fill_check(shadow_map))
 		return (false);
 	ft_free_split(shadow_map);
