@@ -5,16 +5,12 @@ int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-int	render_next_frame(t_cubed *cubed)
+static void draw_ceiling(t_cubed *cubed)
 {
-	int			w;
-	int			h;
-	int			color;
-	static int	frame_counter = 1;
-	char		*frame;
+	int w;
+	int h;
+	int color;
 
-
-	/* draw ceiling */
 	w = 0;
 	while (w < WIN_W)
 	{
@@ -27,8 +23,15 @@ int	render_next_frame(t_cubed *cubed)
 			h++;
 		}
 		w++;
-	}
-	/* draw floor */
+	}	
+}
+
+static void	draw_floor(t_cubed *cubed)
+{
+	int w;
+	int h;
+	int color;
+
 	w = 0;
 	while (w < WIN_W)
 	{
@@ -42,10 +45,25 @@ int	render_next_frame(t_cubed *cubed)
 		}
 		w++;
 	}
+}
 
-	/* draw frame counter */
-	frame = ft_itoa(frame_counter++);
+
+void	print_frame_counter(int frame_counter)
+{
+	char	*frame;
+
+	frame = ft_itoa(frame_counter);
 	ft_printf_fd(1, "frame = %s\n", frame);
 	free(frame);
+}
+
+int	render_next_frame(t_cubed *cubed)
+{
+	static int	frame_counter = 1;
+
+	draw_ceiling(cubed);
+	draw_floor(cubed);	
+
+	print_frame_counter(frame_counter++);
 	return (0);
 }
