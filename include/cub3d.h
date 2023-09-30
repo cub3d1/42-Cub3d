@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddantas- <ddantas-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/30 19:22:26 by ddantas-          #+#    #+#             */
+/*   Updated: 2023/09/30 19:22:27 by ddantas-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -27,6 +39,7 @@
 # define KEY_LEFT 65361
 # define KEY_DOWN 65364
 # define KEY_RIGHT 65363
+# define KEY_TAB 65289
 
 # define ON_KEYPRESS 2
 # define ON_DESTROY 17
@@ -49,6 +62,7 @@ typedef struct s_mlx
 	void	*text_W;
 	void	*minimap_wall;
 	void	*minimap_player;
+	bool	show_minimap;
 }				t_mlx;
 
 typedef struct s_player

@@ -11,6 +11,7 @@ void	init_mlx_struct(t_mlx *mlx)
 	mlx->text_W = NULL;
 	mlx->minimap_wall = NULL;
 	mlx->minimap_player = NULL;
+	mlx->show_minimap = false;
 }
 
 void	set_player_direction(t_player *player, char tkn)

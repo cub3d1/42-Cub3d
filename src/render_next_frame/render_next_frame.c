@@ -55,14 +55,16 @@ void	print_info(t_cubed *cubed, int frame_counter)
 	free(frame);
 	printf("p.pos_x = %f | ", cubed->player->pos_x);
 	printf("p.pos_y = %f\n", cubed->player->pos_y);
-	(void)cubed;
+	printf("p.dir_x = %f | ", cubed->player->dir_x);
+	printf("p.dir_y = %f\n", cubed->player->dir_y);
+	printf("show_minimap = %d | ", cubed->mlx->show_minimap);
 }
 
 int	render_next_frame(t_cubed *cubed)
 {
 	static int	frame_counter = 1;
 
-	
+
 	draw_ceiling(cubed->mlx, cubed->mlx->ceiling_color);
 	draw_floor(cubed->mlx, cubed->mlx->floor_color);	
 

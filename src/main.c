@@ -31,6 +31,7 @@ int main(int argc, char **argv)
 	cubed.mlx->win_ptr = mlx_new_window(cubed.mlx->mlx_ptr, WIN_W, WIN_H, "Hello world!");
 
 	/* 	Hooks para garantir clean destruction da janela	*/
+	mlx_do_key_autorepeatoff(cubed.mlx->mlx_ptr);
 	mlx_hook(cubed.mlx->win_ptr, ON_KEYPRESS, 1L << 0, keypress_hook, &cubed);
 	mlx_hook(cubed.mlx->win_ptr, ON_DESTROY, 1L << 17, window_cross, &cubed);
 
