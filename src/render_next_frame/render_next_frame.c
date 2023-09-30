@@ -22,14 +22,14 @@ static void	draw_ceiling(t_mlx *mlx, int *color_c)
 			h++;
 		}
 		w++;
-	}	
+	}
 }
 
 static void	draw_floor(t_mlx *mlx, int *color_f)
 {
-	int w;
-	int h;
-	int color;
+	int	w;
+	int	h;
+	int	color;
 
 	w = 0;
 	while (w < WIN_W)
