@@ -51,9 +51,10 @@ void	print_info(t_cubed *cubed, int frame_counter)
 	char	*frame;
 
 	frame = ft_itoa(frame_counter);
-	ft_printf_fd(1, "frame = %s\n", frame);
+	ft_printf_fd(1, "frame = %s | ", frame);
 	free(frame);
-	// ft_printf_fd(1, "p.pos_x = %s\n", cubed->player->pos_x);
+	printf("p.pos_x = %f | ", cubed->player->pos_x);
+	printf("p.pos_y = %f\n", cubed->player->pos_y);
 	(void)cubed;
 }
 
