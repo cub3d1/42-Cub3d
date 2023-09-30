@@ -42,12 +42,14 @@ void	init_player_struct(t_player *player, char *map_row, int y)
 	int	x;
 
 	x = 0;
-	while (map_row[x] && map_row[x] !='N' && map_row[x] != 'S'
-			&& map_row[x] != 'E' && map_row[x] != 'W')
+	while (map_row[x] && map_row[x] != 'N' && map_row[x] != 'S' \
+		&& map_row[x] != 'E' && map_row[x] != 'W')
 		x++;
 	player->pos_x = (float)x + 0.5;
 	player->pos_y = (float)y + 0.5;
 	set_player_direction(player, map_row[x]);
+}
+
 	//	set player->direction according to token in map_row[x]
 /*
 	idea:
@@ -65,8 +67,6 @@ void	init_player_struct(t_player *player, char *map_row, int y)
 		*************
 	   y
 */
-}
-
 void	init_cubed(t_cubed *cubed)
 {
 	cubed->mlx = malloc(sizeof(t_mlx));
