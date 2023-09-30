@@ -23,7 +23,6 @@ void	init_mlx_struct(t_mlx *mlx)
 	mlx->text_W = NULL;
 	mlx->minimap_wall = NULL;
 	mlx->minimap_player = NULL;
-	mlx->show_minimap = false;
 }
 
 void	init_key_struct(t_keys *keys)
@@ -32,6 +31,7 @@ void	init_key_struct(t_keys *keys)
 	keys->a = false;
 	keys->s = false;
 	keys->d = false;
+	keys->show_minimap = false;
 }
 
 void	set_player_direction(t_player *player, char tkn)
