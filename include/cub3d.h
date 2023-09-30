@@ -27,6 +27,10 @@
 # define ON_KEYPRESS 2
 # define ON_DESTROY 17
 
+# define WINDOW_WIDTH 500
+# define WINDOW_HEIGHT 250
+# define ON_DESTROY 17
+
 /*		map tokens		*/
 # define MAP_TKNS "01"
 # define PLAYER_TKNS "NSEW"

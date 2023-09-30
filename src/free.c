@@ -21,9 +21,6 @@ static void	free_player(t_player *player)
 
 int free_stuff(t_cubed *cubed, int err_code)
 {
-	int	i;
-
-	i = 0;
 	free_mlx(cubed->mlx);
 	free_player(cubed->player);
 	ft_free_split(cubed->map);

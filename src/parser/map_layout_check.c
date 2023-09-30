@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_layout_check.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmouronh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 08:46:02 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/09/25 08:46:22 by fmouronh         ###   ########.fr       */
+/*   Updated: 2023/09/30 02:14:20 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,24 +118,24 @@ bool	player_token_ok(t_cubed *cubed)
 	return (true);
 }
 /*	DELETE THIS	*/
-void	print_map(char **map)
-{
-	int	i;
+// void	print_map(char **map)
+// {
+// 	int	i;
 
-	i = 0;
-	while (map[i])
-	{
-		ft_printf_fd(1, "%s", map[i]);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (map[i])
+// 	{
+// 		ft_printf_fd(1, "%s", map[i]);
+// 		i++;
+// 	}
+// }
 
 bool	layout_enclosed(t_cubed *cubed)
 {
 	cubed->map[(int)cubed->player->pos_y][(int)cubed->player->pos_x] = '0';
 	//	do a flood fill
 	flood_fill(cubed->map, (int)cubed->player->pos_x, (int)cubed->player->pos_y);
-	print_map(cubed->map);	//	DELETE THIS
+	// print_map(cubed->map);	//	DELETE THIS
 	//	check if any masked '0' is adjacent to ' '
 	if (!flood_fill_check(cubed->map))
 		return (false);
