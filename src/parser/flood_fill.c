@@ -24,6 +24,17 @@ void	flood_fill(char **map, int x, int y)
 	flood_fill(map, x, y + 1);
 }
 
+static bool	floor_enclosed(char **map, int x, int y)
+{
+	if (map[y + 1][x] == ' ' || map[y - 1][x] == ' '
+		|| map[y][x + 1] == ' ' || map[y][x - 1] == ' '
+		|| map[y + 1][x] == '\n' || map[y - 1][x] == '\n'
+		|| (map[y][x + 1] && map[y][x + 1] == '\n'))
+		return (false);
+	else
+		return (true);
+}
+
 bool	flood_fill_check(char **map)
 {
 	int	i;
@@ -41,10 +52,7 @@ bool	flood_fill_check(char **map)
 					return (false);
 				else if ((int)ft_strlen(map[i + 1]) <= j)
 					return (false);
-				else if (map[i + 1][j] == ' ' || map[i - 1][j] == ' '
-					|| map[i][j + 1] == ' ' || map[i][j - 1] == ' '
-					|| map[i + 1][j] == '\n' || map[i - 1][j] == '\n'
-					|| (map[i][j + 1] && map[i][j + 1] == '\n'))
+				else if (!floor_enclosed(map, j, i))
 					return (false);
 			}
 			j++;

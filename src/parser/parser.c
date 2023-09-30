@@ -1,8 +1,8 @@
 #include "../../include/cub3d.h"
 
-static int cub_check(char *arg)
+static int	cub_check(char *arg)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (ft_strlen(arg) < 5)
@@ -63,20 +63,15 @@ static bool	map_layout_ok(t_cubed *cubed)
 
 void	parser(t_cubed *cubed, char *arg)
 {
-	/*	check file format			*/
-
 	if (cub_check(arg) == 1)
 		exit_err(cubed, 0);
-	/*	check file content layout	*/
 	if (!file_content_ok(arg, cubed))
 	{
 		ft_printf_fd(2, "Error\nInvalid map file content\n");
 		exit_err(cubed, 0);
 	}
 	load_colors(cubed, arg);
-	/*	load map into ram			*/
 	load_map(cubed, arg);
-	/*	check map layout			*/
 	if (!map_layout_ok(cubed))
 		exit_err(cubed, 0);
 }
