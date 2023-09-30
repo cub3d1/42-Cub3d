@@ -31,31 +31,42 @@ void	init_key_struct(t_keys *keys)
 	keys->a = false;
 	keys->s = false;
 	keys->d = false;
+	keys->left = false;
+	keys->right = false;
 	keys->show_minimap = false;
 }
+
+	// if (tkn == 'N')
+	// {
+	// 	player->dir_x = 0;
+	// 	player->dir_y = 1;
+	// }
+	// else if (tkn == 'S')
+	// {
+	// 	player->dir_x = 0;
+	// 	player->dir_y = 1;
+	// }
+	// else if (tkn == 'E')
+	// {
+	// 	player->dir_x = 1;
+	// 	player->dir_y = 0;
+	// }
+	// else if (tkn == 'W')
+	// {
+	// 	player->dir_x = 1;
+	// 	player->dir_y = 0;
+	// }
 
 void	set_player_direction(t_player *player, char tkn)
 {
 	if (tkn == 'N')
-	{
-		player->dir_x = 0;
-		player->dir_y = 1;
-	}
+		player->angle = 90;
 	else if (tkn == 'S')
-	{
-		player->dir_x = 0;
-		player->dir_y = 1;
-	}
+		player->angle = 270;
 	else if (tkn == 'E')
-	{
-		player->dir_x = 1;
-		player->dir_y = 0;
-	}
+		player->angle = 0;
 	else if (tkn == 'W')
-	{
-		player->dir_x = 1;
-		player->dir_y = 0;
-	}
+		player->angle = 180;	
 }
 
 void	init_player_struct(t_player *player, char *map_row, int y)

@@ -34,26 +34,45 @@ int	keypress_hook(int keycode, t_cubed *cubed)
 	}
 	if (keycode == KEY_TAB)
 		cubed->keys->show_minimap = !cubed->keys->show_minimap;
-	if (keycode == ON_W || keycode == KEY_UP)
+	if (keycode == ON_W)
 		cubed->keys->w = true;
-	if (keycode == ON_A || keycode == KEY_LEFT)
+	if (keycode == ON_A)
 		cubed->keys->a = true;
-	if (keycode == ON_S || keycode == KEY_DOWN)
+	if (keycode == ON_S)
 		cubed->keys->s = true;
-	if (keycode == ON_D || keycode == KEY_RIGHT)
+	if (keycode == ON_D)
 		cubed->keys->d = true;
+	if (keycode == KEY_LEFT)
+		cubed->keys->left = true;
+	if (keycode == KEY_RIGHT)
+		cubed->keys->right = true;
 	return (0);
 }
 
 int	keyrelease_hook(int keycode, t_cubed *cubed)
 {
-	if (keycode == ON_W || keycode == KEY_UP)
+	if (keycode == ON_W)
 		cubed->keys->w = false;
-	if (keycode == ON_A || keycode == KEY_LEFT)
+	if (keycode == ON_A)
 		cubed->keys->a = false;
-	if (keycode == ON_S || keycode == KEY_DOWN)
+	if (keycode == ON_S)
 		cubed->keys->s = false;
-	if (keycode == ON_D || keycode == KEY_RIGHT)
+	if (keycode == ON_D)
 		cubed->keys->d = false;
+	if (keycode == KEY_LEFT)
+		cubed->keys->left = false;
+	if (keycode == KEY_RIGHT)
+		cubed->keys->right = false;
+	return (0);
+}
+
+int mouse_hook(int button, int x, int y, t_cubed *cubed)
+{
+
+	ft_printf_fd(1, "x = %d | y = %d\n", x, y);
+
+	(void)button;
+	(void)cubed;
+	
 	return (0);
 }

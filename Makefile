@@ -15,7 +15,7 @@ COREFILES = main.c hooks.c free.c init.c exit_err.c
 PARSERFILES = parser.c file_content_check.c file_content_check_utils.c \
 				map_layout_check.c map_layout_check_utils.c flood_fill.c load_map.c load_colors.c
 
-RENDERFILES = render_next_frame.c
+RENDERFILES = render_next_frame.c show_minimap.c
 
 SRC = $(COREFILES) $(PARSERFILES) $(RENDERFILES)
 

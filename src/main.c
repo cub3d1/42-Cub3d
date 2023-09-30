@@ -48,6 +48,9 @@ int main(int argc, char **argv)
 	mlx_hook(cubed.mlx->win_ptr, ON_KEYRELEASE, 1L << 1, keyrelease_hook, &cubed);
 	mlx_hook(cubed.mlx->win_ptr, ON_DESTROY, 1L << 17, window_cross, &cubed);
 
+	// mlx_mouse_hide(cubed.mlx->mlx_ptr, cubed.mlx->win_ptr);
+	mlx_mouse_move(cubed.mlx->mlx_ptr, cubed.mlx->win_ptr, WIN_W / 2, WIN_H / 2);
+	mlx_mouse_hook(cubed.mlx->win_ptr, mouse_hook, &cubed);
 	mlx_loop_hook(cubed.mlx->mlx_ptr, render_next_frame, &cubed);
 	mlx_loop(cubed.mlx->mlx_ptr);
 	return (0);

@@ -41,6 +41,8 @@
 # define KEY_RIGHT 65363
 # define KEY_TAB 65289
 
+# define SENSITIVITY 0.5f
+
 # define ON_KEYPRESS 2
 # define ON_KEYRELEASE 3
 # define ON_DESTROY 17
@@ -71,6 +73,8 @@ typedef struct s_keys
 	bool	a;
 	bool	s;
 	bool	d;
+	bool	left;
+	bool	right;
 	bool	show_minimap;
 }				t_keys;
 
@@ -80,6 +84,7 @@ typedef struct s_player
 	float	pos_y;
 	float	dir_x;
 	float	dir_y;
+	float 	angle;
 	//	fov? we might need a camera vector for that
 }				t_player;
 
@@ -96,7 +101,7 @@ typedef struct s_cubed
 int		window_cross(t_cubed *cubed);
 int		keypress_hook(int keycode, t_cubed *cubed);
 int		keyrelease_hook(int keycode, t_cubed *cubed);
-
+int		mouse_hook(int button, int x, int y, t_cubed *cubed);
 /*			init.c		*/
 void	init_cubed(t_cubed *cubed);
 void	init_mlx_struct(t_mlx *mlx);
@@ -138,8 +143,11 @@ int		load_map(t_cubed *cubed, char *path);
 /*	./parser/load_colors.c	*/
 void	load_colors(t_cubed *cubed, char *path);
 
-/*	./render_next_frame.c */
+/*	./render_next_frame/render_next_frame.c */
 int	render_next_frame(t_cubed *cubed);
+
+/*	./render_next_frame/minimap.c */
+void show_minimap(t_cubed *cubed, int minimap);
 
 /*			free.c		*/
 int 	free_stuff(t_cubed *cubed, int err_code);
