@@ -57,10 +57,10 @@ typedef struct s_mlx
 	void	*win_ptr;
 	int		ceiling_color[3];
 	int		floor_color[3];
-	void	*text_N;
-	void	*text_S;
-	void	*text_E;
-	void	*text_W;
+	void	*text_n;
+	void	*text_s;
+	void	*text_e;
+	void	*text_w;
 	void	*minimap_wall;
 	void	*minimap_player;
 	bool	show_minimap;
