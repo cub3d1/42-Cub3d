@@ -39,12 +39,6 @@ static void	free_keys(t_keys *keys)
 		free(keys);
 }
 
-static void	free_keys(t_keys *keys)
-{
-	if (keys)
-		free(keys);
-}
-
 int	free_stuff(t_cubed *cubed, int err_code)
 {
 	free_mlx(cubed->mlx);
