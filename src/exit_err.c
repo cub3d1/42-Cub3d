@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit_err.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmouronh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
+/*   Updated: 2023/09/30 19:21:14 by fmouronh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
-void exit_err(t_cubed *cubed, int err_code)
+void	exit_err(t_cubed *cubed, int err_code)
 {
 	if (err_code == 1)
 		ft_printf_fd(1, "Error\nInvalid file format\n");
