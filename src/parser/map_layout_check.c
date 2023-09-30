@@ -133,12 +133,16 @@ bool	player_token_ok(t_cubed *cubed)
 
 bool	layout_enclosed(t_cubed *cubed)
 {
-	cubed->map[(int)cubed->player->pos_y][(int)cubed->player->pos_x] = '0';
+	char	**shadow_map;
+
+	shadow_map = init_shadow_map(cubed->map);
+	shadow_map[(int)cubed->player->pos_y][(int)cubed->player->pos_x] = '0';
 	//	do a flood fill
-	flood_fill(cubed->map, (int)cubed->player->pos_x, (int)cubed->player->pos_y);
-	// print_map(cubed->map);	//	DELETE THIS
+	flood_fill(shadow_map, (int)cubed->player->pos_x, (int)cubed->player->pos_y);
+	// print_map(shadow_map);	//	DELETE THIS
 	//	check if any masked '0' is adjacent to ' '
-	if (!flood_fill_check(cubed->map))
+	if (!flood_fill_check(shadow_map))
 		return (false);
+	ft_free_split(shadow_map);
 	return (true);
 }

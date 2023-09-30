@@ -96,6 +96,9 @@ bool	map_tokens_ok(t_cubed *cubed);
 bool	player_token_ok(t_cubed *cubed);
 bool	layout_enclosed(t_cubed *cubed);
 
+/*	./parser/map_layout_check_utils.c	*/
+char	**init_shadow_map(char **map);
+
 /*	./parser/flood_fill.c	*/
 void	flood_fill(char **map, int pos_x, int pos_y);
 bool	flood_fill_check(char **map);

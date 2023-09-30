@@ -35,12 +35,18 @@ bool	flood_fill_check(char **map)
 	{
 		while (map[i][j])
 		{
-			if (map[i][j] == '_'
-				&& (map[i + 1][j] == ' ' || map[i - 1][j] == ' '
-				|| map[i][j + 1] == ' ' || map[i][j - 1] == ' '
-				|| map[i + 1][j] == '\n' || map[i - 1][j] == '\n'
-				|| map[i][j + 1] == '\n'))
-				return (false);
+			if (map[i][j] == '_')
+			{
+				if (!map[i + 1])
+					return (false);
+				else if ((int)ft_strlen(map[i + 1]) <= j)
+					return (false);
+				else if (map[i + 1][j] == ' ' || map[i - 1][j] == ' '
+					|| map[i][j + 1] == ' ' || map[i][j - 1] == ' '
+					|| map[i + 1][j] == '\n' || map[i - 1][j] == '\n'
+					|| (map[i][j + 1] && map[i][j + 1] == '\n'))
+					return (false);
+			}
 			j++;
 		}
 		j = 0;
