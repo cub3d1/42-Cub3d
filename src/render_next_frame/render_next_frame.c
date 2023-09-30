@@ -64,6 +64,10 @@ int	render_next_frame(t_cubed *cubed)
 	draw_ceiling(cubed);
 	draw_floor(cubed);	
 
+
+	// Draw walls must get player pos and direction
+	// And then draw the correct walls that the play can see
+	// draw_walls(cubed);
 	print_frame_counter(frame_counter++);
 	return (0);
 }
