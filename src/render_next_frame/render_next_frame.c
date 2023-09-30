@@ -1,15 +1,15 @@
 #include "../../include/cub3d.h"
 
-int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
+int	get_rgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-static void draw_ceiling(t_cubed *cubed)
+static void	draw_ceiling(t_cubed *cubed)
 {
-	int w;
-	int h;
-	int color;
+	int	w;
+	int	h;
+	int	color;
 
 	w = 0;
 	while (w < WIN_W)
@@ -17,7 +17,7 @@ static void draw_ceiling(t_cubed *cubed)
 		h = 0;
 		while (h < WIN_H / 2)
 		{
-			color = create_trgb(0, cubed->mlx->ceiling_color[0], \
+			color = get_rgb(0, cubed->mlx->ceiling_color[0], \
 				cubed->mlx->ceiling_color[1], cubed->mlx->ceiling_color[2]);
 			mlx_pixel_put(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, w, h, color);
 			h++;
@@ -38,7 +38,7 @@ static void	draw_floor(t_cubed *cubed)
 		h = WIN_H / 2;
 		while (h < WIN_H)
 		{
-			color = create_trgb(0, cubed->mlx->floor_color[0], \
+			color = get_rgb(0, cubed->mlx->floor_color[0], \
 				cubed->mlx->floor_color[1], cubed->mlx->floor_color[2]);
 			mlx_pixel_put(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, w, h, color);
 			h++;
