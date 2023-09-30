@@ -5,7 +5,7 @@ int	get_rgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-static void	draw_ceiling(t_cubed *cubed)
+static void	draw_ceiling(t_mlx *mlx, int *color_c)
 {
 	int	w;
 	int	h;
@@ -17,16 +17,15 @@ static void	draw_ceiling(t_cubed *cubed)
 		h = 0;
 		while (h < WIN_H / 2)
 		{
-			color = get_rgb(0, cubed->mlx->ceiling_color[0], \
-				cubed->mlx->ceiling_color[1], cubed->mlx->ceiling_color[2]);
-			mlx_pixel_put(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, w, h, color);
+			color = get_rgb(0, color_c[0], color_c[1], color_c[2]);
+			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, w, h, color);
 			h++;
 		}
 		w++;
 	}	
 }
 
-static void	draw_floor(t_cubed *cubed)
+static void	draw_floor(t_mlx *mlx, int *color_f)
 {
 	int w;
 	int h;
@@ -38,9 +37,8 @@ static void	draw_floor(t_cubed *cubed)
 		h = WIN_H / 2;
 		while (h < WIN_H)
 		{
-			color = get_rgb(0, cubed->mlx->floor_color[0], \
-				cubed->mlx->floor_color[1], cubed->mlx->floor_color[2]);
-			mlx_pixel_put(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, w, h, color);
+			color = get_rgb(0, color_f[0], color_f[1], color_f[2]);
+			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, w, h, color);
 			h++;
 		}
 		w++;
@@ -63,8 +61,8 @@ int	render_next_frame(t_cubed *cubed)
 {
 	static int	frame_counter = 1;
 
-	draw_ceiling(cubed);
-	draw_floor(cubed);	
+	draw_ceiling(cubed->mlx, cubed->mlx->ceiling_color);
+	draw_floor(cubed->mlx, cubed->mlx->floor_color);	
 
 
 	// Draw walls must get player pos and direction
