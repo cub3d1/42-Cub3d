@@ -28,6 +28,7 @@ $(NAME): $(LIBFT) $(MINILIBX) $(FT_PRINTF_FD) $(OBJS)
 $(OBJS): $(FILESC)
 	$(CC) $(CFLAGS) -c $(FILESC)
 
+
 $(LIBFT):
 	$(MAKE) -C ./include/libft
 

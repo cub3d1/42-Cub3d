@@ -13,6 +13,10 @@
 # include <string.h>
 # include <math.h>
 
+/*		window size		*/
+# define WIN_W 500
+# define WIN_H 250
+
 /*		keystrokes		*/
 # define ESCAPE 65307
 # define ON_W 119
@@ -35,6 +39,8 @@
 # define MAP_TKNS "01"
 # define PLAYER_TKNS "NSEW"
 
+//	should we have a separate struct for the minimap render data?
+//	also we need to define player movement and rotation speed
 typedef struct s_mlx
 {
 	void			*mlx_ptr;
@@ -52,10 +58,8 @@ typedef struct s_player
 	float	pos_y;
 	float	dir_x;
 	float	dir_y;
-	//	direction
 	//	fov? we might need a camera vector for that
 }				t_player;
-
 
 typedef struct s_cubed
 {

@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 
 	/*	init mlx	*/
 	cubed.mlx->mlx_ptr = mlx_init();
-	cubed.mlx->win_ptr = mlx_new_window(cubed.mlx->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "Hello world!");
+	cubed.mlx->win_ptr = mlx_new_window(cubed.mlx->mlx_ptr, WIN_W, WIN_H, "Hello world!");
 
 	/* 	Hooks para garantir clean destruction da janela	*/
 	mlx_hook(cubed.mlx->win_ptr, ON_KEYPRESS, 1L << 0, keypress_hook, &cubed);
