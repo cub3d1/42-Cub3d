@@ -37,7 +37,9 @@ bool	flood_fill_check(char **map)
 		{
 			if (map[i][j] == '_'
 				&& (map[i + 1][j] == ' ' || map[i - 1][j] == ' '
-				|| map[i][j + 1] == ' ' || map[i][j - 1] == ' '))
+				|| map[i][j + 1] == ' ' || map[i][j - 1] == ' '
+				|| map[i + 1][j] == '\n' || map[i - 1][j] == '\n'
+				|| map[i][j + 1] == '\n'))
 				return (false);
 			j++;
 		}

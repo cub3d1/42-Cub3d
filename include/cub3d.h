@@ -35,6 +35,8 @@
 # define MAP_TKNS "01"
 # define PLAYER_TKNS "NSEW"
 
+//	should we have a separate struct for the minimap render data?
+//	also we need to define player movement and rotation speed
 typedef struct s_mlx
 {
 	void			*mlx_ptr;
@@ -52,10 +54,8 @@ typedef struct s_player
 	float	pos_y;
 	float	dir_x;
 	float	dir_y;
-	//	direction
 	//	fov? we might need a camera vector for that
 }				t_player;
-
 
 typedef struct s_cubed
 {
