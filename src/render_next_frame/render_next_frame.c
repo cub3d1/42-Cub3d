@@ -62,6 +62,7 @@ int	render_next_frame(t_cubed *cubed)
 {
 	static int	frame_counter = 1;
 
+	
 	draw_ceiling(cubed->mlx, cubed->mlx->ceiling_color);
 	draw_floor(cubed->mlx, cubed->mlx->floor_color);	
 
