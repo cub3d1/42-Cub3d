@@ -34,6 +34,7 @@ int main(int argc, char **argv)
 	mlx_hook(cubed.mlx->win_ptr, ON_KEYPRESS, 1L << 0, keypress_hook, &cubed);
 	mlx_hook(cubed.mlx->win_ptr, ON_DESTROY, 1L << 17, window_cross, &cubed);
 
+	mlx_loop_hook(cubed.mlx->mlx_ptr, render_next_frame, &cubed);
 	mlx_loop(cubed.mlx->mlx_ptr);
 	return (0);
 	

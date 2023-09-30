@@ -9,13 +9,16 @@ INC = -lXext -lX11
 
 SRCDIR = ./src/
 PARSERDIR = $(SRCDIR)parser/
+RENDERDIR = $(SRCDIR)render_next_frame/
 
 COREFILES = main.c hooks.c free.c init.c exit_err.c
 PARSERFILES = parser.c file_content_check.c file_content_check_utils.c map_layout_check.c flood_fill.c load_map.c
-SRC = $(COREFILES) $(PARSERFILES)
+RENDERFILES = render_next_frame.c
+SRC = $(COREFILES) $(PARSERFILES) $(RENDERFILES)
 
 FILESC = $(addprefix $(SRCDIR), $(COREFILES)) \
-			$(addprefix $(PARSERDIR), $(PARSERFILES))
+			$(addprefix $(PARSERDIR), $(PARSERFILES)) \
+			$(addprefix $(RENDERDIR), $(RENDERFILES)) 
 
 OBJS = $(SRC:.c=.o)
 	

@@ -108,6 +108,9 @@ int		find_map_offset(t_mlx *mlx, char *arg);
 /*	./parser/load_map.c	*/
 int		load_map(t_cubed *cubed, char *path);
 
+/*	./render_next_frame.c */
+int	render_next_frame(t_cubed *cubed);
+
 /*			free.c		*/
 int 	free_stuff(t_cubed *cubed, int err_code);
 
