@@ -1,5 +1,13 @@
 #include "../include/cub3d.h"
 
+// void print_map(char **map)
+// {
+// 	int i = 0;
+
+// 	while (map[i])
+// 		ft_printf_fd(1, "%s\n", map[i++]);
+// }
+
 int main(int argc, char **argv)
 {
 
@@ -16,7 +24,8 @@ int main(int argc, char **argv)
 	/*	map check	*/
 	parser(&cubed, argv[1]);
 
-/*	depois do mapa vemos isto	*/
+	// print_map(cubed.map);
+
 	/*	init mlx	*/
 	cubed.mlx->mlx_ptr = mlx_init();
 	cubed.mlx->win_ptr = mlx_new_window(cubed.mlx->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "Hello world!");

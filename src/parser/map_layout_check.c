@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 08:46:02 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/09/30 02:14:20 by hiper            ###   ########.fr       */
+/*   Updated: 2023/09/30 02:19:49 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ bool	player_token_ok(t_cubed *cubed)
 		return (false);
 	return (true);
 }
+
 /*	DELETE THIS	*/
 // void	print_map(char **map)
 // {
