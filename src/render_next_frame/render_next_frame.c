@@ -7,9 +7,12 @@ int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char
 
 int	render_next_frame(t_cubed *cubed)
 {
-	int w;
-	int h;
-	int color;
+	int			w;
+	int			h;
+	int			color;
+	static int	frame_counter = 1;
+	char		*frame;
+
 
 	/* draw ceiling */
 	w = 0;
@@ -39,6 +42,10 @@ int	render_next_frame(t_cubed *cubed)
 		}
 		w++;
 	}
-	(void)cubed;
+
+	/* draw frame counter */
+	frame = ft_itoa(frame_counter++);
+	ft_printf_fd(1, "frame = %s\n", frame);
+	free(frame);
 	return (0);
 }
