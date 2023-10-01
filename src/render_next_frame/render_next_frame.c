@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/01 14:57:12 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/01 14:58:42 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	print_info(t_cubed *cubed, int frame_counter)
 	// printf("s = %d | ", cubed->keys->s);
 	// printf("d = %d | ", cubed->keys->d);
 	// printf("angle = %f | ", cubed->player->angle);
-	printf("\n");
+	// printf("\n");
 	(void)cubed; (void)frame_counter;
 }
 
