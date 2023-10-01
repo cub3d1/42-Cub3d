@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/01 09:41:59 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/01 13:14:01 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int main(int argc, char **argv)
 	init_cubed(&cubed);
 	/*	map check	*/
 	parser(&cubed, argv[1]);
-
 	/*	init mlx	*/
 	cubed.mlx->mlx_ptr = mlx_init();
+	load_textures(&cubed, argv[1]);
 
 	/*		Temp minimap player init */
 	int width;
@@ -38,7 +38,14 @@ int main(int argc, char **argv)
 	cubed.mlx->minimap_player =  mlx_xpm_file_to_image(
 						cubed.mlx->mlx_ptr, TEMP_MINIMAP_PLAYER, &width, &height);
 
-	cubed.mlx->win_ptr = mlx_new_window(cubed.mlx->mlx_ptr, WIN_W, WIN_H, "Hello world!");
+	cubed.mlx->text_n = mlx_xpm_file_to_image(cubed.mlx->mlx_ptr, "./textures/walls/North_wall_temp.xpm", &width, &height);
+	cubed.mlx->text_s = mlx_xpm_file_to_image(cubed.mlx->mlx_ptr, "./textures/walls/South_wall_temp.xpm", &width, &height);
+	cubed.mlx->text_e = mlx_xpm_file_to_image(cubed.mlx->mlx_ptr, "./textures/walls/West_wall_temp.xpm", &width, &height);
+	cubed.mlx->text_w = mlx_xpm_file_to_image(cubed.mlx->mlx_ptr, "./textures/walls/West_wall_temp.xpm", &width, &height);
+	cubed.mlx->win_ptr = mlx_new_window(cubed.mlx->mlx_ptr, WIN_W, WIN_H, "Cub3d");
+	if (!cubed.mlx->text_n || !cubed.mlx->text_s
+		|| !cubed.mlx->text_e || !cubed.mlx->text_w)
+		exit_err(&cubed, 4);
 
 	/* 	Hooks para garantir clean destruction da janela	*/
 	mlx_do_key_autorepeatoff(cubed.mlx->mlx_ptr);

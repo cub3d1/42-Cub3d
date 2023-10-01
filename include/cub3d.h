@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:22:26 by ddantas-          #+#    #+#             */
-/*   Updated: 2023/10/01 10:41:54 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/01 11:16:37 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,11 +154,11 @@ int		load_map(t_cubed *cubed, char *path);
 /*	./parser/load_colors.c	*/
 void	load_colors(t_cubed *cubed, char *path);
 
-/*	./parser/load_textures.c	*/
+/*	./src/load_textures.c	*/
 void	load_textures(t_cubed *cubed, char *arg);
 
 /*	./render_next_frame/render_next_frame.c */
-int	render_next_frame(t_cubed *cubed);
+int		render_next_frame(t_cubed *cubed);
 
 /*	./render_next_frame/update.c	*/
 void	update_angle(t_cubed *cubed);
@@ -166,7 +166,7 @@ void	update_player_pos(t_cubed *cubed, t_keys *keys);
 
 
 /*	./render_next_frame/minimap.c */
-void show_minimap(t_cubed *cubed, int minimap);
+void	show_minimap(t_cubed *cubed, int minimap);
 
 /*			free.c		*/
 int 	free_stuff(t_cubed *cubed, int err_code);

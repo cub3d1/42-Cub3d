@@ -1,6 +1,6 @@
 NAME = cub3d # The Cubed!!
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -ggdb -fsanitize=address -lm
+CFLAGS = -Wall -Wextra -Werror -ggdb -fsanitize=address -lm -Werror=unused-result
 RM = rm -f
 LIBFT = ./include/libft/libft.a
 MINILIBX = ./include/mlx_linux/libmlx_Linux.a
@@ -11,10 +11,10 @@ SRCDIR = ./src/
 PARSERDIR = $(SRCDIR)parser/
 RENDERDIR = $(SRCDIR)render_next_frame/
 
-COREFILES = main.c hooks.c free.c init.c exit_err.c
+COREFILES = main.c hooks.c free.c init.c exit_err.c load_textures.c
 PARSERFILES = parser.c file_content_check.c file_content_check_utils.c \
 				map_layout_check.c map_layout_check_utils.c flood_fill.c \
-				load_map.c load_colors.c load_textures.c
+				load_map.c load_colors.c
 
 RENDERFILES = render_next_frame.c show_minimap.c update.c
 
