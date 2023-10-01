@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/01 14:22:42 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/01 18:33:08 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,19 @@ int main(int argc, char **argv)
 		ft_printf_fd(1, "Error\nWrong number of arguments\n");
 		return (0);
 	}
+
 	/*	init game struct	*/
 	init_cubed(&cubed);
 	/*	map check	*/
 	parser(&cubed, argv[1]);
 	/*	init mlx	*/
 	cubed.mlx->mlx_ptr = mlx_init();
+	
 	// load_textures(&cubed, argv[1]);
-	load_tmp_textures(&cubed, argv[1]);
-	/*		Temp minimap player init */
+	
 
+	/*		Temp minimap player init */
+	load_tmp_textures(&cubed, argv[1]);
 
 	cubed.mlx->win_ptr = mlx_new_window(cubed.mlx->mlx_ptr, WIN_W, WIN_H, "Cub3d");
 	

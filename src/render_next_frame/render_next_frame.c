@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/01 14:58:42 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/01 18:35:47 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,15 @@ void	print_info(t_cubed *cubed, int frame_counter)
 	// frame = ft_itoa(frame_counter);
 	// ft_printf_fd(1, "frame = %s | ", frame);
 	// free(frame);
-	// printf("p.pos_x = %f | ", cubed->player->pos_xa);
-	// printf("p.pos_y = %f | ", cubed->player->pos_y);
+	printf("p.pos_x = %f | ", cubed->player->pos_x);
+	printf("p.pos_y = %f | ", cubed->player->pos_y);
 	// printf("show_minimap = %d | ", cubed->keys->show_minimap);
 	// printf("w = %d | ", cubed->keys->w);
 	// printf("a = %d | ", cubed->keys->a);
 	// printf("s = %d | ", cubed->keys->s);
 	// printf("d = %d | ", cubed->keys->d);
 	// printf("angle = %f | ", cubed->player->angle);
-	// printf("\n");
+	printf("\n");
 	(void)cubed; (void)frame_counter;
 }
 
