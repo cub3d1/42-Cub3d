@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:22:26 by ddantas-          #+#    #+#             */
-/*   Updated: 2023/10/01 10:19:00 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/01 10:41:54 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include <math.h>
 
 /*		window size		*/
-# define WIN_W 1920
-# define WIN_H 1080
+# define WIN_W 1000
+# define WIN_H 500
 
 /*		keystrokes		*/
 # define ESCAPE 65307
@@ -42,10 +42,15 @@
 # define KEY_TAB 65289
 
 # define SENSITIVITY 0.5f
+# define VELOCITY 0.1f
 
 # define ON_KEYPRESS 2
 # define ON_KEYRELEASE 3
 # define ON_DESTROY 17
+
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
 
 /*		map tokens		*/
 # define MAP_TKNS "01"
