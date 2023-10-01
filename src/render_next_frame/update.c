@@ -60,12 +60,12 @@ void	update_player_pos(t_cubed *cubed, t_keys *keys)
 	}
 	if (keys->a && !keys->d)
 	{
-		cubed->player->pos_x -= cos((cubed->player->angle + 90) * M_PI / 180) * 0.1;
-		cubed->player->pos_y -= sin((cubed->player->angle + 90) * M_PI / 180) * 0.1;
+		cubed->player->pos_x += cos((cubed->player->angle + 90) * M_PI / 180) * 0.1;
+		cubed->player->pos_y += sin((cubed->player->angle + 90) * M_PI / 180) * 0.1;
 	}
 	if (keys->d && !keys->a)
 	{
-		cubed->player->pos_x += cos((cubed->player->angle + 90) * M_PI / 180) * 0.1;
-		cubed->player->pos_y += sin((cubed->player->angle + 90) * M_PI / 180) * 0.1;
+		cubed->player->pos_x -= cos((cubed->player->angle + 90) * M_PI / 180) * 0.1;
+		cubed->player->pos_y -= sin((cubed->player->angle + 90) * M_PI / 180) * 0.1; // pos_y = pos_y + sin(teta + 90)
 	}
 }

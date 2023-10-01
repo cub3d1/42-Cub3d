@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddantas- <ddantas-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/01 02:02:00 by ddantas-         ###   ########.fr       */
+/*   Updated: 2023/10/01 08:15:50 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ int	keypress_hook(int keycode, t_cubed *cubed)
 		cubed->keys->left = true;
 	if (keycode == KEY_RIGHT)
 		cubed->keys->right = true;
+	if (keycode == KEY_UP)
+		cubed->player->angle += 45;
+	if (keycode == KEY_DOWN)
+		cubed->player->angle -= 45;
 	return (0);
 }
 
