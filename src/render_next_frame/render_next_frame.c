@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/01 08:26:55 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/01 08:33:32 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	render_next_frame(t_cubed *cubed)
 {
 	static int	frame_counter = 1;
 	static int	minimap = 0;
-
+	
 	update_angle(cubed);
 	update_player_pos(cubed, cubed->keys);
 	if (!cubed->keys->show_minimap)

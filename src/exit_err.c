@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_err.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmouronh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/09/30 19:21:14 by fmouronh         ###   ########.fr       */
+/*   Updated: 2023/10/01 09:11:16 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	exit_err(t_cubed *cubed, int err_code)
 		ft_printf_fd(1, "Error\nMap load fail\n");
 	else if (err_code == 5)
 		ft_printf_fd(1, "Error\nMalloc Failed\n");
+	else if (err_code == 6)
+		ft_printf_fd(1, "Error\nImage failed to load\n");
 	free_stuff(cubed, -1);
 	exit(err_code);
 }

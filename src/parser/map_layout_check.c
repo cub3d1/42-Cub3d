@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 08:46:02 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/09/30 02:19:49 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/01 10:18:43 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ bool	player_token_ok(t_cubed *cubed)
 			if (found)
 				return (false);
 			found = true;
-			init_player_struct(cubed->player, cubed->map[i], i);
+			init_player_struct(cubed->player, cubed->map, i);
 		}
 		i++;
 	}
@@ -137,8 +137,8 @@ bool	layout_enclosed(t_cubed *cubed)
 
 	player = cubed->player;
 	shadow_map = init_shadow_map(cubed->map);
-	shadow_map[(int)player->pos_y][(int)player->pos_x] = '0';
-	flood_fill(shadow_map, (int)player->pos_x, (int)player->pos_y);
+	shadow_map[(int)player->pos_y_array][(int)player->pos_x_array] = '0';
+	flood_fill(shadow_map, (int)player->pos_x_array, (int)player->pos_y_array);
 	if (!flood_fill_check(shadow_map))
 		return (false);
 	ft_free_split(shadow_map);

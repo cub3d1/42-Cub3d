@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:22:26 by ddantas-          #+#    #+#             */
-/*   Updated: 2023/10/01 08:22:05 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/01 10:19:00 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include <math.h>
 
 /*		window size		*/
-# define WIN_W 500
-# define WIN_H 250
+# define WIN_W 1920
+# define WIN_H 1080
 
 /*		keystrokes		*/
 # define ESCAPE 65307
@@ -50,6 +50,9 @@
 /*		map tokens		*/
 # define MAP_TKNS "01"
 # define PLAYER_TKNS "NSEW"
+
+/*		texture			*/
+# define TEMP_MINIMAP_PLAYER "./textures/temp_player.xpm"
 
 //	should we have a separate struct for the minimap render data?
 //	also we need to define player movement and rotation speed
@@ -82,6 +85,8 @@ typedef struct s_player
 {
 	float	pos_x;
 	float	pos_y;
+	float	pos_x_array;
+	float	pos_y_array;
 	float	dir_x;
 	float	dir_y;
 	float 	angle;
@@ -106,7 +111,7 @@ int		mouse_hook(int button, int x, int y, t_cubed *cubed);
 /*			init.c		*/
 void	init_cubed(t_cubed *cubed);
 void	init_mlx_struct(t_mlx *mlx);
-void	init_player_struct(t_player *player, char *map_row, int y);
+void	init_player_struct(t_player *player, char **map, int y);
 
 /*		./parser/parser.c */
 void 	parser(t_cubed *cubed, char *arg);
@@ -171,6 +176,7 @@ void	exit_err(t_cubed *cubed, int err_code);
  *	1 - invalid file format
  *	2 - open error
  *	3 - close error
- *	4 - malloc fail
- *
+ *	4 - map load fail
+ *	5 - Malloc Failed
+ *	6 - Image failed to load
  */

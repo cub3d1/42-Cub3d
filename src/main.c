@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddantas- <ddantas-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/01 02:02:04 by ddantas-         ###   ########.fr       */
+/*   Updated: 2023/10/01 09:41:59 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ int main(int argc, char **argv)
 
 	/*	init mlx	*/
 	cubed.mlx->mlx_ptr = mlx_init();
+
+	/*		Temp minimap player init */
+	int width;
+	int height;
+	cubed.mlx->minimap_player =  mlx_xpm_file_to_image(
+						cubed.mlx->mlx_ptr, TEMP_MINIMAP_PLAYER, &width, &height);
+
 	cubed.mlx->win_ptr = mlx_new_window(cubed.mlx->mlx_ptr, WIN_W, WIN_H, "Hello world!");
 
 	/* 	Hooks para garantir clean destruction da janela	*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmouronh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/09/30 19:21:14 by fmouronh         ###   ########.fr       */
+/*   Updated: 2023/10/01 10:19:22 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,57 @@ void	set_player_direction(t_player *player, char tkn)
 		player->angle = 180;	
 }
 
-void	init_player_struct(t_player *player, char *map_row, int y)
+static float get_biggest_line(char **map)
+{
+
+	int		i;
+	int		j;
+	int		biggest;
+
+	i = 0;
+	biggest = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+			j++;
+		if (j > biggest)
+			biggest = j;
+		i++;
+	}
+	return ((float)biggest);
+}
+
+static float get_array_size(char **map)
+{
+	int		i;
+	int		size;
+
+	i = 0;
+	size = 0;
+	while (map[i])
+	{
+		size++;
+		i++;
+	}
+	return ((float)size);
+}
+
+void	init_player_struct(t_player *player, char **map, int y)
 {
 	int	x;
 
 	x = 0;
-	while (map_row[x] && map_row[x] != 'N' && map_row[x] != 'S' \
-		&& map_row[x] != 'E' && map_row[x] != 'W')
+	while (map[y][x] && map[y][x] != 'N' && map[y][x] != 'S' \
+		&& map[y][x] != 'E' && map[y][x] != 'W')
 		x++;
-	player->pos_x = (float)x + 0.5;
-	player->pos_y = (float)y + 0.5;
-	set_player_direction(player, map_row[x]);
+
+	player->pos_x_array = (float)x + 0.5;
+	player->pos_y_array = (float)y + 0.5;
+
+	player->pos_x = ((float)x * WIN_W) / get_biggest_line(map);
+	player->pos_y = ((float)y * WIN_H) / get_array_size(map);
+	set_player_direction(player, map[y][x]);
 }
 
 	//	set player->direction according to token in map_row[x]
