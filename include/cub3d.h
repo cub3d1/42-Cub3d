@@ -102,6 +102,8 @@ typedef struct s_cubed
 {
 	char		**map;
 	char		**texture_paths;
+	int			map_width;
+	int			map_height;
 	t_mlx		*mlx;
 	t_player	*player;
 	t_keys		*keys;
@@ -117,6 +119,8 @@ int		mouse_hook(int button, int x, int y, t_cubed *cubed);
 void	init_cubed(t_cubed *cubed);
 void	init_mlx_struct(t_mlx *mlx);
 void	init_player_struct(t_player *player, char **map, int y);
+float	get_biggest_line(char **map);
+float	get_array_size(char **map);
 
 /*		./parser/parser.c */
 void 	parser(t_cubed *cubed, char *arg);

@@ -28,13 +28,16 @@ int main(int argc, char **argv)
 	init_cubed(&cubed);
 	/*	map check	*/
 	parser(&cubed, argv[1]);
+	cubed.map_width = (int)get_biggest_line(cubed.map);
+	cubed.map_height = (int)get_array_size(cubed.map);
+	
 	/*	init mlx	*/
 	cubed.mlx->mlx_ptr = mlx_init();
 	
 	// load_textures(&cubed, argv[1]);
 	
 
-	/*		Temp minimap player init */
+	/*		Temp textures	 */
 	load_tmp_textures(&cubed, argv[1]);
 
 	cubed.mlx->win_ptr = mlx_new_window(cubed.mlx->mlx_ptr, WIN_W, WIN_H, "Cub3d");

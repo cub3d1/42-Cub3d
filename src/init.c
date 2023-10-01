@@ -69,7 +69,7 @@ void	set_player_direction(t_player *player, char tkn)
 		player->angle = 180;	
 }
 
-static float get_biggest_line(char **map)
+float get_biggest_line(char **map)
 {
 
 	int		i;
@@ -90,7 +90,7 @@ static float get_biggest_line(char **map)
 	return ((float)biggest);
 }
 
-static float get_array_size(char **map)
+float get_array_size(char **map)
 {
 	int		i;
 	int		size;
@@ -119,6 +119,7 @@ void	init_player_struct(t_player *player, char **map, int y)
 
 	player->pos_x = ((float)x * WIN_W) / get_biggest_line(map);
 	player->pos_y = ((float)y * WIN_H) / get_array_size(map);
+	
 	set_player_direction(player, map[y][x]);
 }
 

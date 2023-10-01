@@ -66,6 +66,8 @@ void	print_info(t_cubed *cubed, int frame_counter)
 	// free(frame);
 	printf("p.pos_x = %f | ", cubed->player->pos_x);
 	printf("p.pos_y = %f | ", cubed->player->pos_y);
+	printf("p.pos_x_array = %f | ", cubed->player->pos_x_array);
+	printf("p.pos_y_array = %f | ", cubed->player->pos_y_array);
 	// printf("show_minimap = %d | ", cubed->keys->show_minimap);
 	// printf("w = %d | ", cubed->keys->w);
 	// printf("a = %d | ", cubed->keys->a);
