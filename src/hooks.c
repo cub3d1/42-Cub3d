@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ddantas- <ddantas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/01 01:24:44 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/01 02:02:00 by ddantas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ int	keyrelease_hook(int keycode, t_cubed *cubed)
 	return (0);
 }
 
-int mouse_hook(int button, int x, int y, t_cubed *cubed)
-{
+// int mouse_hook(int button, int x, int y, t_cubed *cubed)
+// {
 
-	ft_printf_fd(1, "x = %d | y = %d\n", x, y);
+// 	ft_printf_fd(1, "x = %d | y = %d\n", x, y);
 
-	(void)button;
-	(void)cubed;
+// 	(void)button;
+// 	(void)cubed;
 	
-	return (0);
-}
+// 	return (0);
+// }
