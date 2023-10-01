@@ -24,7 +24,7 @@ FILESC = $(addprefix $(SRCDIR), $(COREFILES)) \
 			$(addprefix $(PARSERDIR), $(PARSERFILES)) \
 			$(addprefix $(RENDERDIR), $(RENDERFILES)) 
 
-OBJS = $(SRC:.c=.o)
+OBJS = $(FILESC:.c=.o)
 	
 
 all: $(NAME)
@@ -32,9 +32,8 @@ all: $(NAME)
 $(NAME): $(LIBFT) $(MINILIBX) $(FT_PRINTF_FD) $(OBJS)
 	$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(LIBFT) $(FT_PRINTF_FD) $(MINILIBX) $(INC)
 
-$(OBJS): $(FILESC)
-	$(CC) $(CFLAGS) -c $(FILESC)
-
+%.o: %.c
+	$(CC) $(CFLAGS) -I/usr/include -Iinclude/mlx_linux -O3 -c -o $@ $<
 
 $(LIBFT):
 	$(MAKE) -C ./include/libft

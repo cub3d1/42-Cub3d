@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmouronh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/09/30 19:21:14 by fmouronh         ###   ########.fr       */
+/*   Updated: 2023/10/01 01:24:44 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	window_cross(t_cubed *cubed)
 	// 	cubed->player->pos_x += cubed->player->dir_x * 0.1;
 	// 	cubed->player->pos_y += cubed->player->dir_y * 0.1;
 	// }
-
+ 
 int	keypress_hook(int keycode, t_cubed *cubed)
 {
 	if (keycode == ESCAPE)
