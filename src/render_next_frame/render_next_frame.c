@@ -6,7 +6,7 @@
 /*   By: ddantas- <ddantas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/01 01:53:05 by ddantas-         ###   ########.fr       */
+/*   Updated: 2023/10/01 01:55:25 by ddantas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	print_info(t_cubed *cubed, int frame_counter)
 	// printf("w = %d | ", cubed->keys->w);
 	// printf("a = %d | ", cubed->keys->a);
 	// printf("s = %d | ", cubed->keys->s);
-	// printf("d = %d |", cubed->keys->d);
+	// printf("d = %d | ", cubed->keys->d);
 	// printf("angle = %f | ", cubed->player->angle);
 	// printf("\n");
 	(void)cubed; (void)frame_counter;
@@ -89,10 +89,11 @@ int	render_next_frame(t_cubed *cubed)
 			minimap = 0;
 		draw_ceiling(cubed->mlx, cubed->mlx->ceiling_color);
 		draw_floor(cubed->mlx, cubed->mlx->floor_color);
-		print_info(cubed, frame_counter++);
 	}
 	else
 		show_minimap(cubed, minimap++);
+
+	print_info(cubed, frame_counter++);
 	return (0);
 }
 /*				
