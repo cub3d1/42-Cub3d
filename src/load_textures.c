@@ -6,13 +6,13 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:26:58 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/01 14:07:33 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/01 14:09:18 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static void	set_texture(t_cubed *cubed, void **texture, char *line)
+static void	set_texture(t_cubed *cubed, void *texture, char *line)
 {
 	int		width;
 	int		height;
@@ -29,15 +29,10 @@ static void	set_texture(t_cubed *cubed, void **texture, char *line)
 	width = n map cols / WIN_W
 	height = n map rows / WIN_H
 */
-	// line[ft_strlen(line) - 1] = '\0';
 	
-	// ft_printf_fd(1, "line = '%s'\n", line);
-	
-	// *texture = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, "./textures/walls/North_wall_temp.xpm", &width, &height);
-	// if (!*texture)
-	// 	ft_printf_fd(1, "Error\nTexture '%s' not found\n", line);
-	// int n = write(1, "hi\n", 3);
-	// (void)n;
+	// texture = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, line, &width, &height);
+	// if (!texture)
+		// ft_printf_fd(1, "Error\nTexture '%s' not found\n", line);
 	(void)cubed->mlx->mlx_ptr;
 	(void)width;
 	(void)height;
