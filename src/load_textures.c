@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:26:58 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/01 13:12:04 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/01 14:07:33 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,21 @@ void	load_textures(t_cubed *cubed, char *arg)
 	if (close(fd) == -1)
 		exit_err(cubed, 3);
 	//	load images for minimap
+}
+
+
+void load_tmp_textures(t_cubed *cubed)
+{
+	int width;
+	int height;
+
+	cubed->mlx->minimap_player =  mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, TEMP_MINIMAP_PLAYER, &width, &height);
+	cubed->mlx->text_n = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, "./textures/walls/North_wall_temp.xpm", &width, &height);
+	cubed->mlx->text_s = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, "./textures/walls/South_wall_temp.xpm", &width, &height);
+	cubed->mlx->text_e = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, "./textures/walls/West_wall_temp.xpm", &width, &height);
+	cubed->mlx->text_w = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, "./textures/walls/West_wall_temp.xpm", &width, &height);
+	if (!cubed->mlx->text_n || !cubed->mlx->text_s
+		|| !cubed->mlx->text_e || !cubed->mlx->text_w)
+		exit_err(cubed, 4);
+	
 }
