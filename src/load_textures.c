@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:26:58 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/01 14:34:43 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/01 14:36:15 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void load_tmp_textures(t_cubed *cubed, char *arg)
 {
 	int		fd;
 	char	*line;
+	int		width;
+	int		height;
 
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
@@ -113,9 +115,6 @@ void load_tmp_textures(t_cubed *cubed, char *arg)
 	}
 	if (close(fd) == -1)
 		exit_err(cubed, 3);
-	int width;
-	int height;
-
 	cubed->mlx->minimap_player =  mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, TEMP_MINIMAP_PLAYER, &width, &height);
 	if (!cubed->mlx->text_n || !cubed->mlx->text_s
 		|| !cubed->mlx->text_e || !cubed->mlx->text_w || !cubed->mlx->minimap_player)
