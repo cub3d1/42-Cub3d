@@ -6,7 +6,7 @@
 /*   By: ddantas- <ddantas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:22:26 by ddantas-          #+#    #+#             */
-/*   Updated: 2023/09/30 19:22:27 by ddantas-         ###   ########.fr       */
+/*   Updated: 2023/10/01 01:46:38 by ddantas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int		window_cross(t_cubed *cubed);
 int		keypress_hook(int keycode, t_cubed *cubed);
 int		keyrelease_hook(int keycode, t_cubed *cubed);
 int		mouse_hook(int button, int x, int y, t_cubed *cubed);
+
 /*			init.c		*/
 void	init_cubed(t_cubed *cubed);
 void	init_mlx_struct(t_mlx *mlx);
@@ -148,6 +149,11 @@ void	load_textures(t_cubed *cubed, char *arg);
 
 /*	./render_next_frame/render_next_frame.c */
 int	render_next_frame(t_cubed *cubed);
+
+/*	./render_next_frame/update.c	*/
+void	update_angle(t_cubed *cubed);
+void	update_player_pos(t_cubed *cubed, t_keys *keys);
+
 
 /*	./render_next_frame/minimap.c */
 void show_minimap(t_cubed *cubed, int minimap);

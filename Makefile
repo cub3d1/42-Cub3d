@@ -16,7 +16,7 @@ PARSERFILES = parser.c file_content_check.c file_content_check_utils.c \
 				map_layout_check.c map_layout_check_utils.c flood_fill.c \
 				load_map.c load_colors.c load_textures.c
 
-RENDERFILES = render_next_frame.c show_minimap.c
+RENDERFILES = render_next_frame.c show_minimap.c update.c
 
 SRC = $(COREFILES) $(PARSERFILES) $(RENDERFILES)
 
