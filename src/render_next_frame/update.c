@@ -33,19 +33,6 @@ void	update_angle(t_cubed *cubed)
 	mlx_mouse_move(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, WIN_W / 2, WIN_H / 2);
 }
 
-
-/*		Problemas	*/
-/*
-	Key W parece estar a funcionar bem
-
-	Key S nao funciona no segundo quadrante
-	need plus testing
-
-	Key A por testar
-
-	Key S por testar
-	
-*/
 void	update_player_pos(t_cubed *cubed, t_keys *keys)
 {
 	if (keys->w && !keys->s)
