@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/01 14:06:54 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/01 14:22:42 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 	/*	init mlx	*/
 	cubed.mlx->mlx_ptr = mlx_init();
 	// load_textures(&cubed, argv[1]);
-	load_tmp_textures(&cubed);
+	load_tmp_textures(&cubed, argv[1]);
 	/*		Temp minimap player init */
 
 

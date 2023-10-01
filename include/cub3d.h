@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:22:26 by ddantas-          #+#    #+#             */
-/*   Updated: 2023/10/01 14:07:08 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/01 14:23:31 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ void	load_colors(t_cubed *cubed, char *path);
 
 /*	./src/load_textures.c	*/
 void	load_textures(t_cubed *cubed, char *arg);
-void	load_tmp_textures(t_cubed *cubed);
+void	load_tmp_textures(t_cubed *cubed, char *arg);
 
 /*	./render_next_frame/render_next_frame.c */
 int		render_next_frame(t_cubed *cubed);
