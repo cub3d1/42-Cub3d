@@ -39,9 +39,13 @@ static void	collision_check(t_cubed *cubed, t_keys *keys)
 {
 	float	next_x;
 	float	next_y;
+	bool	hit_x;
+	bool	hit_y;
 
 	next_x = cubed->player->pos_x;
 	next_y = cubed->player->pos_y;
+	hit_x = false;
+	hit_y = false;
 	if (keys->w && !keys->s)
 	{
 		next_x += (cos(cubed->player->angle * M_PI / 180) * VELOCITY);
@@ -50,9 +54,9 @@ static void	collision_check(t_cubed *cubed, t_keys *keys)
 		{
 			ft_printf_fd(1, "Collision!\n");
 			if ((int)next_x != (int)cubed->player->pos_x)
-				ft_printf_fd(1, "collide on x axis\n");
+				hit_x = true;
 			if ((int)next_y != (int)cubed->player->pos_y)
-				ft_printf_fd(1, "collide on y axis\n");
+				hit_y = true;
 		}
 	}
 	if (keys->s && !keys->w)
@@ -63,9 +67,9 @@ static void	collision_check(t_cubed *cubed, t_keys *keys)
 		{
 			ft_printf_fd(1, "Collision!\n");
 			if ((int)next_x != (int)cubed->player->pos_x)
-				ft_printf_fd(1, "collide on x axis\n");
+				hit_x = true;
 			if ((int)next_y != (int)cubed->player->pos_y)
-				ft_printf_fd(1, "collide on y axis\n");
+				hit_y = true;
 		}
 	}
 	if (keys->a && !keys->d)
@@ -76,9 +80,9 @@ static void	collision_check(t_cubed *cubed, t_keys *keys)
 		{
 			ft_printf_fd(1, "Collision!\n");
 			if ((int)next_x != (int)cubed->player->pos_x)
-				ft_printf_fd(1, "collide on x axis\n");
+				hit_x = true;
 			if ((int)next_y != (int)cubed->player->pos_y)
-				ft_printf_fd(1, "collide on y axis\n");
+				hit_y = true;
 		}
 	}
 	if (keys->d && !keys->a)
@@ -89,16 +93,18 @@ static void	collision_check(t_cubed *cubed, t_keys *keys)
 		{
 			ft_printf_fd(1, "Collision!\n");
 			if ((int)next_x != (int)cubed->player->pos_x)
-				ft_printf_fd(1, "collide on x axis\n");
+				hit_x = true;
 			if ((int)next_y != (int)cubed->player->pos_y)
-				ft_printf_fd(1, "collide on y axis\n");
+				hit_y = true;
 		}
 	}
 	if ((keys->w && !keys->s) || (keys->s && !keys->w)
 		|| (keys->a && !keys->d) || (keys->d && !keys->a))
 	{
-		cubed->player->pos_x = next_x;
-		cubed->player->pos_y = next_y;
+		if (!hit_x)
+			cubed->player->pos_x = next_x;
+		if (!hit_y)
+			cubed->player->pos_y = next_y;
 	}
 }
 
