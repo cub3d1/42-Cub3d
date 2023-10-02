@@ -33,28 +33,68 @@ void	update_angle(t_cubed *cubed)
 	mlx_mouse_move(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, WIN_W / 2, WIN_H / 2);
 }
 
-void	update_player_pos(t_cubed *cubed, t_keys *keys)
+//	this implementation is very raw and totally sucks
+//	it's just a basic idea for the collisions
+static void	collision_check(t_cubed *cubed, t_keys *keys)
 {
+	float	next_x;
+	float	next_y;
+
 	if (keys->w && !keys->s)
 	{
-		cubed->player->pos_x += cos(cubed->player->angle * M_PI / 180) * VELOCITY;
-		cubed->player->pos_y -= sin(cubed->player->angle * M_PI / 180) * VELOCITY;
+		next_x += cos(cubed->player->angle * M_PI / 180) * VELOCITY;
+		next_y -= sin(cubed->player->angle * M_PI / 180) * VELOCITY;
+		if (cubed->map[(int)next_y][(int)next_x] == '1')
+		{
+			if ((int)next_x != (int)cubed->player->pos_x)
+				//	collide on x axis
+			if ((int)next_y != (int)cubed->player->pos_y)
+				//	collide on y axis
+		}
 	}
 	if (keys->s && !keys->w)
 	{
-		cubed->player->pos_x -= cos(cubed->player->angle * M_PI / 180) * VELOCITY;
-		cubed->player->pos_y += sin(cubed->player->angle * M_PI / 180) * VELOCITY;
+		next_x -= cos(cubed->player->angle * M_PI / 180) * VELOCITY;
+		next_y += sin(cubed->player->angle * M_PI / 180) * VELOCITY;
+		if (cubed->map[(int)next_y][(int)next_x] == '1')
+		{
+			if ((int)next_x != (int)cubed->player->pos_x)
+				//	collide on x axis
+			if ((int)next_y != (int)cubed->player->pos_y)
+				//	collide on y axis
+		}
 	}
 	if (keys->a && !keys->d)
 	{
-		cubed->player->pos_x += cos((cubed->player->angle + 90) * M_PI / 180) * VELOCITY;
-		cubed->player->pos_y -= sin((cubed->player->angle + 90) * M_PI / 180) * VELOCITY;
+		next_x += cos((cubed->player->angle + 90) * M_PI / 180) * VELOCITY;
+		next_y -= sin((cubed->player->angle + 90) * M_PI / 180) * VELOCITY;
+		if (cubed->map[(int)next_y][(int)next_x] == '1')
+		{
+			if ((int)next_x != (int)cubed->player->pos_x)
+				//	collide on x axis
+			if ((int)next_y != (int)cubed->player->pos_y)
+				//	collide on y axis
+		}
 	}
 	if (keys->d && !keys->a)
 	{
-		cubed->player->pos_x -= cos((cubed->player->angle + 90) * M_PI / 180) * VELOCITY;
-		cubed->player->pos_y += sin((cubed->player->angle + 90) * M_PI / 180) * VELOCITY;
+		next_x -= cos((cubed->player->angle + 90) * M_PI / 180) * VELOCITY;
+		next_y += sin((cubed->player->angle + 90) * M_PI / 180) * VELOCITY;
+		if (cubed->map[(int)next_y][(int)next_x] == '1')
+		{
+			if ((int)next_x != (int)cubed->player->pos_x)
+				//	collide on x axis
+			if ((int)next_y != (int)cubed->player->pos_y)
+				//	collide on y axis
+		}
 	}
+	cubed->player->pos_x = next_x;
+	cubed->player->pos_y = next_y;
+}
+
+void	update_player_pos(t_cubed *cubed, t_keys *keys)
+{
+	collision_check(cubed, keys);
 	if (cubed->player->pos_y < 0)
 		cubed->player->pos_y = 0;
 	if (cubed->player->pos_y > WIN_H)
