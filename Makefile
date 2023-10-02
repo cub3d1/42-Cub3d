@@ -1,4 +1,4 @@
-NAME = cub3d # The Cubed!!
+NAME = cub3D # The Cubed!!
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -ggdb -fsanitize=address -Werror=unused-result
 RM = rm -f

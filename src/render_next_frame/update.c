@@ -41,7 +41,6 @@ void	update_player_pos(t_cubed *cubed, t_keys *keys)
 		cubed->player->pos_y -= sin(cubed->player->angle * M_PI / 180) * VELOCITY;
 	}
 	if (keys->s && !keys->w)
-
 	{
 		cubed->player->pos_x -= cos(cubed->player->angle * M_PI / 180) * VELOCITY;
 		cubed->player->pos_y += sin(cubed->player->angle * M_PI / 180) * VELOCITY;
