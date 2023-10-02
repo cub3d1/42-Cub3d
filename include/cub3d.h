@@ -160,7 +160,6 @@ void	load_colors(t_cubed *cubed, char *path);
 
 /*	./src/load_textures.c	*/
 void	load_textures(t_cubed *cubed, char *arg);
-void	load_tmp_textures(t_cubed *cubed, char *arg);
 
 /*	./render_next_frame/render_next_frame.c */
 int		render_next_frame(t_cubed *cubed);

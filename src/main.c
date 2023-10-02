@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 	
 
 	/*		Temp textures	 */
-	load_tmp_textures(&cubed, argv[1]);
+	load_textures(&cubed, argv[1]);
 
 	cubed.mlx->win_ptr = mlx_new_window(cubed.mlx->mlx_ptr, WIN_W, WIN_H, "Cub3d");
 	

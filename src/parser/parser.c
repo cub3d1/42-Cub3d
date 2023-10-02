@@ -83,7 +83,6 @@ void	parser(t_cubed *cubed, char *arg)
 		exit_err(cubed, 0);
 	}
 	load_colors(cubed, arg);
-	load_textures(cubed, arg);
 	load_map(cubed, arg);
 	if (!map_layout_ok(cubed))
 		exit_err(cubed, 0);

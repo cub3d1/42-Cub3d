@@ -1,11 +1,11 @@
 NAME = cub3d # The Cubed!!
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -ggdb -fsanitize=address -lm -Werror=unused-result
+CFLAGS = -Wall -Wextra -Werror -ggdb -fsanitize=address -Werror=unused-result
 RM = rm -f
 LIBFT = ./include/libft/libft.a
 MINILIBX = ./include/mlx_linux/libmlx_Linux.a
 FT_PRINTF_FD = ./include/ft_printf_fd/libftprintf.a
-INC = -lXext -lX11
+INC = -lXext -lX11 -lm
 
 SRCDIR = ./src/
 PARSERDIR = $(SRCDIR)parser/
