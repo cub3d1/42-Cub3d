@@ -40,56 +40,62 @@ static void	collision_check(t_cubed *cubed, t_keys *keys)
 	float	next_x;
 	float	next_y;
 
+	next_x = 0.0;
+	next_y = 0.0;
 	if (keys->w && !keys->s)
 	{
-		next_x += cos(cubed->player->angle * M_PI / 180) * VELOCITY;
-		next_y -= sin(cubed->player->angle * M_PI / 180) * VELOCITY;
-		if (cubed->map[(int)next_y][(int)next_x] == '1')
+		next_x = cubed->player->pos_x + (cos(cubed->player->angle * M_PI / 180) * VELOCITY);
+		next_y = cubed->player->pos_y - (sin(cubed->player->angle * M_PI / 180) * VELOCITY);
+		if (cubed->map[(int)next_y / WIN_H][(int)next_x / WIN_W] == '1')
 		{
 			if ((int)next_x != (int)cubed->player->pos_x)
-				//	collide on x axis
+				ft_printf_fd(1, "collide on x axis\n");
 			if ((int)next_y != (int)cubed->player->pos_y)
-				//	collide on y axis
+				ft_printf_fd(1, "collide on y axis\n");
 		}
 	}
 	if (keys->s && !keys->w)
 	{
-		next_x -= cos(cubed->player->angle * M_PI / 180) * VELOCITY;
-		next_y += sin(cubed->player->angle * M_PI / 180) * VELOCITY;
-		if (cubed->map[(int)next_y][(int)next_x] == '1')
+		next_x = cubed->player->pos_x - (cos(cubed->player->angle * M_PI / 180) * VELOCITY);
+		next_y = cubed->player->pos_y + (sin(cubed->player->angle * M_PI / 180) * VELOCITY);
+		if (cubed->map[(int)next_y / WIN_H][(int)next_x / WIN_W] == '1')
 		{
 			if ((int)next_x != (int)cubed->player->pos_x)
-				//	collide on x axis
+				ft_printf_fd(1, "collide on x axis\n");
 			if ((int)next_y != (int)cubed->player->pos_y)
-				//	collide on y axis
+				ft_printf_fd(1, "collide on y axis\n");
 		}
 	}
 	if (keys->a && !keys->d)
 	{
-		next_x += cos((cubed->player->angle + 90) * M_PI / 180) * VELOCITY;
-		next_y -= sin((cubed->player->angle + 90) * M_PI / 180) * VELOCITY;
-		if (cubed->map[(int)next_y][(int)next_x] == '1')
+		next_x = cubed->player->pos_x + (cos((cubed->player->angle + 90) * M_PI / 180) * VELOCITY);
+		next_y = cubed->player->pos_y - (sin((cubed->player->angle + 90) * M_PI / 180) * VELOCITY);
+		if (cubed->map[(int)next_y / WIN_H][(int)next_x / WIN_W] == '1')
 		{
 			if ((int)next_x != (int)cubed->player->pos_x)
-				//	collide on x axis
+				ft_printf_fd(1, "collide on x axis\n");
 			if ((int)next_y != (int)cubed->player->pos_y)
-				//	collide on y axis
+				ft_printf_fd(1, "collide on y axis\n");
 		}
 	}
 	if (keys->d && !keys->a)
 	{
-		next_x -= cos((cubed->player->angle + 90) * M_PI / 180) * VELOCITY;
-		next_y += sin((cubed->player->angle + 90) * M_PI / 180) * VELOCITY;
-		if (cubed->map[(int)next_y][(int)next_x] == '1')
+		next_x = cubed->player->pos_x - (cos((cubed->player->angle + 90) * M_PI / 180) * VELOCITY);
+		next_y = cubed->player->pos_y + (sin((cubed->player->angle + 90) * M_PI / 180) * VELOCITY);
+		if (cubed->map[(int)next_y / WIN_H][(int)next_x / WIN_W] == '1')
 		{
 			if ((int)next_x != (int)cubed->player->pos_x)
-				//	collide on x axis
+				ft_printf_fd(1, "collide on x axis\n");
 			if ((int)next_y != (int)cubed->player->pos_y)
-				//	collide on y axis
+				ft_printf_fd(1, "collide on y axis\n");
 		}
 	}
-	cubed->player->pos_x = next_x;
-	cubed->player->pos_y = next_y;
+	if ((keys->w && !keys->s) || (keys->s && !keys->w)
+		|| (keys->a && !keys->d) || (keys->d && !keys->a))
+	{
+		cubed->player->pos_x = next_x;
+		cubed->player->pos_y = next_y;
+	}
 }
 
 void	update_player_pos(t_cubed *cubed, t_keys *keys)

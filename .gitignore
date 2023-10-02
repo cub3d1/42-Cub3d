@@ -1,6 +1,6 @@
 **/*.o
 **/*.txt
-cub3d
+cub3D
 *.a
 .vscode/
 **/mlx-test
