@@ -24,7 +24,7 @@ int	window_cross(t_cubed *cubed)
 	// 	cubed->player->pos_x += cubed->player->dir_x * 0.1;
 	// 	cubed->player->pos_y += cubed->player->dir_y * 0.1;
 	// }
- 
+
 int	keypress_hook(int keycode, t_cubed *cubed)
 {
 	if (keycode == ESCAPE)
@@ -77,6 +77,6 @@ int	keyrelease_hook(int keycode, t_cubed *cubed)
 
 // 	(void)button;
 // 	(void)cubed;
-	
+
 // 	return (0);
 // }

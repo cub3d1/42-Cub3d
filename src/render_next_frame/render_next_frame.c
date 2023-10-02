@@ -94,7 +94,6 @@ int	render_next_frame(t_cubed *cubed)
 	}
 	else
 		show_minimap(cubed, minimap++);
-
 	print_info(cubed, frame_counter++);
 	return (0);
 }
