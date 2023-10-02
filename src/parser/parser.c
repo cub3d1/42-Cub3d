@@ -50,6 +50,8 @@ static bool	file_content_ok(char *arg, t_cubed *cubed)
 		exit_err(cubed, 2);
 	if (!map_pos_ok(map_fd, cubed))
 		return (false);
+	if (close(map_fd) == -1)
+		exit_err(cubed, 3);
 	return (true);
 }
 

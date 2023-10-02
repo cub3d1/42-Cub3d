@@ -128,7 +128,7 @@ void 	parser(t_cubed *cubed, char *arg);
 /*	./parser/file_content_check.c	*/
 bool	textures_ok(int map_fd, t_cubed *cubed);
 bool	color_ok(int map_fd, t_cubed *cubed);
-bool	map_pos_ok(int map_fd, t_cubed *cubed);
+bool	map_pos_ok(int map_fd);
 
 /*	./parser/file_content_check_utils.c	*/
 bool	color_format_ok(char *line);

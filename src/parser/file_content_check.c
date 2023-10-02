@@ -115,7 +115,7 @@ bool	color_ok(int map_fd, t_cubed *cubed)
 	return (ok);
 }
 
-bool	map_pos_ok(int map_fd, t_cubed *cubed)
+bool	map_pos_ok(int map_fd)
 {
 	char	*line;
 	bool	ok;
@@ -127,6 +127,8 @@ bool	map_pos_ok(int map_fd, t_cubed *cubed)
 		free(line);
 		line = get_next_line(map_fd);
 	}
+	if (!line)
+		return (false);
 	while (line && (ft_strchr(line, '1') || ft_strchr(line, '0')))
 	{
 		free(line);
@@ -139,7 +141,5 @@ bool	map_pos_ok(int map_fd, t_cubed *cubed)
 		free(line);
 		line = get_next_line(map_fd);
 	}
-	if (close(map_fd) == -1)
-		exit_err(cubed, 3);
 	return (ok);
 }

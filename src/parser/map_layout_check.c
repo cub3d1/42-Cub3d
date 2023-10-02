@@ -140,7 +140,10 @@ bool	layout_enclosed(t_cubed *cubed)
 	shadow_map[(int)player->pos_y_array][(int)player->pos_x_array] = '0';
 	flood_fill(shadow_map, (int)player->pos_x_array, (int)player->pos_y_array);
 	if (!flood_fill_check(shadow_map))
+	{
+		ft_free_split(shadow_map);
 		return (false);
+	}
 	ft_free_split(shadow_map);
 	return (true);
 }
