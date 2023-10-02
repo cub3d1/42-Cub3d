@@ -33,8 +33,17 @@ void	update_angle(t_cubed *cubed)
 	mlx_mouse_move(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, WIN_W / 2, WIN_H / 2);
 }
 
-//	this implementation is very raw and totally sucks
-//	it's just a basic idea for the collisions
+/*
+	this implementation is very raw and totally sucks
+	it's just a basic idea for the collisions
+
+	it goes like this:
+		first calculate the next xy coordinates tht the player would move to
+		then check if there is a wall in that spot
+		if yes:
+			check on which axis the collision is happening (x or y)
+				and update (or not) the player's position accordingly
+*/
 static void	collision_check(t_cubed *cubed, t_keys *keys)
 {
 	float	next_x;
