@@ -40,14 +40,15 @@ static void	collision_check(t_cubed *cubed, t_keys *keys)
 	float	next_x;
 	float	next_y;
 
-	next_x = 0.0;
-	next_y = 0.0;
+	next_x = cubed->player->pos_x;
+	next_y = cubed->player->pos_y;
 	if (keys->w && !keys->s)
 	{
-		next_x = cubed->player->pos_x + (cos(cubed->player->angle * M_PI / 180) * VELOCITY);
-		next_y = cubed->player->pos_y - (sin(cubed->player->angle * M_PI / 180) * VELOCITY);
-		if (cubed->map[(int)next_y / WIN_H][(int)next_x / WIN_W] == '1')
+		next_x += (cos(cubed->player->angle * M_PI / 180) * VELOCITY);
+		next_y -= (sin(cubed->player->angle * M_PI / 180) * VELOCITY);
+		if (cubed->map[(int)next_y * cubed->map_height / WIN_H][(int)next_x * cubed->map_width / WIN_W] == '1')
 		{
+			ft_printf_fd(1, "Collision!\n");
 			if ((int)next_x != (int)cubed->player->pos_x)
 				ft_printf_fd(1, "collide on x axis\n");
 			if ((int)next_y != (int)cubed->player->pos_y)
@@ -56,10 +57,11 @@ static void	collision_check(t_cubed *cubed, t_keys *keys)
 	}
 	if (keys->s && !keys->w)
 	{
-		next_x = cubed->player->pos_x - (cos(cubed->player->angle * M_PI / 180) * VELOCITY);
-		next_y = cubed->player->pos_y + (sin(cubed->player->angle * M_PI / 180) * VELOCITY);
-		if (cubed->map[(int)next_y / WIN_H][(int)next_x / WIN_W] == '1')
+		next_x -= (cos(cubed->player->angle * M_PI / 180) * VELOCITY);
+		next_y += (sin(cubed->player->angle * M_PI / 180) * VELOCITY);
+		if (cubed->map[(int)next_y * cubed->map_height / WIN_H][(int)next_x * cubed->map_width / WIN_W] == '1')
 		{
+			ft_printf_fd(1, "Collision!\n");
 			if ((int)next_x != (int)cubed->player->pos_x)
 				ft_printf_fd(1, "collide on x axis\n");
 			if ((int)next_y != (int)cubed->player->pos_y)
@@ -68,10 +70,11 @@ static void	collision_check(t_cubed *cubed, t_keys *keys)
 	}
 	if (keys->a && !keys->d)
 	{
-		next_x = cubed->player->pos_x + (cos((cubed->player->angle + 90) * M_PI / 180) * VELOCITY);
-		next_y = cubed->player->pos_y - (sin((cubed->player->angle + 90) * M_PI / 180) * VELOCITY);
-		if (cubed->map[(int)next_y / WIN_H][(int)next_x / WIN_W] == '1')
+		next_x += (cos((cubed->player->angle + 90) * M_PI / 180) * VELOCITY);
+		next_y -= (sin((cubed->player->angle + 90) * M_PI / 180) * VELOCITY);
+		if (cubed->map[(int)next_y * cubed->map_height / WIN_H][(int)next_x * cubed->map_width / WIN_W] == '1')
 		{
+			ft_printf_fd(1, "Collision!\n");
 			if ((int)next_x != (int)cubed->player->pos_x)
 				ft_printf_fd(1, "collide on x axis\n");
 			if ((int)next_y != (int)cubed->player->pos_y)
@@ -80,10 +83,11 @@ static void	collision_check(t_cubed *cubed, t_keys *keys)
 	}
 	if (keys->d && !keys->a)
 	{
-		next_x = cubed->player->pos_x - (cos((cubed->player->angle + 90) * M_PI / 180) * VELOCITY);
-		next_y = cubed->player->pos_y + (sin((cubed->player->angle + 90) * M_PI / 180) * VELOCITY);
-		if (cubed->map[(int)next_y / WIN_H][(int)next_x / WIN_W] == '1')
+		next_x -= (cos((cubed->player->angle + 90) * M_PI / 180) * VELOCITY);
+		next_y += (sin((cubed->player->angle + 90) * M_PI / 180) * VELOCITY);
+		if (cubed->map[(int)next_y * cubed->map_height / WIN_H][(int)next_x * cubed->map_width / WIN_W] == '1')
 		{
+			ft_printf_fd(1, "Collision!\n");
 			if ((int)next_x != (int)cubed->player->pos_x)
 				ft_printf_fd(1, "collide on x axis\n");
 			if ((int)next_y != (int)cubed->player->pos_y)
