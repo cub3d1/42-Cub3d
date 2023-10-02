@@ -12,6 +12,12 @@
 
 #include "../include/cub3d.h"
 
+static void	free_minimap_wall(t_mlx *mlx)
+{
+	mlx_destroy_image(mlx->mlx_ptr, mlx->minimap_wall->img);
+	free(mlx->minimap_wall);
+}
+
 static void	free_mlx(t_mlx *mlx)
 {
 	if (mlx)
@@ -27,7 +33,7 @@ static void	free_mlx(t_mlx *mlx)
 		if (mlx->text_w)
 			mlx_destroy_image(mlx->mlx_ptr, mlx->text_w);
 		if (mlx->minimap_wall)
-			mlx_destroy_image(mlx->mlx_ptr, mlx->minimap_wall);
+			free_minimap_wall(mlx);
 		if (mlx->minimap_player)
 			mlx_destroy_image(mlx->mlx_ptr, mlx->minimap_player);
 		if (mlx->mlx_ptr)

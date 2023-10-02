@@ -61,18 +61,29 @@
 
 //	should we have a separate struct for the minimap render data?
 //	also we need to define player movement and rotation speed
+typedef struct s_minimap_wall
+{
+	void	*img;
+	char	*addr;
+	int		w;
+	int		h;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}				t_minimap_wall;
+
 typedef struct s_mlx
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	int		ceiling_color[3];
-	int		floor_color[3];
-	void	*text_n;
-	void	*text_s;
-	void	*text_e;
-	void	*text_w;
-	void	*minimap_wall;
-	void	*minimap_player;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	int				ceiling_color[3];
+	int				floor_color[3];
+	void			*text_n;
+	void			*text_s;
+	void			*text_e;
+	void			*text_w;
+	void			*minimap_player;
+	t_minimap_wall	*minimap_wall;
 }				t_mlx;
 
 typedef struct s_keys

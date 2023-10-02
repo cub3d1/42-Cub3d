@@ -48,7 +48,7 @@ static bool	file_content_ok(char *arg, t_cubed *cubed)
 	map_fd = open(arg, O_RDONLY);
 	if (map_fd == -1)
 		exit_err(cubed, 2);
-	if (!map_pos_ok(map_fd, cubed))
+	if (!map_pos_ok(map_fd))
 		return (false);
 	if (close(map_fd) == -1)
 		exit_err(cubed, 3);

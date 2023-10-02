@@ -37,6 +37,43 @@ static void set_texture(t_cubed *cubed, char *line, int option)
 		cubed->mlx->text_w = texture;
 }
 
+static void	put_pixels_to_wall(t_minimap_wall *minimap_wall, int w, int h)
+{
+
+	char	*pix;
+	char	*pix_dst;
+	int		x;
+	int		y;
+
+
+	pix = minimap_wall->addr;
+	x = 0;
+	y = 0;
+	while (y < h)
+	{
+		while (x < w)
+		{
+			pix_dst = pix + (y * minimap_wall->line_length + x * (minimap_wall->bpp / 8));
+			*(unsigned int *)pix_dst = 0x00ffffff;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
+
+static void	set_minimap_walls(t_cubed *cubed)
+{
+	t_mlx	*mlx;
+
+	mlx = cubed->mlx;
+	mlx->minimap_wall->w = WIN_W / (int)get_biggest_line(cubed->map);
+	mlx->minimap_wall->h = WIN_H / (int)get_array_size(cubed->map);
+	mlx->minimap_wall->img = mlx_new_image(mlx->mlx_ptr, mlx->minimap_wall->w, mlx->minimap_wall->h);
+	mlx->minimap_wall->addr = mlx_get_data_addr(mlx->minimap_wall->img, &mlx->minimap_wall->bpp, &mlx->minimap_wall->line_length, &mlx->minimap_wall->endian);
+	put_pixels_to_wall(mlx->minimap_wall, mlx->minimap_wall->w, mlx->minimap_wall->h);
+}
+
 void load_textures(t_cubed *cubed, char *arg)
 {
 	int		fd;
@@ -63,9 +100,10 @@ void load_textures(t_cubed *cubed, char *arg)
 	}
 	if (close(fd) == -1)
 		exit_err(cubed, 3);
+	set_minimap_walls(cubed);
 	cubed->mlx->minimap_player =  mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, TEMP_MINIMAP_PLAYER, &width, &height);
 	if (!cubed->mlx->text_n || !cubed->mlx->text_s
-		|| !cubed->mlx->text_e || !cubed->mlx->text_w || !cubed->mlx->minimap_player)
-		exit_err(cubed, 4);
-	
+		|| !cubed->mlx->text_e || !cubed->mlx->text_w
+		|| !cubed->mlx->minimap_player)
+		exit_err(cubed, 4);	
 }
