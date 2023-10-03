@@ -37,8 +37,7 @@ static void	draw_walls(char **map, t_mlx *mlx)
 void	show_minimap(t_cubed *cubed, int minimap)
 {
 	(void)minimap;
-//	if (minimap == 0)
-		mlx_clear_window(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr);
+	mlx_clear_window(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr);
 	mlx_put_image_to_window(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, \
 		cubed->mlx->minimap_player, (int)cubed->player->pos_x, \
 		(int)cubed->player->pos_y);

@@ -82,7 +82,7 @@ int	render_next_frame(t_cubed *cubed)
 {
 	static int	frame_counter = 1;
 	static int	minimap = 0;
-	
+
 	update_angle(cubed);
 	update_player_pos(cubed, cubed->keys);
 	if (!cubed->keys->show_minimap)

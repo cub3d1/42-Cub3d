@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   update.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmouronh <fmouronh@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/03 19:35:09 by fmouronh          #+#    #+#             */
+/*   Updated: 2023/10/03 19:35:11 by fmouronh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 void	update_angle(t_cubed *cubed)
 {
-	int mouse_x;
-	int mouse_y;
+	int	mouse_x;
+	int	mouse_y;
 
 	if (cubed->keys->right && !cubed->keys->left)
 	{

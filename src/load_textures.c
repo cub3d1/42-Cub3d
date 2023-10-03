@@ -12,7 +12,7 @@
 
 #include "../../include/cub3d.h"
 
-static void set_texture(t_cubed *cubed, char *line, int option)
+static void	set_texture(t_cubed *cubed, char *line, int option)
 {
 	int		width;
 	int		height;
@@ -22,7 +22,6 @@ static void set_texture(t_cubed *cubed, char *line, int option)
 		line++;
 	while (*line == ' ')
 		line++;
-	
 	line[ft_strlen(line) - 1] = '\0';
 	texture = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, line, &width, &height);
 	if (!texture)
@@ -39,12 +38,10 @@ static void set_texture(t_cubed *cubed, char *line, int option)
 
 static void	put_pixels_to_wall(t_minimap_wall *minimap_wall, int w, int h)
 {
-
 	char	*pix;
 	char	*pix_dst;
 	int		x;
 	int		y;
-
 
 	pix = minimap_wall->addr;
 	x = 0;
@@ -74,7 +71,7 @@ static void	set_minimap_walls(t_cubed *cubed)
 	put_pixels_to_wall(mlx->minimap_wall, mlx->minimap_wall->w, mlx->minimap_wall->h);
 }
 
-void load_textures(t_cubed *cubed, char *arg)
+void	load_textures(t_cubed *cubed, char *arg)
 {
 	int		fd;
 	char	*line;
@@ -101,9 +98,9 @@ void load_textures(t_cubed *cubed, char *arg)
 	if (close(fd) == -1)
 		exit_err(cubed, 3);
 	set_minimap_walls(cubed);
-	cubed->mlx->minimap_player =  mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, TEMP_MINIMAP_PLAYER, &width, &height);
+	cubed->mlx->minimap_player = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, TEMP_MINIMAP_PLAYER, &width, &height);
 	if (!cubed->mlx->text_n || !cubed->mlx->text_s
 		|| !cubed->mlx->text_e || !cubed->mlx->text_w
 		|| !cubed->mlx->minimap_player)
-		exit_err(cubed, 4);	
+		exit_err(cubed, 4);
 }
