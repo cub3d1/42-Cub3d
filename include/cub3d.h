@@ -97,6 +97,7 @@ typedef struct s_keys
 	bool	show_minimap;
 }				t_keys;
 
+	//	fov? we might need a camera vector for that
 typedef struct s_player
 {
 	float	pos_x;
@@ -105,8 +106,7 @@ typedef struct s_player
 	float	pos_y_array;
 	float	dir_x;
 	float	dir_y;
-	float 	angle;
-	//	fov? we might need a camera vector for that
+	float	angle;
 }				t_player;
 
 typedef struct s_cubed
@@ -134,7 +134,7 @@ float	get_biggest_line(char **map);
 float	get_array_size(char **map);
 
 /*		./parser/parser.c */
-void 	parser(t_cubed *cubed, char *arg);
+void	parser(t_cubed *cubed, char *arg);
 
 /*	./parser/file_content_check.c	*/
 bool	textures_ok(int map_fd, t_cubed *cubed);
@@ -179,12 +179,11 @@ int		render_next_frame(t_cubed *cubed);
 void	update_angle(t_cubed *cubed);
 void	update_player_pos(t_cubed *cubed, t_keys *keys);
 
-
 /*	./render_next_frame/minimap.c */
 void	show_minimap(t_cubed *cubed, int minimap);
 
 /*			free.c		*/
-int 	free_stuff(t_cubed *cubed, int err_code);
+int		free_stuff(t_cubed *cubed, int err_code);
 
 /*			exit_err.c 	*/
 void	exit_err(t_cubed *cubed, int err_code);
