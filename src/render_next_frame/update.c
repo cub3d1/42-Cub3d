@@ -33,101 +33,44 @@ void	update_angle(t_cubed *cubed)
 	mlx_mouse_move(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, WIN_W / 2, WIN_H / 2);
 }
 
-/*
-	this implementation is very raw and totally sucks
-	it's just a basic idea for the collisions
-
-	it goes like this:
-		first calculate the next xy coordinates tht the player would move to
-		then check if there is a wall in that spot
-		if yes:
-			check on which axis the collision is happening (x or y)
-				and update (or not) the player's position accordingly
-*/
-static void	collision_check(t_cubed *cubed, t_keys *keys)
+static void update_player_dir(t_cubed *cubed, t_player *player)
 {
-	float	next_x;
-	float	next_y;
-	bool	hit_x;
-	bool	hit_y;
+	player->dir_x = player->pos_x + cos(player->angle  * M_PI / 180) * 50;
+	player->dir_y = player->pos_y - sin(player->angle  * M_PI / 180) * 50;
+	(void)cubed;
+}
 
-	next_x = cubed->player->pos_x;
-	next_y = cubed->player->pos_y;
-	hit_x = false;
-	hit_y = false;
+void	update_player_pos(t_cubed *cubed, t_keys *keys, t_player *player)
+{
 	if (keys->w && !keys->s)
 	{
-		next_x += (cos(cubed->player->angle * M_PI / 180) * VELOCITY);
-		next_y -= (sin(cubed->player->angle * M_PI / 180) * VELOCITY);
-		if (cubed->map[(int)next_y * cubed->map_height / WIN_H][(int)next_x * cubed->map_width / WIN_W] == '1')
-		{
-			ft_printf_fd(1, "Collision!\n");
-			if ((int)next_x != (int)cubed->player->pos_x)
-				hit_x = true;
-			if ((int)next_y != (int)cubed->player->pos_y)
-				hit_y = true;
-		}
+		player->pos_x += cos(player->angle * M_PI / 180) * VELOCITY;
+		player->pos_y -= sin(player->angle * M_PI / 180) * VELOCITY;
 	}
 	if (keys->s && !keys->w)
 	{
-		next_x -= (cos(cubed->player->angle * M_PI / 180) * VELOCITY);
-		next_y += (sin(cubed->player->angle * M_PI / 180) * VELOCITY);
-		if (cubed->map[(int)next_y * cubed->map_height / WIN_H][(int)next_x * cubed->map_width / WIN_W] == '1')
-		{
-			ft_printf_fd(1, "Collision!\n");
-			if ((int)next_x != (int)cubed->player->pos_x)
-				hit_x = true;
-			if ((int)next_y != (int)cubed->player->pos_y)
-				hit_y = true;
-		}
+		player->pos_x -= cos(player->angle * M_PI / 180) * VELOCITY;
+		player->pos_y += sin(player->angle * M_PI / 180) * VELOCITY;
 	}
 	if (keys->a && !keys->d)
 	{
-		next_x += (cos((cubed->player->angle + 90) * M_PI / 180) * VELOCITY);
-		next_y -= (sin((cubed->player->angle + 90) * M_PI / 180) * VELOCITY);
-		if (cubed->map[(int)next_y * cubed->map_height / WIN_H][(int)next_x * cubed->map_width / WIN_W] == '1')
-		{
-			ft_printf_fd(1, "Collision!\n");
-			if ((int)next_x != (int)cubed->player->pos_x)
-				hit_x = true;
-			if ((int)next_y != (int)cubed->player->pos_y)
-				hit_y = true;
-		}
+		player->pos_x += cos((player->angle + 90) * M_PI / 180) * VELOCITY;
+		player->pos_y -= sin((player->angle + 90) * M_PI / 180) * VELOCITY;
 	}
 	if (keys->d && !keys->a)
 	{
-		next_x -= (cos((cubed->player->angle + 90) * M_PI / 180) * VELOCITY);
-		next_y += (sin((cubed->player->angle + 90) * M_PI / 180) * VELOCITY);
-		if (cubed->map[(int)next_y * cubed->map_height / WIN_H][(int)next_x * cubed->map_width / WIN_W] == '1')
-		{
-			ft_printf_fd(1, "Collision!\n");
-			if ((int)next_x != (int)cubed->player->pos_x)
-				hit_x = true;
-			if ((int)next_y != (int)cubed->player->pos_y)
-				hit_y = true;
-		}
+		player->pos_x -= cos((player->angle + 90) * M_PI / 180) * VELOCITY;
+		player->pos_y += sin((player->angle + 90) * M_PI / 180) * VELOCITY;
 	}
-	if ((keys->w && !keys->s) || (keys->s && !keys->w)
-		|| (keys->a && !keys->d) || (keys->d && !keys->a))
-	{
-		if (!hit_x)
-			cubed->player->pos_x = next_x;
-		if (!hit_y)
-			cubed->player->pos_y = next_y;
-	}
-}
-
-void	update_player_pos(t_cubed *cubed, t_keys *keys)
-{
-	collision_check(cubed, keys);
-	if (cubed->player->pos_y < 0)
-		cubed->player->pos_y = 0;
-	if (cubed->player->pos_y > WIN_H)
-		cubed->player->pos_y = WIN_H;
-	if (cubed->player->pos_x < 0)
-		cubed->player->pos_x = 0;
-	if (cubed->player->pos_x > WIN_W)
-		cubed->player->pos_x = WIN_W;
-	cubed->player->pos_x_array = cubed->player->pos_x * cubed->map_width / WIN_W;
-	cubed->player->pos_y_array = cubed->player->pos_y * cubed->map_height / WIN_H;
+	if (player->pos_y < 0)
+		player->pos_y = 0;
+	if (player->pos_y > WIN_H)
+		player->pos_y = WIN_H;
+	if (player->pos_x < 0)
+		player->pos_x = 0;
+	if (player->pos_x > WIN_W)
+		player->pos_x = WIN_W;
+	player->pos_x_array = player->pos_x * cubed->map_width / WIN_W;
+	player->pos_y_array = player->pos_y * cubed->map_height / WIN_H;
+	update_player_dir(cubed, player);
 }

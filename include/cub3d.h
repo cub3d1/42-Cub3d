@@ -26,7 +26,7 @@
 # include <math.h>
 
 /*		window size		*/
-# define WIN_W 1000
+# define WIN_W 500
 # define WIN_H 500
 
 /*		keystrokes		*/
@@ -58,6 +58,8 @@
 
 /*		texture			*/
 # define TEMP_MINIMAP_PLAYER "./textures/temp_player.xpm"
+# define TEMP_WHITE_BG "./textures/white_background.xpm"
+# define GREEN_BALL "./textures/green_ball.xpm"
 
 //	should we have a separate struct for the minimap render data?
 //	also we need to define player movement and rotation speed
@@ -83,6 +85,8 @@ typedef struct s_mlx
 	void			*text_e;
 	void			*text_w;
 	void			*minimap_player;
+	void			*white_background;
+	void			*green_ball;
 	t_minimap_wall	*minimap_wall;
 }				t_mlx;
 
@@ -177,7 +181,7 @@ int		render_next_frame(t_cubed *cubed);
 
 /*	./render_next_frame/update.c	*/
 void	update_angle(t_cubed *cubed);
-void	update_player_pos(t_cubed *cubed, t_keys *keys);
+void	update_player_pos(t_cubed *cubed, t_keys *keys, t_player *player);
 
 
 /*	./render_next_frame/minimap.c */
