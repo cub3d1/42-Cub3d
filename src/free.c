@@ -33,14 +33,16 @@ static void	free_mlx(t_mlx *mlx)
 			mlx_destroy_image(mlx->mlx_ptr, mlx->text_e);
 		if (mlx->text_w)
 			mlx_destroy_image(mlx->mlx_ptr, mlx->text_w);
-		// if (mlx->minimap_wall)
-		// 	free_minimap_wall(mlx);
+		if (mlx->minimap_wall)
+			free(mlx->minimap_wall);
 		if (mlx->minimap_player)
 			mlx_destroy_image(mlx->mlx_ptr, mlx->minimap_player);
 		if (mlx->white_background)
 			mlx_destroy_image(mlx->mlx_ptr, mlx->white_background);
 		if (mlx->green_ball)
 			mlx_destroy_image(mlx->mlx_ptr, mlx->green_ball);
+		if (mlx->black_ball)
+			mlx_destroy_image(mlx->mlx_ptr, mlx->black_ball);
 		if (mlx->mlx_ptr)
 		{
 			mlx_destroy_display(mlx->mlx_ptr);

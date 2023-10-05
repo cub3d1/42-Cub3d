@@ -43,7 +43,7 @@
 
 # define SENSITIVITY 0.5f
 # define VELOCITY 0.1f
-
+# define RAY_LENGHT 50
 # define ON_KEYPRESS 2
 # define ON_KEYRELEASE 3
 # define ON_DESTROY 17
@@ -60,6 +60,7 @@
 # define TEMP_MINIMAP_PLAYER "./textures/temp_player.xpm"
 # define TEMP_WHITE_BG "./textures/white_background.xpm"
 # define GREEN_BALL "./textures/green_ball.xpm"
+# define BLACK_BALL "./textures/black_ball.xpm"
 
 //	should we have a separate struct for the minimap render data?
 //	also we need to define player movement and rotation speed
@@ -87,6 +88,7 @@ typedef struct s_mlx
 	void			*minimap_player;
 	void			*white_background;
 	void			*green_ball;
+	void			*black_ball;
 	t_minimap_wall	*minimap_wall;
 }				t_mlx;
 
@@ -109,6 +111,12 @@ typedef struct s_player
 	float	pos_y_array;
 	float	dir_x;
 	float	dir_y;
+	float	dir_x_pos;
+	float	dir_y_pos;
+	float	planeX;
+	float	planeY;
+	float	planeX_pos;
+	float	planeY_pos;
 	float 	angle;
 	//	fov? we might need a camera vector for that
 }				t_player;

@@ -107,11 +107,17 @@ void load_textures(t_cubed *cubed, char *arg)
 		|| !cubed->mlx->minimap_player)
 		exit_err(cubed, 4);	
 
+		
+
 	cubed->mlx->white_background = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, TEMP_WHITE_BG, &width, &height);
 	cubed->mlx->green_ball = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, GREEN_BALL, &width, &height);
-	if (!cubed->mlx->white_background || !cubed->mlx->green_ball)
+	cubed->mlx->black_ball = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, BLACK_BALL, &width, &height);
+	if (!cubed->mlx->white_background || !cubed->mlx->green_ball || !cubed->mlx->black_ball)
 	{
 		ft_printf_fd(1, "Error\nTexture '%s' not found\n", TEMP_WHITE_BG);
 		exit(99);
 	}
+
+	cubed->player->planeX = 0;
+	cubed->player->planeY = 0.66;
 }
