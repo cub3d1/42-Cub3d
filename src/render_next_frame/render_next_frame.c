@@ -60,16 +60,16 @@ static void	draw_floor(t_mlx *mlx, int *color_f)
 static void print_cubes(t_cubed *cubed, t_mlx *mlx, t_player *player)
 {
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
-	mlx->minimap_player, (int)player->pos_x, (int)player->pos_y);
+	mlx->minimap_player->img, (int)player->pos_x, (int)player->pos_y);
 
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
-	mlx->green_ball, player->dir_x_pos, player->dir_y_pos);
+	mlx->green_ball->img, player->dir_x_pos, player->dir_y_pos);
 
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
-	mlx->black_ball, player->left_planeX_pos, player->left_planeY_pos);
+	mlx->black_ball->img, player->left_planeX_pos, player->left_planeY_pos);
 
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
-	mlx->black_ball, player->right_planeX_pos, player->right_planeY_pos);
+	mlx->black_ball->img, player->right_planeX_pos, player->right_planeY_pos);
 	(void)cubed;
 }
 

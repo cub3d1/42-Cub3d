@@ -47,6 +47,7 @@ static void	set_minimap_walls(t_cubed *cubed)
 	mlx->minimap_wall->addr = mlx_get_data_addr(mlx->minimap_wall->img, &mlx->minimap_wall->bpp, &mlx->minimap_wall->line_length, &mlx->minimap_wall->endian);
 	put_pixels_to_wall(mlx->minimap_wall, mlx->minimap_wall->w, mlx->minimap_wall->h);
 }
+
 static void	set_texture(t_cubed *cubed, t_mlx *mlx, t_our_img *img, char *line)
 {
 	while (*line != ' ')
@@ -72,8 +73,7 @@ void	load_textures(t_cubed *cubed, char *arg)
 {
 	int		fd;
 	char	*line;
-	int		width;
-	int		height;
+	t_our_img	*temp_img;
 
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
@@ -95,18 +95,24 @@ void	load_textures(t_cubed *cubed, char *arg)
 	if (close(fd) == -1)
 		exit_err(cubed, 3);
 	set_minimap_walls(cubed);
-	cubed->mlx->minimap_player = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, TEMP_MINIMAP_PLAYER, &width, &height);
-	if (!cubed->mlx->text_n || !cubed->mlx->text_s
-		|| !cubed->mlx->text_e || !cubed->mlx->text_w
-		|| !cubed->mlx->minimap_player)
+	
+	temp_img = cubed->mlx->minimap_player;
+	temp_img->img = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, TEMP_MINIMAP_PLAYER, &temp_img->w, &temp_img->h);
+	temp_img->addr = mlx_get_data_addr(temp_img->img, &temp_img->bpp, &temp_img->line_length, &temp_img->endian);
+	if (!cubed->mlx->minimap_player->img || !cubed->mlx->minimap_player->addr)
 		exit_err(cubed, 4);	
 
-		
+	temp_img = cubed->mlx->green_ball;
+	temp_img->img = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, GREEN_BALL, &temp_img->w, &temp_img->h);
+	temp_img->addr = mlx_get_data_addr(temp_img->img, &temp_img->bpp, &temp_img->line_length, &temp_img->endian);
+	if (!cubed->mlx->green_ball->img || !cubed->mlx->green_ball->addr)
+		exit_err(cubed, 4);
 
-	cubed->mlx->green_ball = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, GREEN_BALL, &width, &height);
-	cubed->mlx->black_ball = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, BLACK_BALL, &width, &height);
-	if (!cubed->mlx->green_ball || !cubed->mlx->black_ball)
-		exit(99);
+	temp_img = cubed->mlx->black_ball;
+	temp_img->img = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, BLACK_BALL, &temp_img->w, &temp_img->h);
+	temp_img->addr = mlx_get_data_addr(temp_img->img, &temp_img->bpp, &temp_img->line_length, &temp_img->endian);
+	if (!cubed->mlx->black_ball->img || !cubed->mlx->black_ball->addr)
+		exit_err(cubed, 4);
 
 	cubed->player->left_planeX = 0;
 	cubed->player->left_planeY = 0.66;
