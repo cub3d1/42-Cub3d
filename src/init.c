@@ -29,6 +29,17 @@ static void	init_mlx_struct(t_cubed *cubed)
 	if (!mlx->text_n || !mlx->text_s || !mlx->text_e || !mlx->text_w
 		|| !mlx->minimap_player || !mlx->minimap_wall)
 		exit_err(cubed, 5);
+	mlx->text_n->img = NULL;
+	mlx->text_n->addr = NULL;
+	
+	mlx->text_s->img = NULL;
+	mlx->text_s->addr = NULL;
+
+	mlx->text_e->img = NULL;
+	mlx->text_e->addr = NULL;
+	
+	mlx->text_w->img = NULL;
+	mlx->text_w->addr = NULL;
 }
 
 void	init_key_struct(t_keys *keys)

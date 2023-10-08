@@ -12,29 +12,6 @@
 
 #include "../../include/cub3d.h"
 
-static void	set_texture(t_cubed *cubed, char *line, int option)
-{
-	int		width;
-	int		height;
-	void	*texture;
-
-	while (*line != ' ')
-		line++;
-	while (*line == ' ')
-		line++;
-	line[ft_strlen(line) - 1] = '\0';
-	texture = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, line, &width, &height);
-	if (!texture)
-		ft_printf_fd(1, "Error\nTexture '%s' not found\n", line);
-	if (option == 1)
-		cubed->mlx->text_n = texture;
-	else if (option == 2)
-		cubed->mlx->text_s = texture;
-	else if (option == 3)
-		cubed->mlx->text_e = texture;
-	else if (option == 4)
-		cubed->mlx->text_w = texture;
-}
 
 static void	put_pixels_to_wall(t_our_img *minimap_wall, int w, int h)
 {
@@ -70,6 +47,26 @@ static void	set_minimap_walls(t_cubed *cubed)
 	mlx->minimap_wall->addr = mlx_get_data_addr(mlx->minimap_wall->img, &mlx->minimap_wall->bpp, &mlx->minimap_wall->line_length, &mlx->minimap_wall->endian);
 	put_pixels_to_wall(mlx->minimap_wall, mlx->minimap_wall->w, mlx->minimap_wall->h);
 }
+static void	set_texture(t_cubed *cubed, t_mlx *mlx, t_our_img *img, char *line)
+{
+	while (*line != ' ')
+		line++;
+	while (*line == ' ')
+		line++;
+	line[ft_strlen(line) - 1] = '\0';
+	img->img = mlx_xpm_file_to_image(mlx->mlx_ptr, line, &img->w, &img->h);
+	if (!img->img)
+	{
+		ft_printf_fd(1, "Error\nTexture '%s' not found\n");
+		exit_err(cubed, 4);
+	}
+	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_length, &img->endian);
+	if (!img->addr)
+	{
+		ft_printf_fd(1, "Error\nTexture '%s' adress failed\n");
+		exit_err(cubed, 4);
+	}
+}
 
 void	load_textures(t_cubed *cubed, char *arg)
 {
@@ -85,13 +82,13 @@ void	load_textures(t_cubed *cubed, char *arg)
 	while (line)
 	{
 		if (ft_strncmp(line, "NO ", 3) == 0)
-			set_texture(cubed, line, 1);
+			set_texture(cubed, cubed->mlx, cubed->mlx->text_n, line);
 		else if (ft_strncmp(line, "SO ", 3) == 0)
-			set_texture(cubed, line, 2);
+			set_texture(cubed, cubed->mlx, cubed->mlx->text_s, line);
 		else if (ft_strncmp(line, "EA ", 3) == 0)
-			set_texture(cubed, line, 3);
+			set_texture(cubed, cubed->mlx, cubed->mlx->text_e, line);
 		else if (ft_strncmp(line, "WE ", 3) == 0)
-			set_texture(cubed, line, 4);
+			set_texture(cubed, cubed->mlx, cubed->mlx->text_w, line);
 		free(line);
 		line = get_next_line(fd);
 	}
