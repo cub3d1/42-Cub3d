@@ -64,7 +64,6 @@ static void	set_minimap_walls(t_cubed *cubed)
 	t_mlx	*mlx;
 
 	mlx = cubed->mlx;
-	write(1, "\n\n\n\nhello\n\n\n", 11);
 	mlx->minimap_wall->w = WIN_W / ((int)get_biggest_line(cubed->map) - 1);
 	mlx->minimap_wall->h = WIN_H / (int)get_array_size(cubed->map);
 	mlx->minimap_wall->img = mlx_new_image(mlx->mlx_ptr, mlx->minimap_wall->w, mlx->minimap_wall->h);
