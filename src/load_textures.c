@@ -118,6 +118,6 @@ void load_textures(t_cubed *cubed, char *arg)
 		exit(99);
 	}
 
-	cubed->player->planeX = 0;
-	cubed->player->planeY = 0.66;
+	cubed->player->left_planeX = 0;
+	cubed->player->left_planeY = 0.66;
 }
