@@ -26,7 +26,7 @@
 # include <math.h>
 
 /*		window size		*/
-# define WIN_W 1000
+# define WIN_W 500
 # define WIN_H 500
 
 /*		keystrokes		*/
@@ -43,6 +43,7 @@
 
 # define SENSITIVITY 0.5f
 # define VELOCITY 0.1f
+# define RAY_LENGHT 50
 
 # define ON_KEYPRESS 2
 # define ON_KEYRELEASE 3
@@ -58,6 +59,9 @@
 
 /*		texture			*/
 # define TEMP_MINIMAP_PLAYER "./textures/temp_player.xpm"
+# define TEMP_WHITE_BG "./textures/white_background.xpm"
+# define GREEN_BALL "./textures/green_ball.xpm"
+# define BLACK_BALL "./textures/black_ball.xpm"
 
 //	should we have a separate struct for the minimap render data?
 //	also we need to define player movement and rotation speed
@@ -83,6 +87,9 @@ typedef struct s_mlx
 	void			*text_e;
 	void			*text_w;
 	void			*minimap_player;
+	void			*white_background;
+	void			*green_ball;
+	void			*black_ball;
 	t_minimap_wall	*minimap_wall;
 }				t_mlx;
 
@@ -106,7 +113,21 @@ typedef struct s_player
 	float	pos_y_array;
 	float	dir_x;
 	float	dir_y;
-	float	angle;
+	float	dir_x_pos;
+	float	dir_y_pos;
+	
+	float	left_planeX;
+	float	left_planeY;
+	float	left_planeX_pos;
+	float	left_planeY_pos;
+	
+	float	right_planeX;
+	float	right_planeY;
+	float	right_planeX_pos;
+	float	right_planeY_pos;
+
+	float 	angle;
+	//	fov? we might need a camera vector for that
 }				t_player;
 
 typedef struct s_cubed
@@ -177,7 +198,7 @@ int		render_next_frame(t_cubed *cubed);
 
 /*	./render_next_frame/update.c	*/
 void	update_angle(t_cubed *cubed);
-void	update_player_pos(t_cubed *cubed, t_keys *keys);
+void	update_player_pos(t_cubed *cubed, t_keys *keys, t_player *player);
 
 /*	./render_next_frame/minimap.c */
 void	show_minimap(t_cubed *cubed, int minimap);

@@ -45,36 +45,63 @@ void	update_angle(t_cubed *cubed)
 	mlx_mouse_move(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, WIN_W / 2, WIN_H / 2);
 }
 
-void	update_player_pos(t_cubed *cubed, t_keys *keys)
+static void update_player_dir(t_cubed *cubed, t_player *player)
+{
+	player->dir_x = cos(player->angle * M_PI / 180);
+	player->dir_y = -sin(player->angle * M_PI / 180);
+
+	player->dir_x_pos = player->pos_x + player->dir_x * RAY_LENGHT;
+	player->dir_y_pos = player->pos_y + player->dir_y * RAY_LENGHT;
+
+
+	player->left_planeX = cos((player->angle + 45)  * M_PI / 180);
+	player->left_planeY = -sin((player->angle + 45)  * M_PI / 180);
+
+	player->left_planeX_pos = player->pos_x + player->left_planeX * (RAY_LENGHT + RAY_LENGHT * 0.4);
+	player->left_planeY_pos = player->pos_y + player->left_planeY * (RAY_LENGHT + RAY_LENGHT * 0.4);
+
+	player->right_planeX = cos((player->angle - 45)  * M_PI / 180);
+	player->right_planeY = -sin((player->angle - 45)  * M_PI / 180);
+
+	player->right_planeX_pos = player->pos_x + player->right_planeX * (RAY_LENGHT + RAY_LENGHT * 0.4);
+	player->right_planeY_pos = player->pos_y + player->right_planeY * (RAY_LENGHT + RAY_LENGHT * 0.4);
+
+
+
+	(void)cubed;
+}
+
+void	update_player_pos(t_cubed *cubed, t_keys *keys, t_player *player)
 {
 	if (keys->w && !keys->s)
 	{
-		cubed->player->pos_x += cos(cubed->player->angle * M_PI / 180) * VELOCITY;
-		cubed->player->pos_y -= sin(cubed->player->angle * M_PI / 180) * VELOCITY;
+		player->pos_x += cos(player->angle * M_PI / 180) * VELOCITY;
+		player->pos_y -= sin(player->angle * M_PI / 180) * VELOCITY;
 	}
 	if (keys->s && !keys->w)
 	{
-		cubed->player->pos_x -= cos(cubed->player->angle * M_PI / 180) * VELOCITY;
-		cubed->player->pos_y += sin(cubed->player->angle * M_PI / 180) * VELOCITY;
+		player->pos_x -= cos(player->angle * M_PI / 180) * VELOCITY;
+		player->pos_y += sin(player->angle * M_PI / 180) * VELOCITY;
 	}
 	if (keys->a && !keys->d)
 	{
-		cubed->player->pos_x += cos((cubed->player->angle + 90) * M_PI / 180) * VELOCITY;
-		cubed->player->pos_y -= sin((cubed->player->angle + 90) * M_PI / 180) * VELOCITY;
+		player->pos_x += cos((player->angle + 90) * M_PI / 180) * VELOCITY;
+		player->pos_y -= sin((player->angle + 90) * M_PI / 180) * VELOCITY;
 	}
 	if (keys->d && !keys->a)
 	{
-		cubed->player->pos_x -= cos((cubed->player->angle + 90) * M_PI / 180) * VELOCITY;
-		cubed->player->pos_y += sin((cubed->player->angle + 90) * M_PI / 180) * VELOCITY;
+		player->pos_x -= cos((player->angle + 90) * M_PI / 180) * VELOCITY;
+		player->pos_y += sin((player->angle + 90) * M_PI / 180) * VELOCITY;
 	}
-	if (cubed->player->pos_y < 0)
-		cubed->player->pos_y = 0;
-	if (cubed->player->pos_y > WIN_H)
-		cubed->player->pos_y = WIN_H;
-	if (cubed->player->pos_x < 0)
-		cubed->player->pos_x = 0;
-	if (cubed->player->pos_x > WIN_W)
-		cubed->player->pos_x = WIN_W;
-	cubed->player->pos_x_array = cubed->player->pos_x * cubed->map_width / WIN_W;
-	cubed->player->pos_y_array = cubed->player->pos_y * cubed->map_height / WIN_H;
+	if (player->pos_y < 0)
+		player->pos_y = 0;
+	if (player->pos_y > WIN_H)
+		player->pos_y = WIN_H;
+	if (player->pos_x < 0)
+		player->pos_x = 0;
+	if (player->pos_x > WIN_W)
+		player->pos_x = WIN_W;
+	player->pos_x_array = player->pos_x * cubed->map_width / WIN_W;
+	player->pos_y_array = player->pos_y * cubed->map_height / WIN_H;
+	update_player_dir(cubed, player);
 }
