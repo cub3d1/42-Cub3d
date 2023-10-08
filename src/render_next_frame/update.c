@@ -35,15 +35,20 @@ void	update_angle(t_cubed *cubed)
 
 static void update_player_dir(t_cubed *cubed, t_player *player)
 {
-	player->dir_x_pos = player->pos_x + cos(player->angle  * M_PI / 180) * RAY_LENGHT;
-	player->dir_y_pos = player->pos_y - sin(player->angle  * M_PI / 180) * RAY_LENGHT;
-
 	player->dir_x = cos(player->angle * M_PI / 180);
 	player->dir_y = -sin(player->angle * M_PI / 180);
+	
+	player->dir_x_pos = player->pos_x + player->dir_x * RAY_LENGHT;
+	player->dir_y_pos = player->pos_y + player->dir_y * RAY_LENGHT;
 
 
-	player->planeX_pos = player->pos_x + cos((player->angle + 180)  * M_PI / 180) * RAY_LENGHT;
-	player->planeY_pos = player->pos_y - sin((player->angle + 180)  * M_PI / 180) * RAY_LENGHT;
+	player->planeX = cos((player->angle + 45)  * M_PI / 180);
+	player->planeY = -sin((player->angle + 45)  * M_PI / 180);
+
+	player->planeX_pos = player->pos_x + player->planeX * (RAY_LENGHT + 20);
+	player->planeY_pos = player->pos_y + player->planeY * (RAY_LENGHT + 20);
+
+
 
 	(void)cubed;
 }
