@@ -62,9 +62,7 @@
 # define GREEN_BALL "./textures/green_ball.xpm"
 # define BLACK_BALL "./textures/black_ball.xpm"
 
-//	should we have a separate struct for the minimap render data?
-//	also we need to define player movement and rotation speed
-typedef struct s_minimap_wall
+typedef struct s_img
 {
 	void	*img;
 	char	*addr;
@@ -73,22 +71,22 @@ typedef struct s_minimap_wall
 	int		bpp;
 	int		line_length;
 	int		endian;
-}				t_minimap_wall;
+}				t_img;
 
 typedef struct s_mlx
 {
-	void			*mlx_ptr;
-	void			*win_ptr;
-	int				ceiling_color[3];
-	int				floor_color[3];
-	void			*text_n;
-	void			*text_s;
-	void			*text_e;
-	void			*text_w;
-	void			*minimap_player;
-	void			*green_ball;
-	void			*black_ball;
-	t_minimap_wall	*minimap_wall;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	int		ceiling_color[3];
+	int		floor_color[3];
+	t_img	*text_n;
+	t_img	*text_s;
+	t_img	*text_e;
+	t_img	*text_w;
+	t_img	*minimap_player;
+	t_img	*green_ball;
+	t_img	*black_ball;
+	t_img	*minimap_wall;
 }				t_mlx;
 
 typedef struct s_keys
@@ -125,7 +123,6 @@ typedef struct s_player
 	float	right_planeY_pos;
 
 	float 	angle;
-	//	fov? we might need a camera vector for that
 }				t_player;
 
 typedef struct s_cubed

@@ -15,15 +15,19 @@
 /*	init all struct members to NULL or their default value	*/
 static void	init_mlx_struct(t_cubed *cubed)
 {
-	cubed->mlx->mlx_ptr = NULL;
-	cubed->mlx->win_ptr = NULL;
-	cubed->mlx->text_n = NULL;
-	cubed->mlx->text_s = NULL;
-	cubed->mlx->text_e = NULL;
-	cubed->mlx->text_w = NULL;
-	cubed->mlx->minimap_player = NULL;
-	cubed->mlx->minimap_wall = malloc(sizeof(t_minimap_wall));
-	if (!cubed->mlx->minimap_wall)
+	t_mlx	*mlx;
+
+	mlx = cubed->mlx;
+	mlx->mlx_ptr = NULL;
+	mlx->win_ptr = NULL;
+	mlx->text_n = malloc(sizeof(t_img));
+	mlx->text_s = malloc(sizeof(t_img));
+	mlx->text_e = malloc(sizeof(t_img));
+	mlx->text_w = malloc(sizeof(t_img));
+	mlx->minimap_player = malloc(sizeof(t_img));
+	mlx->minimap_wall = malloc(sizeof(t_img));
+	if (!mlx->text_n || !mlx->text_s || !mlx->text_e || !mlx->text_w
+		|| !mlx->minimap_player || !mlx->minimap_wall)
 		exit_err(cubed, 5);
 }
 
