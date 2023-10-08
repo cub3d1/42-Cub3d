@@ -42,7 +42,7 @@
 # define KEY_TAB 65289
 
 # define SENSITIVITY 0.5f
-# define VELOCITY 0.1f
+# define VELOCITY 0.1
 # define RAY_LENGHT 50
 
 # define ON_KEYPRESS 2
@@ -59,7 +59,6 @@
 
 /*		texture			*/
 # define TEMP_MINIMAP_PLAYER "./textures/temp_player.xpm"
-# define TEMP_WHITE_BG "./textures/white_background.xpm"
 # define GREEN_BALL "./textures/green_ball.xpm"
 # define BLACK_BALL "./textures/black_ball.xpm"
 
@@ -87,7 +86,6 @@ typedef struct s_mlx
 	void			*text_e;
 	void			*text_w;
 	void			*minimap_player;
-	void			*white_background;
 	void			*green_ball;
 	void			*black_ball;
 	t_minimap_wall	*minimap_wall;
@@ -149,7 +147,6 @@ int		mouse_hook(int button, int x, int y, t_cubed *cubed);
 
 /*			init.c		*/
 void	init_cubed(t_cubed *cubed);
-void	init_mlx_struct(t_mlx *mlx);
 void	init_player_struct(t_player *player, char **map, int y);
 float	get_biggest_line(char **map);
 float	get_array_size(char **map);
@@ -201,7 +198,7 @@ void	update_angle(t_cubed *cubed);
 void	update_player_pos(t_cubed *cubed, t_keys *keys, t_player *player);
 
 /*	./render_next_frame/minimap.c */
-void	show_minimap(t_cubed *cubed, int minimap);
+void	show_minimap(t_cubed *cubed);
 
 /*			free.c		*/
 int		free_stuff(t_cubed *cubed, int err_code);

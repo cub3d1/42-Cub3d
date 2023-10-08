@@ -33,13 +33,8 @@ int	main(int argc, char **argv)
 	/*	init mlx	*/
 	cubed.mlx->mlx_ptr = mlx_init();
 	
-	/*	init minimap wall	(maybe do this somewhere else)	*/
-	cubed.mlx->minimap_wall = malloc(sizeof(t_minimap_wall));
-	if (!cubed.mlx->minimap_wall)
-		exit_err(&cubed, 5);
 	/*		Temp textures	 */
 	load_textures(&cubed, argv[1]);
-
 
 	cubed.mlx->win_ptr = mlx_new_window(cubed.mlx->mlx_ptr, WIN_W, WIN_H, "Cub3d");
 	

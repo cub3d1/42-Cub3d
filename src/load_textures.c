@@ -59,17 +59,18 @@ static void	put_pixels_to_wall(t_minimap_wall *minimap_wall, int w, int h)
 	}
 }
 
-// static void	set_minimap_walls(t_cubed *cubed)
-// {
-// 	t_mlx	*mlx;
+static void	set_minimap_walls(t_cubed *cubed)
+{
+	t_mlx	*mlx;
 
-// 	mlx = cubed->mlx;
-// 	mlx->minimap_wall->w = WIN_W / (int)get_biggest_line(cubed->map);
-// 	mlx->minimap_wall->h = WIN_H / (int)get_array_size(cubed->map);
-// 	mlx->minimap_wall->img = mlx_new_image(mlx->mlx_ptr, mlx->minimap_wall->w, mlx->minimap_wall->h);
-// 	mlx->minimap_wall->addr = mlx_get_data_addr(mlx->minimap_wall->img, &mlx->minimap_wall->bpp, &mlx->minimap_wall->line_length, &mlx->minimap_wall->endian);
-// 	put_pixels_to_wall(mlx->minimap_wall, mlx->minimap_wall->w, mlx->minimap_wall->h);
-// }
+	mlx = cubed->mlx;
+	write(1, "\n\n\n\nhello\n\n\n", 11);
+	mlx->minimap_wall->w = WIN_W / ((int)get_biggest_line(cubed->map) - 1);
+	mlx->minimap_wall->h = WIN_H / (int)get_array_size(cubed->map);
+	mlx->minimap_wall->img = mlx_new_image(mlx->mlx_ptr, mlx->minimap_wall->w, mlx->minimap_wall->h);
+	mlx->minimap_wall->addr = mlx_get_data_addr(mlx->minimap_wall->img, &mlx->minimap_wall->bpp, &mlx->minimap_wall->line_length, &mlx->minimap_wall->endian);
+	put_pixels_to_wall(mlx->minimap_wall, mlx->minimap_wall->w, mlx->minimap_wall->h);
+}
 
 void	load_textures(t_cubed *cubed, char *arg)
 {
@@ -106,14 +107,10 @@ void	load_textures(t_cubed *cubed, char *arg)
 
 		
 
-	cubed->mlx->white_background = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, TEMP_WHITE_BG, &width, &height);
 	cubed->mlx->green_ball = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, GREEN_BALL, &width, &height);
 	cubed->mlx->black_ball = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, BLACK_BALL, &width, &height);
-	if (!cubed->mlx->white_background || !cubed->mlx->green_ball || !cubed->mlx->black_ball)
-	{
-		ft_printf_fd(1, "Error\nTexture '%s' not found\n", TEMP_WHITE_BG);
+	if (!cubed->mlx->green_ball || !cubed->mlx->black_ball)
 		exit(99);
-	}
 
 	cubed->player->left_planeX = 0;
 	cubed->player->left_planeY = 0.66;

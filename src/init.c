@@ -13,16 +13,18 @@
 #include "../include/cub3d.h"
 
 /*	init all struct members to NULL or their default value	*/
-void	init_mlx_struct(t_mlx *mlx)
+static void	init_mlx_struct(t_cubed *cubed)
 {
-	mlx->mlx_ptr = NULL;
-	mlx->win_ptr = NULL;
-	mlx->text_n = NULL;
-	mlx->text_s = NULL;
-	mlx->text_e = NULL;
-	mlx->text_w = NULL;
-	mlx->minimap_wall = NULL;
-	mlx->minimap_player = NULL;
+	cubed->mlx->mlx_ptr = NULL;
+	cubed->mlx->win_ptr = NULL;
+	cubed->mlx->text_n = NULL;
+	cubed->mlx->text_s = NULL;
+	cubed->mlx->text_e = NULL;
+	cubed->mlx->text_w = NULL;
+	cubed->mlx->minimap_player = NULL;
+	cubed->mlx->minimap_wall = malloc(sizeof(t_minimap_wall));
+	if (!cubed->mlx->minimap_wall)
+		exit_err(cubed, 5);
 }
 
 void	init_key_struct(t_keys *keys)
@@ -35,27 +37,6 @@ void	init_key_struct(t_keys *keys)
 	keys->right = false;
 	keys->show_minimap = false;
 }
-
-	// if (tkn == 'N')
-	// {
-	// 	player->dir_x = 0;
-	// 	player->dir_y = 1;
-	// }
-	// else if (tkn == 'S')
-	// {
-	// 	player->dir_x = 0;
-	// 	player->dir_y = 1;
-	// }
-	// else if (tkn == 'E')
-	// {
-	// 	player->dir_x = 1;
-	// 	player->dir_y = 0;
-	// }
-	// else if (tkn == 'W')
-	// {
-	// 	player->dir_x = 1;
-	// 	player->dir_y = 0;
-	// }
 
 void	set_player_direction(t_player *player, char tkn)
 {
@@ -141,9 +122,9 @@ void	init_cubed(t_cubed *cubed)
 	cubed->mlx = malloc(sizeof(t_mlx));
 	cubed->player = malloc(sizeof(t_player));
 	cubed->keys = malloc(sizeof(t_keys));
-	if (!cubed->mlx || !cubed->player || !cubed->keys)
+	if (!cubed->mlx || !cubed->player || !cubed->keys || !cubed->mlx->minimap_wall)
 		exit_err(cubed, 5);
-	init_mlx_struct(cubed->mlx);
+	init_mlx_struct(cubed);
 	init_key_struct(cubed->keys);
 	cubed->map = NULL;
 	cubed->texture_paths = NULL;
