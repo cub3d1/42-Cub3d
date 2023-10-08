@@ -44,6 +44,7 @@
 # define SENSITIVITY 0.5f
 # define VELOCITY 0.1f
 # define RAY_LENGHT 50
+
 # define ON_KEYPRESS 2
 # define ON_KEYRELEASE 3
 # define ON_DESTROY 17
@@ -113,10 +114,17 @@ typedef struct s_player
 	float	dir_y;
 	float	dir_x_pos;
 	float	dir_y_pos;
+	
 	float	left_planeX;
 	float	left_planeY;
 	float	left_planeX_pos;
 	float	left_planeY_pos;
+	
+	float	right_planeX;
+	float	right_planeY;
+	float	right_planeX_pos;
+	float	right_planeY_pos;
+
 	float 	angle;
 	//	fov? we might need a camera vector for that
 }				t_player;

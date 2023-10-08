@@ -45,8 +45,14 @@ static void update_player_dir(t_cubed *cubed, t_player *player)
 	player->left_planeX = cos((player->angle + 45)  * M_PI / 180);
 	player->left_planeY = -sin((player->angle + 45)  * M_PI / 180);
 
-	player->left_planeX_pos = player->pos_x + player->left_planeX * (RAY_LENGHT + 20);
-	player->left_planeY_pos = player->pos_y + player->left_planeY * (RAY_LENGHT + 20);
+	player->left_planeX_pos = player->pos_x + player->left_planeX * (RAY_LENGHT + RAY_LENGHT * 0.4);
+	player->left_planeY_pos = player->pos_y + player->left_planeY * (RAY_LENGHT + RAY_LENGHT * 0.4);
+
+	player->right_planeX = cos((player->angle - 45)  * M_PI / 180);
+	player->right_planeY = -sin((player->angle - 45)  * M_PI / 180);
+
+	player->right_planeX_pos = player->pos_x + player->right_planeX * (RAY_LENGHT + RAY_LENGHT * 0.4);
+	player->right_planeY_pos = player->pos_y + player->right_planeY * (RAY_LENGHT + RAY_LENGHT * 0.4);
 
 
 

@@ -75,7 +75,12 @@ static void print_cubes(t_cubed *cubed, t_mlx *mlx, t_player *player)
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
 	mlx->black_ball, player->left_planeX_pos, player->left_planeY_pos);
 
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
+	mlx->black_ball, player->right_planeX_pos, player->right_planeY_pos);
+
 	(void)cubed;
+	
+	
 }
 
 void	print_info(t_cubed *cubed, int frame_counter)
@@ -91,6 +96,8 @@ void	print_info(t_cubed *cubed, int frame_counter)
 	printf("p.dir_y = %f | ", cubed->player->dir_y);
 	printf("p.left_planeX = %f | ", cubed->player->left_planeX);
 	printf("p.left_planeY = %f | ", cubed->player->left_planeY);
+	printf("p.right_planeX = %f | ", cubed->player->right_planeX);
+	printf("p.right_planeY = %f | ", cubed->player->right_planeY);
 	// printf("p.pos_x_array = %f | ", cubed->player->pos_x_array);
 	// printf("p.pos_y_array = %f | ", cubed->player->pos_y_array);
 	// printf("show_minimap = %d | ", cubed->keys->show_minimap);
