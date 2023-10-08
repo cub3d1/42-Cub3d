@@ -12,7 +12,7 @@
 
 #include "../include/cub3d.h"
 
-static void	free_image(t_mlx *mlx, t_img *img)
+static void	free_image(t_mlx *mlx, t_our_img *img)
 {
 	if (img->img)
 		mlx_destroy_image(mlx->mlx_ptr, img->img);

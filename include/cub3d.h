@@ -62,7 +62,7 @@
 # define GREEN_BALL "./textures/green_ball.xpm"
 # define BLACK_BALL "./textures/black_ball.xpm"
 
-typedef struct s_img
+typedef struct s_our_img
 {
 	void	*img;
 	char	*addr;
@@ -71,7 +71,7 @@ typedef struct s_img
 	int		bpp;
 	int		line_length;
 	int		endian;
-}				t_img;
+}				t_our_img;
 
 typedef struct s_mlx
 {
@@ -79,14 +79,14 @@ typedef struct s_mlx
 	void	*win_ptr;
 	int		ceiling_color[3];
 	int		floor_color[3];
-	t_img	*text_n;
-	t_img	*text_s;
-	t_img	*text_e;
-	t_img	*text_w;
-	t_img	*minimap_player;
-	t_img	*green_ball;
-	t_img	*black_ball;
-	t_img	*minimap_wall;
+	t_our_img	*text_n;
+	t_our_img	*text_s;
+	t_our_img	*text_e;
+	t_our_img	*text_w;
+	t_our_img	*minimap_player;
+	t_our_img	*green_ball;
+	t_our_img	*black_ball;
+	t_our_img	*minimap_wall;
 }				t_mlx;
 
 typedef struct s_keys

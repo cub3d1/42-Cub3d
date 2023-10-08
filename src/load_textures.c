@@ -36,7 +36,7 @@ static void	set_texture(t_cubed *cubed, char *line, int option)
 		cubed->mlx->text_w = texture;
 }
 
-static void	put_pixels_to_wall(t_minimap_wall *minimap_wall, int w, int h)
+static void	put_pixels_to_wall(t_our_img *minimap_wall, int w, int h)
 {
 	char	*pix;
 	char	*pix_dst;
