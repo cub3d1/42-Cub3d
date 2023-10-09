@@ -149,7 +149,7 @@ void	init_cubed(t_cubed *cubed)
 	cubed->mlx = malloc(sizeof(t_mlx));
 	cubed->player = malloc(sizeof(t_player));
 	cubed->keys = malloc(sizeof(t_keys));
-	if (!cubed->mlx || !cubed->player || !cubed->keys || !cubed->mlx->minimap_wall)
+	if (!cubed->mlx || !cubed->player || !cubed->keys)
 		exit_err(cubed, 5);
 	init_mlx_struct(cubed);
 	init_key_struct(cubed->keys);
