@@ -12,11 +12,24 @@
 
 #include "../include/cub3d.h"
 
-static void	free_image(t_mlx *mlx, t_our_img *img)
+static void	free_textures(t_mlx *mlx)
 {
-	if (img->img)
-		mlx_destroy_image(mlx->mlx_ptr, img->img);
-	free(img);
+	if (mlx->text_n)
+		free_image(mlx, mlx->text_n);
+	if (mlx->text_s)
+		free_image(mlx, mlx->text_s);
+	if (mlx->text_e)
+		free_image(mlx, mlx->text_e);
+	if (mlx->text_w)
+		free_image(mlx, mlx->text_w);
+	if (mlx->minimap_wall)
+		free_image(mlx, mlx->minimap_wall);
+	if (mlx->minimap_player)
+		free_image(mlx, mlx->minimap_player);
+	if (mlx->green_ball)
+		free_image(mlx, mlx->green_ball);
+	if (mlx->black_ball)
+		free_image(mlx, mlx->black_ball);
 }
 
 static void	free_mlx(t_mlx *mlx)
@@ -25,22 +38,7 @@ static void	free_mlx(t_mlx *mlx)
 	{
 		if (mlx->win_ptr)
 			mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
-		if (mlx->text_n)
-			free_image(mlx, mlx->text_n);
-		if (mlx->text_s)
-			free_image(mlx, mlx->text_s);
-		if (mlx->text_e)
-			free_image(mlx, mlx->text_e);
-		if (mlx->text_w)
-			free_image(mlx, mlx->text_w);
-		if (mlx->minimap_wall)
-			free_image(mlx, mlx->minimap_wall);
-		if (mlx->minimap_player)
-			free_image(mlx, mlx->minimap_player);
-		if (mlx->green_ball)
-			free_image(mlx, mlx->green_ball);
-		if (mlx->black_ball)
-			free_image(mlx, mlx->black_ball);
+		free_textures(mlx);
 		if (mlx->mlx_ptr)
 		{
 			mlx_destroy_display(mlx->mlx_ptr);

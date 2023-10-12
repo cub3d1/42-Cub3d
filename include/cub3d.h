@@ -197,6 +197,9 @@ void	show_minimap(t_cubed *cubed);
 /*			free.c		*/
 int		free_stuff(t_cubed *cubed, int err_code);
 
+/*		free_textures.c	*/
+void	free_image(t_mlx *mlx, t_our_img *img);
+
 /*			exit_err.c 	*/
 void	exit_err(t_cubed *cubed, int err_code);
 
