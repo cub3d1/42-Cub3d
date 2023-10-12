@@ -18,4 +18,3 @@ void	free_image(t_mlx *mlx, t_our_img *img)
 		mlx_destroy_image(mlx->mlx_ptr, img->img);
 	free(img);
 }
-
