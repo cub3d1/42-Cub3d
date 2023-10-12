@@ -13,47 +13,8 @@
 #include "../include/cub3d.h"
 
 /*	init all struct members to NULL or their default value	*/
-static void	init_img_struct(t_our_img *img)
-{
-	img->img = NULL;
-	img->addr = NULL;
-	img->bpp = -1;
-	img->endian = -1;
-	img->h = -1;
-	img->line_length = -1;
-	img->w = -1;
-}
 
-static void	init_mlx_struct(t_cubed *cubed)
-{
-	t_mlx	*mlx;
-
-	mlx = cubed->mlx;
-	mlx->mlx_ptr = NULL;
-	mlx->win_ptr = NULL;
-	mlx->text_n = malloc(sizeof(t_our_img));
-	mlx->text_s = malloc(sizeof(t_our_img));
-	mlx->text_e = malloc(sizeof(t_our_img));
-	mlx->text_w = malloc(sizeof(t_our_img));
-	mlx->green_ball = malloc(sizeof(t_our_img));
-	mlx->black_ball = malloc(sizeof(t_our_img));
-	mlx->minimap_player = malloc(sizeof(t_our_img));
-	mlx->minimap_wall = malloc(sizeof(t_our_img));
-	if (!mlx->text_n || !mlx->text_s || !mlx->text_e || !mlx->text_w
-		|| !mlx->minimap_player || !mlx->minimap_wall || !mlx->black_ball
-		|| !mlx->green_ball)
-		exit_err(cubed, 5);
-	init_img_struct(mlx->text_n);
-	init_img_struct(mlx->text_s);
-	init_img_struct(mlx->text_e);
-	init_img_struct(mlx->text_w);
-	init_img_struct(mlx->green_ball);
-	init_img_struct(mlx->black_ball);
-	init_img_struct(mlx->minimap_player);
-	init_img_struct(mlx->minimap_wall);
-}
-
-void	init_key_struct(t_keys *keys)
+static void	init_key_struct(t_keys *keys)
 {
 	keys->w = false;
 	keys->a = false;
@@ -64,7 +25,7 @@ void	init_key_struct(t_keys *keys)
 	keys->show_minimap = false;
 }
 
-void	set_player_direction(t_player *player, char tkn)
+static void	set_player_direction(t_player *player, char tkn)
 {
 	if (tkn == 'N')
 		player->angle = 90;
@@ -74,41 +35,6 @@ void	set_player_direction(t_player *player, char tkn)
 		player->angle = 0;
 	else if (tkn == 'W')
 		player->angle = 180;
-}
-
-float	get_biggest_line(char **map)
-{
-	int		i;
-	int		j;
-	int		biggest;
-
-	i = 0;
-	biggest = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-			j++;
-		if (j > biggest)
-			biggest = j;
-		i++;
-	}
-	return ((float)biggest);
-}
-
-float	get_array_size(char **map)
-{
-	int		i;
-	int		size;
-
-	i = 0;
-	size = 0;
-	while (map[i])
-	{
-		size++;
-		i++;
-	}
-	return ((float)size);
 }
 
 void	init_player_struct(t_player *player, char **map, int y)

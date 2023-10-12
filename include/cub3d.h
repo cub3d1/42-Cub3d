@@ -142,6 +142,11 @@ int		mouse_hook(int button, int x, int y, t_cubed *cubed);
 /*			init.c		*/
 void	init_cubed(t_cubed *cubed);
 void	init_player_struct(t_player *player, char **map, int y);
+
+/*			init_mlx.c	*/
+void	init_mlx_struct(t_cubed *cubed);
+
+/*		map_utils.c		*/
 float	get_biggest_line(char **map);
 float	get_array_size(char **map);
 
