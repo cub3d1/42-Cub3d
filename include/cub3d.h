@@ -189,6 +189,9 @@ void	load_colors(t_cubed *cubed, char *path);
 /*	./src/load_textures.c	*/
 void	load_textures(t_cubed *cubed, char *arg);
 
+/*	./src/set_minimap_walls.c	*/
+void	set_minimap_walls(t_cubed *cubed);
+
 /*	./render_next_frame/render_next_frame.c */
 int		render_next_frame(t_cubed *cubed);
 
