@@ -13,7 +13,7 @@
 #include "../include/cub3d.h"
 
 /*	init all struct members to NULL or their default value	*/
-static void init_img_struct(t_our_img *img)
+static void	init_img_struct(t_our_img *img)
 {
 	img->img = NULL;
 	img->addr = NULL;
@@ -51,7 +51,6 @@ static void	init_mlx_struct(t_cubed *cubed)
 	init_img_struct(mlx->black_ball);
 	init_img_struct(mlx->minimap_player);
 	init_img_struct(mlx->minimap_wall);
-
 }
 
 void	init_key_struct(t_keys *keys)

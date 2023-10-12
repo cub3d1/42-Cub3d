@@ -57,19 +57,16 @@ static void	draw_floor(t_mlx *mlx, int *color_f)
 	}
 }
 
-static void print_cubes(t_cubed *cubed, t_mlx *mlx, t_player *player)
+static void	print_cubes(t_cubed *cubed, t_mlx *mlx, t_player *player)
 {
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
 	mlx->minimap_player->img, (int)player->pos_x, (int)player->pos_y);
-
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
 	mlx->green_ball->img, player->dir_x_pos, player->dir_y_pos);
-
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
-	mlx->black_ball->img, player->left_planeX_pos, player->left_planeY_pos);
-
+	mlx->black_ball->img, player->left_plane_x_pos, player->left_plane_y_pos);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
-	mlx->black_ball->img, player->right_planeX_pos, player->right_planeY_pos);
+	mlx->black_ball->img, player->right_plane_x_pos, player->right_plane_y_pos);
 	(void)cubed;
 }
 
@@ -95,12 +92,10 @@ void	print_info(t_cubed *cubed, int frame_counter)
 	(void)cubed; (void)frame_counter;
 }
 
-
-
 int	render_next_frame(t_cubed *cubed)
 {
 	static int	frame_counter = 1;
-	
+
 	update_angle(cubed);
 	update_player_pos(cubed, cubed->keys, cubed->player);
 	if (!cubed->keys->show_minimap)
@@ -111,8 +106,6 @@ int	render_next_frame(t_cubed *cubed)
 	}
 	else
 		show_minimap(cubed);
-
-
 	print_info(cubed, frame_counter++);
 	return (0);
 }

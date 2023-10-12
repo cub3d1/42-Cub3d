@@ -12,7 +12,6 @@
 
 #include "../../include/cub3d.h"
 
-
 static void	put_pixels_to_wall(t_our_img *minimap_wall, int w, int h)
 {
 	char	*pix;
@@ -71,8 +70,8 @@ static void	set_texture(t_cubed *cubed, t_mlx *mlx, t_our_img *img, char *line)
 
 void	load_textures(t_cubed *cubed, char *arg)
 {
-	int		fd;
-	char	*line;
+	int			fd;
+	char		*line;
 	t_our_img	*temp_img;
 
 	fd = open(arg, O_RDONLY);
@@ -95,28 +94,23 @@ void	load_textures(t_cubed *cubed, char *arg)
 	if (close(fd) == -1)
 		exit_err(cubed, 3);
 	set_minimap_walls(cubed);
-	
 	temp_img = cubed->mlx->minimap_player;
 	temp_img->img = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, TEMP_MINIMAP_PLAYER, &temp_img->w, &temp_img->h);
 	temp_img->addr = mlx_get_data_addr(temp_img->img, &temp_img->bpp, &temp_img->line_length, &temp_img->endian);
 	if (!cubed->mlx->minimap_player->img || !cubed->mlx->minimap_player->addr)
-		exit_err(cubed, 4);	
-
+		exit_err(cubed, 4);
 	temp_img = cubed->mlx->green_ball;
 	temp_img->img = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, GREEN_BALL, &temp_img->w, &temp_img->h);
 	temp_img->addr = mlx_get_data_addr(temp_img->img, &temp_img->bpp, &temp_img->line_length, &temp_img->endian);
 	if (!cubed->mlx->green_ball->img || !cubed->mlx->green_ball->addr)
 		exit_err(cubed, 4);
-
 	temp_img = cubed->mlx->black_ball;
 	temp_img->img = mlx_xpm_file_to_image(cubed->mlx->mlx_ptr, BLACK_BALL, &temp_img->w, &temp_img->h);
 	temp_img->addr = mlx_get_data_addr(temp_img->img, &temp_img->bpp, &temp_img->line_length, &temp_img->endian);
 	if (!cubed->mlx->black_ball->img || !cubed->mlx->black_ball->addr)
 		exit_err(cubed, 4);
-
-	cubed->player->left_planeX = 0;
-	cubed->player->left_planeY = 0.66;
-
-	cubed->player->right_planeX = 0;
-	cubed->player->right_planeY = 0.66;
+	cubed->player->left_plane_x = 0;
+	cubed->player->left_plane_y = 0.66;
+	cubed->player->right_plane_x = 0;
+	cubed->player->right_plane_y = 0.66;
 }

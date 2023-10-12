@@ -75,10 +75,10 @@ typedef struct s_our_img
 
 typedef struct s_mlx
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	int		ceiling_color[3];
-	int		floor_color[3];
+	void		*mlx_ptr;
+	void		*win_ptr;
+	int			ceiling_color[3];
+	int			floor_color[3];
 	t_our_img	*text_n;
 	t_our_img	*text_s;
 	t_our_img	*text_e;
@@ -110,19 +110,16 @@ typedef struct s_player
 	float	dir_x;
 	float	dir_y;
 	float	dir_x_pos;
-	float	dir_y_pos;
-	
-	float	left_planeX;
-	float	left_planeY;
-	float	left_planeX_pos;
-	float	left_planeY_pos;
-	
-	float	right_planeX;
-	float	right_planeY;
-	float	right_planeX_pos;
-	float	right_planeY_pos;
-
-	float 	angle;
+	float	dir_y_pos;	
+	float	left_plane_x;
+	float	left_plane_y;
+	float	left_plane_x_pos;
+	float	left_plane_y_pos;
+	float	right_plane_x;
+	float	right_plane_y;
+	float	right_plane_x_pos;
+	float	right_plane_y_pos;
+	float	angle;
 }				t_player;
 
 typedef struct s_cubed
