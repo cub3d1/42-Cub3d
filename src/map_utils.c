@@ -46,4 +46,3 @@ float	get_array_size(char **map)
 	}
 	return ((float)size);
 }
-

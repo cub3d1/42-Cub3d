@@ -51,4 +51,3 @@ void	init_mlx_struct(t_cubed *cubed)
 	init_img_struct(mlx->minimap_player);
 	init_img_struct(mlx->minimap_wall);
 }
-
