@@ -29,7 +29,8 @@ void	update_angle(t_cubed *cubed)
 		if (cubed->player->angle > 360)
 			cubed->player->angle = 0;
 	}
-	mlx_mouse_get_pos(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, &mouse_x, &mouse_y);
+	mlx_mouse_get_pos(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, \
+		&mouse_x, &mouse_y);
 	if (mouse_x > WIN_W / 2)
 	{
 		cubed->player->angle -= SENSITIVITY;
@@ -42,7 +43,8 @@ void	update_angle(t_cubed *cubed)
 		if (cubed->player->angle > 360)
 			cubed->player->angle = 0;
 	}
-	mlx_mouse_move(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, WIN_W / 2, WIN_H / 2);
+	mlx_mouse_move(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, \
+		WIN_W / 2, WIN_H / 2);
 }
 
 static void	update_player_dir(t_cubed *cubed, t_player *player)
@@ -53,12 +55,16 @@ static void	update_player_dir(t_cubed *cubed, t_player *player)
 	player->dir_y_pos = player->pos_y + player->dir_y * RAY_LENGHT;
 	player->left_plane_x = cos((player->angle + 45) * M_PI / 180);
 	player->left_plane_y = -sin((player->angle + 45) * M_PI / 180);
-	player->left_plane_x_pos = player->pos_x + player->left_plane_x * (RAY_LENGHT + RAY_LENGHT * 0.4);
-	player->left_plane_y_pos = player->pos_y + player->left_plane_y * (RAY_LENGHT + RAY_LENGHT * 0.4);
+	player->left_plane_x_pos = player->pos_x + player->left_plane_x \
+								* (RAY_LENGHT + RAY_LENGHT * 0.4);
+	player->left_plane_y_pos = player->pos_y + player->left_plane_y \
+								* (RAY_LENGHT + RAY_LENGHT * 0.4);
 	player->right_plane_x = cos((player->angle - 45) * M_PI / 180);
 	player->right_plane_y = -sin((player->angle - 45) * M_PI / 180);
-	player->right_plane_x_pos = player->pos_x + player->right_plane_x * (RAY_LENGHT + RAY_LENGHT * 0.4);
-	player->right_plane_y_pos = player->pos_y + player->right_plane_y * (RAY_LENGHT + RAY_LENGHT * 0.4);
+	player->right_plane_x_pos = player->pos_x + player->right_plane_x \
+								* (RAY_LENGHT + RAY_LENGHT * 0.4);
+	player->right_plane_y_pos = player->pos_y + player->right_plane_y \
+								* (RAY_LENGHT + RAY_LENGHT * 0.4);
 	(void)cubed;
 }
 
