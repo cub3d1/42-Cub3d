@@ -199,6 +199,12 @@ int		render_next_frame(t_cubed *cubed);
 void	update_angle(t_cubed *cubed);
 void	update_player_pos(t_cubed *cubed, t_keys *keys, t_player *player);
 
+/*	./render_next_frame/update_utils.c	*/
+void	read_mouse_input(t_cubed *cubed);
+void	read_key_input(t_cubed *cubed);
+void	update_player_dir(t_cubed *cubed, t_player *player);
+void	check_borders(t_player *player);
+
 /*	./render_next_frame/minimap.c */
 void	show_minimap(t_cubed *cubed);
 
