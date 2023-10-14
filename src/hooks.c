@@ -29,6 +29,7 @@ int	keypress_hook(int keycode, t_cubed *cubed)
 {
 	if (keycode == ESCAPE)
 	{
+		mlx_do_key_autorepeaton(cubed->mlx->mlx_ptr);
 		ft_printf_fd(1, "Escape pressed!\nClosing program...\n");
 		free_stuff(cubed, 0);
 	}
