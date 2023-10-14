@@ -103,6 +103,7 @@ int	render_next_frame(t_cubed *cubed)
 		draw_ceiling(cubed->mlx, cubed->mlx->ceiling_color);
 		draw_floor(cubed->mlx, cubed->mlx->floor_color);
 		print_cubes(cubed, cubed->mlx, cubed->player);
+		render_whole_frame(cubed);
 	}
 	else
 		show_minimap(cubed);

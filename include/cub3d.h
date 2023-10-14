@@ -119,6 +119,9 @@ typedef struct s_player
 	float	right_plane_y;
 	float	right_plane_x_pos;
 	float	right_plane_y_pos;
+	float	plane_vector_x;
+	float	plane_vector_y;
+
 	float	angle;
 }				t_player;
 
@@ -194,6 +197,7 @@ void	set_minimap_walls(t_cubed *cubed);
 
 /*	./render_next_frame/render_next_frame.c */
 int		render_next_frame(t_cubed *cubed);
+void	render_whole_frame(t_cubed *cubed);
 
 /*	./render_next_frame/update.c	*/
 void	update_angle(t_cubed *cubed);
