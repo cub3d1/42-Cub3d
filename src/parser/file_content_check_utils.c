@@ -43,7 +43,7 @@ bool	color_format_ok(char *line)
 
 bool	color_vals_ok(char *line)
 {
-	char	val[3];
+	char	val[4];
 	int		len;
 	int		i;
 
@@ -53,6 +53,8 @@ bool	color_vals_ok(char *line)
 		len = 0;
 		while (ft_isdigit(line[len]))
 			len++;
+		if (len > 3)
+			return (false);
 		ft_strlcpy(val, line, len + 1);
 		if (ft_atoi(val) > 255)
 			return (false);

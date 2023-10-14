@@ -78,7 +78,7 @@ static bool	color_tkn_check(char *line, bool *found)
 			line += 2;
 			while (*line && *line == ' ')
 				line++;
-			if (!color_format_ok(line + 2) || !color_vals_ok(line + 2))
+			if (!color_format_ok(line) || !color_vals_ok(line))
 				return (false);
 			found[i] = true;
 			break ;
@@ -90,29 +90,25 @@ static bool	color_tkn_check(char *line, bool *found)
 
 bool	color_ok(int map_fd, t_cubed *cubed)
 {
-	bool	ok;
+	bool	color_ok;
 	bool	tkns_found[2];
 	char	*line;
 
-	ok = true;
-	ft_memset(tkns_found, 0, 2);
+	color_ok = true;
+	ft_bzero(tkns_found, 2);
 	line = get_next_line(map_fd);
-	while (line)
+	while (line && color_ok)
 	{
-		if (!color_tkn_check(line, tkns_found))
-		{
-			ok = false;
-			free(line);
-			break ;
-		}
+		color_ok = color_tkn_check(line, tkns_found);
 		free(line);
-		line = get_next_line(map_fd);
+		if (color_ok)
+			line = get_next_line(map_fd);
 	}
 	if (close(map_fd) == -1)
 		exit_err(cubed, 3);
-	if (ft_memchr(tkns_found, 0, 2))
-		ok = false;
-	return (ok);
+	if (!tkns_found[0] || !tkns_found[1])
+		color_ok = false;
+	return (color_ok);
 }
 
 bool	map_pos_ok(int map_fd)
