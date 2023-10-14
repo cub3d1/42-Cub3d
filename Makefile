@@ -25,7 +25,6 @@ FILESC = $(addprefix $(SRCDIR), $(COREFILES)) \
 			$(addprefix $(RENDERDIR), $(RENDERFILES)) 
 
 OBJS = $(FILESC:.c=.o)
-	
 
 all: $(NAME)
 

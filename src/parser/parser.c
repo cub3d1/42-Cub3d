@@ -81,6 +81,8 @@ void	parser(t_cubed *cubed, char *arg)
 		exit_err(cubed, 0);
 	if (!file_content_ok(arg, cubed))
 	{
+		ft_printf_fd(1, "HEYYYYYOOOOO\n");
+
 		ft_printf_fd(2, "Error\nInvalid map file content\n");
 		exit_err(cubed, 0);
 	}

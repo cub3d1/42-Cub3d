@@ -38,7 +38,10 @@ static void	get_color(t_cubed *cubed, char *line, int *color)
 		color[2] = ft_atoi(split[2]);
 	}
 	else
+	{
+		ft_free_split(split);
 		exit_err(cubed, 1);
+	}
 	ft_free_split(split);
 }
 
