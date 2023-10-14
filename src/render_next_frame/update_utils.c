@@ -70,6 +70,30 @@ void	update_player_dir(t_cubed *cubed, t_player *player)
 	(void)cubed;
 }
 
+void	move_player(t_player *player, t_keys *keys)
+{
+	if (keys->w && !keys->s)
+	{
+		player->pos_x += cos(player->angle * M_PI / 180) * VELOCITY;
+		player->pos_y -= sin(player->angle * M_PI / 180) * VELOCITY;
+	}
+	if (keys->s && !keys->w)
+	{
+		player->pos_x -= cos(player->angle * M_PI / 180) * VELOCITY;
+		player->pos_y += sin(player->angle * M_PI / 180) * VELOCITY;
+	}
+	if (keys->a && !keys->d)
+	{
+		player->pos_x += cos((player->angle + 90) * M_PI / 180) * VELOCITY;
+		player->pos_y -= sin((player->angle + 90) * M_PI / 180) * VELOCITY;
+	}
+	if (keys->d && !keys->a)
+	{
+		player->pos_x -= cos((player->angle + 90) * M_PI / 180) * VELOCITY;
+		player->pos_y += sin((player->angle + 90) * M_PI / 180) * VELOCITY;
+	}
+}
+
 void	check_borders(t_player *player)
 {
 	if (player->pos_y < 0)

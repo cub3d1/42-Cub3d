@@ -22,26 +22,7 @@ void	update_angle(t_cubed *cubed)
 
 void	update_player_pos(t_cubed *cubed, t_keys *keys, t_player *player)
 {
-	if (keys->w && !keys->s)
-	{
-		player->pos_x += cos(player->angle * M_PI / 180) * VELOCITY;
-		player->pos_y -= sin(player->angle * M_PI / 180) * VELOCITY;
-	}
-	if (keys->s && !keys->w)
-	{
-		player->pos_x -= cos(player->angle * M_PI / 180) * VELOCITY;
-		player->pos_y += sin(player->angle * M_PI / 180) * VELOCITY;
-	}
-	if (keys->a && !keys->d)
-	{
-		player->pos_x += cos((player->angle + 90) * M_PI / 180) * VELOCITY;
-		player->pos_y -= sin((player->angle + 90) * M_PI / 180) * VELOCITY;
-	}
-	if (keys->d && !keys->a)
-	{
-		player->pos_x -= cos((player->angle + 90) * M_PI / 180) * VELOCITY;
-		player->pos_y += sin((player->angle + 90) * M_PI / 180) * VELOCITY;
-	}
+	move_player(player, keys);
 	check_borders(player);
 	player->pos_x_array = player->pos_x * cubed->map_width / WIN_W;
 	player->pos_y_array = player->pos_y * cubed->map_height / WIN_H;

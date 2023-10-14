@@ -207,6 +207,7 @@ void	update_player_pos(t_cubed *cubed, t_keys *keys, t_player *player);
 void	read_mouse_input(t_cubed *cubed);
 void	read_key_input(t_cubed *cubed);
 void	update_player_dir(t_cubed *cubed, t_player *player);
+void	move_player(t_player *player, t_keys *keys);
 void	check_borders(t_player *player);
 
 /*	./render_next_frame/minimap.c */
