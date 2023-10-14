@@ -34,7 +34,7 @@ int	keypress_hook(int keycode, t_cubed *cubed)
 		free_stuff(cubed, 0);
 	}
 	if (keycode == KEY_TAB)
-		cubed->keys->show_minimap = !cubed->keys->show_minimap;
+		cubed->keys->show_automap = !cubed->keys->show_automap;
 	if (keycode == ON_W)
 		cubed->keys->w = true;
 	if (keycode == ON_A)

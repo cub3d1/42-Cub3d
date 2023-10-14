@@ -22,7 +22,7 @@ static void	init_key_struct(t_keys *keys)
 	keys->d = false;
 	keys->left = false;
 	keys->right = false;
-	keys->show_minimap = false;
+	keys->show_automap = false;
 }
 
 static void	set_player_direction(t_player *player, char tkn)

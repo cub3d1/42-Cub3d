@@ -98,7 +98,7 @@ int	render_next_frame(t_cubed *cubed)
 
 	update_angle(cubed);
 	update_player_pos(cubed, cubed->keys, cubed->player);
-	if (!cubed->keys->show_minimap)
+	if (!cubed->keys->show_automap)
 	{
 		draw_ceiling(cubed->mlx, cubed->mlx->ceiling_color);
 		draw_floor(cubed->mlx, cubed->mlx->floor_color);
@@ -106,7 +106,7 @@ int	render_next_frame(t_cubed *cubed)
 		render_whole_frame(cubed);
 	}
 	else
-		show_minimap(cubed);
+		show_automap(cubed);
 	print_info(cubed, frame_counter++);
 	return (0);
 }

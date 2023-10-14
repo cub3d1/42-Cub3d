@@ -23,11 +23,8 @@ static void	init_img_struct(t_our_img *img)
 	img->w = -1;
 }
 
-void	init_mlx_struct(t_cubed *cubed)
+static void	malloc_img_structs(t_mlx *mlx)
 {
-	t_mlx	*mlx;
-
-	mlx = cubed->mlx;
 	mlx->mlx_ptr = NULL;
 	mlx->win_ptr = NULL;
 	mlx->text_n = malloc(sizeof(t_our_img));
@@ -37,10 +34,19 @@ void	init_mlx_struct(t_cubed *cubed)
 	mlx->green_ball = malloc(sizeof(t_our_img));
 	mlx->black_ball = malloc(sizeof(t_our_img));
 	mlx->minimap_player = malloc(sizeof(t_our_img));
-	mlx->minimap_wall = malloc(sizeof(t_our_img));
+	mlx->automap = malloc(sizeof(t_map2d));
+	mlx->automap->map_img = malloc(sizeof(t_our_img));
+}
+
+void	init_mlx_struct(t_cubed *cubed)
+{
+	t_mlx	*mlx;
+
+	mlx = cubed->mlx;
+	malloc_img_structs(mlx);
 	if (!mlx->text_n || !mlx->text_s || !mlx->text_e || !mlx->text_w
-		|| !mlx->minimap_player || !mlx->minimap_wall || !mlx->black_ball
-		|| !mlx->green_ball)
+		|| !mlx->minimap_player || !mlx->black_ball
+		|| !mlx->green_ball || !mlx->automap || !mlx->automap->map_img)
 		exit_err(cubed, 5);
 	init_img_struct(mlx->text_n);
 	init_img_struct(mlx->text_s);
@@ -49,5 +55,5 @@ void	init_mlx_struct(t_cubed *cubed)
 	init_img_struct(mlx->green_ball);
 	init_img_struct(mlx->black_ball);
 	init_img_struct(mlx->minimap_player);
-	init_img_struct(mlx->minimap_wall);
+	init_img_struct(mlx->automap->map_img);
 }

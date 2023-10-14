@@ -58,7 +58,7 @@
 # define PLAYER_TKNS "NSEW"
 
 /*		texture			*/
-# define TEMP_MINIMAP_PLAYER "./textures/temp_player.xpm"
+# define TEMP_automap_PLAYER "./textures/temp_player.xpm"
 # define GREEN_BALL "./textures/green_ball.xpm"
 # define BLACK_BALL "./textures/black_ball.xpm"
 
@@ -73,6 +73,13 @@ typedef struct s_our_img
 	int		endian;
 }				t_our_img;
 
+typedef struct s_map2d
+{
+	t_our_img	*map_img;
+	int			wall_w;
+	int			wall_h;
+}				t_map2d;
+
 typedef struct s_mlx
 {
 	void		*mlx_ptr;
@@ -86,7 +93,7 @@ typedef struct s_mlx
 	t_our_img	*green_ball;
 	t_our_img	*black_ball;
 	t_our_img	*minimap_player;
-	t_our_img	*minimap_wall;
+	t_map2d		*automap;
 }				t_mlx;
 
 typedef struct s_keys
@@ -97,7 +104,7 @@ typedef struct s_keys
 	bool	d;
 	bool	left;
 	bool	right;
-	bool	show_minimap;
+	bool	show_automap;
 }				t_keys;
 
 	//	fov? we might need a camera vector for that
@@ -146,8 +153,11 @@ int		mouse_hook(int button, int x, int y, t_cubed *cubed);
 void	init_cubed(t_cubed *cubed);
 void	init_player_struct(t_player *player, char **map, int y);
 
-/*			init_mlx.c	*/
+/*		init_mlx_struct.c	*/
 void	init_mlx_struct(t_cubed *cubed);
+
+/*		init_canvases.c		*/	
+void	init_canvases(t_cubed *cubed);
 
 /*		map_utils.c		*/
 float	get_biggest_line(char **map);
@@ -192,8 +202,8 @@ void	load_colors(t_cubed *cubed, char *path);
 /*	./src/load_textures.c	*/
 void	load_textures(t_cubed *cubed, char *arg);
 
-/*	./src/set_minimap_walls.c	*/
-void	set_minimap_walls(t_cubed *cubed);
+/*	./src/set_automap_walls.c	*/
+void	set_automap_walls(t_cubed *cubed);
 
 /*	./render_next_frame/render_next_frame.c */
 int		render_next_frame(t_cubed *cubed);
@@ -210,8 +220,8 @@ void	update_player_dir(t_cubed *cubed, t_player *player);
 void	move_player(t_player *player, t_keys *keys);
 void	check_borders(t_player *player);
 
-/*	./render_next_frame/minimap.c */
-void	show_minimap(t_cubed *cubed);
+/*	./render_next_frame/automap.c */
+void	show_automap(t_cubed *cubed);
 
 /*			free.c		*/
 int		free_stuff(t_cubed *cubed, int err_code);
