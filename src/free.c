@@ -38,6 +38,7 @@ static void	free_mlx_images(t_mlx *mlx)
 	{
 		if (mlx->minimap->map_img)
 			free_image(mlx, mlx->minimap->map_img);
+		free(mlx->minimap);
 	}
 }
 
