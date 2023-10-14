@@ -94,6 +94,7 @@ typedef struct s_mlx
 	t_our_img	*black_ball;
 	t_our_img	*minimap_player;
 	t_map2d		*automap;
+	t_map2d		*minimap;
 }				t_mlx;
 
 typedef struct s_keys
