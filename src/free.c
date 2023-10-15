@@ -26,6 +26,10 @@ static void	free_mlx_images(t_mlx *mlx)
 		free_image(mlx, mlx->green_ball);
 	if (mlx->black_ball)
 		free_image(mlx, mlx->black_ball);
+}
+
+static void	free_canvases(t_mlx *mlx)
+{
 	if (mlx->surfaces)
 	{
 		if (mlx->surfaces->map_img)
@@ -65,6 +69,7 @@ static void	free_mlx(t_mlx *mlx)
 		if (mlx->win_ptr)
 			mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 		free_mlx_images(mlx);
+		free_canvases(mlx);
 		if (mlx->mlx_ptr)
 		{
 			mlx_destroy_display(mlx->mlx_ptr);
