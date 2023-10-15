@@ -1,5 +1,5 @@
 NAME = cub3D # The Cubed!!
-CC = cc
+CC = clang
 CFLAGS = -Wall -Wextra -Werror -ggdb -fsanitize=address -Werror=unused-result
 RM = rm -f
 LIBFT = ./include/libft/libft.a
@@ -16,7 +16,7 @@ PARSERFILES = parser.c file_content_check.c file_content_check_utils.c \
 				map_layout_check.c map_layout_check_utils.c flood_fill.c \
 				load_map.c load_colors.c
 
-RENDERFILES = render_next_frame.c show_automap.c update.c update_utils.c render_whole_frame.c
+RENDERFILES = render_next_frame.c show_map2d.c update.c update_utils.c render_whole_frame.c
 
 SRC = $(COREFILES) $(PARSERFILES) $(RENDERFILES)
 

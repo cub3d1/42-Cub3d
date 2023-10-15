@@ -73,12 +73,12 @@ typedef struct s_our_img
 	int		endian;
 }				t_our_img;
 
-typedef struct s_map2d
+typedef struct s_canvas
 {
 	t_our_img	*map_img;
 	int			wall_w;
 	int			wall_h;
-}				t_map2d;
+}				t_canvas;
 
 typedef struct s_mlx
 {
@@ -93,8 +93,9 @@ typedef struct s_mlx
 	t_our_img	*green_ball;
 	t_our_img	*black_ball;
 	t_our_img	*minimap_player;
-	t_map2d		*automap;
-	t_map2d		*minimap;
+	t_canvas	*surfaces;
+	t_canvas	*automap;
+	t_canvas	*minimap;
 }				t_mlx;
 
 typedef struct s_keys
@@ -222,7 +223,7 @@ void	move_player(t_player *player, t_keys *keys);
 void	check_borders(t_player *player);
 
 /*	./render_next_frame/automap.c */
-void	show_automap(t_cubed *cubed);
+void	show_map2d(t_cubed *cubed, t_canvas *canvas);
 
 /*			free.c		*/
 int		free_stuff(t_cubed *cubed, int err_code);

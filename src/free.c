@@ -40,6 +40,12 @@ static void	free_mlx_images(t_mlx *mlx)
 			free_image(mlx, mlx->minimap->map_img);
 		free(mlx->minimap);
 	}
+	if (mlx->surfaces)
+	{
+		if (mlx->surfaces->map_img)
+			free_image(mlx, mlx->surfaces->map_img);
+		free(mlx->surfaces);
+	}
 }
 
 static void	free_mlx(t_mlx *mlx)

@@ -12,52 +12,7 @@
 
 #include "../../include/cub3d.h"
 
-int	get_rgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-static void	draw_ceiling(t_mlx *mlx, int *color_c)
-{
-	int	w;
-	int	h;
-	int	color;
-
-	w = 0;
-	while (w < WIN_W)
-	{
-		h = 0;
-		while (h < WIN_H / 2)
-		{
-			color = get_rgb(0, color_c[0], color_c[1], color_c[2]);
-			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, w, h, color);
-			h++;
-		}
-		w++;
-	}
-}
-
-static void	draw_floor(t_mlx *mlx, int *color_f)
-{
-	int	w;
-	int	h;
-	int	color;
-
-	w = 0;
-	while (w < WIN_W)
-	{
-		h = WIN_H / 2;
-		while (h < WIN_H)
-		{
-			color = get_rgb(0, color_f[0], color_f[1], color_f[2]);
-			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, w, h, color);
-			h++;
-		}
-		w++;
-	}
-}
-
-static void	print_cubes(t_cubed *cubed, t_mlx *mlx, t_player *player)
+static void	print_cubes(t_mlx *mlx, t_player *player)
 {
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
 	mlx->minimap_player->img, (int)player->pos_x, (int)player->pos_y);
@@ -67,7 +22,8 @@ static void	print_cubes(t_cubed *cubed, t_mlx *mlx, t_player *player)
 	mlx->black_ball->img, player->left_plane_x_pos, player->left_plane_y_pos);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
 	mlx->black_ball->img, player->right_plane_x_pos, player->right_plane_y_pos);
-	(void)cubed;
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
+	mlx->surfaces->map_img->img, 0, 0);
 }
 
 void	print_info(t_cubed *cubed, int frame_counter)
@@ -100,13 +56,15 @@ int	render_next_frame(t_cubed *cubed)
 	update_player_pos(cubed, cubed->keys, cubed->player);
 	if (!cubed->keys->show_automap)
 	{
-		draw_ceiling(cubed->mlx, cubed->mlx->ceiling_color);
-		draw_floor(cubed->mlx, cubed->mlx->floor_color);
-		print_cubes(cubed, cubed->mlx, cubed->player);
-		render_whole_frame(cubed);
+		print_cubes(cubed->mlx, cubed->player);
+//		render_whole_frame(cubed);
+		show_map2d(cubed, cubed->mlx->minimap);
 	}
 	else
-		show_automap(cubed);
+	{
+		mlx_clear_window(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr);	
+		show_map2d(cubed, cubed->mlx->automap);
+	}
 	print_info(cubed, frame_counter++);
 	return (0);
 }
