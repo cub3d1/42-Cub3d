@@ -22,17 +22,27 @@ static void	free_mlx_images(t_mlx *mlx)
 		free_image(mlx, mlx->text_e);
 	if (mlx->text_w)
 		free_image(mlx, mlx->text_w);
-	if (mlx->minimap_player)
-		free_image(mlx, mlx->minimap_player);
 	if (mlx->green_ball)
 		free_image(mlx, mlx->green_ball);
 	if (mlx->black_ball)
 		free_image(mlx, mlx->black_ball);
+	if (mlx->surfaces)
+	{
+		if (mlx->surfaces->map_img)
+			free_image(mlx, mlx->surfaces->map_img);
+		free(mlx->surfaces);
+	}
 	if (mlx->automap)
 	{
 		if (mlx->automap->map_img)
 			free_image(mlx, mlx->automap->map_img);
 		free(mlx->automap);
+	}
+	if (mlx->automap_player)
+	{
+		if (mlx->automap_player->map_img)
+			free_image(mlx, mlx->automap_player->map_img);
+		free(mlx->automap_player);
 	}
 	if (mlx->minimap)
 	{
@@ -40,11 +50,11 @@ static void	free_mlx_images(t_mlx *mlx)
 			free_image(mlx, mlx->minimap->map_img);
 		free(mlx->minimap);
 	}
-	if (mlx->surfaces)
+	if (mlx->minimap_player)
 	{
-		if (mlx->surfaces->map_img)
-			free_image(mlx, mlx->surfaces->map_img);
-		free(mlx->surfaces);
+		if (mlx->minimap_player->map_img)
+			free_image(mlx, mlx->minimap_player->map_img);
+		free(mlx->minimap_player);
 	}
 }
 

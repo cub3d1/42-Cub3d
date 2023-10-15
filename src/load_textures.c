@@ -71,7 +71,6 @@ static void	load_wall_textures(t_cubed *cubed, char *arg)
 void	load_textures(t_cubed *cubed, char *arg)
 {
 	load_wall_textures(cubed, arg);
-	load_image(cubed, cubed->mlx->minimap_player, TEMP_automap_PLAYER);
 	load_image(cubed, cubed->mlx->green_ball, GREEN_BALL);
 	load_image(cubed, cubed->mlx->black_ball, BLACK_BALL);
 	cubed->player->left_plane_x = 0;

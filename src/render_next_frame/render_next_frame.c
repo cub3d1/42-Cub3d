@@ -15,15 +15,13 @@
 static void	print_cubes(t_mlx *mlx, t_player *player)
 {
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
-	mlx->minimap_player->img, (int)player->pos_x, (int)player->pos_y);
+	mlx->surfaces->map_img->img, 0, 0);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
 	mlx->green_ball->img, player->dir_x_pos, player->dir_y_pos);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
 	mlx->black_ball->img, player->left_plane_x_pos, player->left_plane_y_pos);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
 	mlx->black_ball->img, player->right_plane_x_pos, player->right_plane_y_pos);
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
-	mlx->surfaces->map_img->img, 0, 0);
 }
 
 void	print_info(t_cubed *cubed, int frame_counter)
@@ -58,12 +56,12 @@ int	render_next_frame(t_cubed *cubed)
 	{
 		print_cubes(cubed->mlx, cubed->player);
 //		render_whole_frame(cubed);
-		show_map2d(cubed, cubed->mlx->minimap);
+		show_map2d(cubed, cubed->mlx->minimap, 0, WIN_H - (WIN_H / 10));
 	}
 	else
 	{
 		mlx_clear_window(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr);	
-		show_map2d(cubed, cubed->mlx->automap);
+		show_map2d(cubed, cubed->mlx->automap, 0, 0);
 	}
 	print_info(cubed, frame_counter++);
 	return (0);

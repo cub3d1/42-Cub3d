@@ -20,12 +20,9 @@ static void	draw_map_to_canvas(t_cubed *cubed)
 	(void)cubed;
 }
 */
-void	show_map2d(t_cubed *cubed, t_canvas *canvas)
+void	show_map2d(t_cubed *cubed, t_canvas *canvas, int x, int y)
 {
 
 	mlx_put_image_to_window(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, \
-		canvas->map_img->img, 0, 0);
-	mlx_put_image_to_window(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, \
-		cubed->mlx->minimap_player->img, (int)cubed->player->pos_x, \
-		(int)cubed->player->pos_y);
+		canvas->map_img->img, x, y);
 }
