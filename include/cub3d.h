@@ -161,6 +161,11 @@ void	init_mlx_struct(t_cubed *cubed);
 /*		init_canvases.c		*/	
 void	init_canvases(t_cubed *cubed);
 
+/*		pre_render.c	*/
+void	draw_ceiling(int *ceiling, t_our_img *canvas);
+void	draw_floor(int *floor, t_our_img *canvas);
+void	draw_map2d(char **map, t_canvas *map2d);
+
 /*		map_utils.c		*/
 float	get_biggest_line(char **map);
 float	get_array_size(char **map);
