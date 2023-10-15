@@ -26,8 +26,8 @@
 # include <math.h>
 
 /*		window size		*/
-# define WIN_W 500
-# define WIN_H 500
+# define WIN_W 1360
+# define WIN_H 728
 
 /*		keystrokes		*/
 # define ESCAPE 65307
