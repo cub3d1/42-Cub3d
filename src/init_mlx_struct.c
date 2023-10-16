@@ -27,17 +27,12 @@ static void	malloc_canvas_structs(t_mlx *mlx)
 {
 	mlx->surfaces = malloc(sizeof(t_canvas));
 	mlx->automap = malloc(sizeof(t_canvas));
-	mlx->automap_player = malloc(sizeof(t_canvas));
 	mlx->minimap = malloc(sizeof(t_canvas));
-	mlx->minimap_player = malloc(sizeof(t_canvas));
-	if (mlx->surfaces && mlx->automap && mlx->minimap \
-		&& mlx->automap_player && mlx->minimap_player)
+	if (mlx->surfaces && mlx->automap && mlx->minimap)
 	{
 		mlx->surfaces->map_img = malloc(sizeof(t_our_img));
 		mlx->automap->map_img = malloc(sizeof(t_our_img));
-		mlx->automap_player->map_img = malloc(sizeof(t_our_img));
 		mlx->minimap->map_img = malloc(sizeof(t_our_img));
-		mlx->minimap_player->map_img = malloc(sizeof(t_our_img));
 	}
 }
 
@@ -64,7 +59,7 @@ void	init_mlx_struct(t_cubed *cubed)
 	malloc_img_structs(cubed, mlx);
 	malloc_canvas_structs(mlx);
 		if (!mlx->text_n || !mlx->text_s || !mlx->text_e || !mlx->text_w \
-		|| !mlx->minimap_player || !mlx->black_ball || !mlx->green_ball \
+		|| !mlx->black_ball || !mlx->green_ball \
 		|| !mlx->surfaces || !mlx->surfaces->map_img \
 		|| !mlx->automap || !mlx->automap->map_img \
 		|| !mlx->minimap || !mlx->minimap->map_img)
@@ -76,8 +71,6 @@ void	init_mlx_struct(t_cubed *cubed)
 	init_img_struct(mlx->green_ball);
 	init_img_struct(mlx->black_ball);
 	init_img_struct(mlx->automap->map_img);
-	init_img_struct(mlx->automap_player->map_img);
 	init_img_struct(mlx->minimap->map_img);
-	init_img_struct(mlx->minimap_player->map_img);
 	init_img_struct(mlx->surfaces->map_img);
 }

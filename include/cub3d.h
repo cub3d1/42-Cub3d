@@ -95,9 +95,7 @@ typedef struct s_mlx
 	t_our_img	*black_ball;
 	t_canvas	*surfaces;
 	t_canvas	*automap;
-	t_canvas	*automap_player;
 	t_canvas	*minimap;
-	t_canvas	*minimap_player;
 }				t_mlx;
 
 typedef struct s_keys

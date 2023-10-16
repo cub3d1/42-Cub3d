@@ -42,23 +42,11 @@ static void	free_canvases(t_mlx *mlx)
 			free_image(mlx, mlx->automap->map_img);
 		free(mlx->automap);
 	}
-	if (mlx->automap_player)
-	{
-		if (mlx->automap_player->map_img)
-			free_image(mlx, mlx->automap_player->map_img);
-		free(mlx->automap_player);
-	}
 	if (mlx->minimap)
 	{
 		if (mlx->minimap->map_img)
 			free_image(mlx, mlx->minimap->map_img);
 		free(mlx->minimap);
-	}
-	if (mlx->minimap_player)
-	{
-		if (mlx->minimap_player->map_img)
-			free_image(mlx, mlx->minimap_player->map_img);
-		free(mlx->minimap_player);
 	}
 }
 
