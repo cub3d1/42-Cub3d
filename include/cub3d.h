@@ -77,6 +77,9 @@ typedef struct s_canvas
 {
 	int				wall_w;
 	int				wall_h;
+	int				pos_x;
+	int				pos_y;
+	int				scale;
 	t_our_img		*map_img;
 	struct s_canvas	*next;
 }				t_canvas;
@@ -161,7 +164,7 @@ void	init_player_struct(t_player *player, char **map, int y);
 void	init_mlx_struct(t_cubed *cubed);
 
 /*		init_canvases.c		*/	
-void	init_canvases(t_cubed *cubed);
+void	init_pre_render(t_cubed *cubed);
 
 /*		pre_render.c	*/
 void	draw_ceiling(int *ceiling, t_our_img *canvas);
@@ -229,8 +232,9 @@ void	update_player_dir(t_cubed *cubed, t_player *player);
 void	move_player(t_player *player, t_keys *keys);
 void	check_borders(t_player *player);
 
-/*	./render_next_frame/automap.c */
-void	show_map2d(t_cubed *cubed, t_canvas *canvas, int x, int y);
+/*	./render_next_frame/show_map2d.c */
+void	show_map2d(t_cubed *cubed, t_canvas *canvas);
+void	show_player(t_cubed *cubed, t_our_img *player, t_canvas *map);
 
 /*			free.c		*/
 int		free_stuff(t_cubed *cubed, int err_code);

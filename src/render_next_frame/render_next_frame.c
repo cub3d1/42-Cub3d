@@ -56,12 +56,14 @@ int	render_next_frame(t_cubed *cubed)
 	{
 		print_cubes(cubed->mlx, cubed->player);
 //		render_whole_frame(cubed);
-		show_map2d(cubed, cubed->mlx->minimap, 0, WIN_H - (WIN_H / 10));
+		show_map2d(cubed, cubed->mlx->minimap);
+		show_player(cubed, cubed->mlx->minimap_player, cubed->mlx->minimap);
 	}
 	else
 	{
 		mlx_clear_window(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr);	
-		show_map2d(cubed, cubed->mlx->automap, 0, 0);
+		show_map2d(cubed, cubed->mlx->automap);
+		show_player(cubed, cubed->mlx->automap_player, cubed->mlx->automap);
 	}
 	print_info(cubed, frame_counter++);
 	return (0);
