@@ -50,8 +50,8 @@ void	init_pre_render(t_cubed *cubed)
 	mlx = cubed->mlx;
 	init_canvas(cubed, mlx->surfaces, 1);
 	init_canvas(cubed, mlx->automap, 1);
-	mlx->automap->wall_w++;
-	mlx->automap->wall_h++;
+//	mlx->automap->wall_w++;
+//	mlx->automap->wall_h++;
 	init_canvas(cubed, mlx->minimap, 10);
 	mlx->minimap->pos_y = WIN_H - (WIN_H / 10);
 	init_sprite(cubed, mlx->automap_player);
