@@ -46,6 +46,8 @@ static void	malloc_img_structs(t_cubed *cubed, t_mlx *mlx)
 	mlx->text_w = malloc(sizeof(t_our_img));
 	mlx->green_ball = malloc(sizeof(t_our_img));
 	mlx->black_ball = malloc(sizeof(t_our_img));
+	mlx->automap_player = malloc(sizeof(t_our_img));
+	mlx->minimap_player = malloc(sizeof(t_our_img));
 	if (!mlx->text_n || !mlx->text_s || !mlx->text_e || !mlx->text_w \
 		|| !mlx->green_ball || !mlx->black_ball)
 		exit_err(cubed, 5);
@@ -70,6 +72,8 @@ void	init_mlx_struct(t_cubed *cubed)
 	init_img_struct(mlx->text_w);
 	init_img_struct(mlx->green_ball);
 	init_img_struct(mlx->black_ball);
+	init_img_struct(mlx->automap_player);
+	init_img_struct(mlx->minimap_player);
 	init_img_struct(mlx->automap->map_img);
 	init_img_struct(mlx->minimap->map_img);
 	init_img_struct(mlx->surfaces->map_img);

@@ -26,6 +26,10 @@ static void	free_mlx_images(t_mlx *mlx)
 		free_image(mlx, mlx->green_ball);
 	if (mlx->black_ball)
 		free_image(mlx, mlx->black_ball);
+	if (mlx->automap_player)
+		free_image(mlx, mlx->automap_player);
+	if (mlx->minimap_player)
+		free_image(mlx, mlx->minimap_player);
 }
 
 static void	free_canvases(t_mlx *mlx)

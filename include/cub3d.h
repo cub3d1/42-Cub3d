@@ -93,6 +93,8 @@ typedef struct s_mlx
 	t_our_img	*text_w;
 	t_our_img	*green_ball;
 	t_our_img	*black_ball;
+	t_our_img	*automap_player;
+	t_our_img	*minimap_player;
 	t_canvas	*surfaces;
 	t_canvas	*automap;
 	t_canvas	*minimap;
