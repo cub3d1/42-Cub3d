@@ -67,6 +67,7 @@ int	render_next_frame(t_cubed *cubed)
 		mlx_clear_window(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr);	
 		show_map2d(cubed, cubed->mlx->automap);
 		show_player(cubed, cubed->mlx->automap_player, cubed->mlx->automap);
+		
 	}
 	print_info(cubed, frame_counter++);
 	return (0);

@@ -42,8 +42,8 @@
 # define KEY_M 109
 # define KEY_TAB 65289
 
-# define SENSITIVITY 0.5f
-# define VELOCITY 0.2
+# define SENSITIVITY 0.8f
+# define VELOCITY 0.1
 # define RAY_LENGHT 50
 
 # define ON_KEYPRESS 2
@@ -59,7 +59,8 @@
 # define PLAYER_TKNS "NSEW"
 
 /*		minimap scale	*/
-# define MINIMAP_SCALE 8
+# define MINIMAP_SCALE 4
+# define MAP_PLAYER_SCALE 8
 
 /*		texture			*/
 # define TEMP_automap_PLAYER "./textures/temp_player.xpm"
