@@ -56,8 +56,11 @@ int	render_next_frame(t_cubed *cubed)
 	{
 		print_cubes(cubed->mlx, cubed->player);
 //		render_whole_frame(cubed);
-		show_map2d(cubed, cubed->mlx->minimap);
-		show_player(cubed, cubed->mlx->minimap_player, cubed->mlx->minimap);
+		if (cubed->keys->show_minimap)
+		{
+			show_map2d(cubed, cubed->mlx->minimap);
+			show_player(cubed, cubed->mlx->minimap_player, cubed->mlx->minimap);
+		}
 	}
 	else
 	{

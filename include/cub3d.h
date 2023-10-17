@@ -39,6 +39,7 @@
 # define KEY_LEFT 65361
 # define KEY_DOWN 65364
 # define KEY_RIGHT 65363
+# define KEY_M 109
 # define KEY_TAB 65289
 
 # define SENSITIVITY 0.5f
@@ -111,6 +112,7 @@ typedef struct s_keys
 	bool	d;
 	bool	left;
 	bool	right;
+	bool	show_minimap;
 	bool	show_automap;
 }				t_keys;
 
