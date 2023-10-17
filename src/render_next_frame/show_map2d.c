@@ -29,9 +29,9 @@ void	show_player(t_cubed *cubed, t_our_img *player, t_canvas *map)
 
 	mlx = cubed->mlx;
 	pos_x = map->pos_x + ((int)cubed->player->pos_x / map->scale);
-	pos_x += player->w / 2;
+	pos_x -= player->w / 2;
 	pos_y = map->pos_y + ((int)cubed->player->pos_y / map->scale);
-	pos_y += player->h / 2;
+	pos_y -= player->h / 2;
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
 	player->img, pos_x, pos_y);
 	(void)map;

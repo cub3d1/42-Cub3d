@@ -58,6 +58,9 @@
 # define MAP_TKNS "01"
 # define PLAYER_TKNS "NSEW"
 
+/*		minimap scale	*/
+# define MINIMAP_SCALE 8
+
 /*		texture			*/
 # define TEMP_automap_PLAYER "./textures/temp_player.xpm"
 # define GREEN_BALL "./textures/green_ball.xpm"
@@ -165,7 +168,7 @@ void	init_player_struct(t_player *player, char **map, int y);
 /*		init_mlx_struct.c	*/
 void	init_mlx_struct(t_cubed *cubed);
 
-/*		init_canvases.c		*/	
+/*		init_pre_render.c		*/	
 void	init_pre_render(t_cubed *cubed);
 
 /*		pre_render.c	*/
@@ -176,6 +179,21 @@ void	draw_map2d(char **map, t_canvas *map2d);
 /*		map_utils.c		*/
 float	get_biggest_line(char **map);
 float	get_array_size(char **map);
+
+/*	load_textures.c	*/
+void	load_textures(t_cubed *cubed, char *arg);
+
+/*	set_automap_walls.c	*/
+//void	set_automap_walls(t_cubed *cubed);
+
+/*			free.c		*/
+int		free_stuff(t_cubed *cubed, int err_code);
+
+/*		free_textures.c	*/
+void	free_image(t_mlx *mlx, t_our_img *img);
+
+/*			exit_err.c 	*/
+void	exit_err(t_cubed *cubed, int err_code);
 
 /*		./parser/parser.c */
 void	parser(t_cubed *cubed, char *arg);
@@ -213,11 +231,6 @@ int		load_map(t_cubed *cubed, char *path);
 /*	./parser/load_colors.c	*/
 void	load_colors(t_cubed *cubed, char *path);
 
-/*	./src/load_textures.c	*/
-void	load_textures(t_cubed *cubed, char *arg);
-
-/*	./src/set_automap_walls.c	*/
-void	set_automap_walls(t_cubed *cubed);
 
 /*	./render_next_frame/render_next_frame.c */
 int		render_next_frame(t_cubed *cubed);
@@ -241,14 +254,6 @@ void	check_borders(t_cubed *cubed, t_player *player, float prev_x, float prev_y)
 void	show_map2d(t_cubed *cubed, t_canvas *canvas);
 void	show_player(t_cubed *cubed, t_our_img *player, t_canvas *map);
 
-/*			free.c		*/
-int		free_stuff(t_cubed *cubed, int err_code);
-
-/*		free_textures.c	*/
-void	free_image(t_mlx *mlx, t_our_img *img);
-
-/*			exit_err.c 	*/
-void	exit_err(t_cubed *cubed, int err_code);
 
 #endif
 
