@@ -94,14 +94,27 @@ void	move_player(t_player *player, t_keys *keys)
 	}
 }
 
-void	check_borders(t_player *player)
+//	need to redo map allocation, otherwise this can segfault
+void	check_borders(t_cubed *cubed, t_player *player, float prev_x, float prev_y)
 {
-	if (player->pos_y < 0)
-		player->pos_y = 0;
-	if (player->pos_y > WIN_H)
-		player->pos_y = WIN_H;
-	if (player->pos_x < 0)
-		player->pos_x = 0;
-	if (player->pos_x > WIN_W)
-		player->pos_x = WIN_W;
+	char	**map;
+
+	map = cubed->map;
+	if ((int)player->pos_y_array < cubed->map_height \
+		&& (int)player->pos_x_array <= (int)ft_strlen(map[(int)player->pos_y_array]) \
+		&& map[(int)player->pos_y_array][(int)player->pos_x_array] == '1')
+	{
+		if ((int)prev_x != (int)player->pos_x_array && (int)prev_y != (int)player->pos_y_array)
+		{
+			ft_printf_fd(1, "hit on xy\n");
+		}
+		else if ((int)prev_x != (int)player->pos_x_array)
+		{
+			ft_printf_fd(1, "hit on x\n");
+		}
+		else if ((int)prev_y != (int)player->pos_y_array)
+		{
+			ft_printf_fd(1, "hit on y\n");
+		}
+	}
 }

@@ -232,7 +232,7 @@ void	read_mouse_input(t_cubed *cubed);
 void	read_key_input(t_cubed *cubed);
 void	update_player_dir(t_cubed *cubed, t_player *player);
 void	move_player(t_player *player, t_keys *keys);
-void	check_borders(t_player *player);
+void	check_borders(t_cubed *cubed, t_player *player, float prev_x, float prev_y);
 
 /*	./render_next_frame/show_map2d.c */
 void	show_map2d(t_cubed *cubed, t_canvas *canvas);
