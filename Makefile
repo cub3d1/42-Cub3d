@@ -1,5 +1,5 @@
 NAME = cub3D # The Cubed!!
-CC = clang
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -ggdb -fsanitize=address -Werror=unused-result
 RM = rm -f
 LIBFT = ./include/libft/libft.a
