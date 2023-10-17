@@ -93,15 +93,3 @@ void	move_player(t_player *player, t_keys *keys)
 		player->pos_y += sin((player->angle + 90) * M_PI / 180) * VELOCITY;
 	}
 }
-
-void	check_borders(t_player *player)
-{
-	if (player->pos_y < 0)
-		player->pos_y = 0;
-	if (player->pos_y > WIN_H)
-		player->pos_y = WIN_H;
-	if (player->pos_x < 0)
-		player->pos_x = 0;
-	if (player->pos_x > WIN_W)
-		player->pos_x = WIN_W;
-}
