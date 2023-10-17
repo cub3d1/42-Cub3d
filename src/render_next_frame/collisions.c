@@ -15,18 +15,34 @@
 static void	collide_on_x(t_cubed *cubed, t_player *player, float prev_x)
 {
 	if ((int)player->pos_x_array < (int)prev_x)
-		player->pos_x_array = (int)prev_x + 0.1;
+	{
+		if (prev_x != (int)player->pos_x_array + 1.1)
+			player->pos_x_array = (int)player->pos_x_array + 1.1;
+		else
+			player->pos_x_array = prev_x;
+	}
 	else
-		player->pos_x_array = (int)player->pos_x_array - 0.1;
+	{
+		if (prev_x != (int)player->pos_x_array - 0.1)
+			player->pos_x_array = (int)player->pos_x_array - 0.1;
+		else
+			player->pos_x_array = prev_x;
+	}
 	player->pos_x = player->pos_x_array / cubed->map_width * WIN_W;
 }
 
 static void	collide_on_y(t_cubed *cubed, t_player *player, float prev_y)
 {
 	if ((int)player->pos_y_array < (int)prev_y)
-		player->pos_y_array = (int)prev_y + 0.1;
+	{
+		if (prev_y != (int)player->pos_y_array + 1.1)
+			player->pos_y_array = (int)player->pos_y_array + 1.1;
+	}
 	else
-		player->pos_y_array = (int)player->pos_y_array - 0.1;
+	{
+		if (prev_y != (int)player->pos_y_array - 0.1)
+			player->pos_y_array = (int)player->pos_y_array - 0.1;
+	}
 	player->pos_y = player->pos_y_array / cubed->map_height * WIN_H;
 }
 
