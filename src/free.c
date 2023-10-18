@@ -54,16 +54,6 @@ static void	free_canvases(t_mlx *mlx)
 	}
 }
 
-/*	NEW STUFF	*/
-static void	free_raycaster(t_list *ray)
-{
-	if (ray->next)
-		free_raycaster(ray->next);
-	if (ray->content)
-		free(ray->content);
-	free(ray);
-}
-
 static void	free_mlx(t_mlx *mlx)
 {
 	if (mlx)

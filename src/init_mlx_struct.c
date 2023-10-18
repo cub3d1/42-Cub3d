@@ -54,43 +54,6 @@ static void	malloc_img_structs(t_cubed *cubed, t_mlx *mlx)
 		exit_err(cubed, 5);
 }
 
-/*		NEW STUFF	*/
-static void	init_raycaster(t_cubed *cubed)
-{
-	t_list	*raycaster;
-	t_list	*ray;
-	int		i;
-
-	raycaster = malloc(sizeof(t_list));
-	if (!raycaster)
-		return (NULL);
-	ray = raycaster;
-	i = 0;
-	/*
-		while (i < nr_of_rays (get from FOV))
-		{
-			ray->content = malloc(sizeof(s_ray));
-			if (!ray->content)
-			{
-				cubed->mlx->raycaster = raycaster;
-				exit_err(cubed, 5);
-			}
-			i++;
-			if (i < nr_of_rays)
-			{
-				ray->next = malloc(sizeof(t_list));
-				if (!ray->next)
-				{
-					cubed->mlx->raycaster = raycaster;
-					exit_err(cubed, 5);
-				}
-			}
-		}
-		ray->next = NULL;
-	*/
-	return (raycaster);
-}
-
 void	init_mlx_struct(t_cubed *cubed)
 {
 	t_mlx	*mlx;
@@ -98,13 +61,11 @@ void	init_mlx_struct(t_cubed *cubed)
 	mlx = cubed->mlx;
 	malloc_img_structs(cubed, mlx);
 	malloc_canvas_structs(mlx);
-	mlx->raycaster = init_raycaster(cubed);	// NEW STUFF
 		if (!mlx->text_n || !mlx->text_s || !mlx->text_e || !mlx->text_w \
 		|| !mlx->black_ball || !mlx->green_ball \
 		|| !mlx->surfaces || !mlx->surfaces->map_img \
 		|| !mlx->automap || !mlx->minimap \
-		|| !mlx->automap->map_img || !mlx->minimap->map_img \
-		|| !mlx->raycaster)
+		|| !mlx->automap->map_img || !mlx->minimap->map_img)
 		exit_err(cubed, 5);
 	init_img_struct(mlx->text_n);
 	init_img_struct(mlx->text_s);

@@ -89,16 +89,6 @@ typedef struct s_canvas
 	t_our_img		*map_img;
 }				t_canvas;
 
-/*	NEW STUFF	*/
-typedef struct s_ray
-{
-	float	wall_x;
-	float	wall_y;
-	float	plane_x;
-	float	plane_y;
-	char	hit;	//	'x' or 'y'
-}				t_ray;
-
 typedef struct s_mlx
 {
 	void		*mlx_ptr;
@@ -116,7 +106,6 @@ typedef struct s_mlx
 	t_canvas	*surfaces;
 	t_canvas	*automap;
 	t_canvas	*minimap;
-	t_list		*raycaster;	//	NEW STUFF
 }				t_mlx;
 
 typedef struct s_keys
