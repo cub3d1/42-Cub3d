@@ -17,10 +17,10 @@ static void	init_canvas(t_cubed *cubed, t_canvas *canvas, int scale)
 	t_our_img	*map_img;
 
 	map_img = canvas->map_img;
-	map_img->w = WIN_W / scale;
-	map_img->h = WIN_H / scale;
-	canvas->wall_w = (map_img->w / cubed->map_width);
-	canvas->wall_h = (map_img->h / cubed->map_height);
+	canvas->wall_w = ((WIN_W / scale) / cubed->map_width);
+	canvas->wall_h = ((WIN_H / scale) / cubed->map_height);
+	map_img->w = canvas->wall_w * (cubed->map_width - 1);
+	map_img->h = canvas->wall_h * cubed->map_height;
 	canvas->pos_x = 0;
 	canvas->pos_y = 0;
 	canvas->scale = scale;
