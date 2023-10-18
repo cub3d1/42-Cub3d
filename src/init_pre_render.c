@@ -12,6 +12,19 @@
 
 #include "../include/cub3d.h"
 
+static void	init_canvas_image(t_cubed *cubed, t_canvas *canvas)
+{
+	t_our_img	*map_img;
+
+	map_img = canvas->map_img;
+	map_img->img = mlx_new_image(cubed->mlx->mlx_ptr, map_img->w, map_img->h);
+	map_img->addr = mlx_get_data_addr(map_img->img, &map_img->bpp, \
+			&map_img->line_length, &map_img->endian);
+	if (!map_img->img || !map_img->addr)
+		exit_err(cubed, 6);
+
+}
+
 static void	init_canvas(t_cubed *cubed, t_canvas *canvas, int scale)
 {
 	t_our_img	*map_img;
@@ -24,11 +37,6 @@ static void	init_canvas(t_cubed *cubed, t_canvas *canvas, int scale)
 	canvas->pos_x = 0;
 	canvas->pos_y = 0;
 	canvas->scale = scale;
-	map_img->img = mlx_new_image(cubed->mlx->mlx_ptr, map_img->w, map_img->h);
-	map_img->addr = mlx_get_data_addr(map_img->img, &map_img->bpp, \
-			&map_img->line_length, &map_img->endian);
-	if (!map_img->img || !map_img->addr)
-		exit_err(cubed, 6);
 }
 
 static void	draw_sprite(t_our_img *sprite)
@@ -71,9 +79,14 @@ void	init_pre_render(t_cubed *cubed)
 
 	mlx = cubed->mlx;
 	init_canvas(cubed, mlx->surfaces, 1);
+	mlx->surfaces->map_img->w = WIN_W;
+	mlx->surfaces->map_img->h = WIN_H;
 	init_canvas(cubed, mlx->automap, 1);
 	init_canvas(cubed, mlx->minimap, MINIMAP_SCALE);
 	mlx->minimap->pos_y = WIN_H - (WIN_H / 10);
+	init_canvas_image(cubed, mlx->surfaces);
+	init_canvas_image(cubed, mlx->automap);
+	init_canvas_image(cubed, mlx->minimap);
 	init_sprite(cubed, mlx->automap_player, mlx->automap);
 	init_sprite(cubed, mlx->minimap_player, mlx->minimap);
 	draw_ceiling(mlx->ceiling_color, mlx->surfaces->map_img);

@@ -62,7 +62,6 @@ static void	free_mlx(t_mlx *mlx)
 			mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 		free_mlx_images(mlx);
 		free_canvases(mlx);
-		free_raycaster(mlx->raycaster);
 		if (mlx->mlx_ptr)
 		{
 			mlx_destroy_display(mlx->mlx_ptr);
