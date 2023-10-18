@@ -30,6 +30,10 @@
 # define WIN_H 728
 
 /*		keystrokes		*/
+# define ON_KEYPRESS 2
+# define ON_KEYRELEASE 3
+# define ON_DESTROY 17
+
 # define ESCAPE 65307
 # define ON_W 119
 # define ON_A 97
@@ -42,27 +46,24 @@
 # define KEY_M 109
 # define KEY_TAB 65289
 
+/*		player params	*/
 # define SENSITIVITY 0.8f
 # define VELOCITY 0.1
 # define RAY_LENGHT 50
-
-# define ON_KEYPRESS 2
-# define ON_KEYRELEASE 3
-# define ON_DESTROY 17
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
 
-/*		map tokens		*/
-# define MAP_TKNS "01"
-# define PLAYER_TKNS "NSEW"
-
 /*		minimap scale	*/
 # define MINIMAP_SCALE 4
 # define MAP_PLAYER_SCALE 8
 
-/*		texture			*/
+/*		map tokens		*/
+# define MAP_TKNS "01"
+# define PLAYER_TKNS "NSEW"
+
+/*		temp textures	*/
 # define TEMP_automap_PLAYER "./textures/temp_player.xpm"
 # define GREEN_BALL "./textures/green_ball.xpm"
 # define BLACK_BALL "./textures/black_ball.xpm"
@@ -86,8 +87,17 @@ typedef struct s_canvas
 	int				pos_y;
 	int				scale;
 	t_our_img		*map_img;
-	struct s_canvas	*next;
 }				t_canvas;
+
+/*	NEW STUFF	*/
+typedef struct s_ray
+{
+	float	wall_x;
+	float	wall_y;
+	float	plane_x;
+	float	plane_y;
+	char	hit;	//	[h]orizontal or [v]ertical
+}				t_ray;
 
 typedef struct s_mlx
 {
@@ -106,6 +116,7 @@ typedef struct s_mlx
 	t_canvas	*surfaces;
 	t_canvas	*automap;
 	t_canvas	*minimap;
+	t_list		*raycaster;	//	NEW STUFF
 }				t_mlx;
 
 typedef struct s_keys
