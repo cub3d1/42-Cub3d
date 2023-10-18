@@ -82,6 +82,7 @@ void	init_pre_render(t_cubed *cubed)
 	mlx->surfaces->map_img->w = WIN_W;
 	mlx->surfaces->map_img->h = WIN_H;
 	init_canvas(cubed, mlx->automap, 1);
+	mlx->automap->pos_x = (WIN_W - mlx->automap->map_img->w) / 2;
 	init_canvas(cubed, mlx->minimap, MINIMAP_SCALE);
 	mlx->minimap->pos_y = WIN_H - (WIN_H / 10);
 	init_canvas_image(cubed, mlx->surfaces);
