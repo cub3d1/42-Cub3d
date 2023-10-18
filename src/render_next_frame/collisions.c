@@ -46,14 +46,15 @@ static void	collide_on_y(t_cubed *cubed, t_player *player, float prev_y)
 	player->pos_y = player->pos_y_array / cubed->map_height * WIN_H;
 }
 
-void	check_borders(t_cubed *cubed, t_player *player, float prev_x, float prev_y)
+void	check_borders(t_cubed *cubed, t_player *player, \
+	float prev_x, float prev_y)
 {
 	char	**map;
 	int		line_len;
 
 	map = cubed->map;
-	if ( player->pos_x >= 0 && player->pos_y >= 0 \
-		&&(int)player->pos_y_array < cubed->map_height)
+	if (player->pos_x >= 0 && player->pos_y >= 0 \
+		&& (int)player->pos_y_array < cubed->map_height)
 	{
 		line_len = (int)ft_strlen(map[(int)player->pos_y_array]);
 		if ((int)player->pos_y_array < cubed->map_height \
@@ -67,4 +68,3 @@ void	check_borders(t_cubed *cubed, t_player *player, float prev_x, float prev_y)
 		}
 	}
 }
-

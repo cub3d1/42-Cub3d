@@ -53,7 +53,6 @@ void	init_player_struct(t_player *player, char **map, int y)
 	set_player_direction(player, map[y][x]);
 	player->plane_vector_x = 0;
 	player->plane_vector_y = 0.66;
-
 }
 
 	//	set player->direction according to token in map_row[x]

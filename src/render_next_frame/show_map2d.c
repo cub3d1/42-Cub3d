@@ -12,7 +12,6 @@
 
 #include "../../include/cub3d.h"
 
-
 /*
 static void	draw_map_to_canvas(t_cubed *cubed)
 {
@@ -25,7 +24,6 @@ void	show_player(t_cubed *cubed, t_our_img *player, t_canvas *map)
 	t_mlx	*mlx;
 	int		pos_x;
 	int		pos_y;
-
 
 	mlx = cubed->mlx;
 	pos_x = map->pos_x + ((int)cubed->player->pos_x / map->scale) \
@@ -44,7 +42,6 @@ void	show_player(t_cubed *cubed, t_our_img *player, t_canvas *map)
 
 void	show_map2d(t_cubed *cubed, t_canvas *canvas)
 {
-
 	mlx_put_image_to_window(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, \
 		canvas->map_img->img, canvas->pos_x, canvas->pos_y);
 }

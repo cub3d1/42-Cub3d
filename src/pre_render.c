@@ -56,7 +56,8 @@ void	draw_map2d(char **map, t_canvas *map2d)
 	}
 }
 
-static unsigned int	get_rgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
+static unsigned int	get_rgb(unsigned char t, unsigned char r, \
+	unsigned char g, unsigned char b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
@@ -64,9 +65,9 @@ static unsigned int	get_rgb(unsigned char t, unsigned char r, unsigned char g, u
 void	draw_ceiling(int *ceiling, t_our_img *canvas)
 {
 	unsigned int	color;
-	char *pixel;
-	int	x;
-	int	y;
+	char			*pixel;
+	int				x;
+	int				y;
 
 	color = get_rgb(0, ceiling[0], ceiling[1], ceiling[2]);
 	x = 0;
@@ -88,9 +89,9 @@ void	draw_ceiling(int *ceiling, t_our_img *canvas)
 void	draw_floor(int *floor, t_our_img *canvas)
 {
 	unsigned int	color;
-	char *pixel;
-	int	x;
-	int	y;
+	char			*pixel;
+	int				x;
+	int				y;
 
 	color = get_rgb(0, floor[0], floor[1], floor[2]);
 	x = 0;

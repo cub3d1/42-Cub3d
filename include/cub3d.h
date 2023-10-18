@@ -64,7 +64,7 @@
 # define PLAYER_TKNS "NSEW"
 
 /*		temp textures	*/
-# define TEMP_automap_PLAYER "./textures/temp_player.xpm"
+# define TEMP_AUTOMAP_PLAYER "./textures/temp_player.xpm"
 # define GREEN_BALL "./textures/green_ball.xpm"
 # define BLACK_BALL "./textures/black_ball.xpm"
 
@@ -96,7 +96,7 @@ typedef struct s_ray
 	float	wall_y;
 	float	plane_x;
 	float	plane_y;
-	char	hit;	//	[h]orizontal or [v]ertical
+	char	hit;	//	'x' or 'y'
 }				t_ray;
 
 typedef struct s_mlx
@@ -131,7 +131,6 @@ typedef struct s_keys
 	bool	show_automap;
 }				t_keys;
 
-	//	fov? we might need a camera vector for that
 typedef struct s_player
 {
 	float	pos_x;
@@ -243,7 +242,6 @@ int		load_map(t_cubed *cubed, char *path);
 /*	./parser/load_colors.c	*/
 void	load_colors(t_cubed *cubed, char *path);
 
-
 /*	./render_next_frame/render_next_frame.c */
 int		render_next_frame(t_cubed *cubed);
 void	render_whole_frame(t_cubed *cubed);
@@ -259,13 +257,12 @@ void	update_player_dir(t_cubed *cubed, t_player *player);
 void	move_player(t_player *player, t_keys *keys);
 
 /*	./render_next_frame/collisions.c	*/
-void	check_borders(t_cubed *cubed, t_player *player, float prev_x, float prev_y);
-
+void	check_borders(t_cubed *cubed, t_player *player, \
+	float prev_x, float prev_y);
 
 /*	./render_next_frame/show_map2d.c */
 void	show_map2d(t_cubed *cubed, t_canvas *canvas);
 void	show_player(t_cubed *cubed, t_our_img *player, t_canvas *map);
-
 
 #endif
 
