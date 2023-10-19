@@ -100,6 +100,15 @@ typedef struct s_canvas
 	t_our_img		*map_img;
 }				t_canvas;
 
+typedef struct s_render
+{
+	float	wall_x;
+	float	wall_y;
+	float	plane_x;
+	float	plane_y;
+	char	hit;	//	'x' or 'y'
+}				t_render;
+
 typedef struct s_mlx
 {
 	void		*mlx_ptr;
@@ -117,6 +126,7 @@ typedef struct s_mlx
 	t_canvas	*surfaces;
 	t_canvas	*automap;
 	t_canvas	*minimap;
+	t_list		*renderizer;
 }				t_mlx;
 
 typedef struct s_keys
