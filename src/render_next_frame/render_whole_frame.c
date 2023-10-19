@@ -8,19 +8,20 @@
 
 static int done() { return 0; }
 
-// static void print_vectors (t_player *player, double rayDirX, double rayDirY)
-// {
-// 	printf("rayDirX = %.1f | rayDirY = %.1f\n", rayDirX, rayDirY);
-// }
+static void print_vectors (t_rwf *rwf)
+{
+	printf("rayDirX = %.1f | rayDirY = %.1f\n", rayDirX, rayDirY);
+}
 
 void render_whole_frame(t_cubed *cubed)
 {
 	t_player	*player = cubed->player;
 	t_mlx		*mlx = cubed->mlx;
+	t_rwf		rwf;
 
-	double cameraX = 0;
-  	double rayDirX = player->dir_x + player->plane_vector_x * cameraX;
-  	double rayDirY = player->dir_y + player->plane_vector_y * cameraX;
+	rwf.cameraX = 0;
+  	rwf.rayDirX = player->dir_x + player->plane_vector_x * rwf.cameraX;
+  	rwf.rayDirY = player->dir_y + player->plane_vector_y * rwf.cameraX;
 
 	int deltaDistX;
 	int deltaDistY;
@@ -32,12 +33,12 @@ void render_whole_frame(t_cubed *cubed)
 	 	{
 			while (x < WIN_W)
 			{
-				cameraX = 2 * x / (double)WIN_W - 1;			
-				rayDirX = player->dir_x + player->plane_vector_x * cameraX;
-				rayDirY = player->dir_y + player->plane_vector_y * cameraX;
+				rwf.cameraX = 2 * x / (double)WIN_W - 1;			
+				rwf.rayDirX = player->dir_x + player->plane_vector_x * rwf.cameraX;
+				rwf.rayDirY = player->dir_y + player->plane_vector_y * rwf.cameraX;
 
-				deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
-				deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
+				deltaDistX = sqrt(1 + (rwf.rayDirY * rwf.rayDirY) / (rwf.rayDirX * rwf.rayDirX));
+				deltaDistY = sqrt(1 + (rwf.rayDirX * rwf.rayDirX) / (rwf.rayDirY * rwf.rayDirY));
 				
 				
 				
