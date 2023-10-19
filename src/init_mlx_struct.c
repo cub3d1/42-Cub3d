@@ -54,7 +54,7 @@ static void	malloc_img_structs(t_cubed *cubed, t_mlx *mlx)
 		exit_err(cubed, 5);
 }
 
-static t_list	*init_renderer(t_cubed *cubed, t_list *renderer)
+static void	init_renderer(t_cubed *cubed, t_list *renderer)
 {
 	int	i;
 
