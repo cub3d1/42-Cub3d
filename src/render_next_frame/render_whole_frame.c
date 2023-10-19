@@ -10,7 +10,7 @@ static int done() { return 0; }
 
 static void print_vectors (t_rwf *rwf)
 {
-	printf("rayDirX = %.1f | rayDirY = %.1f\n", rayDirX, rayDirY);
+	printf("rayDirX = %.1f | rayDirY = %.1f\n", rwf->rayDirX, rwf->rayDirY);
 }
 
 void render_whole_frame(t_cubed *cubed)
