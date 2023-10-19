@@ -26,8 +26,8 @@
 # include <math.h>
 
 /*		window size		*/
-# define WIN_W 1360
-# define WIN_H 728
+# define WIN_W 1150
+# define WIN_H 620
 
 /*		keystrokes		*/
 # define ON_KEYPRESS 2
@@ -75,8 +75,18 @@ typedef struct s_rwf
 	double	cameraX;
 	double	rayDirX;
 	double	rayDirY;
-	int		deltaDistX;
-	int		deltaDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	sideDistX;
+	double	sideDistY;
+	double	perpWallDist;
+	int		mapX;
+	int		mapY;
+	int		stepX;
+	int		stepY;
+	int		side;
+	int		lineHeight;
+	int		hit;
 }			t_rwf;
 
 typedef struct s_our_img

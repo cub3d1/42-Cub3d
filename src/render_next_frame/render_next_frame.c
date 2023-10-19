@@ -26,11 +26,11 @@ static void	print_cubes(t_mlx *mlx, t_player *player)
 
 void	print_info(t_cubed *cubed, int frame_counter)
 {
-	// char	*frame;
+	char	*frame;
 
-	// frame = ft_itoa(frame_counter);
-	// ft_printf_fd(1, "frame = %s |", frame);
-	// free(frame);
+	frame = ft_itoa(frame_counter);
+	ft_printf_fd(1, "frame = %s |", frame);
+	free(frame);
 	// printf("p.pos_x = %.1f |", cubed->player->pos_x);
 	// printf("p.pos_y = %.1f |", cubed->player->pos_y);
 	// printf("p.dir_x = %.1f |", cubed->player->dir_x);
@@ -42,20 +42,28 @@ void	print_info(t_cubed *cubed, int frame_counter)
 	// printf("p.pos_x_array = %.1f |", cubed->player->pos_x_array);
 	// printf("p.pos_y_array = %.1f |", cubed->player->pos_y_array);
 	// printf("angle = %.1f |", cubed->player->angle);
-	// printf("\n");
+	printf("\n");
 	(void)cubed; (void)frame_counter;
 }
 
 int	render_next_frame(t_cubed *cubed)
 {
 	static int	frame_counter = 1;
-
+	
+	// if (frame_counter == 1)
+	// {
+	// cubed->player->angle = 45;
+	// cubed->player->dir_x = cos(cubed->player->angle * M_PI / 180);
+	// cubed->player->dir_y = sin(cubed->player->angle * M_PI / 180);
+	// } 
+	// Para tirar depois de resolve bug do deltaX e deltaY
+	
 	update_angle(cubed);
 	update_player_pos(cubed, cubed->keys, cubed->player);
 	if (!cubed->keys->show_automap)
 	{
 		print_cubes(cubed->mlx, cubed->player);
-//		render_whole_frame(cubed);
+		// render_whole_frame(cubed);
 		if (cubed->keys->show_minimap)
 		{
 			show_map2d(cubed, cubed->mlx->minimap);
