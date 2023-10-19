@@ -56,7 +56,7 @@
 # endif
 
 /*		minimap scale	*/
-# define MINIMAP_SCALE 4
+# define MINIMAP_SCALE 2
 # define MAP_PLAYER_SCALE 8
 
 /*		map tokens		*/
