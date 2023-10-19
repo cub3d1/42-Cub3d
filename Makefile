@@ -1,6 +1,6 @@
 NAME = cub3D # The Cubed!!
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -ggdb -fsanitize=address -Werror=unused-result
+CFLAGS = -Wall -Wextra -Werror -ggdb #-fsanitize=address -Werror=unused-result
 RM = rm -f
 LIBFT = ./include/libft/libft.a
 MINILIBX = ./include/mlx_linux/libmlx_Linux.a

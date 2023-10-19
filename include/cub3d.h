@@ -59,7 +59,7 @@
 
 /*		minimap scale	*/
 # define MINIMAP_SCALE 4
-# define MAP_PLAYER_SCALE 2
+# define MAP_PLAYER_SCALE 8
 
 /*		map tokens		*/
 # define MAP_TKNS "01"
