@@ -31,7 +31,7 @@ static void	init_canvas(t_cubed *cubed, t_canvas *canvas, int scale)
 
 	map_img = canvas->map_img;
 	canvas->wall_w = ((WIN_W / scale) / cubed->map_width);
-	canvas->wall_h = ((WIN_H / scale) / cubed->map_height);
+	canvas->wall_h = ((WIN_H / scale) / cubed->map_height + 1);
 	map_img->w = canvas->wall_w * (cubed->map_width - 1);
 	map_img->h = canvas->wall_h * cubed->map_height;
 	canvas->pos_x = 0;
@@ -84,7 +84,7 @@ void	init_pre_render(t_cubed *cubed)
 	init_canvas(cubed, mlx->automap, 1);
 	mlx->automap->pos_x = (WIN_W - mlx->automap->map_img->w) / 2;
 	init_canvas(cubed, mlx->minimap, MINIMAP_SCALE);
-	mlx->minimap->pos_y = WIN_H - (WIN_H / 10);
+	mlx->minimap->pos_y = WIN_H - mlx->minimap->map_img->h;
 	init_canvas_image(cubed, mlx->surfaces);
 	init_canvas_image(cubed, mlx->automap);
 	init_canvas_image(cubed, mlx->minimap);
@@ -96,5 +96,4 @@ void	init_pre_render(t_cubed *cubed)
 	draw_map2d(cubed->map, mlx->minimap);
 	draw_sprite(cubed->mlx->automap_player);
 	draw_sprite(cubed->mlx->minimap_player);
-	mlx->minimap->pos_y = WIN_H - (WIN_H / MINIMAP_SCALE);
 }

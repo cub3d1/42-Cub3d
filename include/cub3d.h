@@ -26,8 +26,8 @@
 # include <math.h>
 
 /*		window size		*/
-# define WIN_W 1150
-# define WIN_H 620
+# define WIN_W 1360
+# define WIN_H 768
 
 /*		keystrokes		*/
 # define ON_KEYPRESS 2
