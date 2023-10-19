@@ -46,6 +46,8 @@
 # define KEY_M 109
 # define KEY_TAB 65289
 
+# define FOV 66
+
 /*		player params	*/
 # define SENSITIVITY 0.8f
 # define VELOCITY 0.1
@@ -57,7 +59,7 @@
 
 /*		minimap scale	*/
 # define MINIMAP_SCALE 4
-# define MAP_PLAYER_SCALE 8
+# define MAP_PLAYER_SCALE 2
 
 /*		map tokens		*/
 # define MAP_TKNS "01"
@@ -67,6 +69,15 @@
 # define TEMP_AUTOMAP_PLAYER "./textures/temp_player.xpm"
 # define GREEN_BALL "./textures/green_ball.xpm"
 # define BLACK_BALL "./textures/black_ball.xpm"
+
+typedef struct s_rwf
+{
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	int		deltaDistX;
+	int		deltaDistY;
+}			t_rwf;
 
 typedef struct s_our_img
 {

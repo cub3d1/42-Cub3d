@@ -61,6 +61,8 @@ void	init_mlx_struct(t_cubed *cubed)
 	mlx = cubed->mlx;
 	malloc_img_structs(cubed, mlx);
 	malloc_canvas_structs(mlx);
+	free(mlx->surfaces->map_img);
+	mlx->surfaces->map_img = NULL;
 		if (!mlx->text_n || !mlx->text_s || !mlx->text_e || !mlx->text_w \
 		|| !mlx->black_ball || !mlx->green_ball \
 		|| !mlx->surfaces || !mlx->surfaces->map_img \
