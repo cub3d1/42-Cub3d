@@ -110,13 +110,16 @@ typedef struct s_canvas
 	t_our_img		*map_img;
 }				t_canvas;
 
+/*	PUT RAYCASTER DATA HERE	*/
 typedef struct s_render
 {
-	float	wall_x;
-	float	wall_y;
-	float	plane_x;
+	//	intersect with raycaster on wall 
+	float	wall_x;		//	on x
+	float	wall_y;		//	on y
+	//	intersect with raycaster on plane
+	float	plane_x;	
 	float	plane_y;
-	char	hit;	//	'x' or 'y'
+	char	hit;		//	'x' or 'y'
 }				t_render;
 
 typedef struct s_mlx
