@@ -8,10 +8,10 @@
 
 static int done() { return 0; }
 
-static void print_vectors (t_player *player, double rayDirX, double rayDirY)
-{
-	printf("rayDirX = %.1f | rayDirY = %.1f\n", rayDirX, rayDirY);
-}
+// static void print_vectors (t_player *player, double rayDirX, double rayDirY)
+// {
+// 	printf("rayDirX = %.1f | rayDirY = %.1f\n", rayDirX, rayDirY);
+// }
 
 void render_whole_frame(t_cubed *cubed)
 {
