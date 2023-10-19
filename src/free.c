@@ -54,6 +54,15 @@ static void	free_canvases(t_mlx *mlx)
 	}
 }
 
+static void	free_renderer(t_list *renderer)
+{
+	if (renderer->next)
+		free_renderer(renderer->next);
+	if (renderer->content)
+		free(renderer->content);
+	free(renderer);
+}
+
 static void	free_mlx(t_mlx *mlx)
 {
 	if (mlx)
@@ -62,6 +71,8 @@ static void	free_mlx(t_mlx *mlx)
 			mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 		free_mlx_images(mlx);
 		free_canvases(mlx);
+		if (mlx->renderer)
+			free_renderer(mlx->renderer);
 		if (mlx->mlx_ptr)
 		{
 			mlx_destroy_display(mlx->mlx_ptr);

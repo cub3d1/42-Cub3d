@@ -54,6 +54,28 @@ static void	malloc_img_structs(t_cubed *cubed, t_mlx *mlx)
 		exit_err(cubed, 5);
 }
 
+static t_list	*init_renderer(t_cubed *cubed, t_list *renderer)
+{
+	int	i;
+
+	i = 0;
+	while (i < WIN_W)
+	{
+		renderer->content = malloc(sizeof(t_render));
+		if (!renderer->content)
+			exit_err(cubed, 5);
+		i++;
+		if (i < WIN_W)
+		{
+			renderer->next = malloc(sizeof(t_list));
+			if (!renderer->next)
+				exit_err(cubed, 5);
+			renderer = renderer->next;
+		}
+	}
+	renderer->next = NULL;
+}
+
 void	init_mlx_struct(t_cubed *cubed)
 {
 	t_mlx	*mlx;
@@ -61,6 +83,7 @@ void	init_mlx_struct(t_cubed *cubed)
 	mlx = cubed->mlx;
 	malloc_img_structs(cubed, mlx);
 	malloc_canvas_structs(mlx);
+	mlx->renderer = malloc(sizeof(t_list));
 	if (!mlx->text_n || !mlx->text_s || !mlx->text_e || !mlx->text_w \
 		|| !mlx->black_ball || !mlx->green_ball \
 		|| !mlx->surfaces || !mlx->surfaces->map_img \
@@ -78,4 +101,5 @@ void	init_mlx_struct(t_cubed *cubed)
 	init_img_struct(mlx->automap->map_img);
 	init_img_struct(mlx->minimap->map_img);
 	init_img_struct(mlx->surfaces->map_img);
+	init_renderer(cubed, mlx->renderer);
 }

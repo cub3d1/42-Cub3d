@@ -139,7 +139,7 @@ typedef struct s_mlx
 	t_canvas	*surfaces;
 	t_canvas	*automap;
 	t_canvas	*minimap;
-	t_list		*renderizer;
+	t_list		*renderer;
 }				t_mlx;
 
 typedef struct s_keys
