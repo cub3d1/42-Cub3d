@@ -82,77 +82,70 @@ void render_whole_frame(t_cubed *cubed)
 
 	init_rwf(&rwf);
 
-	int distance = 0;
 	int x = 0;
-		// while(!done())
-	 	// {
-			while (x < WIN_W)
+	while (x < WIN_W)
+	{
+		update_vectors(&rwf, player, x);
+		update_map_steps(&rwf, player);
+
+		print_vectors(&rwf);
+		
+		while (rwf.hit == 0)
+		{
+			if (rwf.sideDistX < rwf.sideDistY)
 			{
-				distance = 0;
-				update_vectors(&rwf, player, x);
-				update_map_steps(&rwf, player);
-
-				print_vectors(&rwf);
-				
-				while (rwf.hit == 0)
-				{
-					if (rwf.sideDistX < rwf.sideDistY)
-					{
-						rwf.sideDistX += rwf.deltaDistX;
-						rwf.mapX += rwf.stepX;
-						rwf.side = 0;
-					}
-					else
-					{
-						rwf.sideDistY += rwf.deltaDistY;
-						rwf.mapY += rwf.stepY;
-						rwf.side = 1;
-					}
-					if (cubed->map[rwf.mapY][rwf.mapX] == '1')
-						rwf.hit = 1;
-
-				}
-
-
-
-				// ft_printf_fd(1, "[RWF] rwf.mapX = %d|rwf.mapY = %d\n", rwf.mapX, rwf.mapY);
-
-				// printf("[RWF] rwf.sideDistX = %.1f|rwf.sideDistY = %.1f\n", rwf.sideDistX, rwf.sideDistY);
-
-				// printf("[RWF] rwf.deltaDistX = %.1f|rwf.deltaDistY = %.1f\n", rwf.deltaDistX, rwf.deltaDistY); 
-				
-				// exit(1);
-				
-				// if (rwf.side == 0)
-				// 	rwf.perpWallDist = (rwf.sideDistX);					
-				// else
-				// 	rwf.perpWallDist = (rwf.sideDistY);
-
-				// // rwf.perpWallDist = 2;
-				// // printf("[RWF] rwf.perpWallDist = %.1f\n", rwf.perpWallDist);
-
-				// rwf.lineHeight = (int)(WIN_H / rwf.perpWallDist);
-
-
-				// rwf.lineHeight = 400;
-				// // printf("[RWF] rwf.lineHeight = %d\n", rwf.lineHeight);
-				// // exit(1);
-
-				// 	int drawStart = -rwf.lineHeight / 2 + WIN_H / 2;
-				// 	if(drawStart < 0) drawStart = 0;
-
-				// 	int drawEnd = rwf.lineHeight / 2 + WIN_H / 2;
-				// 	if(drawEnd >= WIN_H) drawEnd = WIN_H - 1;
-				
-				// // ft_printf_fd(1, "[RWF] drawStart = %d|drawEnd = %d\n", drawStart, drawEnd);
-				// // exit(1);
-				// while (drawStart < drawEnd)
-				// {
-				// 	mlx_pixel_put(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, x, 	drawStart, 0x0000FF00);
-				// 	drawStart++;
-				// }
-				x++;
+				rwf.sideDistX += rwf.deltaDistX;
+				rwf.mapX += rwf.stepX;
+				rwf.side = 0;
 			}
-	 	// }
+			else
+			{
+				rwf.sideDistY += rwf.deltaDistY;
+				rwf.mapY += rwf.stepY;
+				rwf.side = 1;
+			}
+			if (cubed->map[rwf.mapY][rwf.mapX] == '1')
+				rwf.hit = 1;
+
+		}
+
+		// ft_printf_fd(1, "[RWF] rwf.mapX = %d|rwf.mapY = %d\n", rwf.mapX, rwf.mapY);
+
+		// printf("[RWF] rwf.sideDistX = %.1f|rwf.sideDistY = %.1f\n", rwf.sideDistX, rwf.sideDistY);
+
+		// printf("[RWF] rwf.deltaDistX = %.1f|rwf.deltaDistY = %.1f\n", rwf.deltaDistX, rwf.deltaDistY); 
+		
+		// exit(1);
+		
+		// if (rwf.side == 0)
+		// 	rwf.perpWallDist = (rwf.sideDistX);					
+		// else
+		// 	rwf.perpWallDist = (rwf.sideDistY);
+
+		// // rwf.perpWallDist = 2;
+		// // printf("[RWF] rwf.perpWallDist = %.1f\n", rwf.perpWallDist);
+
+		// rwf.lineHeight = (int)(WIN_H / rwf.perpWallDist);
+
+
+		// rwf.lineHeight = 400;
+		// // printf("[RWF] rwf.lineHeight = %d\n", rwf.lineHeight);
+		// // exit(1);
+
+		// 	int drawStart = -rwf.lineHeight / 2 + WIN_H / 2;
+		// 	if(drawStart < 0) drawStart = 0;
+
+		// 	int drawEnd = rwf.lineHeight / 2 + WIN_H / 2;
+		// 	if(drawEnd >= WIN_H) drawEnd = WIN_H - 1;
+		
+		// // ft_printf_fd(1, "[RWF] drawStart = %d|drawEnd = %d\n", drawStart, drawEnd);
+		// // exit(1);
+		// while (drawStart < drawEnd)
+		// {
+		// 	mlx_pixel_put(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, x, 	drawStart, 0x0000FF00);
+		// 	drawStart++;
+		// }
+		x++;
+	}
 	(void)player; (void)mlx; (void)cubed;
 }
