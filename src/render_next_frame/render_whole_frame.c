@@ -43,36 +43,36 @@ static void update_map_steps (t_rwf *rwf, t_player *player)
 	if (rwf->rayDirX < 0)
 	{
 		rwf->stepX = -1;
-		rwf->deltaDistX = (player->pos_x - rwf->mapX) * rwf->deltaDistX;
+		rwf->deltaDistX = (player->pos_x_array - rwf->mapX) * rwf->deltaDistX;
 	}
 	else
 	{
 		rwf->stepX = 1;
-		rwf->deltaDistX = (rwf->mapX + 1.0 - player->pos_x) * rwf->deltaDistX;
+		rwf->deltaDistX = (rwf->mapX + 1.0 - player->pos_x_array) * rwf->deltaDistX;
 	}
 	if (rwf->rayDirY < 0)
 	{
 		rwf->stepY = -1;
-		rwf->deltaDistY = (player->pos_y - rwf->mapY) * rwf->deltaDistY;
+		rwf->deltaDistY = (player->pos_y_array - rwf->mapY) * rwf->deltaDistY;
 	}
 	else
 	{
 		rwf->stepY = 1;
-		rwf->deltaDistY = (rwf->mapY + 1.0 - player->pos_y) * rwf->deltaDistY;
+		rwf->deltaDistY = (rwf->mapY + 1.0 - player->pos_y_array) * rwf->deltaDistY;
 	}
 }
 
-static void print_vectors (t_rwf *rwf)
-{
-	// printf("[RWF] rayDirX = %.1f|rayDirY = %.1f|", rwf->rayDirX, rwf->rayDirY);
-	// printf("[RWF] cameraX = %.1f|", rwf->cameraX);
-	// printf("[RWF] deltaDistX = %.1f|deltaDistY = %.1f|", rwf->deltaDistX, rwf->deltaDistY);
-	// printf("[RWF] sideDistX = %.1f|sideDistY = %.1f|", rwf->sideDistX, rwf->sideDistY);
+// static void print_vectors (t_rwf *rwf)
+// {
+// 	printf("[RWF] rayDirX = %.1f|rayDirY = %.1f|", rwf->rayDirX, rwf->rayDirY);
+// 	printf("[RWF] cameraX = %.1f|", rwf->cameraX);
+// 	printf("[RWF] deltaDistX = %.1f|deltaDistY = %.1f|", rwf->deltaDistX, rwf->deltaDistY);
+// 	printf("[RWF] sideDistX = %.1f|sideDistY = %.1f|", rwf->sideDistX, rwf->sideDistY);
 
-	// printf("\n");
+// 	// printf("\n");
 
-	(void)rwf;
-}
+// 	(void)rwf;
+// }
 
 void render_whole_frame(t_cubed *cubed)
 {
@@ -88,7 +88,7 @@ void render_whole_frame(t_cubed *cubed)
 		update_vectors(&rwf, player, x);
 		update_map_steps(&rwf, player);
 
-		print_vectors(&rwf);
+		// print_vectors(&rwf);
 		
 		while (rwf.hit == 0)
 		{
@@ -106,7 +106,6 @@ void render_whole_frame(t_cubed *cubed)
 			}
 			if (cubed->map[rwf.mapY][rwf.mapX] == '1')
 				rwf.hit = 1;
-
 		}
 
 		// ft_printf_fd(1, "[RWF] rwf.mapX = %d|rwf.mapY = %d\n", rwf.mapX, rwf.mapY);
@@ -117,35 +116,45 @@ void render_whole_frame(t_cubed *cubed)
 		
 		// exit(1);
 		
-		// if (rwf.side == 0)
-		// 	rwf.perpWallDist = (rwf.sideDistX);					
-		// else
-		// 	rwf.perpWallDist = (rwf.sideDistY);
+		if (rwf.side == 0)
+			rwf.perpWallDist = (rwf.sideDistX);					
+		else
+			rwf.perpWallDist = (rwf.sideDistY);
 
 		// // rwf.perpWallDist = 2;
-		// // printf("[RWF] rwf.perpWallDist = %.1f\n", rwf.perpWallDist);
+		// printf("[RWF] rwf.perpWallDist = %.1f\n", rwf.perpWallDist);
 
-		// rwf.lineHeight = (int)(WIN_H / rwf.perpWallDist);
+		rwf.lineHeight = (int)(WIN_H / rwf.perpWallDist);
 
 
 		// rwf.lineHeight = 400;
-		// // printf("[RWF] rwf.lineHeight = %d\n", rwf.lineHeight);
+		// printf("[RWF] rwf.lineHeight = %d\n", rwf.lineHeight);
 		// // exit(1);
 
-		// 	int drawStart = -rwf.lineHeight / 2 + WIN_H / 2;
-		// 	if(drawStart < 0) drawStart = 0;
+			int drawStart = -rwf.lineHeight / 2 + WIN_H / 2;
+			if(drawStart < 0) drawStart = 0;
 
-		// 	int drawEnd = rwf.lineHeight / 2 + WIN_H / 2;
-		// 	if(drawEnd >= WIN_H) drawEnd = WIN_H - 1;
+			int drawEnd = rwf.lineHeight / 2 + WIN_H / 2;
+			if(drawEnd >= WIN_H) drawEnd = WIN_H - 1;
 		
-		// // ft_printf_fd(1, "[RWF] drawStart = %d|drawEnd = %d\n", drawStart, drawEnd);
-		// // exit(1);
-		// while (drawStart < drawEnd)
-		// {
-		// 	mlx_pixel_put(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, x, 	drawStart, 0x0000FF00);
-		// 	drawStart++;
-		// }
+		// ft_printf_fd(1, "[RWF] drawStart = %d|drawEnd = %d\n", drawStart, drawEnd);
+		// exit(1);
+		int color = 0;
+		switch(rwf.side)
+      	{
+	        case 0:  color = 0x000000FF;  break; //blue
+	        case 1:  color = 0x0000FF00;  break; //green
+      	}
+		while (drawStart < drawEnd)
+		{
+			mlx_pixel_put(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, x, 	drawStart, color);
+			drawStart++;
+		}
+		// usleep(100);
+		init_rwf(&rwf);
 		x++;
 	}
+	ft_printf_fd(1, "walls drawn!\n");
+	// sleep(2);
 	(void)player; (void)mlx; (void)cubed;
 }
