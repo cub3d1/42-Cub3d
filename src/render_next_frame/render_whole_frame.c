@@ -154,7 +154,7 @@ void render_whole_frame(t_cubed *cubed)
 		init_rwf(&rwf);
 		x++;
 	}
-	ft_printf_fd(1, "walls drawn!\n");
+	// ft_printf_fd(1, "walls drawn!\n");
 	// sleep(2);
 	(void)player; (void)mlx; (void)cubed;
 }
