@@ -12,16 +12,15 @@
 
 #include "../../include/cub3d.h"
 
-static void	print_cubes(t_mlx *mlx, t_player *player)
+static void	pre_render(t_mlx *mlx)
 {
+	//	pre render floor + ceiling + walls
+	draw_ceiling(mlx->ceiling_color, mlx->surfaces->map_img);
+	draw_floor(mlx->floor_color, mlx->surfaces->map_img);
+
+	//	put image to screen
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
-	mlx->surfaces->map_img->img, 0, 0);
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
-	mlx->green_ball->img, player->dir_x_pos, player->dir_y_pos);
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
-	mlx->black_ball->img, player->left_plane_x_pos, player->left_plane_y_pos);
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
-	mlx->black_ball->img, player->right_plane_x_pos, player->right_plane_y_pos);
+		mlx->surfaces->map_img->img, 0, 0);
 }
 
 void	print_info(t_cubed *cubed, int frame_counter)
@@ -62,8 +61,8 @@ int	render_next_frame(t_cubed *cubed)
 	update_player_pos(cubed, cubed->keys, cubed->player);
 	if (!cubed->keys->show_automap)
 	{
-		print_cubes(cubed->mlx, cubed->player);
-		// render_whole_frame(cubed);
+		raycaster(cubed);
+		pre_render(cubed->mlx);
 		if (cubed->keys->show_minimap)
 		{
 			show_map2d(cubed, cubed->mlx->minimap);

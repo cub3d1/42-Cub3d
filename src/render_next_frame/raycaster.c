@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycaster.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmouronh <fmouronh@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
+/*   Updated: 2023/10/21 19:38:50 by fmouronh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 static void 	init_rwf(t_rwf *rwf)
@@ -74,7 +86,7 @@ static void update_map_steps (t_rwf *rwf, t_player *player)
 // 	(void)rwf;
 // }
 
-void render_whole_frame(t_cubed *cubed)
+void raycaster(t_cubed *cubed)
 {
 	t_player	*player = cubed->player;
 	t_mlx		*mlx = cubed->mlx;
