@@ -148,14 +148,15 @@ static int	find_render_h(t_mlx *mlx, t_render *ray, \
 	return ((int)((mlx->proj_plane_height * texture->h) / wall_dist));
 }
 
-void	draw_wall_slice(t_canvas *surfaces, t_our_img *texture, \
+static void	draw_wall_slice(t_canvas *surfaces, t_our_img *texture, \
 						int tex_x, int render_h)
 {
 	int		y;
-	int		step;
+	float	pix_step;
 	char	*pixel;
 
-	//	FUUUUUUUUCK
+	pix_step = (float)texture->h / (float)render_h;
+	//	start drawing wall at (WIN_H / 2) - (render_h / 2)
 }
 
 static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *ray)
