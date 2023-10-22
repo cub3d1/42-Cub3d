@@ -11,12 +11,15 @@ SRCDIR = ./src/
 PARSERDIR = $(SRCDIR)parser/
 RENDERDIR = $(SRCDIR)render_next_frame/
 
-COREFILES = main.c hooks.c free.c free_textures.c init.c init_mlx_struct.c init_pre_render.c pre_render.c map_utils.c exit_err.c load_textures.c
+COREFILES = main.c hooks.c free.c free_textures.c init.c init_mlx_struct.c \
+				init_pre_render.c map_utils.c exit_err.c load_textures.c
+
 PARSERFILES = parser.c file_content_check.c file_content_check_utils.c \
 				map_layout_check.c map_layout_check_utils.c flood_fill.c \
 				load_map.c load_colors.c
 
-RENDERFILES = render_next_frame.c show_map2d.c update.c update_utils.c collisions.c render_whole_frame.c
+RENDERFILES = render_next_frame.c show_map2d.c update.c update_utils.c \
+				collisions.c raycaster.c pre_render.c
 
 SRC = $(COREFILES) $(PARSERFILES) $(RENDERFILES)
 

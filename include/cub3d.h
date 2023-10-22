@@ -267,7 +267,9 @@ void	load_colors(t_cubed *cubed, char *path);
 
 /*	./render_next_frame/render_next_frame.c */
 int		render_next_frame(t_cubed *cubed);
-void	render_whole_frame(t_cubed *cubed);
+
+/*	./render_next_frame/raycaster.c			*/
+void	raycaster(t_cubed *cubed);
 
 /*	./render_next_frame/update.c	*/
 void	update_angle(t_cubed *cubed);
