@@ -62,7 +62,7 @@ static unsigned int	get_rgb(unsigned char t, unsigned char r, \
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void	draw_ceiling(int *ceiling, t_our_img *canvas)
+static void	draw_ceiling(int *ceiling, t_our_img *canvas)
 {
 	unsigned int	color;
 	char			*pixel;
@@ -86,7 +86,7 @@ void	draw_ceiling(int *ceiling, t_our_img *canvas)
 	}
 }
 
-void	draw_floor(int *floor, t_our_img *canvas)
+static void	draw_floor(int *floor, t_our_img *canvas)
 {
 	unsigned int	color;
 	char			*pixel;
@@ -108,4 +108,50 @@ void	draw_floor(int *floor, t_our_img *canvas)
 		x = 0;
 		y++;
 	}
+}
+
+t_our_img	*select_texture(t_mlx *mlx, t_render *ray)
+{
+	if (ray->hit == 'x')
+	{
+		if (ray->wall_x < ray->plane_x)
+			return (mlx->text_w);
+		else if (ray->wall_x > ray->plane_x)
+			return (mlx->text_e);
+	}
+	else if (ray->hit == 'y')
+	{
+		if (ray->wall_y < ray->plane_y)
+			return (mlx->text_n);
+		else if (ray->wall_y > ray->plane_y)
+			return (mlx->text_s);
+	}
+}
+
+static void	draw_walls(t_mlx *mlx, t_list *ray)
+{
+	t_our_img	*texture;
+
+	while (ray)
+	{
+		texture = select_texture(mlx, ray->content);
+/*
+		get from render struct:
+			section of the texture to extract
+			ex:
+				if hit == x
+					it's (int)(texture->w * (ray->wall_x - (int)ray->wall_x)
+			size of column to pre render
+		copy pixels from texture to wall
+*/
+		ray = ray->next;
+	}
+}
+
+void	pre_render(t_mlx *mlx)
+{
+	//	pre render floor + ceiling + walls
+	draw_ceiling(mlx->ceiling_color, mlx->surfaces->map_img);
+	draw_floor(mlx->floor_color, mlx->surfaces->map_img);
+	draw_walls(mlx, mlx->renderer);
 }

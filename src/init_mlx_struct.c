@@ -61,6 +61,7 @@ static void	init_renderer(t_cubed *cubed, t_list *renderer)
 	i = 0;
 	while (i < WIN_W)
 	{
+		renderer->col = i;
 		renderer->content = malloc(sizeof(t_render));
 		if (!renderer->content)
 			exit_err(cubed, 5);

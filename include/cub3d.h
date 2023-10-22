@@ -113,6 +113,7 @@ typedef struct s_canvas
 /*	PUT RAYCASTER DATA HERE	*/
 typedef struct s_render
 {
+	int		col;
 	//	intersect with raycaster on wall 
 	float	wall_x;		//	on x
 	float	wall_y;		//	on y
@@ -205,10 +206,6 @@ void	init_mlx_struct(t_cubed *cubed);
 /*		init_pre_render.c		*/	
 void	init_pre_render(t_cubed *cubed);
 
-/*		pre_render.c	*/
-void	draw_ceiling(int *ceiling, t_our_img *canvas);
-void	draw_floor(int *floor, t_our_img *canvas);
-void	draw_map2d(char **map, t_canvas *map2d);
 
 /*		map_utils.c		*/
 float	get_biggest_line(char **map);
@@ -270,6 +267,10 @@ int		render_next_frame(t_cubed *cubed);
 
 /*	./render_next_frame/raycaster.c			*/
 void	raycaster(t_cubed *cubed);
+
+/*		./render_next_frame/pre_render.c	*/
+void	pre_render(t_mlx *mlx);
+void	draw_map2d(char **map, t_canvas *map2d);
 
 /*	./render_next_frame/update.c	*/
 void	update_angle(t_cubed *cubed);

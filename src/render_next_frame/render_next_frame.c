@@ -12,17 +12,6 @@
 
 #include "../../include/cub3d.h"
 
-static void	pre_render(t_mlx *mlx)
-{
-	//	pre render floor + ceiling + walls
-	draw_ceiling(mlx->ceiling_color, mlx->surfaces->map_img);
-	draw_floor(mlx->floor_color, mlx->surfaces->map_img);
-
-	//	put image to screen
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
-		mlx->surfaces->map_img->img, 0, 0);
-}
-
 void	print_info(t_cubed *cubed, int frame_counter)
 {
 	char	*frame;
@@ -63,6 +52,9 @@ int	render_next_frame(t_cubed *cubed)
 	{
 		raycaster(cubed);
 		pre_render(cubed->mlx);
+		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
+			mlx->surfaces->map_img->img, 0, 0);
+
 		if (cubed->keys->show_minimap)
 		{
 			show_map2d(cubed, cubed->mlx->minimap);
