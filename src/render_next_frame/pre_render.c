@@ -110,31 +110,66 @@ static void	draw_floor(int *floor, t_our_img *canvas)
 	}
 }
 
-t_our_img	*select_texture(t_mlx *mlx, t_render *ray)
+t_our_img	*select_texture(t_player *player, t_mlx *mlx, t_render *ray)
 {
 	if (ray->hit == 'x')
 	{
-		if (ray->wall_x < ray->plane_x)
+		if (ray->wall_x < player->pos_x_array)
 			return (mlx->text_w);
-		else if (ray->wall_x > ray->plane_x)
+		else if (ray->wall_x > player->pos_x_array)
 			return (mlx->text_e);
 	}
 	else if (ray->hit == 'y')
 	{
-		if (ray->wall_y < ray->plane_y)
+		if (ray->wall_y < player->pos_y_array)
 			return (mlx->text_n);
-		else if (ray->wall_y > ray->plane_y)
+		else if (ray->wall_y > player->pos_y_array)
 			return (mlx->text_s);
 	}
 }
 
-static void	draw_walls(t_mlx *mlx, t_list *ray)
+static int	find_tex_x(t_render *ray, t_our_img *texture)
+{
+	if (ray->hit == 'x')
+		return ((int)(texture->w * (ray->wall_x - (int)ray->wall_x)));
+	else if (ray->hit == 'y')
+		return ((int)(texture->w * (ray->wall_y - (int)ray->wall_y)));
+}
+
+static int	find_render_h(t_mlx *mlx, t_render *ray, \
+							t_our_img *texture, t_player *player)
+{
+	float	wall_dist;
+
+	wall_dist = sqrt((ray->wall_x - player->pos_x_array) * \
+					(ray->wall_x - player->pos_x_array) + \
+					(ray->wall_y - player->pos_y_array) * \
+					(ray->wall_y - player->pos_y_array));
+	return ((int)((mlx->proj_plane_height * texture->h) / wall_dist));
+}
+
+void	draw_wall_slice(t_canvas *surfaces, t_our_img *texture, \
+						int tex_x, int render_h)
+{
+	int		y;
+	int		step;
+	char	*pixel;
+
+	//	FUUUUUUUUCK
+}
+
+static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *ray)
 {
 	t_our_img	*texture;
+	int			tex_x;
+	int			render_h;
 
 	while (ray)
 	{
-		texture = select_texture(mlx, ray->content);
+		texture = select_texture(cubed->player, mlx, ray->content);
+		tex_x = find_tex_x(ray->content, texture);
+		render_h = find_render_h(mlx, ray, texture);
+		draw_wall_slice(mlx->surfaces, texture, tex_x, render_h);
 /*
 		get from render struct:
 			section of the texture to extract
@@ -148,10 +183,13 @@ static void	draw_walls(t_mlx *mlx, t_list *ray)
 	}
 }
 
-void	pre_render(t_mlx *mlx)
+void	pre_render(t_cubed *cubed)
 {
+	t_mlx	*mlx;
+
+	mlx = cubed->mlx;
 	//	pre render floor + ceiling + walls
 	draw_ceiling(mlx->ceiling_color, mlx->surfaces->map_img);
 	draw_floor(mlx->floor_color, mlx->surfaces->map_img);
-	draw_walls(mlx, mlx->renderer);
+	draw_walls(cubed, mlx, mlx->renderer);
 }

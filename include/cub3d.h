@@ -129,6 +129,7 @@ typedef struct s_mlx
 	void		*win_ptr;
 	int			ceiling_color[3];
 	int			floor_color[3];
+	int			proj_plane_height;
 	t_our_img	*text_n;
 	t_our_img	*text_s;
 	t_our_img	*text_e;
@@ -269,7 +270,7 @@ int		render_next_frame(t_cubed *cubed);
 void	raycaster(t_cubed *cubed);
 
 /*		./render_next_frame/pre_render.c	*/
-void	pre_render(t_mlx *mlx);
+void	pre_render(t_cubed *cubed);
 void	draw_map2d(char **map, t_canvas *map2d);
 
 /*	./render_next_frame/update.c	*/

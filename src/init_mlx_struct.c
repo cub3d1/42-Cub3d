@@ -91,6 +91,7 @@ void	init_mlx_struct(t_cubed *cubed)
 		|| !mlx->automap || !mlx->minimap \
 		|| !mlx->automap->map_img || !mlx->minimap->map_img)
 		exit_err(cubed, 5);
+	mlx->proj_plane_height = WIN_H - (WIN_H / 4);
 	init_img_struct(mlx->text_n);
 	init_img_struct(mlx->text_s);
 	init_img_struct(mlx->text_e);
