@@ -110,7 +110,7 @@ static void	draw_floor(int *floor, t_our_img *canvas)
 	}
 }
 
-t_our_img	*select_texture(t_player *player, t_mlx *mlx, t_render *ray)
+static t_our_img	*select_texture(t_player *player, t_mlx *mlx, t_render *ray)
 {
 	if (ray->hit == 'x')
 	{
