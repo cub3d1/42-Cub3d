@@ -151,12 +151,25 @@ static int	find_render_h(t_mlx *mlx, t_render *ray, \
 static void	draw_wall_slice(t_canvas *surfaces, t_our_img *texture, \
 						int tex_x, int render_h)
 {
-	int		y;
 	float	pix_step;
-	char	*pixel;
 
 	pix_step = (float)texture->h / (float)render_h;
+	if (pix_step < 1.0f)
+		interpolate_texture();
+	else if (pix_step == 1)
+		copy_to_canvas();
+	else
+		skip_pixels();
+	//	fuck... how do I do this without fucking up with the norm?
+
 	//	start drawing wall at (WIN_H / 2) - (render_h / 2)
+	//	if pix_step < 1, interpolate texture:
+	//		at each iteration add pix_step to iterator
+	//			& move to next y in texture when iterator >= 1
+	//	else (ie pix_step >= 1)
+	//		copy each y in texture to canvas & add pix_step - (int)pix_step to iterator
+	//		when iterator >= 1, skip row
+	//	that should work...
 }
 
 static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *ray)
