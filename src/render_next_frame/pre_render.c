@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 12:52:25 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/27 17:22:24 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/27 17:51:21 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,17 +150,52 @@ void	draw_map2d(char **map, t_canvas *map2d)
 // 	return ((int)((mlx->proj_plane_height * texture->h) / wall_dist));
 // }
 /*
+	wall_dist = sqrt((ray->wall_x - player->pos_x_array) * \
+					(ray->wall_x - player->pos_x_array) + \
+					(ray->wall_y - player->pos_y_array) * \
+					(ray->wall_y - player->pos_y_array));
+	return ((int)((mlx->proj_plane_height * texture->h) / wall_dist));
+}
+
+static void	interpolate_texture(t_render *ray, t_canvas *surfaces, \
+								t_our_img *texture, float ratio)
+{
+	int	step;
+
+	step = texture->h / (int)(ratio * 100);
+	//	copy pixels
+}
+
+static void	copy_to_canvas(t_render *ray, t_canvas *surfaces, \
+							t_our_img *texture)
+{
+	//	copy pixels
+}
+
+static void	skip_pixels(t_render *ray, t_canvas *surfaces, \
+						t_our_img *texture, float ratio)
+{
+	int	step;
+
+	step = (int)ratio;
+	if (ratio - (int)ratio <= 0.2f)
+		step--;
+	if (step == 0 || ratio - (int)ratio >= 0.8f)
+		step++;
+	//	copy pixels
+}
+
 static void	draw_wall_slice(t_render *ray, t_canvas *surfaces, t_our_img *texture)
 {
-	float	pix_step;
+	float	ratio;
 
-	pix_step = (float)texture->h / (float)ray->render_h;
-	if (pix_step < 1.0f)
-		interpolate_texture(ray, surfaces, texture, pix_step);
-	else if ((int)pix_step == 1 && pix_step < 1.2f)
+	ratio = (float)texture->h / (float)ray->render_h;
+	if (ratio < 1.0f)
+		interpolate_texture(ray, surfaces, texture, ratio);
+	else if (ratio > 0.8f && ratio < 1.2f)
 		copy_to_canvas(ray, surfaces, texture);
 	else
-		skip_pixels(ray, surfaces, texture, pix_step);
+		skip_pixels(ray, surfaces, texture, ratio);
 	//	fuck... how do I do this without fucking up with the norm?
 
 	//	start drawing wall at (WIN_H / 2) - (render_h / 2)
@@ -173,30 +208,30 @@ static void	draw_wall_slice(t_render *ray, t_canvas *surfaces, t_our_img *textur
 	//	that should work...
 }
 */
-// static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
-// {
-// 	t_render	*ray;
-// 	t_our_img	*texture;
+static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
+{
+	t_render	*ray;
+	t_our_img	*texture;
 
-// 	while (raycast)
-// 	{
-// 		ray = raycast->content;
-// 		texture = select_texture(cubed->player, mlx, ray);
-// 		ray->tex_x = find_tex_x(ray, texture);
-// 		ray->render_h = find_render_h(mlx, ray, texture, cubed->player);
-// //		draw_wall_slice(ray, mlx->surfaces, texture);
-// /*
-// 		get from render struct:
-// 			section of the texture to extract
-// 			ex:
-// 				if hit == x
-// 					it's (int)(texture->w * (ray->wall_x - (int)ray->wall_x)
-// 			size of column to pre render
-// 		copy pixels from texture to wall
-// */
-// 		raycast = raycast->next;
-// 	}
-// }
+	while (raycast)
+	{
+		ray = raycast->content;
+		texture = select_texture(cubed->player, mlx, ray);
+		ray->tex_x = find_tex_x(ray, texture);
+		ray->render_h = find_render_h(mlx, ray, texture, cubed->player);
+//		draw_wall_slice(ray, mlx->surfaces, texture);
+/*
+		get from render struct:
+			section of the texture to extract
+			ex:
+				if hit == x
+					it's (int)(texture->w * (ray->wall_x - (int)ray->wall_x)
+			size of column to pre render
+		copy pixels from texture to wall
+*/
+		raycast = raycast->next;
+	}
+}
 
 // void	pre_render(t_cubed *cubed)
 // {
