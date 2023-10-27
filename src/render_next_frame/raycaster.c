@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmouronh <fmouronh@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/21 19:38:50 by fmouronh         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:33:34 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void raycaster(t_cubed *cubed)
 	init_rwf(&rwf);
 
 	int x = 0;
+
 	while (x < WIN_W)
 	{
 		update_vectors(&rwf, player, x);

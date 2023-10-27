@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pre_render.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmouronh <fmouronh@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 12:52:25 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/15 12:53:16 by fmouronh         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:22:24 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,99 +56,99 @@ void	draw_map2d(char **map, t_canvas *map2d)
 	}
 }
 
-static unsigned int	get_rgb(unsigned char t, unsigned char r, \
-	unsigned char g, unsigned char b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
+// static unsigned int	get_rgb(unsigned char t, unsigned char r, (here was a \)
+// 	unsigned char g, unsigned char b)
+// {
+// 	return (t << 24 | r << 16 | g << 8 | b);
+// }
 
-static void	draw_ceiling(int *ceiling, t_our_img *canvas)
-{
-	unsigned int	color;
-	char			*pixel;
-	int				x;
-	int				y;
+// static void	draw_ceiling(int *ceiling, t_our_img *canvas)
+// {
+// 	unsigned int	color;
+// 	char			*pixel;
+// 	int				x;
+// 	int				y;
 
-	color = get_rgb(0, ceiling[0], ceiling[1], ceiling[2]);
-	x = 0;
-	y = 0;
-	while (y < WIN_H / 2)
-	{
-		while (x < WIN_W)
-		{
-			pixel = canvas->addr;
-			pixel += (y * canvas->line_length) + (x * (canvas->bpp / 8));
-			*(unsigned int *)pixel = color;
-			x++;
-		}
-		x = 0;
-		y++;
-	}
-}
+// 	color = get_rgb(0, ceiling[0], ceiling[1], ceiling[2]);
+// 	x = 0;
+// 	y = 0;
+// 	while (y < WIN_H / 2)
+// 	{
+// 		while (x < WIN_W)
+// 		{
+// 			pixel = canvas->addr;
+// 			pixel += (y * canvas->line_length) + (x * (canvas->bpp / 8));
+// 			*(unsigned int *)pixel = color;
+// 			x++;
+// 		}
+// 		x = 0;
+// 		y++;
+// 	}
+// }
 
-static void	draw_floor(int *floor, t_our_img *canvas)
-{
-	unsigned int	color;
-	char			*pixel;
-	int				x;
-	int				y;
+// static void	draw_floor(int *floor, t_our_img *canvas)
+// {
+// 	unsigned int	color;
+// 	char			*pixel;
+// 	int				x;
+// 	int				y;
 
-	color = get_rgb(0, floor[0], floor[1], floor[2]);
-	x = 0;
-	y = WIN_H / 2;
-	while (y < WIN_H)
-	{
-		while (x < WIN_W)
-		{
-			pixel = canvas->addr;
-			pixel += (y * canvas->line_length) + (x * (canvas->bpp / 8));
-			*(unsigned int *)pixel = color;
-			x++;
-		}
-		x = 0;
-		y++;
-	}
-}
+// 	color = get_rgb(0, floor[0], floor[1], floor[2]);
+// 	x = 0;
+// 	y = WIN_H / 2;
+// 	while (y < WIN_H)
+// 	{
+// 		while (x < WIN_W)
+// 		{
+// 			pixel = canvas->addr;
+// 			pixel += (y * canvas->line_length) + (x * (canvas->bpp / 8));
+// 			*(unsigned int *)pixel = color;
+// 			x++;
+// 		}
+// 		x = 0;
+// 		y++;
+// 	}
+// }
 
-static t_our_img	*select_texture(t_player *player, t_mlx *mlx, t_render *ray)
-{
-	if (ray->hit == 'x')
-	{
-		if (ray->wall_x < player->pos_x_array)
-			return (mlx->text_w);
-		else if (ray->wall_x > player->pos_x_array)
-			return (mlx->text_e);
-	}
-	else if (ray->hit == 'y')
-	{
-		if (ray->wall_y < player->pos_y_array)
-			return (mlx->text_n);
-		else if (ray->wall_y > player->pos_y_array)
-			return (mlx->text_s);
-	}
-	return (NULL);
-}
+// static t_our_img	*select_texture(t_player *player, t_mlx *mlx, t_render *ray)
+// {
+// 	if (ray->hit == 'x')
+// 	{
+// 		if (ray->wall_x < player->pos_x_array)
+// 			return (mlx->text_w);
+// 		else if (ray->wall_x > player->pos_x_array)
+// 			return (mlx->text_e);
+// 	}
+// 	else if (ray->hit == 'y')
+// 	{
+// 		if (ray->wall_y < player->pos_y_array)
+// 			return (mlx->text_n);
+// 		else if (ray->wall_y > player->pos_y_array)
+// 			return (mlx->text_s);
+// 	}
+// 	return (NULL);
+// }
 
-static int	find_tex_x(t_render *ray, t_our_img *texture)
-{
-	if (ray->hit == 'x')
-		return ((int)(texture->w * (ray->wall_x - (int)ray->wall_x)));
-	else if (ray->hit == 'y')
-		return ((int)(texture->w * (ray->wall_y - (int)ray->wall_y)));
-	return ('\0');
-}
+// static int	find_tex_x(t_render *ray, t_our_img *texture)
+// {
+// 	if (ray->hit == 'x')
+// 		return ((int)(texture->w * (ray->wall_x - (int)ray->wall_x)));
+// 	else if (ray->hit == 'y')
+// 		return ((int)(texture->w * (ray->wall_y - (int)ray->wall_y)));
+// 	return ('\0');
+// }
 
-static int	find_render_h(t_mlx *mlx, t_render *ray, \
-							t_our_img *texture, t_player *player)
-{
-	float	wall_dist;
+// static int	find_render_h(t_mlx *mlx, t_render *ray, (here was a \)
+// 							t_our_img *texture, t_player *player)
+// {
+// 	float	wall_dist;
 
-	wall_dist = sqrt((ray->wall_x - player->pos_x_array) * \
-					(ray->wall_x - player->pos_x_array) + \
-					(ray->wall_y - player->pos_y_array) * \
-					(ray->wall_y - player->pos_y_array));
-	return ((int)((mlx->proj_plane_height * texture->h) / wall_dist));
-}
+// 	wall_dist = sqrt((ray->wall_x - player->pos_x_array) * (here was a \)
+// 					(ray->wall_x - player->pos_x_array) + (here was a \)
+// 					(ray->wall_y - player->pos_y_array) * (here was a \)
+// 					(ray->wall_y - player->pos_y_array));
+// 	return ((int)((mlx->proj_plane_height * texture->h) / wall_dist));
+// }
 /*
 static void	draw_wall_slice(t_render *ray, t_canvas *surfaces, t_our_img *texture)
 {
@@ -173,38 +173,38 @@ static void	draw_wall_slice(t_render *ray, t_canvas *surfaces, t_our_img *textur
 	//	that should work...
 }
 */
-static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
-{
-	t_render	*ray;
-	t_our_img	*texture;
+// static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
+// {
+// 	t_render	*ray;
+// 	t_our_img	*texture;
 
-	while (raycast)
-	{
-		ray = raycast->content;
-		texture = select_texture(cubed->player, mlx, ray);
-		ray->tex_x = find_tex_x(ray, texture);
-		ray->render_h = find_render_h(mlx, ray, texture, cubed->player);
-//		draw_wall_slice(ray, mlx->surfaces, texture);
-/*
-		get from render struct:
-			section of the texture to extract
-			ex:
-				if hit == x
-					it's (int)(texture->w * (ray->wall_x - (int)ray->wall_x)
-			size of column to pre render
-		copy pixels from texture to wall
-*/
-		raycast = raycast->next;
-	}
-}
+// 	while (raycast)
+// 	{
+// 		ray = raycast->content;
+// 		texture = select_texture(cubed->player, mlx, ray);
+// 		ray->tex_x = find_tex_x(ray, texture);
+// 		ray->render_h = find_render_h(mlx, ray, texture, cubed->player);
+// //		draw_wall_slice(ray, mlx->surfaces, texture);
+// /*
+// 		get from render struct:
+// 			section of the texture to extract
+// 			ex:
+// 				if hit == x
+// 					it's (int)(texture->w * (ray->wall_x - (int)ray->wall_x)
+// 			size of column to pre render
+// 		copy pixels from texture to wall
+// */
+// 		raycast = raycast->next;
+// 	}
+// }
 
-void	pre_render(t_cubed *cubed)
-{
-	t_mlx	*mlx;
+// void	pre_render(t_cubed *cubed)
+// {
+// 	t_mlx	*mlx;
 
-	mlx = cubed->mlx;
-	//	pre render floor + ceiling + walls
-	draw_ceiling(mlx->ceiling_color, mlx->surfaces->map_img);
-	draw_floor(mlx->floor_color, mlx->surfaces->map_img);
-	draw_walls(cubed, mlx, mlx->renderer);
-}
+// 	mlx = cubed->mlx;
+// 	//	pre render floor + ceiling + walls
+// 	draw_ceiling(mlx->ceiling_color, mlx->surfaces->map_img);
+// 	draw_floor(mlx->floor_color, mlx->surfaces->map_img);
+// 	draw_walls(cubed, mlx, mlx->renderer);
+// }
