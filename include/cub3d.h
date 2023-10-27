@@ -128,6 +128,14 @@ typedef struct s_render
 	int		tex_x;
 	int		render_h;
 
+	//	iterators
+	int		start_y;
+	int		end_y;
+	int		canvas_y;
+	int		texture_y;
+	int		step;
+
+
 }				t_render;
 
 typedef struct s_mlx
@@ -279,6 +287,18 @@ void	raycaster(t_cubed *cubed);
 /*		./render_next_frame/pre_render.c	*/
 void	pre_render(t_cubed *cubed);
 void	draw_map2d(char **map, t_canvas *map2d);
+
+/* ./render_next_frame/pre_render_map2d.c	*/
+void	draw_map2d(char **map, t_canvas *map2d);
+
+/* ./render_next_frame/pre_render_walls.c	*/
+void	draw_wall_slice(t_render *ray, t_canvas *surfaces, t_our_img *texture);
+
+/* ./render_next_frame/pre_render_walls_utils.c	*/
+t_our_img	*select_texture(t_player *player, t_mlx *mlx, t_render *ray);
+int			find_tex_x(t_render *ray, t_our_img *texture);
+int	find_render_h(t_mlx *mlx, t_render *ray, \
+							t_our_img *texture, t_player *player);
 
 /*	./render_next_frame/update.c	*/
 void	update_angle(t_cubed *cubed);
