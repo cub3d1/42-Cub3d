@@ -155,7 +155,7 @@ static void	interpolate_texture(t_render *ray, t_canvas *surfaces, \
 {
 	int	step;
 
-	//	set step
+	step = texture->h / (int)(ratio * 100);
 	//	copy pixels
 }
 
