@@ -65,7 +65,7 @@ static void	draw_floor(int *floor, t_our_img *canvas)
  		y++;
  	}
  }
-
+/*
 static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
 {
 	t_render	*ray;
@@ -81,7 +81,7 @@ static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
 		raycast = raycast->next;
 	}
 }
-
+*/
  void	pre_render(t_cubed *cubed)
 {
 	t_mlx	*mlx;
@@ -89,5 +89,5 @@ static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
 	//	pre render floor + ceiling + walls
 	draw_ceiling(mlx->ceiling_color, mlx->surfaces->map_img);
 	draw_floor(mlx->floor_color, mlx->surfaces->map_img);
-	draw_walls(cubed, mlx, mlx->renderer);
+//	draw_walls(cubed, mlx, mlx->renderer);
 }

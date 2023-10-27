@@ -19,8 +19,8 @@ PARSERFILES = parser.c file_content_check.c file_content_check_utils.c \
 				load_map.c load_colors.c
 
 RENDERFILES = render_next_frame.c show_map2d.c update.c update_utils.c \
-				collisions.c raycaster.c pre_render.c pre_render_map2d.c \
-				pre_render_walls.c pre_render_walls_utils.c
+				collisions.c raycaster.c pre_render.c pre_render_map2d.c
+				#pre_render_walls.c pre_render_walls_utils.c
 
 SRC = $(COREFILES) $(PARSERFILES) $(RENDERFILES)
 
