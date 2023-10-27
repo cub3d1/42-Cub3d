@@ -28,20 +28,31 @@ static void	copy_pixels(t_render *ray, t_canvas *surfaces, t_our_img *texture)
 static void	interpolate_texture(t_render *ray, t_canvas *surfaces, \
 								t_our_img *texture, float ratio)
 {
-	ray->start_y = (WIN_H / 2) - (ray->render_h / 2);
-	ray->end_y = (WIN_H / 2) + (ray->render_h / 2);
-	ray->canvas_y = ray->start_y;
+	int	count;
+
 	ray->step = texture->h / (int)(ratio * 100);
+	count = 0;
 	while (ray->canvas_y < ray->end_y)
 	{
 		copy_pixels(ray, surfaces, texture);
+		count++;
+		if (count == ray->step)
+		{
+			ray->texture_y++;
+			count = 0;
+		}
 		ray->canvas_y++;
 	}
 }
 static void	copy_to_canvas(t_render *ray, t_canvas *surfaces, \
 							t_our_img *texture)
 {
-	//	copy pixels
+	while (ray->canvas_y < ray->end_y)
+	{
+		copy_pixels(ray, surfaces, texture);
+		ray->texture_y++;
+		ray->canvas_y++;
+	}
 }
 
 static void	skip_pixels(t_render *ray, t_canvas *surfaces, \
@@ -55,12 +66,24 @@ static void	skip_pixels(t_render *ray, t_canvas *surfaces, \
 	if (step == 0 || ratio - (int)ratio >= 0.8f)
 		step++;
 	//	copy pixels
+	while (ray->canvas_y < ray->end_y)
+	{
+		copy_pixels(ray, surfaces, texture);
+		ray->texture_y += step;
+		if (ray->texture_y > texture->h)
+			ray->texture_y = texture->h;
+		ray->canvas_y++;
+	}
 }
 
 void	draw_wall_slice(t_render *ray, t_canvas *surfaces, t_our_img *texture)
 {
 	float	ratio;
 
+	ray->start_y = (WIN_H / 2) - (ray->render_h / 2);
+	ray->end_y = (WIN_H / 2) + (ray->render_h / 2);
+	ray->canvas_y = ray->start_y;
+	ray->texture_y = 0;
 	ratio = (float)texture->h / (float)ray->render_h;
 	if (ratio < 1.0f)
 		interpolate_texture(ray, surfaces, texture, ratio);

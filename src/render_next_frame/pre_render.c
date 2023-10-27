@@ -12,7 +12,6 @@
 
 #include "../../include/cub3d.h"
 
-<<<<<<< HEAD
 static unsigned int	get_rgb(unsigned char t, unsigned char r, \
 	unsigned char g, unsigned char b)
 {
