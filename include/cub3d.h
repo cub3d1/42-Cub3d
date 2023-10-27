@@ -113,14 +113,21 @@ typedef struct s_canvas
 /*	PUT RAYCASTER DATA HERE	*/
 typedef struct s_render
 {
+	//	assigned at init
 	int		col;
+
 	//	intersect with raycaster on wall 
-	float	wall_x;		//	on x
-	float	wall_y;		//	on y
+	float	wall_x;		//	on x_array
+	float	wall_y;		//	on y_array
 	//	intersect with raycaster on plane
-	float	plane_x;	
-	float	plane_y;
+	float	plane_x;	//	on x_array
+	float	plane_y;	//	on y_array
 	char	hit;		//	'x' or 'y'
+
+	//	to determine when pre-rendering
+	int		tex_x;
+	int		render_h;
+
 }				t_render;
 
 typedef struct s_mlx

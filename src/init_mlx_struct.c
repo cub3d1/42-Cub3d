@@ -56,15 +56,17 @@ static void	malloc_img_structs(t_cubed *cubed, t_mlx *mlx)
 
 static void	init_renderer(t_cubed *cubed, t_list *renderer)
 {
-	int	i;
+	t_render	*ray;
+	int			i;
 
 	i = 0;
 	while (i < WIN_W)
 	{
-		renderer->col = i;
 		renderer->content = malloc(sizeof(t_render));
 		if (!renderer->content)
 			exit_err(cubed, 5);
+		ray = renderer->content;
+		ray->col = i;
 		i++;
 		if (i < WIN_W)
 		{

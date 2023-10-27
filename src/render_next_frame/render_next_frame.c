@@ -37,7 +37,8 @@ void	print_info(t_cubed *cubed, int frame_counter)
 int	render_next_frame(t_cubed *cubed)
 {
 	static int	frame_counter = 1;
-	
+	t_mlx	*mlx;
+
 	// if (frame_counter == 1)
 	// {
 	// cubed->player->angle = 45;
@@ -45,7 +46,8 @@ int	render_next_frame(t_cubed *cubed)
 	// cubed->player->dir_y = sin(cubed->player->angle * M_PI / 180);
 	// } 
 	// Para tirar depois de resolve bug do deltaX e deltaY
-	
+
+	mlx = cubed->mlx;
 	update_angle(cubed);
 	update_player_pos(cubed, cubed->keys, cubed->player);
 	if (!cubed->keys->show_automap)

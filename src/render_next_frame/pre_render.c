@@ -126,6 +126,7 @@ static t_our_img	*select_texture(t_player *player, t_mlx *mlx, t_render *ray)
 		else if (ray->wall_y > player->pos_y_array)
 			return (mlx->text_s);
 	}
+	return (NULL);
 }
 
 static int	find_tex_x(t_render *ray, t_our_img *texture)
@@ -134,6 +135,7 @@ static int	find_tex_x(t_render *ray, t_our_img *texture)
 		return ((int)(texture->w * (ray->wall_x - (int)ray->wall_x)));
 	else if (ray->hit == 'y')
 		return ((int)(texture->w * (ray->wall_y - (int)ray->wall_y)));
+	return ('\0');
 }
 
 static int	find_render_h(t_mlx *mlx, t_render *ray, \
@@ -148,18 +150,17 @@ static int	find_render_h(t_mlx *mlx, t_render *ray, \
 	return ((int)((mlx->proj_plane_height * texture->h) / wall_dist));
 }
 
-static void	draw_wall_slice(t_canvas *surfaces, t_our_img *texture, \
-						int tex_x, int render_h)
+static void	draw_wall_slice(t_render *ray, t_canvas *surfaces, t_our_img *texture)
 {
 	float	pix_step;
 
-	pix_step = (float)texture->h / (float)render_h;
+	pix_step = (float)texture->h / (float)ray->render_h;
 	if (pix_step < 1.0f)
-		interpolate_texture();
-	else if (pix_step == 1)
-		copy_to_canvas();
+		interpolate_texture(ray, surfaces, texture, pix_step);
+	else if ((int)pix_step == 1 && pix_step < 1.2f)
+		copy_to_canvas(ray, surfaces, texture);
 	else
-		skip_pixels();
+		skip_pixels(ray, surfaces, texture, pix_step);
 	//	fuck... how do I do this without fucking up with the norm?
 
 	//	start drawing wall at (WIN_H / 2) - (render_h / 2)
@@ -172,18 +173,18 @@ static void	draw_wall_slice(t_canvas *surfaces, t_our_img *texture, \
 	//	that should work...
 }
 
-static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *ray)
+static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
 {
+	t_render	*ray;
 	t_our_img	*texture;
-	int			tex_x;
-	int			render_h;
 
-	while (ray)
+	while (raycast)
 	{
-		texture = select_texture(cubed->player, mlx, ray->content);
-		tex_x = find_tex_x(ray->content, texture);
-		render_h = find_render_h(mlx, ray, texture);
-		draw_wall_slice(mlx->surfaces, texture, tex_x, render_h);
+		ray = raycast->content;
+		texture = select_texture(cubed->player, mlx, ray);
+		ray->tex_x = find_tex_x(ray, texture);
+		ray->render_h = find_render_h(mlx, ray, texture, cubed->player);
+		draw_wall_slice(ray, mlx->surfaces, texture);
 /*
 		get from render struct:
 			section of the texture to extract
@@ -193,7 +194,7 @@ static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *ray)
 			size of column to pre render
 		copy pixels from texture to wall
 */
-		ray = ray->next;
+		raycast = raycast->next;
 	}
 }
 
