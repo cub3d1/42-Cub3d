@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:22:26 by ddantas-          #+#    #+#             */
-/*   Updated: 2023/10/21 17:13:05 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/27 19:35:53 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,7 +282,7 @@ void	load_colors(t_cubed *cubed, char *path);
 int		render_next_frame(t_cubed *cubed);
 
 /*	./render_next_frame/raycaster.c			*/
-void	raycaster(t_cubed *cubed);
+void	raycaster(t_cubed *cubed, t_list *renderer);
 
 /*		./render_next_frame/pre_render.c	*/
 void	pre_render(t_cubed *cubed);

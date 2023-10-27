@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/27 17:22:35 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/27 19:36:03 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	render_next_frame(t_cubed *cubed)
 	update_player_pos(cubed, cubed->keys, cubed->player);
 	if (!cubed->keys->show_automap)
 	{
-		raycaster(cubed);
+		raycaster(cubed, cubed->mlx->renderer);
 		pre_render(cubed);
 		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
 			mlx->surfaces->map_img->img, 0, 0);

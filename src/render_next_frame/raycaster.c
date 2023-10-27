@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/27 17:33:34 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/27 19:42:43 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,18 @@ static void update_map_steps (t_rwf *rwf, t_player *player)
 	}
 }
 
+void fill_renderer(t_rwf rwf, t_render *ray)
+{
+	ray->wall_x = rwf.mapX;
+	ray->wall_y = rwf.mapY;
+	ray->plane_x = rwf.rayDirX;
+	ray->plane_y = rwf.rayDirY;
+	if (rwf.side == 0)
+		ray->hit = 'x';
+	else if (rwf.side == 1)
+		ray->hit = 'y';
+}
+
 // static void print_vectors (t_rwf *rwf)
 // {
 // 	printf("[RWF] rayDirX = %.1f|rayDirY = %.1f|", rwf->rayDirX, rwf->rayDirY);
@@ -86,12 +98,13 @@ static void update_map_steps (t_rwf *rwf, t_player *player)
 // 	(void)rwf;
 // }
 
-void raycaster(t_cubed *cubed)
+void raycaster(t_cubed *cubed, t_list *renderer)
 {
 	t_player	*player = cubed->player;
 	t_mlx		*mlx = cubed->mlx;
 	t_rwf		rwf;
-
+	t_render	*ray;
+	
 	init_rwf(&rwf);
 
 	int x = 0;
@@ -152,18 +165,21 @@ void raycaster(t_cubed *cubed)
 		
 		// ft_printf_fd(1, "[RWF] drawStart = %d|drawEnd = %d\n", drawStart, drawEnd);
 		// exit(1);
-		int color = 0;
-		switch(rwf.side)
-      	{
-	        case 0:  color = 0x000000FF;  break; //blue
-	        case 1:  color = 0x0000FF00;  break; //green
-      	}
-		while (drawStart < drawEnd)
-		{
-			mlx_pixel_put(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, x, 	drawStart, color);
-			drawStart++;
-		}
+		// int color = 0;
+		// switch(rwf.side)
+      	// {
+	    //     case 0:  color = 0x000000FF;  break; //blue
+	    //     case 1:  color = 0x0000FF00;  break; //green
+      	// }
+		// while (drawStart < drawEnd)
+		// {
+		// 	mlx_pixel_put(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, x, 	drawStart, color);
+		// 	drawStart++;
+		// }
 		// usleep(100);
+		ray = renderer->content;
+		fill_renderer(rwf, ray);
+		renderer = renderer->next;
 		init_rwf(&rwf);
 		x++;
 	}
