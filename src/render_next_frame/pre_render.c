@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 12:52:25 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/27 17:51:21 by hiper            ###   ########.fr       */
+/*   Updated: 2023/10/27 17:52:15 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,30 +208,30 @@ static void	draw_wall_slice(t_render *ray, t_canvas *surfaces, t_our_img *textur
 	//	that should work...
 }
 */
-static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
-{
-	t_render	*ray;
-	t_our_img	*texture;
+// static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
+// {
+// 	t_render	*ray;
+// 	t_our_img	*texture;
 
-	while (raycast)
-	{
-		ray = raycast->content;
-		texture = select_texture(cubed->player, mlx, ray);
-		ray->tex_x = find_tex_x(ray, texture);
-		ray->render_h = find_render_h(mlx, ray, texture, cubed->player);
-//		draw_wall_slice(ray, mlx->surfaces, texture);
-/*
-		get from render struct:
-			section of the texture to extract
-			ex:
-				if hit == x
-					it's (int)(texture->w * (ray->wall_x - (int)ray->wall_x)
-			size of column to pre render
-		copy pixels from texture to wall
-*/
-		raycast = raycast->next;
-	}
-}
+// 	while (raycast)
+// 	{
+// 		ray = raycast->content;
+// 		texture = select_texture(cubed->player, mlx, ray);
+// 		ray->tex_x = find_tex_x(ray, texture);
+// 		ray->render_h = find_render_h(mlx, ray, texture, cubed->player);
+// //		draw_wall_slice(ray, mlx->surfaces, texture);
+// /*
+// 		get from render struct:
+// 			section of the texture to extract
+// 			ex:
+// 				if hit == x
+// 					it's (int)(texture->w * (ray->wall_x - (int)ray->wall_x)
+// 			size of column to pre render
+// 		copy pixels from texture to wall
+// */
+// 		raycast = raycast->next;
+// 	}
+// }
 
 // void	pre_render(t_cubed *cubed)
 // {
