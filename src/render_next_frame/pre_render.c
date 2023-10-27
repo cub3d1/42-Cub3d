@@ -149,7 +149,7 @@ static int	find_render_h(t_mlx *mlx, t_render *ray, \
 					(ray->wall_y - player->pos_y_array));
 	return ((int)((mlx->proj_plane_height * texture->h) / wall_dist));
 }
-
+/*
 static void	draw_wall_slice(t_render *ray, t_canvas *surfaces, t_our_img *texture)
 {
 	float	pix_step;
@@ -172,7 +172,7 @@ static void	draw_wall_slice(t_render *ray, t_canvas *surfaces, t_our_img *textur
 	//		when iterator >= 1, skip row
 	//	that should work...
 }
-
+*/
 static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
 {
 	t_render	*ray;
@@ -184,7 +184,7 @@ static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
 		texture = select_texture(cubed->player, mlx, ray);
 		ray->tex_x = find_tex_x(ray, texture);
 		ray->render_h = find_render_h(mlx, ray, texture, cubed->player);
-		draw_wall_slice(ray, mlx->surfaces, texture);
+//		draw_wall_slice(ray, mlx->surfaces, texture);
 /*
 		get from render struct:
 			section of the texture to extract
