@@ -39,7 +39,7 @@ int	find_tex_x(t_render *ray, t_our_img *texture)
 		return ((int)(texture->w * (ray->wall_y - (int)ray->wall_y)));
 	return ('\0');
 }
-
+/*	error is here	*/
 int	find_render_h(t_mlx *mlx, t_render *ray, \
 							t_our_img *texture, t_player *player)
 {
@@ -49,6 +49,5 @@ int	find_render_h(t_mlx *mlx, t_render *ray, \
 					(ray->wall_x - player->pos_x_array) + \
 					(ray->wall_y - player->pos_y_array) * \
 					(ray->wall_y - player->pos_y_array));
-	return ((int)((mlx->proj_plane_height * texture->h) / wall_dist));
+	return ((int)((mlx->proj_plane_height / texture->h) / wall_dist));
 }
-

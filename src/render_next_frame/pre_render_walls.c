@@ -34,7 +34,7 @@ static void	interpolate_texture(t_render *ray, t_canvas *surfaces, \
 	count = 0;
 	while (ray->canvas_y < ray->end_y)
 	{
-//		copy_pixels(ray, surfaces, texture);
+		copy_pixels(ray, surfaces, texture);
 		count++;
 		if (count == ray->step)
 		{
@@ -43,7 +43,6 @@ static void	interpolate_texture(t_render *ray, t_canvas *surfaces, \
 		}
 		ray->canvas_y++;
 	}
-	(void) surfaces;
 }
 static void	copy_to_canvas(t_render *ray, t_canvas *surfaces, \
 							t_our_img *texture)
