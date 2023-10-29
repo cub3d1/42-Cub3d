@@ -49,5 +49,7 @@ int	find_render_h(t_mlx *mlx, t_render *ray, \
 					(ray->wall_x - player->pos_x_array) + \
 					(ray->wall_y - player->pos_y_array) * \
 					(ray->wall_y - player->pos_y_array));
-	return ((int)((mlx->proj_plane_height / texture->h) / wall_dist));
+//	printf("wall_dist = %f\n", (mlx->proj_plane_height / texture->h) * wall_dist);
+	(void) texture;
+	return ((int)(mlx->proj_plane_height - (wall_dist * 100)));
 }

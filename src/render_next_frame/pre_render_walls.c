@@ -80,6 +80,7 @@ void	draw_wall_slice(t_render *ray, t_canvas *surfaces, t_our_img *texture)
 {
 	float	ratio;
 
+	ft_printf_fd(1, "%d\n", ray->render_h);
 	ray->start_y = (WIN_H / 2) - (ray->render_h / 2);
 	ray->end_y = (WIN_H / 2) + (ray->render_h / 2);
 	ray->canvas_y = ray->start_y;

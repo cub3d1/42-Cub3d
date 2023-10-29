@@ -77,6 +77,9 @@ static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
 		texture = select_texture(cubed->player, mlx, ray);
 		ray->tex_x = find_tex_x(ray, texture);
 		ray->render_h = find_render_h(mlx, ray, texture, cubed->player);
+		if (ray->render_h < 1)
+			ray->render_h = 1;
+//		ft_printf_fd(1, "%d\n", ray->render_h);
 		draw_wall_slice(ray, mlx->surfaces, texture);
 		raycast = raycast->next;
 	}
