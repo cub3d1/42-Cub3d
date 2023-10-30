@@ -125,8 +125,8 @@ typedef struct s_render
 	char	hit;		//	'x' or 'y'
 
 	//	to determine when pre-rendering
-	int		tex_x;
-	int		render_h;
+	int			tex_x;
+	float		render_h;
 
 	//	iterators
 	int		start_y;
@@ -297,7 +297,7 @@ void	draw_wall_slice(t_render *ray, t_canvas *surfaces, t_our_img *texture);
 /* ./render_next_frame/pre_render_walls_utils.c	*/
 t_our_img	*select_texture(t_player *player, t_mlx *mlx, t_render *ray);
 int			find_tex_x(t_render *ray, t_our_img *texture);
-int	find_render_h(t_mlx *mlx, t_render *ray, \
+float	find_render_h(t_mlx *mlx, t_render *ray, \
 							t_our_img *texture, t_player *player);
 
 /*	./render_next_frame/update.c	*/

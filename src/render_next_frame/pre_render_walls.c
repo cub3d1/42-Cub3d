@@ -19,7 +19,7 @@ static void	copy_pixels(t_render *ray, t_canvas *surfaces, t_our_img *texture)
 
 	map_img = surfaces->map_img;
 	pixel = map_img->addr + (ray->canvas_y * map_img->line_length) + 
-			(ray->col * (map_img->bpp / 8));
+			((WIN_W - ray->col) * (map_img->bpp / 8));
 	*(unsigned int *)pixel = *(unsigned int *)(texture->addr + \
 			(ray->texture_y * texture->line_length) + \
 			(ray->tex_x * (texture->bpp / 8)));
@@ -55,7 +55,7 @@ static void	copy_to_canvas(t_render *ray, t_canvas *surfaces, \
 	}
 }
 
-static void	skip_pixels(t_render *ray, t_canvas *surfaces, \
+static void	skip_texture_pixels(t_render *ray, t_canvas *surfaces, \
 						t_our_img *texture, float ratio)
 {
 	int	step;
@@ -65,7 +65,6 @@ static void	skip_pixels(t_render *ray, t_canvas *surfaces, \
 		step--;
 	if (step == 0 || ratio - (int)ratio >= 0.8f)
 		step++;
-	//	copy pixels
 	while (ray->canvas_y < ray->end_y)
 	{
 		copy_pixels(ray, surfaces, texture);
@@ -80,7 +79,6 @@ void	draw_wall_slice(t_render *ray, t_canvas *surfaces, t_our_img *texture)
 {
 	float	ratio;
 
-	ft_printf_fd(1, "%d\n", ray->render_h);
 	ray->start_y = (WIN_H / 2) - (ray->render_h / 2);
 	ray->end_y = (WIN_H / 2) + (ray->render_h / 2);
 	ray->canvas_y = ray->start_y;
@@ -91,12 +89,15 @@ void	draw_wall_slice(t_render *ray, t_canvas *surfaces, t_our_img *texture)
 	else if (ratio > 0.8f && ratio < 1.2f)
 		copy_to_canvas(ray, surfaces, texture);
 	else
-		skip_pixels(ray, surfaces, texture, ratio);
-	//	fuck... how do I do this without fucking up with the norm?
+		skip_texture_pixels(ray, surfaces, texture, ratio);
+\
+	//	if pix_step < 1, 
+	//		interpolate texture:
+	//	else if pix_step == 1
+	//		do exact copy of line from ray->texture_x,0 to ray->col,ray->proj_plane_height
+	//	else if pix_step > 1
+	//		skip texture pixels
 
-	//	if pix_step < 1, interpolate texture:
-
-	//	else (ie pix_step >= 1)
 	//		copy each y in texture to canvas & add pix_step - (int)pix_step to iterator
 	//		when iterator >= 1, skip row
 	//	that should work...

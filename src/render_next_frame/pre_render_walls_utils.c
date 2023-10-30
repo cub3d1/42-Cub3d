@@ -31,16 +31,18 @@ t_our_img	*select_texture(t_player *player, t_mlx *mlx, t_render *ray)
 	return (NULL);
 }
 
+//	needs improvement
 int	find_tex_x(t_render *ray, t_our_img *texture)
 {
 	if (ray->hit == 'x')
 		return ((int)(texture->w * (ray->wall_x - (int)ray->wall_x)));
 	else if (ray->hit == 'y')
 		return ((int)(texture->w * (ray->wall_y - (int)ray->wall_y)));
-	return ('\0');
+	return (0);
 }
+
 /*	error is here	*/
-int	find_render_h(t_mlx *mlx, t_render *ray, \
+float	find_render_h(t_mlx *mlx, t_render *ray, \
 							t_our_img *texture, t_player *player)
 {
 	float	wall_dist;
@@ -51,5 +53,5 @@ int	find_render_h(t_mlx *mlx, t_render *ray, \
 					(ray->wall_y - player->pos_y_array));
 //	printf("wall_dist = %f\n", (mlx->proj_plane_height / texture->h) * wall_dist);
 	(void) texture;
-	return ((int)(mlx->proj_plane_height - (wall_dist * 100)));
+	return (mlx->proj_plane_height - (mlx->proj_plane_height / wall_dist));
 }
