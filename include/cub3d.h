@@ -80,8 +80,8 @@ typedef struct s_rwf
 	double	sideDistX;
 	double	sideDistY;
 	double	perpWallDist;
-	int		mapX;
-	int		mapY;
+	float		mapX;
+	float		mapY;
 	int		stepX;
 	int		stepY;
 	int		side;

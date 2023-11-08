@@ -49,8 +49,8 @@ static void update_vectors(t_rwf *rwf, t_player *player, int x)
 
 static void update_map_steps (t_rwf *rwf, t_player *player)
 {
-	rwf->mapX = (int)player->pos_x_array;
-	rwf->mapY = (int)player->pos_y_array;
+	rwf->mapX = player->pos_x_array;
+	rwf->mapY = player->pos_y_array;
 
 	if (rwf->rayDirX < 0)
 	{
@@ -130,7 +130,7 @@ void raycaster(t_cubed *cubed, t_list *renderer)
 				rwf.mapY += rwf.stepY;
 				rwf.side = 1;
 			}
-			if (cubed->map[rwf.mapY][rwf.mapX] == '1')
+			if (cubed->map[(int)rwf.mapY][(int)rwf.mapX] == '1')
 				rwf.hit = 1;
 		}
 
