@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 12:52:25 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/27 17:52:15 by hiper            ###   ########.fr       */
+/*   Updated: 2023/11/19 00:03:04 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static void	draw_floor(int *floor, t_our_img *canvas)
  	}
  }
 
+
 static void	print_struct_data(t_render *ray)
 {
 	printf("ray %d\n", ray->col);
@@ -76,6 +77,7 @@ static void	print_struct_data(t_render *ray)
 	printf("ray->hit\t=\t%c\n", ray->hit);
 	printf ("\n");
 }
+
 
 static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
 {

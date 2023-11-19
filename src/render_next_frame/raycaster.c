@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/27 19:42:43 by hiper            ###   ########.fr       */
+/*   Updated: 2023/11/19 00:41:08 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,10 @@ void raycaster(t_cubed *cubed, t_list *renderer)
 
 		// print_vectors(&rwf);
 		
+		if (player->angle >= 0 && player->angle <= 180)
+			rwf.sideDistX = (player->pos_x_array - rwf.mapX) * rwf.deltaDistX;
+		else
+			rwf.sideDistX = (rwf.mapX + 1.0 - player->pos_x_array) * rwf.deltaDistX;
 		while (rwf.hit == 0)
 		{
 			if (rwf.sideDistX < rwf.sideDistY)
