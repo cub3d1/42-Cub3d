@@ -236,7 +236,10 @@ void	load_textures(t_cubed *cubed, char *arg);
 /*			free.c		*/
 int		free_stuff(t_cubed *cubed, int err_code);
 
-/*		free_textures.c	*/
+/*		free_mlx.c	*/
+void	free_mlx_images(t_mlx *mlx);
+void	free_canvases(t_mlx *mlx);
+void	free_renderer(t_list *renderer);
 void	free_image(t_mlx *mlx, t_our_img *img);
 
 /*			exit_err.c 	*/

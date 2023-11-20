@@ -22,7 +22,6 @@ static void	init_canvas_image(t_cubed *cubed, t_canvas *canvas)
 			&map_img->line_length, &map_img->endian);
 	if (!map_img->img || !map_img->addr)
 		exit_err(cubed, 6);
-
 }
 
 static void	init_canvas(t_cubed *cubed, t_canvas *canvas, int scale)

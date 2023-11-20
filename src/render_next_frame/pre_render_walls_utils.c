@@ -41,7 +41,6 @@ int	find_tex_x(t_render *ray, t_our_img *texture)
 	return (0);
 }
 
-/*	error is here	*/
 float	find_render_h(t_mlx *mlx, t_render *ray, \
 							t_our_img *texture, t_player *player)
 {
@@ -51,7 +50,6 @@ float	find_render_h(t_mlx *mlx, t_render *ray, \
 					(ray->wall_x - player->pos_x_array) + \
 					(ray->wall_y - player->pos_y_array) * \
 					(ray->wall_y - player->pos_y_array));
-//	printf("wall_dist = %f\n", (mlx->proj_plane_height / texture->h) * wall_dist);
 	(void) texture;
 	return (mlx->proj_plane_height - (mlx->proj_plane_height / wall_dist));
 }

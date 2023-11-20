@@ -25,14 +25,8 @@ int	window_cross(t_cubed *cubed)
 	// 	cubed->player->pos_y += cubed->player->dir_y * 0.1;
 	// }
 
-int	keypress_hook(int keycode, t_cubed *cubed)
+static void	read_keystrokes(int keycode, t_cubed *cubed)
 {
-	if (keycode == ESCAPE)
-	{
-		mlx_do_key_autorepeaton(cubed->mlx->mlx_ptr);
-		ft_printf_fd(1, "Escape pressed!\nClosing program...\n");
-		free_stuff(cubed, 0);
-	}
 	if (keycode == KEY_TAB)
 		cubed->keys->show_automap = !cubed->keys->show_automap;
 	if (keycode == KEY_M)
@@ -53,6 +47,17 @@ int	keypress_hook(int keycode, t_cubed *cubed)
 		cubed->player->angle += 45;
 	if (keycode == KEY_DOWN)
 		cubed->player->angle -= 45;
+}
+
+int	keypress_hook(int keycode, t_cubed *cubed)
+{
+	if (keycode == ESCAPE)
+	{
+		mlx_do_key_autorepeaton(cubed->mlx->mlx_ptr);
+		ft_printf_fd(1, "Escape pressed!\nClosing program...\n");
+		free_stuff(cubed, 0);
+	}
+	read_keystrokes(keycode, cubed);
 	return (0);
 }
 

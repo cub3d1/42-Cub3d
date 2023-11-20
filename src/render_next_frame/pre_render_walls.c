@@ -18,7 +18,7 @@ static void	copy_pixels(t_render *ray, t_canvas *surfaces, t_our_img *texture)
 	char			*pixel;
 
 	map_img = surfaces->map_img;
-	pixel = map_img->addr + (ray->canvas_y * map_img->line_length) + 
+	pixel = map_img->addr + (ray->canvas_y * map_img->line_length) + \
 			((WIN_W - ray->col) * (map_img->bpp / 8));
 	*(unsigned int *)pixel = *(unsigned int *)(texture->addr + \
 			(ray->texture_y * texture->line_length) + \
@@ -44,6 +44,7 @@ static void	interpolate_texture(t_render *ray, t_canvas *surfaces, \
 		ray->canvas_y++;
 	}
 }
+
 static void	copy_to_canvas(t_render *ray, t_canvas *surfaces, \
 							t_our_img *texture)
 {
@@ -90,15 +91,17 @@ void	draw_wall_slice(t_render *ray, t_canvas *surfaces, t_our_img *texture)
 		copy_to_canvas(ray, surfaces, texture);
 	else
 		skip_texture_pixels(ray, surfaces, texture, ratio);
-\
+}
+
 	//	if pix_step < 1, 
 	//		interpolate texture:
 	//	else if pix_step == 1
-	//		do exact copy of line from ray->texture_x,0 to ray->col,ray->proj_plane_height
+	//		do exact copy of line from ray->texture_x,0 
+	//		to ray->col,ray->proj_plane_height
 	//	else if pix_step > 1
 	//		skip texture pixels
 
-	//		copy each y in texture to canvas & add pix_step - (int)pix_step to iterator
+	//		copy each y in texture to canvas & add 
+	//			pix_step - (int)pix_step to iterator
 	//		when iterator >= 1, skip row
 	//	that should work...
-}

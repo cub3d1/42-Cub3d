@@ -12,7 +12,7 @@
 
 #include "../../include/cub3d.h"
 
-static void 	init_rwf(t_rwf *rwf)
+static void	init_rwf(t_rwf *rwf)
 {
 	rwf->cameraX = 0;
 	rwf->rayDirX = 0;
@@ -24,7 +24,7 @@ static void 	init_rwf(t_rwf *rwf)
 	rwf->perpWallDist = 0;
 	rwf->mapX = 0;
 	rwf->mapY = 0;
-	rwf->stepX = 0;	
+	rwf->stepX = 0;
 	rwf->stepY = 0;
 	rwf->hit = 0;
 	rwf->side = 0;
@@ -33,7 +33,7 @@ static void 	init_rwf(t_rwf *rwf)
 
 // static int done() { return 0; }
 
-static void update_vectors(t_rwf *rwf, t_player *player, int x)
+static void	update_vectors(t_rwf *rwf, t_player *player, int x)
 {
 	rwf->cameraX = 2 * x / (double)WIN_W - 1;
 	rwf->rayDirX = player->dir_x + player->plane_vector_x * rwf->cameraX;
@@ -42,16 +42,16 @@ static void update_vectors(t_rwf *rwf, t_player *player, int x)
 		rwf->rayDirX = 0.00000000001;
 	if (rwf->rayDirY == 0)
 		rwf->rayDirY = 0.00000000001;
-
-	rwf->deltaDistX = sqrt(1 + (rwf->rayDirY * rwf->rayDirY) / (rwf->rayDirX * rwf->rayDirX));
-	rwf->deltaDistY = sqrt(1 + (rwf->rayDirX * rwf->rayDirX) / (rwf->rayDirY * rwf->rayDirY));
+	rwf->deltaDistX = sqrt(1 + (rwf->rayDirY * rwf->rayDirY) \
+							/ (rwf->rayDirX * rwf->rayDirX));
+	rwf->deltaDistY = sqrt(1 + (rwf->rayDirX * rwf->rayDirX) \
+							/ (rwf->rayDirY * rwf->rayDirY));
 }
 
-static void update_map_steps (t_rwf *rwf, t_player *player)
+static void	update_map_steps(t_rwf *rwf, t_player *player)
 {
 	rwf->mapX = player->pos_x_array;
 	rwf->mapY = player->pos_y_array;
-
 	if (rwf->rayDirX < 0)
 	{
 		rwf->stepX = -1;
@@ -60,7 +60,8 @@ static void update_map_steps (t_rwf *rwf, t_player *player)
 	else
 	{
 		rwf->stepX = 1;
-		rwf->deltaDistX = (rwf->mapX + 1.0 - player->pos_x_array) * rwf->deltaDistX;
+		rwf->deltaDistX = (rwf->mapX + 1.0 - player->pos_x_array) \
+							* rwf->deltaDistX;
 	}
 	if (rwf->rayDirY < 0)
 	{
@@ -70,11 +71,12 @@ static void update_map_steps (t_rwf *rwf, t_player *player)
 	else
 	{
 		rwf->stepY = 1;
-		rwf->deltaDistY = (rwf->mapY + 1.0 - player->pos_y_array) * rwf->deltaDistY;
+		rwf->deltaDistY = (rwf->mapY + 1.0 - player->pos_y_array) \
+							* rwf->deltaDistY;
 	}
 }
 
-void fill_renderer(t_rwf rwf, t_render *ray)
+void	fill_renderer(t_rwf rwf, t_render *ray)
 {
 	ray->wall_x = rwf.mapX;
 	ray->wall_y = rwf.mapY;
@@ -98,28 +100,26 @@ void fill_renderer(t_rwf rwf, t_render *ray)
 // 	(void)rwf;
 // }
 
-void raycaster(t_cubed *cubed, t_list *renderer)
+void	raycaster(t_cubed *cubed, t_list *renderer)
 {
-	t_player	*player = cubed->player;
-	t_mlx		*mlx = cubed->mlx;
+	t_player	*player;
 	t_rwf		rwf;
 	t_render	*ray;
-	
+	int			x;
+
+	player = cubed->player;
 	init_rwf(&rwf);
-
-	int x = 0;
-
+	x = 0;
 	while (x < WIN_W)
 	{
 		update_vectors(&rwf, player, x);
 		update_map_steps(&rwf, player);
-
 		// print_vectors(&rwf);
-		
 		if (player->angle >= 0 && player->angle <= 180)
 			rwf.sideDistX = (player->pos_x_array - rwf.mapX) * rwf.deltaDistX;
 		else
-			rwf.sideDistX = (rwf.mapX + 1.0 - player->pos_x_array) * rwf.deltaDistX;
+			rwf.sideDistX = (rwf.mapX + 1.0 - player->pos_x_array) \
+							* rwf.deltaDistX;
 		while (rwf.hit == 0)
 		{
 			if (rwf.sideDistX < rwf.sideDistY)
@@ -137,36 +137,26 @@ void raycaster(t_cubed *cubed, t_list *renderer)
 			if (cubed->map[(int)rwf.mapY][(int)rwf.mapX] == '1')
 				rwf.hit = 1;
 		}
-
 		// ft_printf_fd(1, "[RWF] rwf.mapX = %d|rwf.mapY = %d\n", rwf.mapX, rwf.mapY);
-
 		// printf("[RWF] rwf.sideDistX = %.1f|rwf.sideDistY = %.1f\n", rwf.sideDistX, rwf.sideDistY);
-
-		// printf("[RWF] rwf.deltaDistX = %.1f|rwf.deltaDistY = %.1f\n", rwf.deltaDistX, rwf.deltaDistY); 
-		
-		// exit(1);
-		
+		// printf("[RWF] rwf.deltaDistX = %.1f|rwf.deltaDistY = %.1f\n", rwf.deltaDistX, rwf.deltaDistY);	
+		// exit(1);		
 		if (rwf.side == 0)
-			rwf.perpWallDist = (rwf.sideDistX);					
+			rwf.perpWallDist = (rwf.sideDistX);
 		else
 			rwf.perpWallDist = (rwf.sideDistY);
-
 		// // rwf.perpWallDist = 2;
 		// printf("[RWF] rwf.perpWallDist = %.1f\n", rwf.perpWallDist);
-
 		rwf.lineHeight = (int)(WIN_H / rwf.perpWallDist);
-
-
 		// rwf.lineHeight = 400;
 		// printf("[RWF] rwf.lineHeight = %d\n", rwf.lineHeight);
 		// // exit(1);
-
-			int drawStart = -rwf.lineHeight / 2 + WIN_H / 2;
-			if(drawStart < 0) drawStart = 0;
-
-			int drawEnd = rwf.lineHeight / 2 + WIN_H / 2;
-			if(drawEnd >= WIN_H) drawEnd = WIN_H - 1;
-		
+/*
+		int drawStart = -rwf.lineHeight / 2 + WIN_H / 2;
+		if(drawStart < 0) drawStart = 0;
+		int drawEnd = rwf.lineHeight / 2 + WIN_H / 2;
+		if(drawEnd >= WIN_H) drawEnd = WIN_H - 1;
+*/
 		// ft_printf_fd(1, "[RWF] drawStart = %d|drawEnd = %d\n", drawStart, drawEnd);
 		// exit(1);
 		// int color = 0;
@@ -189,5 +179,4 @@ void raycaster(t_cubed *cubed, t_list *renderer)
 	}
 	// ft_printf_fd(1, "walls drawn!\n");
 	// sleep(2);
-	(void)player; (void)mlx; (void)cubed;
 }

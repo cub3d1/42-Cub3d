@@ -18,54 +18,53 @@ static unsigned int	get_rgb(unsigned char t, unsigned char r, \
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
- static void	draw_ceiling(int *ceiling, t_our_img *canvas)
- {
- 	unsigned int	color;
- 	char			*pixel;
- 	int				x;
- 	int				y;
+static void	draw_ceiling(int *ceiling, t_our_img *canvas)
+{
+	unsigned int	color;
+	char			*pixel;
+	int				x;
+	int				y;
 
- 	color = get_rgb(0, ceiling[0], ceiling[1], ceiling[2]);
- 	x = 0;
- 	y = 0;
- 	while (y < WIN_H / 2)
- 	{
- 		while (x < WIN_W)
- 		{
- 			pixel = canvas->addr;
- 			pixel += (y * canvas->line_length) + (x * (canvas->bpp / 8));
- 			*(unsigned int *)pixel = color;
- 			x++;
- 		}
- 		x = 0;
- 		y++;
- 	}
- }
+	color = get_rgb(0, ceiling[0], ceiling[1], ceiling[2]);
+	x = 0;
+	y = 0;
+	while (y < WIN_H / 2)
+	{
+		while (x < WIN_W)
+		{
+			pixel = canvas->addr;
+			pixel += (y * canvas->line_length) + (x * (canvas->bpp / 8));
+			*(unsigned int *)pixel = color;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
 
 static void	draw_floor(int *floor, t_our_img *canvas)
- {
- 	unsigned int	color;
- 	char			*pixel;
- 	int				x;
- 	int				y;
+{
+	unsigned int	color;
+	char			*pixel;
+	int				x;
+	int				y;
 
- 	color = get_rgb(0, floor[0], floor[1], floor[2]);
- 	x = 0;
- 	y = WIN_H / 2;
- 	while (y < WIN_H)
- 	{
- 		while (x < WIN_W)
- 		{
- 			pixel = canvas->addr;
- 			pixel += (y * canvas->line_length) + (x * (canvas->bpp / 8));
- 			*(unsigned int *)pixel = color;
- 			x++;
- 		}
- 		x = 0;
- 		y++;
- 	}
- }
-
+	color = get_rgb(0, floor[0], floor[1], floor[2]);
+	x = 0;
+	y = WIN_H / 2;
+	while (y < WIN_H)
+	{
+		while (x < WIN_W)
+		{
+			pixel = canvas->addr;
+			pixel += (y * canvas->line_length) + (x * (canvas->bpp / 8));
+			*(unsigned int *)pixel = color;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
 
 static void	print_struct_data(t_render *ray)
 {
@@ -78,14 +77,13 @@ static void	print_struct_data(t_render *ray)
 	printf ("\n");
 }
 
-
 static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
 {
 	t_render	*ray;
 	t_our_img	*texture;
 
 	while (raycast)
-	{	
+	{
 		ray = raycast->content;
 		print_struct_data(ray);
 		texture = select_texture(cubed->player, mlx, ray);
@@ -100,9 +98,10 @@ static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
 //	exit_err(cubed, 0);
 }
 
- void	pre_render(t_cubed *cubed)
+void	pre_render(t_cubed *cubed)
 {
 	t_mlx	*mlx;
+
 	mlx = cubed->mlx;
 	//	pre render floor + ceiling + walls
 	draw_ceiling(mlx->ceiling_color, mlx->surfaces->map_img);
