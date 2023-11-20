@@ -80,8 +80,8 @@ typedef struct s_rwf
 	double	sideDistX;
 	double	sideDistY;
 	double	perpWallDist;
-	float		mapX;
-	float		mapY;
+	float	mapX;
+	float	mapY;
 	int		stepX;
 	int		stepY;
 	int		side;
@@ -113,29 +113,22 @@ typedef struct s_canvas
 /*	PUT RAYCASTER DATA HERE	*/
 typedef struct s_render
 {
-	//	assigned at init
 	int		col;
 
-	//	intersect with raycaster on wall 
-	float	wall_x;		//	on x_array
-	float	wall_y;		//	on y_array
-	//	intersect with raycaster on plane
-	float	plane_x;	//	on x_array
-	float	plane_y;	//	on y_array
-	char	hit;		//	'x' or 'y'
+	float	wall_x;
+	float	wall_y;
+	float	plane_x;
+	float	plane_y;
+	char	hit;
 
-	//	to determine when pre-rendering
-	int			tex_x;
-	float		render_h;
+	int		tex_x;
+	float	render_h;
 
-	//	iterators
 	int		start_y;
 	int		end_y;
 	int		canvas_y;
 	int		texture_y;
 	int		step;
-
-
 }				t_render;
 
 typedef struct s_mlx
@@ -207,119 +200,119 @@ typedef struct s_cubed
 }				t_cubed;
 
 /*			hooks.c		 */
-int		window_cross(t_cubed *cubed);
-int		keypress_hook(int keycode, t_cubed *cubed);
-int		keyrelease_hook(int keycode, t_cubed *cubed);
-int		mouse_hook(int button, int x, int y, t_cubed *cubed);
+int			window_cross(t_cubed *cubed);
+int			keypress_hook(int keycode, t_cubed *cubed);
+int			keyrelease_hook(int keycode, t_cubed *cubed);
+int			mouse_hook(int button, int x, int y, t_cubed *cubed);
 
 /*			init.c		*/
-void	init_cubed(t_cubed *cubed);
-void	init_player_struct(t_player *player, char **map, int y);
+void		init_cubed(t_cubed *cubed);
+void		init_player_struct(t_player *player, char **map, int y);
 
 /*		init_mlx_struct.c	*/
-void	init_mlx_struct(t_cubed *cubed);
+void		init_mlx_struct(t_cubed *cubed);
 
 /*		init_pre_render.c		*/	
-void	init_pre_render(t_cubed *cubed);
-
+void		init_pre_render(t_cubed *cubed);
 
 /*		map_utils.c		*/
-float	get_biggest_line(char **map);
-float	get_array_size(char **map);
+float		get_biggest_line(char **map);
+float		get_array_size(char **map);
 
 /*	load_textures.c	*/
-void	load_textures(t_cubed *cubed, char *arg);
+void		load_textures(t_cubed *cubed, char *arg);
 
 /*	set_automap_walls.c	*/
 //void	set_automap_walls(t_cubed *cubed);
 
 /*			free.c		*/
-int		free_stuff(t_cubed *cubed, int err_code);
+int			free_stuff(t_cubed *cubed, int err_code);
 
 /*		free_mlx.c	*/
-void	free_mlx_images(t_mlx *mlx);
-void	free_canvases(t_mlx *mlx);
-void	free_renderer(t_list *renderer);
-void	free_image(t_mlx *mlx, t_our_img *img);
+void		free_mlx_images(t_mlx *mlx);
+void		free_canvases(t_mlx *mlx);
+void		free_renderer(t_list *renderer);
+void		free_image(t_mlx *mlx, t_our_img *img);
 
 /*			exit_err.c 	*/
-void	exit_err(t_cubed *cubed, int err_code);
+void		exit_err(t_cubed *cubed, int err_code);
 
 /*		./parser/parser.c */
-void	parser(t_cubed *cubed, char *arg);
+void		parser(t_cubed *cubed, char *arg);
 
 /*	./parser/file_content_check.c	*/
-bool	textures_ok(int map_fd, t_cubed *cubed);
-bool	color_ok(int map_fd, t_cubed *cubed);
-bool	map_pos_ok(int map_fd);
+bool		textures_ok(int map_fd, t_cubed *cubed);
+bool		color_ok(int map_fd, t_cubed *cubed);
+bool		map_pos_ok(int map_fd);
 
 /*	./parser/file_content_check_utils.c	*/
-bool	color_format_ok(char *line);
-bool	color_vals_ok(char *line);
-bool	map_start(char *line);
+bool		color_format_ok(char *line);
+bool		color_vals_ok(char *line);
+bool		map_start(char *line);
 
 /*	./parser/map_layout_check.c	*/
-bool	map_tokens_ok(t_cubed *cubed);
-bool	player_token_ok(t_cubed *cubed);
-bool	layout_enclosed(t_cubed *cubed);
+bool		map_tokens_ok(t_cubed *cubed);
+bool		player_token_ok(t_cubed *cubed);
+bool		layout_enclosed(t_cubed *cubed);
 
 /*	./parser/map_layout_check_utils.c	*/
-char	**init_shadow_map(char **map);
+char		**init_shadow_map(char **map);
 
 /*	./parser/flood_fill.c	*/
-void	flood_fill(char **map, int pos_x, int pos_y);
-bool	flood_fill_check(char **map);
+void		flood_fill(char **map, int pos_x, int pos_y);
+bool		flood_fill_check(char **map);
 
 /*	./parser/file_check.c	*/
-bool	textures_ok(int map_fd, t_cubed *cubed);
-bool	color_ok(int map_fd, t_cubed *cubed);
-int		find_map_offset(t_mlx *mlx, char *arg);
+bool		textures_ok(int map_fd, t_cubed *cubed);
+bool		color_ok(int map_fd, t_cubed *cubed);
+int			find_map_offset(t_mlx *mlx, char *arg);
 
 /*	./parser/load_map.c	*/
-int		load_map(t_cubed *cubed, char *path);
+int			load_map(t_cubed *cubed, char *path);
 
 /*	./parser/load_colors.c	*/
-void	load_colors(t_cubed *cubed, char *path);
+void		load_colors(t_cubed *cubed, char *path);
 
 /*	./render_next_frame/render_next_frame.c */
-int		render_next_frame(t_cubed *cubed);
+int			render_next_frame(t_cubed *cubed);
 
 /*	./render_next_frame/raycaster.c			*/
-void	raycaster(t_cubed *cubed, t_list *renderer);
+void		raycaster(t_cubed *cubed, t_list *renderer);
 
 /*		./render_next_frame/pre_render.c	*/
-void	pre_render(t_cubed *cubed);
-void	draw_map2d(char **map, t_canvas *map2d);
+void		pre_render(t_cubed *cubed);
+void		draw_map2d(char **map, t_canvas *map2d);
 
 /* ./render_next_frame/pre_render_map2d.c	*/
-void	draw_map2d(char **map, t_canvas *map2d);
+void		draw_map2d(char **map, t_canvas *map2d);
 
 /* ./render_next_frame/pre_render_walls.c	*/
-void	draw_wall_slice(t_render *ray, t_canvas *surfaces, t_our_img *texture);
+void		draw_wall_slice(t_render *ray, t_canvas *surfaces, \
+							t_our_img *texture);
 
 /* ./render_next_frame/pre_render_walls_utils.c	*/
 t_our_img	*select_texture(t_player *player, t_mlx *mlx, t_render *ray);
 int			find_tex_x(t_render *ray, t_our_img *texture);
-float	find_render_h(t_mlx *mlx, t_render *ray, \
+float		find_render_h(t_mlx *mlx, t_render *ray, \
 							t_our_img *texture, t_player *player);
 
 /*	./render_next_frame/update.c	*/
-void	update_angle(t_cubed *cubed);
-void	update_player_pos(t_cubed *cubed, t_keys *keys, t_player *player);
+void		update_angle(t_cubed *cubed);
+void		update_player_pos(t_cubed *cubed, t_keys *keys, t_player *player);
 
 /*	./render_next_frame/update_utils.c	*/
-void	read_mouse_input(t_cubed *cubed);
-void	read_key_input(t_cubed *cubed);
-void	update_player_dir(t_cubed *cubed, t_player *player);
-void	move_player(t_player *player, t_keys *keys);
+void		read_mouse_input(t_cubed *cubed);
+void		read_key_input(t_cubed *cubed);
+void		update_player_dir(t_cubed *cubed, t_player *player);
+void		move_player(t_player *player, t_keys *keys);
 
 /*	./render_next_frame/collisions.c	*/
-void	check_borders(t_cubed *cubed, t_player *player, \
+void		check_borders(t_cubed *cubed, t_player *player, \
 	float prev_x, float prev_y);
 
 /*	./render_next_frame/show_map2d.c */
-void	show_map2d(t_cubed *cubed, t_canvas *canvas);
-void	show_player(t_cubed *cubed, t_our_img *player, t_canvas *map);
+void		show_map2d(t_cubed *cubed, t_canvas *canvas);
+void		show_player(t_cubed *cubed, t_our_img *player, t_canvas *map);
 
 #endif
 
