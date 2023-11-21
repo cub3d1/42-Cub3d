@@ -161,10 +161,10 @@ void	raycaster(t_cubed *cubed, t_list *renderer)
 		// exit(1);
 		// int color = 0;
 		// switch(rwf.side)
-      	// {
-	    //     case 0:  color = 0x000000FF;  break; //blue
-	    //     case 1:  color = 0x0000FF00;  break; //green
-      	// }
+		// {
+		//     case 0:  color = 0x000000FF;  break; //blue
+		//     case 1:  color = 0x0000FF00;  break; //green
+		// }
 		// while (drawStart < drawEnd)
 		// {
 		// 	mlx_pixel_put(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, x, 	drawStart, color);
