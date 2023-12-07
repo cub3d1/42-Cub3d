@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 12:52:25 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/11/19 00:03:04 by hiper            ###   ########.fr       */
+/*   Updated: 2023/12/07 23:27:26 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ static void	print_struct_data(t_render *ray)
 	printf("ray %d\n", ray->col);
 	printf("ray->wall_x\t=\t%f\n", ray->wall_x);
 	printf("ray->wall_y\t=\t%f\n", ray->wall_y);
-//	printf("ray->plane_x\t=\t%f\n", ray->plane_x);
-//	printf("ray->plane_y\t=\t%f\n", ray->plane_y);
+	printf("ray->plane_x\t=\t%f\n", ray->plane_x);
+	printf("ray->plane_y\t=\t%f\n", ray->plane_y);
 	printf("ray->hit\t=\t%c\n", ray->hit);
 	printf ("\n");
+	(void)ray;
 }
-
 static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
 {
 	t_render	*ray;
@@ -107,4 +107,5 @@ void	pre_render(t_cubed *cubed)
 	draw_ceiling(mlx->ceiling_color, mlx->surfaces->map_img);
 	draw_floor(mlx->floor_color, mlx->surfaces->map_img);
 	draw_walls(cubed, mlx, mlx->renderer);
+	// draw_walls(cubed, mlx, NULL);
 }
