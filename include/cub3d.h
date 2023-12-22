@@ -92,6 +92,10 @@ typedef struct s_rwf
 /*	PUT RAYCASTER DATA HERE	*/
 typedef struct s_ray
 {
+	//	== player pos
+	double	start_x;
+	double	start_y;
+
 	//	init_ray_dir();
 	double	ray_dir_x;
 	double	ray_dir_y;

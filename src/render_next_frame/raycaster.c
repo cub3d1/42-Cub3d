@@ -183,20 +183,41 @@ void	raycaster(t_cubed *cubed, t_list *renderer)
 }
 */
 
+static void	init_ray_dir(t_ray *ray, t_player *player, int x)
+{
+	//	set ray->ray_dir_x and ray->ray_dir_y
+}
+
+static void	cast_ray(t_ray *ray, char **map)
+{
+	//	do the dda
+}
+
+static void	get_dist(t_ray *ray)
+{
+	//	calculate ray->perp_{x,y} + distance from ray->wall_{x,y}
+}
+
+static void	draw_wall_slice(t_ray *ray, t_mlx *mlx)
+{
+	//	pre render walls
+}
+
 void raycaster(t_cubed *cubed)
 {
 	t_ray	ray;
 	int		x;
 
 	ft_bzero(&ray, sizeof(t_ray));
+	ray->start_x = cubed->player->pos_x_array;
+	ray->start_y = cubed->player->pos_y_array;
 	x = 0;
 	while (x < WIN_W)
 	{
-		//	init_ray_dir();
-		//	cast_ray();
-		//	get_dist();
-		//	draw_wall_slice();
+		init_ray_dir(&ray, cubed->player, x);
+		cast_ray(ray, cubed->map);
+		get_dist(ray);
+		draw_wall_slice(ray, cubed->mlx);
 		x++;
 	}
-	(void) cubed;
 }
