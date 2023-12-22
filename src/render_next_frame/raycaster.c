@@ -12,6 +12,7 @@
 
 #include "../../include/cub3d.h"
 
+/*
 static void	init_rwf(t_rwf *rwf)
 {
 	rwf->cameraX = 0;
@@ -151,12 +152,12 @@ void	raycaster(t_cubed *cubed, t_list *renderer)
 		// rwf.lineHeight = 400;
 		// printf("[RWF] rwf.lineHeight = %d\n", rwf.lineHeight);
 		// // exit(1);
-/*
+
 		int drawStart = -rwf.lineHeight / 2 + WIN_H / 2;
 		if(drawStart < 0) drawStart = 0;
 		int drawEnd = rwf.lineHeight / 2 + WIN_H / 2;
 		if(drawEnd >= WIN_H) drawEnd = WIN_H - 1;
-*/
+
 		// ft_printf_fd(1, "[RWF] drawStart = %d|drawEnd = %d\n", drawStart, drawEnd);
 		// exit(1);
 		// int color = 0;
@@ -179,4 +180,23 @@ void	raycaster(t_cubed *cubed, t_list *renderer)
 	}
 	// ft_printf_fd(1, "walls drawn!\n");
 	// sleep(2);
+}
+*/
+
+void raycaster(t_cubed *cubed)
+{
+	t_ray	ray;
+	int		x;
+
+	ft_bzero(&ray, sizeof(t_ray));
+	x = 0;
+	while (x < WIN_W)
+	{
+		//	init_ray_dir();
+		//	cast_ray();
+		//	get_dist();
+		//	draw_wall_slice();
+		x++;
+	}
+	(void) cubed;
 }

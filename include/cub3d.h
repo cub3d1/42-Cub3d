@@ -80,14 +80,47 @@ typedef struct s_rwf
 	double	sideDistX;
 	double	sideDistY;
 	double	perpWallDist;
-	float	mapX;
-	float	mapY;
+	double	mapX;
+	double	mapY;
 	int		stepX;
 	int		stepY;
 	int		side;
 	int		lineHeight;
 	int		hit;
 }			t_rwf;
+
+/*	PUT RAYCASTER DATA HERE	*/
+typedef struct s_ray
+{
+	//	init_ray_dir();
+	double	ray_dir_x;
+	double	ray_dir_y;
+
+	//	cast_ray();
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	wall_x;
+	double	wall_y;
+	char	hit;	//	x or y
+
+	//	get_dist();
+	double	perp_x;
+	double	perp_y;
+	double	wall_dist;
+
+/*
+	int		tex_x;
+	float	render_h;
+
+	int		start_y;
+	int		end_y;
+	int		canvas_y;
+	int		texture_y;
+	int		step;
+*/
+}				t_ray;
 
 typedef struct s_our_img
 {
@@ -110,26 +143,6 @@ typedef struct s_canvas
 	t_our_img		*map_img;
 }				t_canvas;
 
-/*	PUT RAYCASTER DATA HERE	*/
-typedef struct s_render
-{
-	int		col;
-
-	float	wall_x;
-	float	wall_y;
-	float	plane_x;
-	float	plane_y;
-	char	hit;
-
-	int		tex_x;
-	float	render_h;
-
-	int		start_y;
-	int		end_y;
-	int		canvas_y;
-	int		texture_y;
-	int		step;
-}				t_render;
 
 typedef struct s_mlx
 {
@@ -231,7 +244,6 @@ int			free_stuff(t_cubed *cubed, int err_code);
 /*		free_mlx.c	*/
 void		free_mlx_images(t_mlx *mlx);
 void		free_canvases(t_mlx *mlx);
-void		free_renderer(t_list *renderer);
 void		free_image(t_mlx *mlx, t_our_img *img);
 
 /*			exit_err.c 	*/
@@ -277,7 +289,7 @@ void		load_colors(t_cubed *cubed, char *path);
 int			render_next_frame(t_cubed *cubed);
 
 /*	./render_next_frame/raycaster.c			*/
-void		raycaster(t_cubed *cubed, t_list *renderer);
+void		raycaster(t_cubed *cubed);
 
 /*		./render_next_frame/pre_render.c	*/
 void		pre_render(t_cubed *cubed);
@@ -287,15 +299,17 @@ void		draw_map2d(char **map, t_canvas *map2d);
 void		draw_map2d(char **map, t_canvas *map2d);
 
 /* ./render_next_frame/pre_render_walls.c	*/
+/*
 void		draw_wall_slice(t_render *ray, t_canvas *surfaces, \
 							t_our_img *texture);
-
+*/
 /* ./render_next_frame/pre_render_walls_utils.c	*/
+/*
 t_our_img	*select_texture(t_player *player, t_mlx *mlx, t_render *ray);
 int			find_tex_x(t_render *ray, t_our_img *texture);
 float		find_render_h(t_mlx *mlx, t_render *ray, \
 							t_our_img *texture, t_player *player);
-
+*/
 /*	./render_next_frame/update.c	*/
 void		update_angle(t_cubed *cubed);
 void		update_player_pos(t_cubed *cubed, t_keys *keys, t_player *player);

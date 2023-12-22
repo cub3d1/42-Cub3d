@@ -54,15 +54,6 @@ void	free_canvases(t_mlx *mlx)
 	}
 }
 
-void	free_renderer(t_list *renderer)
-{
-	if (renderer->next)
-		free_renderer(renderer->next);
-	if (renderer->content)
-		free(renderer->content);
-	free(renderer);
-}
-
 void	free_image(t_mlx *mlx, t_our_img *img)
 {
 	if (img->img)

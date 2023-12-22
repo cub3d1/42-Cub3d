@@ -65,7 +65,7 @@ static void	draw_floor(int *floor, t_our_img *canvas)
 		y++;
 	}
 }
-
+/*
 static void	print_struct_data(t_render *ray)
 {
 	printf("ray %d\n", ray->col);
@@ -77,6 +77,8 @@ static void	print_struct_data(t_render *ray)
 	printf ("\n");
 	(void)ray;
 }
+*/
+/*
 static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
 {
 	t_render	*ray;
@@ -97,7 +99,7 @@ static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
 	}
 //	exit_err(cubed, 0);
 }
-
+*/
 void	pre_render(t_cubed *cubed)
 {
 	t_mlx	*mlx;
@@ -106,6 +108,5 @@ void	pre_render(t_cubed *cubed)
 	//	pre render floor + ceiling + walls
 	draw_ceiling(mlx->ceiling_color, mlx->surfaces->map_img);
 	draw_floor(mlx->floor_color, mlx->surfaces->map_img);
-	draw_walls(cubed, mlx, mlx->renderer);
 	// draw_walls(cubed, mlx, NULL);
 }

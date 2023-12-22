@@ -52,8 +52,8 @@ int	render_next_frame(t_cubed *cubed)
 	update_player_pos(cubed, cubed->keys, cubed->player);
 	if (!cubed->keys->show_automap)
 	{
-		raycaster(cubed, cubed->mlx->renderer);
 		pre_render(cubed);
+		raycaster(cubed, cubed->mlx->renderer);
 		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
 			mlx->surfaces->map_img->img, 0, 0);
 		if (cubed->keys->show_minimap)
