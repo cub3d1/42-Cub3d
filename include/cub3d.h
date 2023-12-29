@@ -108,7 +108,7 @@ typedef struct s_ray
 	double	side_dist_y;
 	double	wall_x;
 	double	wall_y;
-	char	hit;	//	x or y
+	char	hit;	//	n or s or e or w
 
 	//	get_dist();
 	double	perp_x;
