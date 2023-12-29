@@ -171,6 +171,10 @@ typedef struct s_mlx
 	t_canvas	*surfaces;
 	t_canvas	*automap;
 	t_canvas	*minimap;
+
+	/*	DELET DIS FFS	*/	
+	t_our_img	*black_ball;
+	t_our_img	*green_ball;
 }				t_mlx;
 
 typedef struct s_keys
@@ -307,18 +311,21 @@ void		draw_map2d(char **map, t_canvas *map2d);
 void		draw_map2d(char **map, t_canvas *map2d);
 
 /* ./render_next_frame/draw_wall_slice.c	*/
+/*
 t_our_img	select_texture(t_ray *ray, t_mlx *mlx);
 void		set_render_height(t_ray *ray, t_canvas *canvas);
 int			find_texture_x(t_ray *ray, t_our_img *texture);
 void		pre_render_slice(t_ray *ray, t_our_img *texture, t_canvas *canvas);
-
+*/
 /* ./render_next_frame/draw_wall_slice_utils.c	*/
+/*
 void		interpolate_texture(t_render *ray, t_canvas *surfaces, \
 								t_our_img *texture, float ratio);
 void		copy_to_canvas(t_render *ray, t_canvas *surfaces, \
 							t_our_img *texture);
 void		skip_texture_pixels(t_render *ray, t_canvas *surfaces, \
 						t_our_img *texture, float ratio);
+*/
 
 /* ./render_next_frame/pre_render_walls_utils.c	*/
 /*

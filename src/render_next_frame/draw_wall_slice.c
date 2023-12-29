@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
+/*
 t_our_img	select_texture(t_ray *ray, t_mlx *mlx)
 {
-	
+
 }
 
 void	set_render_height(t_ray *ray, t_canvas *canvas)
@@ -39,3 +39,4 @@ void	pre_render_slice(t_ray *ray, t_our_img *texture, t_canvas *canvas)
 	else
 		skip_texture_pixels(ray, canvas, texture, ratio);
 }
+*/

@@ -48,7 +48,7 @@ static void	init_ray_dir(t_ray *ray, t_player *player, int x)
 	
 }
 
-
+/*
 static void	get_dist(t_ray *ray)
 {
 	//	calculate ray->perp_{x,y} + distance from ray->wall_{x,y}
@@ -68,7 +68,7 @@ static void	draw_wall_slice(t_ray *ray, t_mlx *mlx, int x)
 	//	draw slice
 	pre_render_slice(ray, texture, mlx->surfaces, x);
 }
-
+*/
 void raycaster(t_cubed *cubed)
 {
 	t_ray	ray;
@@ -82,8 +82,10 @@ void raycaster(t_cubed *cubed)
 	{
 		init_ray_dir(&ray, cubed->player, x);
 		cast_ray(&ray, cubed->map);
+		/*
 		get_dist(&ray);
 		draw_wall_slice(&ray, cubed->mlx, x);
+		*/
 		x++;
 	}
 

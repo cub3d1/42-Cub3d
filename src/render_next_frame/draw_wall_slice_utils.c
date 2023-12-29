@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
+/*
 static void	copy_pixels(t_render *ray, t_canvas *surfaces, t_our_img *texture)
 {
 	t_our_img		*map_img;
@@ -75,3 +75,4 @@ void	skip_texture_pixels(t_render *ray, t_canvas *surfaces, \
 		ray->canvas_y++;
 	}
 }
+*/
