@@ -27,8 +27,8 @@ void	print_info(t_cubed *cubed, int frame_counter)
 	// printf("p.left_planeY = %.1f |", cubed->player->left_planeY);
 	// printf("p.right_planeX = %.1f |", cubed->player->right_planeX);
 	// printf("p.right_planeY = %.1f |", cubed->player->right_planeY);
-	// printf("p.pos_x_array = %.1f |", cubed->player->pos_x_array);
-	// printf("p.pos_y_array = %.1f |", cubed->player->pos_y_array);
+	printf("p.pos_x_array = %.4f |", cubed->player->pos_x_array);
+	printf("p.pos_y_array = %.4f |", cubed->player->pos_y_array);
 	// printf("angle = %.1f |", cubed->player->angle);
 	printf("\n");
 	(void)cubed;
@@ -40,13 +40,6 @@ int	render_next_frame(t_cubed *cubed)
 	static int	frame_counter = 1;
 	t_mlx		*mlx;
 
-	// if (frame_counter == 1)
-	// {
-	// cubed->player->angle = 45;
-	// cubed->player->dir_x = cos(cubed->player->angle * M_PI / 180);
-	// cubed->player->dir_y = sin(cubed->player->angle * M_PI / 180);
-	// } 
-	// Para tirar depois de resolve bug do deltaX e deltaY
 	mlx = cubed->mlx;
 	update_angle(cubed);
 	update_player_pos(cubed, cubed->keys, cubed->player);

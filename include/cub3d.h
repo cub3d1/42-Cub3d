@@ -97,6 +97,7 @@ typedef struct s_ray
 	double	start_y;
 
 	//	init_ray_dir();
+	double	camera_x;
 	double	ray_dir_x;
 	double	ray_dir_y;
 
@@ -107,7 +108,7 @@ typedef struct s_ray
 	double	side_dist_y;
 	double	wall_x;
 	double	wall_y;
-	char	hit;	//	'x' or 'y'
+	char	hit;	//	n or s or e or w
 
 	//	get_dist();
 	double	perp_x;
@@ -343,6 +344,9 @@ void		check_borders(t_cubed *cubed, t_player *player, \
 /*	./render_next_frame/show_map2d.c */
 void		show_map2d(t_cubed *cubed, t_canvas *canvas);
 void		show_player(t_cubed *cubed, t_our_img *player, t_canvas *map);
+
+/*	/render_next_frame cast_ray */
+void	cast_ray(t_ray *ray, char **map);
 
 #endif
 

@@ -46,10 +46,10 @@ void	init_player_struct(t_player *player, char **map, int y)
 	while (map[y][x] && map[y][x] != 'N' && map[y][x] != 'S' \
 		&& map[y][x] != 'E' && map[y][x] != 'W')
 		x++;
-	player->pos_x_array = (float)x + 0.5;
-	player->pos_y_array = (float)y + 0.5;
-	player->pos_x = ((float)x * WIN_W) / get_biggest_line(map);
-	player->pos_y = ((float)y * WIN_H) / get_array_size(map);
+	player->pos_x_array = (double)x + (double)0.5;
+	player->pos_y_array = (double)y + (double)0.5;
+	player->pos_x = ((float)(x + 0.5) * WIN_W) / get_biggest_line(map);
+	player->pos_y = ((float)(y + 0.5) * WIN_H) / get_array_size(map);
 	set_player_direction(player, map[y][x]);
 	player->plane_vector_x = 0;
 	player->plane_vector_y = 0.66;
