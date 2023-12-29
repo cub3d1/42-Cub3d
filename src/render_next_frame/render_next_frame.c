@@ -53,7 +53,7 @@ int	render_next_frame(t_cubed *cubed)
 	if (!cubed->keys->show_automap)
 	{
 		pre_render(cubed);
-		raycaster(cubed, cubed->mlx->renderer);
+		raycaster(cubed);
 		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, \
 			mlx->surfaces->map_img->img, 0, 0);
 		if (cubed->keys->show_minimap)

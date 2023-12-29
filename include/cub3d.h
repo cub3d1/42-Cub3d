@@ -114,6 +114,10 @@ typedef struct s_ray
 	double	perp_y;
 	double	wall_dist;
 
+	//	pre render()
+	int		canvas_start;
+	int		canvas_end;
+
 /*
 	int		tex_x;
 	float	render_h;
