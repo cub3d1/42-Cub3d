@@ -105,8 +105,6 @@ void	pre_render(t_cubed *cubed)
 	t_mlx	*mlx;
 
 	mlx = cubed->mlx;
-	//	pre render floor + ceiling + walls
 	draw_ceiling(mlx->ceiling_color, mlx->surfaces->map_img);
 	draw_floor(mlx->floor_color, mlx->surfaces->map_img);
-	// draw_walls(cubed, mlx, NULL);
 }

@@ -107,7 +107,7 @@ typedef struct s_ray
 	double	side_dist_y;
 	double	wall_x;
 	double	wall_y;
-	char	hit;	//	x or y
+	char	hit;	//	'x' or 'y'
 
 	//	get_dist();
 	double	perp_x;
@@ -115,8 +115,10 @@ typedef struct s_ray
 	double	wall_dist;
 
 	//	pre render()
+	int		canvas_y;
+	int		canvas_x;
 	int		canvas_start;
-	int		canvas_end;
+	int		render_h;
 
 /*
 	int		tex_x;
@@ -163,14 +165,11 @@ typedef struct s_mlx
 	t_our_img	*text_s;
 	t_our_img	*text_e;
 	t_our_img	*text_w;
-	t_our_img	*green_ball;
-	t_our_img	*black_ball;
 	t_our_img	*automap_player;
 	t_our_img	*minimap_player;
 	t_canvas	*surfaces;
 	t_canvas	*automap;
 	t_canvas	*minimap;
-	t_list		*renderer;
 }				t_mlx;
 
 typedef struct s_keys
@@ -187,26 +186,26 @@ typedef struct s_keys
 
 typedef struct s_player
 {
-	float	pos_x;
-	float	pos_y;
-	float	pos_x_array;
-	float	pos_y_array;
-	float	dir_x;
-	float	dir_y;
-	float	dir_x_pos;
-	float	dir_y_pos;	
-	float	left_plane_x;
-	float	left_plane_y;
-	float	left_plane_x_pos;
-	float	left_plane_y_pos;
-	float	right_plane_x;
-	float	right_plane_y;
-	float	right_plane_x_pos;
-	float	right_plane_y_pos;
-	float	plane_vector_x;
-	float	plane_vector_y;
+	double	pos_x;
+	double	pos_y;
+	double	pos_x_array;
+	double	pos_y_array;
+	double	dir_x;
+	double	dir_y;
+	double	dir_x_pos;
+	double	dir_y_pos;	
+	double	left_plane_x;
+	double	left_plane_y;
+	double	left_plane_x_pos;
+	double	left_plane_y_pos;
+	double	right_plane_x;
+	double	right_plane_y;
+	double	right_plane_x_pos;
+	double	right_plane_y_pos;
+	double	plane_vector_x;
+	double	plane_vector_y;
 
-	float	angle;
+	double	angle;
 }				t_player;
 
 typedef struct s_cubed
@@ -306,11 +305,20 @@ void		draw_map2d(char **map, t_canvas *map2d);
 /* ./render_next_frame/pre_render_map2d.c	*/
 void		draw_map2d(char **map, t_canvas *map2d);
 
-/* ./render_next_frame/pre_render_walls.c	*/
-/*
-void		draw_wall_slice(t_render *ray, t_canvas *surfaces, \
+/* ./render_next_frame/draw_wall_slice.c	*/
+t_our_img	select_texture(t_ray *ray, t_mlx *mlx);
+void		set_render_height(t_ray *ray, t_canvas *canvas);
+int			find_texture_x(t_ray *ray, t_our_img *texture);
+void		pre_render_slice(t_ray *ray, t_our_img *texture, t_canvas *canvas);
+
+/* ./render_next_frame/draw_wall_slice_utils.c	*/
+void		interpolate_texture(t_render *ray, t_canvas *surfaces, \
+								t_our_img *texture, float ratio);
+void		copy_to_canvas(t_render *ray, t_canvas *surfaces, \
 							t_our_img *texture);
-*/
+void		skip_texture_pixels(t_render *ray, t_canvas *surfaces, \
+						t_our_img *texture, float ratio);
+
 /* ./render_next_frame/pre_render_walls_utils.c	*/
 /*
 t_our_img	*select_texture(t_player *player, t_mlx *mlx, t_render *ray);

@@ -182,7 +182,7 @@ void	raycaster(t_cubed *cubed, t_list *renderer)
 	// sleep(2);
 }
 */
-/*
+
 static void	init_ray_dir(t_ray *ray, t_player *player, int x)
 {
 	//	set ray->ray_dir_x and ray->ray_dir_y
@@ -201,18 +201,18 @@ static void	get_dist(t_ray *ray)
 static void	draw_wall_slice(t_ray *ray, t_mlx *mlx, int x)
 {
 	t_our_img	*texture;
-	float		ratio;
+	int			texture_x;
 
 	//	select texture
-	texture = select_texture(ray);
-	//	get start & end Y for canvas (render height)
-
+	texture = select_texture(ray, mlx);
+	//	get start x and y for canvas + render height
+	set_render_height(ray, mlx->surfaces);
 	//	get texture X
-	//	get ratio (texture height / render height)
-	ratio = (float)texture->h / (float)(ray->canvas_end - ray->canvas_start);
-	//	draw slice accordingly
+	texture_x = find_texture_x(ray, texture);
+	//	draw slice
+	pre_render_slice(ray, texture, mlx->surfaces, x);
 }
-*/
+
 void raycaster(t_cubed *cubed)
 {
 	t_ray	ray;
@@ -224,12 +224,10 @@ void raycaster(t_cubed *cubed)
 	x = 0;
 	while (x < WIN_W)
 	{
-		/*
 		init_ray_dir(&ray, cubed->player, x);
-		cast_ray(ray, cubed->map);
-		get_dist(ray);
-		draw_wall_slice(ray, cubed->mlx, x);
-		*/
+		cast_ray(&ray, cubed->map);
+		get_dist(&ray);
+		draw_wall_slice(&ray, cubed->mlx, x);
 		x++;
 	}
 }
