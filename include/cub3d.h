@@ -190,8 +190,8 @@ typedef struct s_player
 {
 	float	pos_x;
 	float	pos_y;
-	float	pos_x_array;
-	float	pos_y_array;
+	double	pos_x_array;
+	double	pos_y_array;
 	float	dir_x;
 	float	dir_y;
 	float	dir_x_pos;
@@ -206,7 +206,6 @@ typedef struct s_player
 	float	right_plane_y_pos;
 	float	plane_vector_x;
 	float	plane_vector_y;
-
 	float	angle;
 }				t_player;
 
@@ -336,6 +335,9 @@ void		check_borders(t_cubed *cubed, t_player *player, \
 /*	./render_next_frame/show_map2d.c */
 void		show_map2d(t_cubed *cubed, t_canvas *canvas);
 void		show_player(t_cubed *cubed, t_our_img *player, t_canvas *map);
+
+/*	/render_next_frame cast_ray */
+void	cast_ray(t_ray *ray, char **map);
 
 #endif
 

@@ -37,18 +37,18 @@ static void	init_ray_dir(t_ray *ray, t_player *player, int x)
 	ray->camera_x = 2 * x / (double)WIN_W - 1;
 	ray->ray_dir_x = player->dir_x + player->plane_vector_x * ray->camera_x;
 	ray->ray_dir_y = player->dir_y + player->plane_vector_y * ray->camera_x;
-
-	// printf("ray->camera_x: %f\n", ray->camera_x);
-	// printf("ray->ray_dir_x: %f\n", ray->ray_dir_x);
-	// printf("ray->ray_dir_y: %f\n\n", ray->ray_dir_y);
+	
+	if (x == 0 || x == WIN_W / 2 || x == WIN_W - 1)
+	{
+		printf("ray->camera_x: %f\n", ray->camera_x);
+		printf("ray->ray_dir_x: %f\n", ray->ray_dir_x);
+		printf("ray->ray_dir_y: %f\n\n", ray->ray_dir_y);
+		// sleep(2);
+	}
+	
 }
 
 /*
-static void	cast_ray(t_ray *ray, char **map)
-{
-	//	do the dda
-}
-
 static void	get_dist(t_ray *ray)
 {
 	//	calculate ray->perp_{x,y} + distance from ray->wall_{x,y}
@@ -80,12 +80,14 @@ void raycaster(t_cubed *cubed)
 	x = 0;
 	while (x < WIN_W)
 	{
+		// ft_printf_fd(1, "Ray %d:\n", x);
 		init_ray_dir(&ray, cubed->player, x);
+		cast_ray(&ray, cubed->map);
 		/*
-		cast_ray(ray, cubed->map);
 		get_dist(ray);
 		draw_wall_slice(ray, cubed->mlx, x);
 		*/
 		x++;
 	}
+
 }
