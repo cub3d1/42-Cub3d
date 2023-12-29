@@ -97,6 +97,7 @@ typedef struct s_ray
 	double	start_y;
 
 	//	init_ray_dir();
+	double	camera_x;
 	double	ray_dir_x;
 	double	ray_dir_y;
 
