@@ -63,7 +63,8 @@ static void	draw_wall_slice(t_ray *ray, t_mlx *mlx)
 	texture = select_texture(ray, mlx);
 	//	get start x and y for canvas + render height
 	set_render_height(mlx, ray);
-	//	get texture X
+	//	get texture X & init texture Y
+	ray->texture_y = 0;
 	ray->texture_x = find_texture_x(ray, texture);
 	//	draw slice
 	pre_render_slice(ray, texture, mlx->surfaces);
