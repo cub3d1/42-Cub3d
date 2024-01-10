@@ -116,9 +116,11 @@ typedef struct s_ray
 	double	wall_dist;
 
 	//	pre render()
+	int		texture_x;
 	int		canvas_y;
 	int		canvas_x;
 	int		canvas_start;
+	int		canvas_end;
 	int		render_h;
 
 /*
@@ -311,27 +313,27 @@ void		draw_map2d(char **map, t_canvas *map2d);
 void		draw_map2d(char **map, t_canvas *map2d);
 
 /* ./render_next_frame/draw_wall_slice.c	*/
-/*
-t_our_img	select_texture(t_ray *ray, t_mlx *mlx);
-void		set_render_height(t_ray *ray, t_canvas *canvas);
+// START COMMENT
+t_our_img	*select_texture(t_ray *ray, t_mlx *mlx);
+void		set_render_height(t_mlx *mlx, t_ray *ray);
 int			find_texture_x(t_ray *ray, t_our_img *texture);
 void		pre_render_slice(t_ray *ray, t_our_img *texture, t_canvas *canvas);
-*/
+// END COMMENT
 /* ./render_next_frame/draw_wall_slice_utils.c	*/
-/*
-void		interpolate_texture(t_render *ray, t_canvas *surfaces, \
+// START COMMENT
+void		interpolate_texture(t_ray *ray, t_canvas *surfaces, \
 								t_our_img *texture, float ratio);
-void		copy_to_canvas(t_render *ray, t_canvas *surfaces, \
+void		copy_to_canvas(t_ray *ray, t_canvas *surfaces, \
 							t_our_img *texture);
-void		skip_texture_pixels(t_render *ray, t_canvas *surfaces, \
+void		skip_texture_pixels(t_ray *ray, t_canvas *surfaces, \
 						t_our_img *texture, float ratio);
-*/
+// END COMMENT
 
 /* ./render_next_frame/pre_render_walls_utils.c	*/
 /*
-t_our_img	*select_texture(t_player *player, t_mlx *mlx, t_render *ray);
-int			find_tex_x(t_render *ray, t_our_img *texture);
-float		find_render_h(t_mlx *mlx, t_render *ray, \
+t_our_img	*select_texture(t_player *player, t_mlx *mlx, t_ray *ray);
+int			find_tex_x(t_ray *ray, t_our_img *texture);
+float		find_render_h(t_mlx *mlx, t_ray *ray, \
 							t_our_img *texture, t_player *player);
 */
 /*	./render_next_frame/update.c	*/

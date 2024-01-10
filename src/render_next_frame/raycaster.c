@@ -33,7 +33,7 @@ static void	update_vectors(t_rwf *rwf, t_player *player, int x)
 
 static void	init_ray_dir(t_ray *ray, t_player *player, int x)
 {
-
+	ray->canvas_x = x;
 	ray->camera_x = 2 * x / (double)WIN_W - 1;
 	ray->ray_dir_x = player->dir_x + player->plane_vector_x * ray->camera_x;
 	ray->ray_dir_y = player->dir_y + player->plane_vector_y * ray->camera_x;
@@ -48,27 +48,27 @@ static void	init_ray_dir(t_ray *ray, t_player *player, int x)
 	
 }
 
-/*
+// START COMMENT
 static void	get_dist(t_ray *ray)
 {
-	//	calculate ray->perp_{x,y} + distance from ray->wall_{x,y}
+	//	calculate ray->perp_{x,y} & distance from ray->wall_{x,y}
+	(void)ray;
 }
 
-static void	draw_wall_slice(t_ray *ray, t_mlx *mlx, int x)
+static void	draw_wall_slice(t_ray *ray, t_mlx *mlx)
 {
 	t_our_img	*texture;
-	int			texture_x;
 
 	//	select texture
 	texture = select_texture(ray, mlx);
 	//	get start x and y for canvas + render height
-	set_render_height(ray, mlx->surfaces);
+	set_render_height(mlx, ray);
 	//	get texture X
-	texture_x = find_texture_x(ray, texture);
+	ray->texture_x = find_texture_x(ray, texture);
 	//	draw slice
-	pre_render_slice(ray, texture, mlx->surfaces, x);
+	pre_render_slice(ray, texture, mlx->surfaces);
 }
-*/
+// END COMMENT
 void raycaster(t_cubed *cubed)
 {
 	t_ray	ray;
@@ -82,10 +82,10 @@ void raycaster(t_cubed *cubed)
 	{
 		init_ray_dir(&ray, cubed->player, x);
 		cast_ray(&ray, cubed->map);
-		/*
+// START COMMENT
 		get_dist(&ray);
-		draw_wall_slice(&ray, cubed->mlx, x);
-		*/
+		draw_wall_slice(&ray, cubed->mlx);
+// END COMMENT
 		x++;
 	}
 

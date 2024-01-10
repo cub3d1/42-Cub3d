@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-/*
-static void	copy_pixels(t_render *ray, t_canvas *surfaces, t_our_img *texture)
+
+static void	copy_pixels(t_ray *ray, t_canvas *surfaces, t_our_img *texture)
 {
 	t_our_img		*map_img;
 	char			*pixel;
@@ -22,10 +22,10 @@ static void	copy_pixels(t_render *ray, t_canvas *surfaces, t_our_img *texture)
 			((WIN_W - ray->col) * (map_img->bpp / 8));
 	*(unsigned int *)pixel = *(unsigned int *)(texture->addr + \
 			(ray->texture_y * texture->line_length) + \
-			(ray->tex_x * (texture->bpp / 8)));
+			(ray->texture_x * (texture->bpp / 8)));
 }
 
-void	interpolate_texture(t_render *ray, t_canvas *surfaces, \
+void	interpolate_texture(t_ray *ray, t_canvas *surfaces, \
 								t_our_img *texture, float ratio)
 {
 	int	count;
@@ -45,7 +45,7 @@ void	interpolate_texture(t_render *ray, t_canvas *surfaces, \
 	}
 }
 
-void	copy_to_canvas(t_render *ray, t_canvas *surfaces, \
+void	copy_to_canvas(t_ray *ray, t_canvas *surfaces, \
 							t_our_img *texture)
 {
 	while (ray->canvas_y < ray->end_y)
@@ -56,7 +56,7 @@ void	copy_to_canvas(t_render *ray, t_canvas *surfaces, \
 	}
 }
 
-void	skip_texture_pixels(t_render *ray, t_canvas *surfaces, \
+void	skip_texture_pixels(t_ray *ray, t_canvas *surfaces, \
 						t_our_img *texture, float ratio)
 {
 	int	step;
@@ -75,4 +75,3 @@ void	skip_texture_pixels(t_render *ray, t_canvas *surfaces, \
 		ray->canvas_y++;
 	}
 }
-*/
