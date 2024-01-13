@@ -54,9 +54,15 @@ static char	set_ray_pos(t_ray *ray)
 	}
 }
 
+static void	()
+{
+
+}
+
 void	cast_ray(t_ray *ray, char **map)
 {
 	char	delta_dir;
+
 
 	init_side_dist(ray);
 	while (ray->hit == '\0')

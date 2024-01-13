@@ -21,6 +21,8 @@ static void	reset_ray(t_ray *ray, t_player *player, int x)
 	ray->ray_dir_y = player->dir_y + player->plane_vector_y * ray->camera_x;
 	ray->step_x = 0;
 	ray->step_y = 0;
+
+	// START COMMENT
 	if (x == 0 || x == WIN_W / 2 || x == WIN_W - 1)
 	{
 		printf("ray->camera_x: %f\n", ray->camera_x);
@@ -28,7 +30,7 @@ static void	reset_ray(t_ray *ray, t_player *player, int x)
 		printf("ray->ray_dir_y: %f\n\n", ray->ray_dir_y);
 		// sleep(2);
 	}
-	
+	// END COMMENT
 }
 
 // START COMMENT
@@ -72,5 +74,4 @@ void raycaster(t_cubed *cubed)
 // END COMMENT
 		x++;
 	}
-
 }
