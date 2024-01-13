@@ -36,13 +36,13 @@ void	interpolate_texture(t_ray *ray, t_canvas *surfaces, \
 	while (ray->canvas_y < ray->canvas_end)
 	{
 		copy_pixels(ray, surfaces, texture);
+		ray->canvas_y++;
 		count++;
 		if (count == step)
 		{
 			ray->texture_y++;
 			count = 0;
 		}
-		ray->canvas_y++;
 	}
 }
 

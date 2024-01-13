@@ -65,36 +65,12 @@
 # define MAP_TKNS "01"
 # define PLAYER_TKNS "NSEW"
 
-/*		temp textures	*/
-# define TEMP_AUTOMAP_PLAYER "./textures/temp_player.xpm"
-# define GREEN_BALL "./textures/green_ball.xpm"
-# define BLACK_BALL "./textures/black_ball.xpm"
-
-typedef struct s_rwf
-{
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	sideDistX;
-	double	sideDistY;
-	double	perpWallDist;
-	double	mapX;
-	double	mapY;
-	int		stepX;
-	int		stepY;
-	int		side;
-	int		lineHeight;
-	int		hit;
-}			t_rwf;
-
 /*	PUT RAYCASTER DATA HERE	*/
 typedef struct s_ray
 {
-	//	== player pos
-	double	start_x;
-	double	start_y;
+	//	ray pos on map
+	double	pos_x;
+	double	pos_y;
 
 	//	init_ray_dir();
 	double	camera_x;
@@ -108,6 +84,8 @@ typedef struct s_ray
 	double	side_dist_y;
 	double	wall_x;
 	double	wall_y;
+	int		step_x;
+	int		step_y;
 	char	hit;	//	n or s or e or w
 
 	//	get_dist();
@@ -123,17 +101,6 @@ typedef struct s_ray
 	int		canvas_start;
 	int		canvas_end;
 	int		render_h;
-
-/*
-	int		tex_x;
-	float	render_h;
-
-	int		start_y;
-	int		end_y;
-	int		canvas_y;
-	int		texture_y;
-	int		step;
-*/
 }				t_ray;
 
 typedef struct s_our_img
@@ -156,7 +123,6 @@ typedef struct s_canvas
 	int				scale;
 	t_our_img		*map_img;
 }				t_canvas;
-
 
 typedef struct s_mlx
 {
@@ -250,9 +216,6 @@ float		get_array_size(char **map);
 /*	load_textures.c	*/
 void		load_textures(t_cubed *cubed, char *arg);
 
-/*	set_automap_walls.c	*/
-//void	set_automap_walls(t_cubed *cubed);
-
 /*			free.c		*/
 int			free_stuff(t_cubed *cubed, int err_code);
 
@@ -330,13 +293,6 @@ void		skip_texture_pixels(t_ray *ray, t_canvas *surfaces, \
 						t_our_img *texture, float ratio);
 // END COMMENT
 
-/* ./render_next_frame/pre_render_walls_utils.c	*/
-/*
-t_our_img	*select_texture(t_player *player, t_mlx *mlx, t_ray *ray);
-int			find_tex_x(t_ray *ray, t_our_img *texture);
-float		find_render_h(t_mlx *mlx, t_ray *ray, \
-							t_our_img *texture, t_player *player);
-*/
 /*	./render_next_frame/update.c	*/
 void		update_angle(t_cubed *cubed);
 void		update_player_pos(t_cubed *cubed, t_keys *keys, t_player *player);
@@ -355,7 +311,7 @@ void		check_borders(t_cubed *cubed, t_player *player, \
 void		show_map2d(t_cubed *cubed, t_canvas *canvas);
 void		show_player(t_cubed *cubed, t_our_img *player, t_canvas *map);
 
-/*	/render_next_frame cast_ray */
+/*	/render_next_frame/cast_ray */
 void	cast_ray(t_ray *ray, char **map);
 
 #endif
@@ -368,4 +324,5 @@ void	cast_ray(t_ray *ray, char **map);
  *	4 - map load fail
  *	5 - Malloc Failed
  *	6 - Image failed to load
+ *
  */

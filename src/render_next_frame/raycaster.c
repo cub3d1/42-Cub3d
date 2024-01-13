@@ -12,32 +12,15 @@
 
 #include "../../include/cub3d.h"
 
-/*
-
-static void	update_vectors(t_rwf *rwf, t_player *player, int x)
+static void	reset_ray(t_ray *ray, t_player *player, int x)
 {
-	rwf->cameraX = 2 * x / (double)WIN_W - 1;
-	rwf->rayDirX = player->dir_x + player->plane_vector_x * rwf->cameraX;
-	rwf->rayDirY = player->dir_y + player->plane_vector_y * rwf->cameraX;
-	if (rwf->rayDirX == 0)
-		rwf->rayDirX = 0.00000000001;
-	if (rwf->rayDirY == 0)
-		rwf->rayDirY = 0.00000000001;
-	rwf->deltaDistX = sqrt(1 + (rwf->rayDirY * rwf->rayDirY) \
-							/ (rwf->rayDirX * rwf->rayDirX));
-	rwf->deltaDistY = sqrt(1 + (rwf->rayDirX * rwf->rayDirX) \
-							/ (rwf->rayDirY * rwf->rayDirY));
-}
-
-*/
-
-static void	init_ray_dir(t_ray *ray, t_player *player, int x)
-{
+	ray->hit = '\0';
 	ray->canvas_x = x;
 	ray->camera_x = 2 * x / (double)WIN_W - 1;
 	ray->ray_dir_x = player->dir_x + player->plane_vector_x * ray->camera_x;
 	ray->ray_dir_y = player->dir_y + player->plane_vector_y * ray->camera_x;
-	
+	ray->step_x = 0;
+	ray->step_y = 0;
 	if (x == 0 || x == WIN_W / 2 || x == WIN_W - 1)
 	{
 		printf("ray->camera_x: %f\n", ray->camera_x);
@@ -67,7 +50,7 @@ static void	draw_wall_slice(t_ray *ray, t_mlx *mlx)
 	ray->texture_y = 0;
 	ray->texture_x = find_texture_x(ray, texture);
 	//	draw slice
-	pre_render_slice(ray, texture, mlx->surfaces);
+//	pre_render_slice(ray, texture, mlx->surfaces);
 }
 // END COMMENT
 void raycaster(t_cubed *cubed)
@@ -76,12 +59,12 @@ void raycaster(t_cubed *cubed)
 	int		x;
 
 	ft_bzero(&ray, sizeof(t_ray));
-	ray.start_x = cubed->player->pos_x_array;
-	ray.start_y = cubed->player->pos_y_array;
 	x = 0;
 	while (x < WIN_W)
 	{
-		init_ray_dir(&ray, cubed->player, x);
+		ray.pos_x = cubed->player->pos_x_array;
+		ray.pos_y = cubed->player->pos_y_array;
+		reset_ray(&ray, cubed->player, x);
 		cast_ray(&ray, cubed->map);
 // START COMMENT
 		get_dist(&ray);
