@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
+/*
 static void	init_side_dist(t_ray *ray)
 {
 	if (ray->ray_dir_x < 0)
@@ -53,17 +53,36 @@ static char	set_ray_pos(t_ray *ray)
 		return ('x');
 	}
 }
-
-static void	()
+*/
+static void	set_dist_var(t_ray *ray)
 {
-
+	if (ray->ray_dir_x < 0)
+	{
+		ray->dx_pos_x = (int)ray->pos_x;
+		ray->step_x = -1;
+	}
+	else
+	{
+		ray->dx_pos_x = (int)ray->pos_x + 1;
+		ray->step_x = 1;
+	}
+	if (ray_dir_y < 0)
+	{
+		ray->dy_pos_y = (int)ray->pos_y;
+		ray->step_y = -1;
+	}
+	else
+	{
+		ray->dy_pos_y = (int)ray->pos_y + 1;
+		ray->step_y = 1;
+	}
 }
 
 void	cast_ray(t_ray *ray, char **map)
 {
 	char	delta_dir;
 
-
+	set_dist_var(ray);
 	init_side_dist(ray);
 	while (ray->hit == '\0')
 	{

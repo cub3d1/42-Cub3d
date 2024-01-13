@@ -14,6 +14,10 @@
 
 static void	reset_ray(t_ray *ray, t_player *player, int x)
 {
+	ray->dx_pos_x = 0;
+	ray->dx_pos_y = 0;
+	ray->dy_pos_x = 0;
+	ray->dy_pos_y = 0;
 	ray->hit = '\0';
 	ray->canvas_x = x;
 	ray->camera_x = 2 * x / (double)WIN_W - 1;

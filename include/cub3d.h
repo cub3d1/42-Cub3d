@@ -72,6 +72,12 @@ typedef struct s_ray
 	double	pos_x;
 	double	pos_y;
 
+	//	dist pos on map
+	double	dx_pos_x;
+	double	dx_pos_y;
+	double	dy_pos_x;
+	double	dy_pos_y;
+
 	//	init_ray_dir();
 	double	camera_x;
 	double	ray_dir_x;
