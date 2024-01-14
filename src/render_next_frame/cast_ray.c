@@ -11,31 +11,34 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-/*
+
 static void	init_side_dist(t_ray *ray)
 {
-	if (ray->ray_dir_x < 0)
-	{
-		ray->side_dist_x = 1 - (ray->pos_x - (int)ray->pos_x);
-		ray->step_x = -1;
-	}
-	else
-	{
-		ray->side_dist_x = ray->pos_x - (int)ray->pos_x;
-		ray->step_x = 1;
-	}
-	if (ray->ray_dir_y < 0)
-	{
-		ray->side_dist_y = 1 - (ray->pos_y - (int)ray->pos_y);
-		ray->step_y = -1;
-	}
-	else
-	{
-		ray->side_dist_y = ray->pos_y - (int)ray->pos_y;
-		ray->step_y = 1;
-	}
-}
+	double	ratio;
+	double	diff_x;
+	double	diff_y;
 
+	ratio = ray->ray_dir_x / ray->ray_dir_y;
+	if (ray->ray_dir_x < 0)
+		diff_x = ratio * ((ray->pos_x - (int)ray->pos_x) * -1);
+	else
+		diff_x = ratio * (1 - (ray->pos_x - (int)ray->pos_x));
+	if (ray->ray_dir_y < 0)
+		diff_y = ratio * ((ray->pos_y - (int)ray->pos_y) * -1);
+	else
+		diff_y = ratio * (1 - (ray->pos_y - (int)ray->pos_y));
+	ray->dx_pos_y = ray->pos_y + diff_y;
+	ray->dy_pos_x = ray->pos_x + diff_x;
+	ray->side_dist_x = sqrt((ray->dx_pos_x - ray->pos_x) * \
+							(ray->dx_pos_x - ray->pos_x) + \
+							(ray->dx_pos_y - ray->pos_y) * \
+							(ray->dx_pos_y - ray->pos_y));
+	ray->side_dist_y = sqrt((ray->dy_pos_x - ray->pos_x) * \
+							(ray->dy_pos_x - ray->pos_x) + \
+							(ray->dy_pos_y - ray->pos_y) * \
+							(ray->dy_pos_y - ray->pos_y));
+}
+/*
 static char	set_ray_pos(t_ray *ray)
 {
 	if (fabs(ray->delta_dist_x) > fabs(ray->delta_dist_y))
@@ -66,7 +69,7 @@ static void	set_dist_var(t_ray *ray)
 		ray->dx_pos_x = (int)ray->pos_x + 1;
 		ray->step_x = 1;
 	}
-	if (ray_dir_y < 0)
+	if (ray->ray_dir_y < 0)
 	{
 		ray->dy_pos_y = (int)ray->pos_y;
 		ray->step_y = -1;
@@ -84,14 +87,18 @@ void	cast_ray(t_ray *ray, char **map)
 
 	set_dist_var(ray);
 	init_side_dist(ray);
+	if (ray->canvas_x == 0 || ray->canvas_x == WIN_W / 2 || ray->canvas_x == WIN_W - 1)
+	{
+		printf("debugging the raycaster\n");
+		printf("distx:\n%lf\ndisty:\n%lf\n\n", ray->side_dist_x, ray->side_dist_y);
+	}
 	while (ray->hit == '\0')
 	{
-		delta_dir = set_ray_pos(ray);
 		//	check for wall collision
 		//	calculate next ray->delta_dist
 	}
 
-	// START COMMENT
+	/*
 	static int x = 0;
 	if (x == 0 || x == WIN_W / 2 || x == WIN_W - 1)
 	{
@@ -102,7 +109,7 @@ void	cast_ray(t_ray *ray, char **map)
 		// sleep(2);
 	}
 	x++;
-	// END COMMENT
-
+	*/
+	(void)delta_dir;
 	(void)map;
 }

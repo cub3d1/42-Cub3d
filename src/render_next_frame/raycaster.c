@@ -43,7 +43,7 @@ static void	get_dist(t_ray *ray)
 	//	calculate ray->perp_{x,y} & distance from ray->wall_{x,y}
 	(void)ray;
 }
-
+/*
 static void	draw_wall_slice(t_ray *ray, t_mlx *mlx)
 {
 	t_our_img	*texture;
@@ -58,6 +58,7 @@ static void	draw_wall_slice(t_ray *ray, t_mlx *mlx)
 	//	draw slice
 //	pre_render_slice(ray, texture, mlx->surfaces);
 }
+*/
 // END COMMENT
 void raycaster(t_cubed *cubed)
 {
@@ -66,16 +67,17 @@ void raycaster(t_cubed *cubed)
 
 	ft_bzero(&ray, sizeof(t_ray));
 	x = 0;
+	ray.pos_x = cubed->player->pos_x_array;
+	ray.pos_y = cubed->player->pos_y_array;
 	while (x < WIN_W)
 	{
-		ray.pos_x = cubed->player->pos_x_array;
-		ray.pos_y = cubed->player->pos_y_array;
 		reset_ray(&ray, cubed->player, x);
 		cast_ray(&ray, cubed->map);
 // START COMMENT
 		get_dist(&ray);
-		draw_wall_slice(&ray, cubed->mlx);
+//		draw_wall_slice(&ray, cubed->mlx);
 // END COMMENT
 		x++;
 	}
+//	sleep(5);
 }
