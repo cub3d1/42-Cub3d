@@ -22,7 +22,11 @@ static void	reset_ray(t_ray *ray, t_player *player, int x)
 	ray->canvas_x = x;
 	ray->camera_x = 2 * x / (double)WIN_W - 1;
 	ray->ray_dir_x = player->dir_x + player->plane_vector_x * ray->camera_x;
+	if (ray->ray_dir_x == 0)
+		ray->ray_dir_x++;
 	ray->ray_dir_y = player->dir_y + player->plane_vector_y * ray->camera_x;
+	if (ray->ray_dir_y == 0)
+		ray->ray_dir_y++;
 	ray->step_x = 0;
 	ray->step_y = 0;
 
@@ -79,5 +83,5 @@ void raycaster(t_cubed *cubed)
 // END COMMENT
 		x++;
 	}
-//	sleep(5);
+	sleep(5);
 }

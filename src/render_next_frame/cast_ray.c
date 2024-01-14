@@ -11,14 +11,30 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+/*
+static double	get_ratio(t_ray *ray)
+{
+	if (ray->ray_dir_x <= 0)
 
+	else
+
+	if (ray_dir_y <= 0)
+
+	else
+
+}
+*/
 static void	init_side_dist(t_ray *ray)
 {
 	double	ratio;
 	double	diff_x;
 	double	diff_y;
 
+//	STOPPED HERE
+//	ratio = get_ratio(ray);
 	ratio = ray->ray_dir_x / ray->ray_dir_y;
+//
+
 	if (ray->ray_dir_x < 0)
 		diff_x = ratio * ((ray->pos_x - (int)ray->pos_x) * -1);
 	else
@@ -92,12 +108,13 @@ void	cast_ray(t_ray *ray, char **map)
 		printf("debugging the raycaster\n");
 		printf("distx:\n%lf\ndisty:\n%lf\n\n", ray->side_dist_x, ray->side_dist_y);
 	}
+	/*
 	while (ray->hit == '\0')
 	{
 		//	check for wall collision
 		//	calculate next ray->delta_dist
 	}
-
+*/
 	/*
 	static int x = 0;
 	if (x == 0 || x == WIN_W / 2 || x == WIN_W - 1)
