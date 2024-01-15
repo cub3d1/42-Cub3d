@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 17:16:37 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/27 17:39:38 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/15 23:24:36 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,9 @@ static void	malloc_img_structs(t_cubed *cubed, t_mlx *mlx)
 	mlx->text_s = malloc(sizeof(t_our_img));
 	mlx->text_e = malloc(sizeof(t_our_img));
 	mlx->text_w = malloc(sizeof(t_our_img));
-	mlx->green_ball = malloc(sizeof(t_our_img));
-	mlx->black_ball = malloc(sizeof(t_our_img));
 	mlx->automap_player = malloc(sizeof(t_our_img));
 	mlx->minimap_player = malloc(sizeof(t_our_img));
 	if (!mlx->text_n || !mlx->text_s || !mlx->text_e || !mlx->text_w \
-		|| !mlx->green_ball || !mlx->black_ball
 		|| !mlx->automap_player || !mlx->minimap_player)
 		exit_err(cubed, 5);
 }
@@ -88,7 +85,6 @@ void	init_mlx_struct(t_cubed *cubed)
 	malloc_canvas_structs(mlx);
 //	mlx->renderer = malloc(sizeof(t_list));
 	if (!mlx->text_n || !mlx->text_s || !mlx->text_e || !mlx->text_w \
-		|| !mlx->black_ball || !mlx->green_ball \
 		|| !mlx->surfaces || !mlx->surfaces->map_img \
 		|| !mlx->automap || !mlx->minimap \
 		|| !mlx->automap->map_img || !mlx->minimap->map_img)
@@ -98,8 +94,6 @@ void	init_mlx_struct(t_cubed *cubed)
 	init_img_struct(mlx->text_s);
 	init_img_struct(mlx->text_e);
 	init_img_struct(mlx->text_w);
-	init_img_struct(mlx->green_ball);
-	init_img_struct(mlx->black_ball);
 	init_img_struct(mlx->automap_player);
 	init_img_struct(mlx->minimap_player);
 	init_img_struct(mlx->automap->map_img);

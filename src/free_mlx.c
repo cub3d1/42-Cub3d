@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmouronh <fmouronh@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 08:38:49 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/11/20 08:39:07 by fmouronh         ###   ########.fr       */
+/*   Updated: 2024/01/15 23:24:02 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ void	free_mlx_images(t_mlx *mlx)
 		free_image(mlx, mlx->text_e);
 	if (mlx->text_w)
 		free_image(mlx, mlx->text_w);
-	if (mlx->green_ball)
-		free_image(mlx, mlx->green_ball);
-	if (mlx->black_ball)
-		free_image(mlx, mlx->black_ball);
 	if (mlx->automap_player)
 		free_image(mlx, mlx->automap_player);
 	if (mlx->minimap_player)

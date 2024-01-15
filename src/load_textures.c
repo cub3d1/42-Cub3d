@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 21:26:58 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/27 17:43:59 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/15 23:24:39 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ static void	load_wall_textures(t_cubed *cubed, char *arg)
 void	load_textures(t_cubed *cubed, char *arg)
 {
 	load_wall_textures(cubed, arg);
-	load_image(cubed, cubed->mlx->green_ball, GREEN_BALL);
-	load_image(cubed, cubed->mlx->black_ball, BLACK_BALL);
 	cubed->player->left_plane_x = 0;
 	cubed->player->left_plane_y = 0.66;
 	cubed->player->right_plane_x = 0;

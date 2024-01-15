@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:22:26 by ddantas-          #+#    #+#             */
-/*   Updated: 2023/10/27 19:35:53 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/15 23:23:58 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,9 +147,6 @@ typedef struct s_mlx
 	t_canvas	*automap;
 	t_canvas	*minimap;
 
-	/*	DELET DIS FFS	*/	
-	t_our_img	*black_ball;
-	t_our_img	*green_ball;
 }				t_mlx;
 
 typedef struct s_keys
