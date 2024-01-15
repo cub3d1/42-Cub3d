@@ -30,19 +30,20 @@ static void	init_side_dist(t_ray *ray)
 	double	diff_x;
 	double	diff_y;
 
-//	STOPPED HERE
-//	ratio = get_ratio(ray);
-	ratio = ray->ray_dir_x / ray->ray_dir_y;
-//
-
+	if (ray->ray_dir_y != 0)
+		ratio = ray->ray_dir_x / ray->ray_dir_y;
+	else
+		ratio = 0;
 	if (ray->ray_dir_x < 0)
 		diff_x = ratio * ((ray->pos_x - (int)ray->pos_x) * -1);
 	else
 		diff_x = ratio * (1 - (ray->pos_x - (int)ray->pos_x));
-	if (ray->ray_dir_y < 0)
-		diff_y = ratio * ((ray->pos_y - (int)ray->pos_y) * -1);
+	if (ratio == 0)
+		diff_y = 0;
+	else if (ray->ray_dir_y < 0)
+		diff_y = ((ray->pos_y - (int)ray->pos_y) * -1) / ratio;
 	else
-		diff_y = ratio * (1 - (ray->pos_y - (int)ray->pos_y));
+		diff_y = (1 - (ray->pos_y - (int)ray->pos_y)) / ratio;
 	ray->dx_pos_y = ray->pos_y + diff_y;
 	ray->dy_pos_x = ray->pos_x + diff_x;
 	ray->side_dist_x = sqrt((ray->dx_pos_x - ray->pos_x) * \
@@ -106,7 +107,8 @@ void	cast_ray(t_ray *ray, char **map)
 	if (ray->canvas_x == 0 || ray->canvas_x == WIN_W / 2 || ray->canvas_x == WIN_W - 1)
 	{
 		printf("debugging the raycaster\n");
-		printf("distx:\n%lf\ndisty:\n%lf\n\n", ray->side_dist_x, ray->side_dist_y);
+//		printf("sdx_x: %lf\nsdx_y: %lf\nsdy_x: %lf\n");
+		printf("sidedistx:\n%lf\nsidedisty:\n%lf\n\n", ray->side_dist_x, ray->side_dist_y);
 	}
 	/*
 	while (ray->hit == '\0')
