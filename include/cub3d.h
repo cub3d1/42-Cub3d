@@ -13,6 +13,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+//	ESTOU SEM TELEMOVEL, VAI AO TEU MAIL
+
 # include "./libft/includes/libft.h"
 # include "./ft_printf_fd/ft_printf.h"
 # include "./mlx_linux/mlx.h"
