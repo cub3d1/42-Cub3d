@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//	ESTOU SEM TELEFONE, VAI AO TEU MAIL
-
 #ifndef CUB3D_H
 # define CUB3D_H
 
