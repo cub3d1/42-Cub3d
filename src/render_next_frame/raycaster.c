@@ -26,15 +26,6 @@ static void	reset_ray(t_ray *ray, t_player *player, int x)
 	ray->step_x = 0;
 	ray->step_y = 0;
 
-	// START COMMENT
-	if (x == 0 || x == WIN_W / 2 || x == WIN_W - 1)
-	{
-		printf("ray->camera_x: %f\n", ray->camera_x);
-		printf("ray->ray_dir_x: %f\n", ray->ray_dir_x);
-		printf("ray->ray_dir_y: %f\n\n", ray->ray_dir_y);
-		// sleep(2);
-	}
-	// END COMMENT
 }
 
 // START COMMENT

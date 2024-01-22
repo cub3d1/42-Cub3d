@@ -35,9 +35,9 @@ static void	init_side_dist(t_ray *ray)
 	else
 		ratio = 0;
 	if (ray->ray_dir_x < 0)
-		diff_x = ratio * ((ray->pos_x - (int)ray->pos_x) * -1);
+		diff_x = ((ray->pos_x - (int)ray->pos_x) * -1) * ratio;
 	else
-		diff_x = ratio * (1 - (ray->pos_x - (int)ray->pos_x));
+		diff_x = (1 - (ray->pos_x - (int)ray->pos_x)) * ratio;
 	if (ratio == 0)
 		diff_y = 0;
 	else if (ray->ray_dir_y < 0)
@@ -57,11 +57,14 @@ static void	init_side_dist(t_ray *ray)
 
 	if (ray->canvas_x == 0 || ray->canvas_x == WIN_W / 2 || ray->canvas_x == WIN_W - 1)
 	{
+		printf("camera_x: %lf", ray->camera_x);
+		printf("dir_x: %lf\ndir_y: %lf\n", ray->ray_dir_x, ray->ray_dir_y);
 		printf("ratio: %lf\n", ratio);
 		printf("diffX: %lf\ndiffY: %lf\n", diff_x, diff_y);
 		printf("distX:\n\tposX: %lf\n\tposY: %lf\n", ray->dx_pos_x, ray->dx_pos_y);
 		printf("distY:\n\tposX: %lf\n\tposY: %lf\n", ray->dy_pos_x, ray->dy_pos_y);
 		printf("sidedistX:\n%lf\nsidedistY:\n%lf\n\n", ray->side_dist_x, ray->side_dist_y);
+		printf("==============================================\n");
 	}
 }
 /*
