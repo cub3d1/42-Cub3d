@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:22:26 by ddantas-          #+#    #+#             */
-/*   Updated: 2024/01/15 23:23:58 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/23 22:00:19 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,6 @@ typedef struct s_ray
 	char	hit;	//	n or s or e or w
 
 	//	get_dist();
-	double	perp_x;
-	double	perp_y;
 	double	wall_dist;
 
 	//	pre render()

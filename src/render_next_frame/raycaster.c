@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/12/07 23:26:54 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/23 22:03:05 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,30 @@ static void	reset_ray(t_ray *ray, t_player *player, int x)
 }
 
 // START COMMENT
-static void	get_dist(t_ray *ray)
+static void	get_dist(t_ray *ray, t_player *player)
 {
 	//	calculate ray->perp_{x,y} & distance from ray->wall_{x,y}
+	double delta_dist;
+	double side_dist;
+	// 1 - player
+	// 2 - raio
+	// d = √[(x2 − x1)2 + (y2 − y1)2]
+	if (ray->hit == 'w' || ray->hit == 'e')
+		side_dist = ray->side_dist_x;
+	else
+		side_dist = ray->side_dist_y;
+	
+	delta_dist = sqrt((ray->pos_x - player->pos_x) * \
+					  (ray->pos_x - player->pos_x) + \
+					  (ray->pos_y - player->pos_y) * \
+					  (ray->pos_y - player->pos_y)) - \
+					  side_dist;
+
+	if (ray->hit == 'w' || ray->hit == 'e')
+		ray->wall_dist = side_dist - delta_dist;
+	else
+		ray->wall_dist = delta_dist / ray->ray_dir_y;
+				
 	(void)ray;
 }
 /*
@@ -65,7 +86,7 @@ void raycaster(t_cubed *cubed)
 		reset_ray(&ray, cubed->player, x);
 		cast_ray(&ray, cubed->player, cubed->map);
 // START COMMENT
-		get_dist(&ray);
+		get_dist(&ray, cubed->player);
 //		draw_wall_slice(&ray, cubed->mlx);
 // END COMMENT
 		x++;

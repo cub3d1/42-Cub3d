@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2024/01/23 20:38:48 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/23 21:50:22 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,7 @@ void	cast_ray(t_ray *ray, t_player *player, char **map)
 		get_next_deltas(ray);
 		delta_dir = init_ray_pos(ray);
 	}
+	
 	/*
 	static int x = 0;
 	if (x == 0 || x == WIN_W / 2 || x == WIN_W - 1)
