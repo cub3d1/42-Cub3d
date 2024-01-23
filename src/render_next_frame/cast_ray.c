@@ -182,22 +182,6 @@ static void	get_next_deltas(t_ray *ray)
 							(ray->dy_pos_y - ray->pos_y));
 }
 
-static char	update_ray_pos(t_ray *ray)
-{
-	if (fabs(ray->side_dist_x) < fabs(ray->side_dist_y))
-	{
-		ray->pos_x = ray->dx_pos_x;
-		ray->pos_y = ray->dx_pos_y;
-		return ('x');
-	}
-	else
-	{
-		ray->pos_x = ray->dy_pos_x;
-		ray->pos_y = ray->dy_pos_y;
-		return ('y');
-	}
-}
-
 void	cast_ray(t_ray *ray, t_player *player, char **map)
 {
 	char	delta_dir;
@@ -213,9 +197,10 @@ void	cast_ray(t_ray *ray, t_player *player, char **map)
 		ray->hit = check_ray_collision(ray, delta_dir, map);
 		if (ray->hit)
 			break ;
-		set_dist_var(ray);
+		ray->dx_pos_x += ray->step_x;
+		ray->dy_pos_y += ray->step_y;
 		get_next_deltas(ray);
-		delta_dir = update_ray_pos(ray);
+		delta_dir = init_ray_pos(ray);
 	}
 	/*
 	static int x = 0;
