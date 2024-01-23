@@ -63,7 +63,7 @@ void raycaster(t_cubed *cubed)
 	while (x < WIN_W)
 	{
 		reset_ray(&ray, cubed->player, x);
-		cast_ray(&ray, cubed->map);
+		cast_ray(&ray, cubed->player, cubed->map);
 // START COMMENT
 		get_dist(&ray);
 //		draw_wall_slice(&ray, cubed->mlx);

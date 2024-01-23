@@ -170,11 +170,11 @@ static void	get_next_deltas(t_ray *ray)
 		diff_y = (1 - (ray->pos_y - (int)ray->pos_y)) / ratio;
 	ray->dx_pos_y = ray->pos_y + diff_y;
 	ray->dy_pos_x = ray->pos_x + diff_x;
-	ray->side_dist_x += sqrt((ray->dx_pos_x - ray->pos_x) * \
+	ray->side_dist_x = sqrt((ray->dx_pos_x - ray->pos_x) * \
 							(ray->dx_pos_x - ray->pos_x) + \
 							(ray->dx_pos_y - ray->pos_y) * \
 							(ray->dx_pos_y - ray->pos_y));
-	ray->side_dist_y += sqrt((ray->dy_pos_x - ray->pos_x) * \
+	ray->side_dist_y = sqrt((ray->dy_pos_x - ray->pos_x) * \
 							(ray->dy_pos_x - ray->pos_x) + \
 							(ray->dy_pos_y - ray->pos_y) * \
 							(ray->dy_pos_y - ray->pos_y));
@@ -196,21 +196,22 @@ static char	update_ray_pos(t_ray *ray)
 	}
 }
 
-void	cast_ray(t_ray *ray, char **map)
+void	cast_ray(t_ray *ray, t_player *player, char **map)
 {
 	char	delta_dir;
 
 	set_dist_var(ray);
 	init_side_dist(ray);
 	delta_dir = init_ray_pos(ray);
-	printf("pos x: %lf\npos y: %lf\n", ray->pos_x, ray->pos_y);
-	printf("=========================\n");
+//	printf("pos x: %lf\npos y: %lf\n", ray->pos_x, ray->pos_y);
+//	printf("=========================\n");
 	while (true)
 	{
+//		printf("looping\n");
 		ray->hit = check_ray_collision(ray, delta_dir, map);
 		if (ray->hit)
 			break ;
-		//	calculate next ray->delta_dist
+		set_dist_var(ray);
 		get_next_deltas(ray);
 		delta_dir = update_ray_pos(ray);
 	}
@@ -226,6 +227,5 @@ void	cast_ray(t_ray *ray, char **map)
 	}
 	x++;
 	*/
-	(void)delta_dir;
-	(void)map;
+	(void)player;
 }

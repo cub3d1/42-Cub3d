@@ -316,7 +316,7 @@ void		show_map2d(t_cubed *cubed, t_canvas *canvas);
 void		show_player(t_cubed *cubed, t_our_img *player, t_canvas *map);
 
 /*	/render_next_frame/cast_ray */
-void	cast_ray(t_ray *ray, char **map);
+void	cast_ray(t_ray *ray, t_player *player, char **map);
 
 #endif
 
