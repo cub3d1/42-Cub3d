@@ -30,20 +30,15 @@ static void	init_side_dist(t_ray *ray)
 	double	diff_x;
 	double	diff_y;
 
+	if (ray->ray_dir_y == 0)
+		ray->ray_dir_y = 0.0000009;
 	if (ray->ray_dir_y != 0)
 		ratio = ray->ray_dir_x / ray->ray_dir_y;
-	else
-		ratio = 0;
 	if (ray->ray_dir_x < 0)
 		diff_x = ((ray->pos_x - (int)ray->pos_x) * -1) * ratio;
 	else
 		diff_x = (1 - (ray->pos_x - (int)ray->pos_x)) * ratio;
-	if (ratio == 0)
-	{
-		printf("DIVISION BY 0 AVOIDED\n");
-		diff_y = 0;
-	}
-	else if (ray->ray_dir_y < 0)
+	if (ray->ray_dir_y < 0)
 		diff_y = ((ray->pos_y - (int)ray->pos_y) * -1) / ratio;
 	else
 		diff_y = (1 - (ray->pos_y - (int)ray->pos_y)) / ratio;
