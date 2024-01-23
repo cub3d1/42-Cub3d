@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycaster.c                                        :+:      :+:    :+:   */
+/*   cast_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/12/07 23:26:54 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/23 20:38:48 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,10 @@ static char	check_ray_collision(t_ray *ray, char dir, char **map)
 
 	array_x = (int)ray->pos_x;
 	array_y = (int)ray->pos_y;
-	if (dir == 'x' && ray->dir_x < 0)
+	ft_printf_fd(1, "\n\n\narray_x: %d\narray_y: %d\n\n\n\n", array_x, array_y);
+	if (dir == 'x' && ray->ray_dir_x < 0)
 		array_x--;
-	if (dir == 'y' && ray->dir_y)
+	if (dir == 'y' && ray->ray_dir_y > 0)
 		array_y--;
 	if (map[array_y][array_x] == '1')
 	{
@@ -149,16 +150,51 @@ static char	check_ray_collision(t_ray *ray, char dir, char **map)
 				return ('n');
 		}
 	}
+	else
+		return ('\0');
 }
 
 static void	get_next_deltas(t_ray *ray)
 {
-
+	double	ratio;
+	
+	double	diff_x;
+	double	diff_y;
+	ratio = ray->ray_dir_x / ray->ray_dir_y;
+	if (ray->ray_dir_x < 0)
+		diff_x = ((ray->pos_x - (int)ray->pos_x) * -1) * ratio;
+	else
+		diff_x = (1 - (ray->pos_x - (int)ray->pos_x)) * ratio;
+	if (ray->ray_dir_y < 0)
+		diff_y = ((ray->pos_y - (int)ray->pos_y) * -1) / ratio;
+	else
+		diff_y = (1 - (ray->pos_y - (int)ray->pos_y)) / ratio;
+	ray->dx_pos_y = ray->pos_y + diff_y;
+	ray->dy_pos_x = ray->pos_x + diff_x;
+	ray->side_dist_x += sqrt((ray->dx_pos_x - ray->pos_x) * \
+							(ray->dx_pos_x - ray->pos_x) + \
+							(ray->dx_pos_y - ray->pos_y) * \
+							(ray->dx_pos_y - ray->pos_y));
+	ray->side_dist_y += sqrt((ray->dy_pos_x - ray->pos_x) * \
+							(ray->dy_pos_x - ray->pos_x) + \
+							(ray->dy_pos_y - ray->pos_y) * \
+							(ray->dy_pos_y - ray->pos_y));
 }
 
 static char	update_ray_pos(t_ray *ray)
 {
-	
+	if (fabs(ray->side_dist_x) < fabs(ray->side_dist_y))
+	{
+		ray->pos_x = ray->dx_pos_x;
+		ray->pos_y = ray->dx_pos_y;
+		return ('x');
+	}
+	else
+	{
+		ray->pos_x = ray->dy_pos_x;
+		ray->pos_y = ray->dx_pos_y;
+		return ('y');
+	}
 }
 
 void	cast_ray(t_ray *ray, char **map)
