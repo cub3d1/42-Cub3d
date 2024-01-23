@@ -11,29 +11,23 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-/*
-static double	get_ratio(t_ray *ray)
+
+static void	zero_div_guard(t_ray *ray)
 {
-	if (ray->ray_dir_x <= 0)
-
-	else
-
-	if (ray_dir_y <= 0)
-
-	else
-
+	if (ray->ray_dir_x == 0)
+		ray->ray_dir_x = DBL_MIN;
+	if (ray->ray_dir_y == 0)
+		ray->ray_dir_y = DBL_MIN;
 }
-*/
+
 static void	init_side_dist(t_ray *ray)
 {
 	double	ratio;
 	double	diff_x;
 	double	diff_y;
 
-	if (ray->ray_dir_y == 0)
-		ray->ray_dir_y = 0.0000009;
-	if (ray->ray_dir_y != 0)
-		ratio = ray->ray_dir_x / ray->ray_dir_y;
+	zero_div_guard(ray);
+	ratio = ray->ray_dir_x / ray->ray_dir_y;
 	if (ray->ray_dir_x < 0)
 		diff_x = ((ray->pos_x - (int)ray->pos_x) * -1) * ratio;
 	else
