@@ -64,6 +64,7 @@ static void	init_side_dist(t_ray *ray)
 		printf("sidedistX:\n%lf\nsidedistY:\n%lf\n\n", ray->side_dist_x, ray->side_dist_y);
 		printf("==============================================\n");
 	}
+
 }
 /*
 static char	set_ray_pos(t_ray *ray)
