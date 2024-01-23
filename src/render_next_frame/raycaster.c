@@ -70,5 +70,5 @@ void raycaster(t_cubed *cubed)
 // END COMMENT
 		x++;
 	}
-	sleep(5);
+//	sleep(5);
 }

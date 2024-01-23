@@ -46,7 +46,7 @@ static void	init_side_dist(t_ray *ray)
 							(ray->dy_pos_x - ray->pos_x) + \
 							(ray->dy_pos_y - ray->pos_y) * \
 							(ray->dy_pos_y - ray->pos_y));
-/*
+
 	if (ray->canvas_x == 0 || ray->canvas_x == WIN_W / 2 || ray->canvas_x == WIN_W - 1)
 	{
 		printf("camera_x: %lf\n", ray->camera_x);
@@ -58,7 +58,7 @@ static void	init_side_dist(t_ray *ray)
 		printf("sidedistX:\n%lf\nsidedistY:\n%lf\n\n", ray->side_dist_x, ray->side_dist_y);
 		printf("==============================================\n");
 	}
-*/
+
 }
 /*
 static char	set_ray_pos(t_ray *ray)
@@ -116,7 +116,7 @@ static char	init_ray_pos(t_ray *ray)
 	else
 	{
 		ray->pos_x = ray->dy_pos_x;
-		ray->pos_y = ray->dx_pos_y;
+		ray->pos_y = ray->dy_pos_y;
 		return ('y');
 	}
 }
@@ -128,7 +128,6 @@ static char	check_ray_collision(t_ray *ray, char dir, char **map)
 
 	array_x = (int)ray->pos_x;
 	array_y = (int)ray->pos_y;
-	ft_printf_fd(1, "\n\n\narray_x: %d\narray_y: %d\n\n\n\n", array_x, array_y);
 	if (dir == 'x' && ray->ray_dir_x < 0)
 		array_x--;
 	if (dir == 'y' && ray->ray_dir_y > 0)
@@ -192,7 +191,7 @@ static char	update_ray_pos(t_ray *ray)
 	else
 	{
 		ray->pos_x = ray->dy_pos_x;
-		ray->pos_y = ray->dx_pos_y;
+		ray->pos_y = ray->dy_pos_y;
 		return ('y');
 	}
 }
@@ -204,6 +203,8 @@ void	cast_ray(t_ray *ray, char **map)
 	set_dist_var(ray);
 	init_side_dist(ray);
 	delta_dir = init_ray_pos(ray);
+	printf("pos x: %lf\npos y: %lf\n", ray->pos_x, ray->pos_y);
+	printf("=========================\n");
 	while (true)
 	{
 		ray->hit = check_ray_collision(ray, delta_dir, map);
