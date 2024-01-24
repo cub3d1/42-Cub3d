@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall_slice.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmouronh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 18:14:58 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/12/29 18:15:18 by fmouronh         ###   ########.fr       */
+/*   Updated: 2024/01/24 00:04:17 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	set_render_height(t_mlx *mlx, t_ray *ray)
 {
 	ray->render_h = mlx->proj_plane_height - \
 					(mlx->proj_plane_height / ray->wall_dist);
+	
+	printf("ray->wall_dist: %lf\n", ray->wall_dist);
 	ray->canvas_start = (WIN_H / 2) - (ray->render_h / 2);
 	ray->canvas_end = ray->canvas_start + ray->render_h;
 	ray->canvas_y = ray->canvas_start;

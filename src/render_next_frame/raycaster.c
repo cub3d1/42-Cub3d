@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2024/01/23 22:03:05 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/23 22:11:24 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,12 @@ static void	get_dist(t_ray *ray, t_player *player)
 					  (ray->pos_y - player->pos_y)) - \
 					  side_dist;
 
-	if (ray->hit == 'w' || ray->hit == 'e')
-		ray->wall_dist = side_dist - delta_dist;
-	else
-		ray->wall_dist = delta_dist / ray->ray_dir_y;
+	ray->wall_dist = delta_dist - side_dist;
 				
+	
 	(void)ray;
 }
-/*
+
 static void	draw_wall_slice(t_ray *ray, t_mlx *mlx)
 {
 	t_our_img	*texture;
@@ -70,7 +68,7 @@ static void	draw_wall_slice(t_ray *ray, t_mlx *mlx)
 	//	draw slice
 //	pre_render_slice(ray, texture, mlx->surfaces);
 }
-*/
+
 // END COMMENT
 void raycaster(t_cubed *cubed)
 {
@@ -87,7 +85,7 @@ void raycaster(t_cubed *cubed)
 		cast_ray(&ray, cubed->player, cubed->map);
 // START COMMENT
 		get_dist(&ray, cubed->player);
-//		draw_wall_slice(&ray, cubed->mlx);
+		draw_wall_slice(&ray, cubed->mlx);
 // END COMMENT
 		x++;
 	}
