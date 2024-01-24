@@ -46,7 +46,7 @@ static void	init_side_dist(t_ray *ray)
 							(ray->dy_pos_x - ray->pos_x) + \
 							(ray->dy_pos_y - ray->pos_y) * \
 							(ray->dy_pos_y - ray->pos_y));
-
+/*
 	if (ray->canvas_x == 0 || ray->canvas_x == WIN_W / 2 || ray->canvas_x == WIN_W - 1)
 	{
 		printf("camera_x: %lf\n", ray->camera_x);
@@ -58,7 +58,7 @@ static void	init_side_dist(t_ray *ray)
 		printf("sidedistX:\n%lf\nsidedistY:\n%lf\n\n", ray->side_dist_x, ray->side_dist_y);
 		printf("==============================================\n");
 	}
-
+*/
 }
 /*
 static char	set_ray_pos(t_ray *ray)
@@ -197,8 +197,10 @@ void	cast_ray(t_ray *ray, t_player *player, char **map)
 		ray->hit = check_ray_collision(ray, delta_dir, map);
 		if (ray->hit)
 			break ;
-		ray->dx_pos_x += ray->step_x;
-		ray->dy_pos_y += ray->step_y;
+		if (delta_dir == 'x')
+			ray->dx_pos_x += ray->step_x;
+		else
+			ray->dy_pos_y += ray->step_y;
 		get_next_deltas(ray);
 		delta_dir = init_ray_pos(ray);
 	}

@@ -42,18 +42,19 @@ static void	get_dist(t_ray *ray, t_player *player)
 	else
 		side_dist = ray->side_dist_y;
 	
-	delta_dist = sqrt((ray->pos_x - player->pos_x) * \
-					  (ray->pos_x - player->pos_x) + \
-					  (ray->pos_y - player->pos_y) * \
-					  (ray->pos_y - player->pos_y)) - \
+	delta_dist = sqrt((ray->pos_x - player->pos_x_array) * \
+					  (ray->pos_x - player->pos_x_array) + \
+					  (ray->pos_y - player->pos_y_array) * \
+					  (ray->pos_y - player->pos_y_array)) - \
 					  side_dist;
 
 	ray->wall_dist = delta_dist - side_dist;
-				
-	
-	(void)ray;
+	printf("ray pos:\n\tx: %lf\n\ty: %lf\nplayer pos:\n\tx: %lf\n\ty: %lf\n", ray->pos_x, ray->pos_y, player->pos_x_array, player->pos_y_array);
+	printf("delta dist: %lf\nside dist: %lf\n", delta_dist, side_dist);
+	printf("dist: %lf\n", ray->wall_dist);
+//	sleep(5);
 }
-
+/*
 static void	draw_wall_slice(t_ray *ray, t_mlx *mlx)
 {
 	t_our_img	*texture;
@@ -68,7 +69,7 @@ static void	draw_wall_slice(t_ray *ray, t_mlx *mlx)
 	//	draw slice
 //	pre_render_slice(ray, texture, mlx->surfaces);
 }
-
+*/
 // END COMMENT
 void raycaster(t_cubed *cubed)
 {
@@ -85,7 +86,7 @@ void raycaster(t_cubed *cubed)
 		cast_ray(&ray, cubed->player, cubed->map);
 // START COMMENT
 		get_dist(&ray, cubed->player);
-		draw_wall_slice(&ray, cubed->mlx);
+//		draw_wall_slice(&ray, cubed->mlx);
 // END COMMENT
 		x++;
 	}

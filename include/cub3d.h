@@ -69,6 +69,8 @@
 /*	PUT RAYCASTER DATA HERE	*/
 typedef struct s_ray
 {
+	char	current_wall;
+
 	//	ray pos on map
 	double	pos_x;
 	double	pos_y;
