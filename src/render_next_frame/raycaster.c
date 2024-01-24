@@ -50,7 +50,16 @@ static void	get_dist(t_ray *ray, t_player *player)
 					  (ray->pos_y - player->pos_y_array)) - \
 					  side_dist;
 
-	ray->wall_dist = fabs(delta_dist - side_dist);
+//	ray->wall_dist = fabs(delta_dist - side_dist);
+	ray->wall_dist = delta_dist;
+/*
+	if (ray->canvas_x == WIN_W / 2)
+	{
+		printf("delta dist: %lf\nside dist: %lf\n", delta_dist, side_dist);
+		printf("wall dist: %lf\n", ray->wall_dist);
+		sleep(5);
+	}
+*/
 //	printf("ray pos:\n\tx: %lf\n\ty: %lf\nplayer pos:\n\tx: %lf\n\ty: %lf\n", ray->pos_x, ray->pos_y, player->pos_x_array, player->pos_y_array);
 //	printf("delta dist: %lf\nside dist: %lf\n", delta_dist, side_dist);
 //	printf("dist: %lf\n", ray->wall_dist);
