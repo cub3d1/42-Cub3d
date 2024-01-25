@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:22:26 by ddantas-          #+#    #+#             */
-/*   Updated: 2024/01/25 22:10:22 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/25 23:46:35 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@
 
 /*		player params	*/
 # define SENSITIVITY 0.8f
-# define VELOCITY 0.1
-# define RAY_LENGHT 50
+# define VELOCITY 0.3
+# define RAY_LENGHT 150
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
