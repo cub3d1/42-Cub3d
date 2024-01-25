@@ -130,7 +130,7 @@ static char	check_ray_collision(t_ray *ray, char dir, char **map)
 	array_y = (int)ray->pos_y;
 	if (dir == 'x' && ray->ray_dir_x < 0)
 		array_x--;
-	if (dir == 'y' && ray->ray_dir_y > 0)
+	if (dir == 'y' && ray->ray_dir_y < 0)
 		array_y--;
 	printf("array_x: %d\narray_y: %d\n", array_x, array_y);
 	printf("===============================\n");
