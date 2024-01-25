@@ -7,4 +7,4 @@ cub3D
 
 **/*.nfs*
 
-*/log
+*.log
