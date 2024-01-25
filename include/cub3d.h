@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:22:26 by ddantas-          #+#    #+#             */
-/*   Updated: 2024/01/25 23:46:35 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/25 23:55:59 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 /*		player params	*/
 # define SENSITIVITY 0.8f
 # define VELOCITY 0.3
-# define RAY_LENGHT 150
+# define RAY_LENGHT 50
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -172,14 +172,6 @@ typedef struct s_player
 	double	dir_y;
 	double	dir_x_pos;
 	double	dir_y_pos;	
-	double	left_plane_x;
-	double	left_plane_y;
-	double	left_plane_x_pos;
-	double	left_plane_y_pos;
-	double	right_plane_x;
-	double	right_plane_y;
-	double	right_plane_x_pos;
-	double	right_plane_y_pos;
 	double	plane_vector_x;
 	double	plane_vector_y;
 
