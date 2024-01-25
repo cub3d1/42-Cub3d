@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2024/01/25 22:38:37 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/25 23:08:28 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	cast_ray(t_ray *ray, t_player *player, char **map)
 		ray->wall_dist = ray->side_dist_x - ray->delta_dist_x;
 	else
 		ray->wall_dist = ray->side_dist_y - ray->delta_dist_y;
-	(void)map;	
+	get_current_wall(ray, side);
+	(void)map;
 	(void)player;
 }
