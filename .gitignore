@@ -6,3 +6,5 @@ cub3D
 **/mlx-test
 
 **/*.nfs*
+
+*/log
