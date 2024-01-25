@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2024/01/23 21:50:22 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/25 15:54:45 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +132,8 @@ static char	check_ray_collision(t_ray *ray, char dir, char **map)
 		array_x--;
 	if (dir == 'y' && ray->ray_dir_y < 0)
 		array_y--;
-	printf("array_x: %d\narray_y: %d\n", array_x, array_y);
-	printf("===============================\n");
+	// printf("array_x: %d\narray_y: %d\n", array_x, array_y);
+	// printf("===============================\n");
 	if (map[array_y][array_x] == '1')
 	{
 		if (dir == 'x')

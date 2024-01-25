@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/01 10:19:22 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/25 17:48:50 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ void	init_player_struct(t_player *player, char **map, int y)
 	player->pos_x = ((float)(x + 0.5) * WIN_W) / get_biggest_line(map);
 	player->pos_y = ((float)(y + 0.5) * WIN_H) / get_array_size(map);
 	set_player_direction(player, map[y][x]);
-	player->plane_vector_x = 0;
-	player->plane_vector_y = 0.66;
 }
 
 	//	set player->direction according to token in map_row[x]

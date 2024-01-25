@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:21:14 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/12/07 23:28:06 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/25 17:58:29 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,19 @@ void	print_info(t_cubed *cubed, int frame_counter)
 	free(frame);
 	// printf("p.pos_x = %.1f |", cubed->player->pos_x);
 	// printf("p.pos_y = %.1f |", cubed->player->pos_y);
-	// printf("p.dir_x = %.1f |", cubed->player->dir_x);
-	// printf("p.dir_y = %.1f |", cubed->player->dir_y);
+	printf("p.dir_x = %.1f |", cubed->player->dir_x);
+	printf("p.dir_y = %.1f |", cubed->player->dir_y);
+	printf("p.plane_x = %.1f |", cubed->player->plane_vector_x);
+	printf("p.plane_y = %.1f |", cubed->player->plane_vector_y);
+
+	
 	// printf("p.left_planeX = %.1f |", cubed->player->left_planeX);
 	// printf("p.left_planeY = %.1f |", cubed->player->left_planeY);
 	// printf("p.right_planeX = %.1f |", cubed->player->right_planeX);
 	// printf("p.right_planeY = %.1f |", cubed->player->right_planeY);
-	printf("p.pos_x_array = %.4f |", cubed->player->pos_x_array);
-	printf("p.pos_y_array = %.4f |", cubed->player->pos_y_array);
-	// printf("angle = %.1f |", cubed->player->angle);
+	// printf("p.pos_x_array = %.4f |", cubed->player->pos_x_array);
+	// printf("p.pos_y_array = %.4f |", cubed->player->pos_y_array);
+	printf("angle = %.1f |", cubed->player->angle);
 	printf("\n");
 	(void)cubed;
 //	(void)frame_counter;

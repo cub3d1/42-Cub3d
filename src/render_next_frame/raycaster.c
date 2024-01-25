@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2024/01/23 22:11:24 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/25 18:24:06 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	reset_ray(t_ray *ray, t_player *player, int x)
 	ray->camera_x = 2 * x / (double)WIN_W - 1;
 	ray->ray_dir_x = player->dir_x + player->plane_vector_x * ray->camera_x;
 	ray->ray_dir_y = player->dir_y + player->plane_vector_y * ray->camera_x;
+	// print ray dir x and y
+	// printf("Ray %d dir x,y: (%lf,%lf)\n", x, ray->ray_dir_x, ray->ray_dir_y);
 	ray->step_x = 0;
 	ray->step_y = 0;
 
@@ -81,6 +83,7 @@ static void	draw_wall_slice(t_ray *ray, t_mlx *mlx)
 	pre_render_slice(ray, texture, mlx->surfaces);
 }
 
+
 // END COMMENT
 void raycaster(t_cubed *cubed)
 {
@@ -93,10 +96,9 @@ void raycaster(t_cubed *cubed)
 	{
 		reset_ray(&ray, cubed->player, x);
 		cast_ray(&ray, cubed->player, cubed->map);
-// START COMMENT
 		get_dist(&ray, cubed->player);
+		// sleep(1);
 		draw_wall_slice(&ray, cubed->mlx);
-// END COMMENT
 		x++;
 	}
 //	sleep(5);
