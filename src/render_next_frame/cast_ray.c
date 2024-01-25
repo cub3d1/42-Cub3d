@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2024/01/25 22:36:51 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/25 22:38:37 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,30 @@ static void init_step_side(t_ray *ray, t_player *player)
 	}
 }
 
+void get_current_wall(t_ray *ray, int side)
+{
+	if (side == 0)
+	{
+		if (ray->step_x == -1)
+			ray->current_wall = 'w';
+		else
+			ray->current_wall = 'e';
+	}
+	else
+	{
+		if (ray->step_y == -1)
+			ray->current_wall = 'n';
+		else
+			ray->current_wall = 's';
+	}
+}
+
 void	cast_ray(t_ray *ray, t_player *player, char **map)
 {
 	int	side = 0;
 
 	init_delta_dist(ray);
-	if (ray->canvas_x == 680)
-	{
-		printf("ray->delta_dist_x: %lf\n", ray->delta_dist_x);
-		printf("ray->delta_dist_y: %lf\n", ray->delta_dist_y);
-		sleep(1);
-	}
 	init_step_side(ray, player);
-
-
-
-
-	int n = 1;
 	ray->hit = 1;
 	while (ray->hit)
 	{
@@ -83,12 +90,6 @@ void	cast_ray(t_ray *ray, t_player *player, char **map)
 			ray->pos_y += ray->step_y;
 			side = 1;
 		}
-		if (ray->canvas_x == 680)
-		{
-			ft_printf_fd(1, "%d: y,x map[%d][%d] = ", n++, ray->pos_y, ray->pos_x);
-			ft_printf_fd(1, "%c\n", map[ray->pos_y][ray->pos_x]);
-			sleep(1);
-		}
 		if (map[ray->pos_y][ray->pos_x] == '1')
 			ray->hit = 0;
 	}
@@ -96,25 +97,6 @@ void	cast_ray(t_ray *ray, t_player *player, char **map)
 		ray->wall_dist = ray->side_dist_x - ray->delta_dist_x;
 	else
 		ray->wall_dist = ray->side_dist_y - ray->delta_dist_y;
-	if (ray->canvas_x == 680)
-	{
-	printf("ray->wall_dist: %lf\n", ray->wall_dist);
-	sleep(10);
-	}
-	if (side == 0)
-	{
-		if (ray->step_x == -1)
-			ray->current_wall = 'w';
-		else
-			ray->current_wall = 'e';
-	}
-	else
-	{
-		if (ray->step_y == -1)
-			ray->current_wall = 'n';
-		else
-			ray->current_wall = 's';
-	}
 	(void)map;	
 	(void)player;
 }
