@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2024/01/25 18:24:06 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/25 22:17:35 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	reset_ray(t_ray *ray, t_player *player, int x)
 {
-	ray->pos_x = player->pos_x_array;
-	ray->pos_y = player->pos_y_array;
+	ray->pos_x = (int)player->pos_x_array;
+	ray->pos_y = (int)player->pos_y_array;
 	ray->dx_pos_x = 0;
 	ray->dx_pos_y = 0;
 	ray->dy_pos_x = 0;
@@ -26,7 +26,6 @@ static void	reset_ray(t_ray *ray, t_player *player, int x)
 	ray->ray_dir_x = player->dir_x + player->plane_vector_x * ray->camera_x;
 	ray->ray_dir_y = player->dir_y + player->plane_vector_y * ray->camera_x;
 	// print ray dir x and y
-	printf("Ray %d dir x,y: (%lf,%lf)\n", x, ray->ray_dir_x, ray->ray_dir_y);
 	ray->step_x = 0;
 	ray->step_y = 0;
 

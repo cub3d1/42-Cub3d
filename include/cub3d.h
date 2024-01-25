@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:22:26 by ddantas-          #+#    #+#             */
-/*   Updated: 2024/01/23 22:00:19 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/25 22:10:22 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ typedef struct s_ray
 	char	current_wall;
 
 	//	ray pos on map
-	double	pos_x;
-	double	pos_y;
+	int	pos_x;
+	int	pos_y;
 
 	//	dist pos on map
 	double	dx_pos_x;
