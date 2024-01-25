@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2024/01/25 23:13:49 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/25 23:22:45 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,13 @@ static void draw_wall_slice(t_ray *ray, t_mlx *mlx)
 {
 	int lineHeight = (int)(WIN_H / ray->wall_dist);
 
-	int drawStart = -lineHeight / 2 + WIN_H / 2;
-	
-	if(drawStart < 0)
-		drawStart = 0;
+	ray->canvas_start = -lineHeight / 2 + WIN_H / 2;
+	if(ray->canvas_start < 0)
+		ray->canvas_start = 0;
 		
-	int drawEnd = lineHeight / 2 + WIN_H / 2;
-
-	if(drawEnd >= WIN_H)
-		drawEnd = WIN_H - 1;
+	ray->canvas_end = lineHeight / 2 + WIN_H / 2;
+	if(ray->canvas_end >= WIN_H)
+		ray->canvas_end = WIN_H - 1;
 
 	int color = 0x00FFFFFF; 
 	if (ray->current_wall == 'w')
@@ -82,9 +80,8 @@ static void draw_wall_slice(t_ray *ray, t_mlx *mlx)
 	else if (ray->current_wall == 's')
 		color = create_trgb(0, 150, 105, 25);
 	
-	while (drawStart < drawEnd)
-		my_mlx_pixel_put(mlx->surfaces->map_img, ray->canvas_x, drawStart++, color);	
-	(void)mlx;
+	while (ray->canvas_start < ray->canvas_end)
+		my_mlx_pixel_put(mlx->surfaces->map_img, ray->canvas_x, ray->canvas_start++, color);	
 }
 
 
