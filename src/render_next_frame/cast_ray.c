@@ -204,7 +204,8 @@ void	cast_ray(t_ray *ray, t_player *player, char **map)
 		get_next_deltas(ray);
 		delta_dir = init_ray_pos(ray);
 	}
-	
+	printf("wall pos:\n\tx: %lf\n\ty: %lf\nhit: %c\n", ray->pos_x, ray->pos_y, ray->hit);
+	printf("=======================================\n");
 	/*
 	static int x = 0;
 	if (x == 0 || x == WIN_W / 2 || x == WIN_W - 1)
