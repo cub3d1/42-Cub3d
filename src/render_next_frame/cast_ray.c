@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2024/01/25 23:26:19 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/25 23:40:44 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ static void init_step_side(t_ray *ray, t_player *player)
 	if (ray->ray_dir_y < 0)
 	{
 		ray->step_y = -1;
-		ray->side_dist_y = (player->pos_y_array -ray->pos_y) * ray->delta_dist_y;
+		ray->side_dist_y = (player->pos_y_array - ray->pos_y) * ray->delta_dist_y;
 	}
 	else
 	{
 		ray->step_y = 1;
-		ray->side_dist_y = (ray->pos_y + 1.0 - player->pos_x_array) * ray->delta_dist_x;
+		ray->side_dist_y = (ray->pos_y + 1.0 - player->pos_y_array) * ray->delta_dist_y;
 	}
 }
 
@@ -74,7 +74,13 @@ void	cast_ray(t_ray *ray, t_player *player, char **map)
 	int	side = 0;
 
 	init_delta_dist(ray);
+	// printf("ray->delta_dist_x = %lf\n", ray->delta_dist_x);
+	// printf("ray->delta_dist_y = %lf\n", ray->delta_dist_y);
+	// sleep(1);
 	init_step_side(ray, player);
+	// printf("ray->side_dist_x = %lf\n", ray->side_dist_x);
+	// printf("ray->side_dist_y = %lf\n", ray->side_dist_y);
+	
 	ray->hit = 1;
 	while (ray->hit)
 	{
@@ -90,6 +96,7 @@ void	cast_ray(t_ray *ray, t_player *player, char **map)
 			ray->pos_y += ray->step_y;
 			side = 1;
 		}
+		// printf("step: %d Ray(%d,%d), map = %c\n",++step, ray->pos_x, ray->pos_y, map[ray->pos_y][ray->pos_x]);
 		if (map[ray->pos_y][ray->pos_x] == '1')
 			ray->hit = 0;
 	}
