@@ -87,7 +87,7 @@ static void draw_wall_slice(t_ray *ray, t_mlx *mlx)
 	// ray->step_y = texture->w / (ray->canvas_end - ray->canvas_start);
 	// ray->texture_y = 1;
 	// color = mlx_get_color_value(mlx->mlx_ptr, *(unsigned int*)texture->addr + (1 * texture->line_length + ray->texture_x * (texture->bpp / 8)));
-	while (ray->canvas_start < ray->canvas_end)
+	while (ray->canvas_start <= ray->canvas_end)
 	{
 
 		my_mlx_pixel_put(mlx->surfaces->map_img, ray->canvas_x, ray->canvas_start++, color);	
