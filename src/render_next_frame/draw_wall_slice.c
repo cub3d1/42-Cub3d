@@ -15,7 +15,7 @@
 int	find_texture_x(t_ray *ray, t_our_img *texture)
 {
 	if (ray->current_wall == 'n')
-		return ((int)(texture->w * (ray->wall_x - (int)ray->wall_x)));
+		return ((int)(texture->w * ray->wall_x));
 	else if (ray->current_wall == 's')
 		return ((int)(texture->w * (1 - (ray->wall_x - (int)ray->wall_x))));
 	else if (ray->current_wall == 'e')

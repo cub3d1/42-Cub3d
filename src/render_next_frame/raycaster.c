@@ -69,6 +69,7 @@ static void draw_wall_slice(t_ray *ray, t_mlx *mlx)
 		ray->canvas_end = WIN_H - 1;
 	//TEXTURES
 	texture = select_texture(ray, mlx);
+	ray->texture_x = texture->w * ray->wall_x;
 
 
 	//THIS FUCKS OFF
