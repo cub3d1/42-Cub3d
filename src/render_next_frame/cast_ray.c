@@ -70,8 +70,6 @@ void get_current_wall(t_ray *ray, t_player *player, int side)
 			ray->current_wall = 's';
 		ray->wall_x = (player->pos_x_array + ray->wall_dist * ray->ray_dir_x) - (int)(player->pos_x_array + ray->wall_dist * ray->ray_dir_x);	
 	}
-
-	printf("ray->wall_x = %lf\n", ray->wall_x);
 }
 
 void	cast_ray(t_ray *ray, t_player *player, char **map)

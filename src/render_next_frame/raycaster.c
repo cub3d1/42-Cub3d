@@ -108,12 +108,11 @@ void raycaster(t_cubed *cubed)
 	x = 0;
 	while (x < WIN_W)
 	{
-		// printf("ray nr %d\n", x);
+//		printf("ray nr %d ==============================\n", x);
 		reset_ray(&ray, cubed->player, x);
 		cast_ray(&ray, cubed->player, cubed->map);
 		// sleep(1);
 		draw_wall_slice(&ray, cubed->mlx);
 		x++;
 	}
-//	sleep(5);
 }

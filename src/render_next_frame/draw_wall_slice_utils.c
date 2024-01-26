@@ -35,6 +35,8 @@ void	interpolate_texture(t_ray *ray, t_canvas *surfaces, \
 	count = 0;
 	while (ray->canvas_y < ray->canvas_end)
 	{
+//		printf("pixel on texture:\n\tx: %d\n\ty: %d\n", ray->texture_x, ray->texture_y);
+//		printf("pixel on canvas:\n\tx: %d\n\ty: %d\n", ray->canvas_x, ray->canvas_y);
 		copy_pixels(ray, surfaces, texture);
 		ray->canvas_y++;
 		count++;
@@ -51,6 +53,8 @@ void	copy_to_canvas(t_ray *ray, t_canvas *surfaces, \
 {
 	while (ray->canvas_y < ray->canvas_end)
 	{
+//		printf("pixel on texture:\n\tx: %d\n\ty: %d\n", ray->texture_x, ray->texture_y);
+//		printf("pixel on canvas:\n\tx: %d\n\ty: %d\n", ray->canvas_x, ray->canvas_y);
 		copy_pixels(ray, surfaces, texture);
 		ray->texture_y++;
 		ray->canvas_y++;
@@ -69,6 +73,8 @@ void	skip_texture_pixels(t_ray *ray, t_canvas *surfaces, \
 		step++;
 	while (ray->canvas_y < ray->canvas_end)
 	{
+//		printf("pixel on texture:\n\tx: %d\n\ty: %d\n", ray->texture_x, ray->texture_y);
+//		printf("pixel on canvas:\n\tx: %d\n\ty: %d\n", ray->canvas_x, ray->canvas_y);
 		copy_pixels(ray, surfaces, texture);
 		ray->texture_y += step;
 		if (ray->texture_y > texture->h)

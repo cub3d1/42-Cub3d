@@ -56,7 +56,10 @@ void	pre_render_slice(t_ray *ray, t_our_img *texture, t_canvas *canvas)
 {
 	float	ratio;
 
+//	printf("canvas_y: %d\n", ray->canvas_y);
+//	printf("canvas_start: %d\ncanvas_end: %d\n", ray->canvas_start, ray->canvas_end);
 	ratio = (float)texture->h / (float)ray->render_h;
+	ray->canvas_y = ray->canvas_start;
 	if (ratio < 1.0f)
 		interpolate_texture(ray, canvas, texture, ratio);
 	else if (ratio > 0.8f && ratio < 1.2f)
