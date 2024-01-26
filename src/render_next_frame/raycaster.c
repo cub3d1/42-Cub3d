@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2024/01/26 00:25:33 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/26 00:46:00 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,26 +71,27 @@ static void draw_wall_slice(t_ray *ray, t_mlx *mlx)
 	//TEXTURES
 	texture = select_texture(ray, mlx);
 	ray->texture_x = texture->w * ray->wall_x;
-
-
+	// printf("ray->texture_x = %d\n", ray->texture_x);
+	// sleep(1);
 	//THIS FUCKS OFF
-	int color = 0x00FFFFFF; 
-	// if (ray->current_wall == 'w')
-	// 	color = create_trgb(0, 0, 255, 0);
-	// else if (ray->current_wall == 'e')
-	// 	color = create_trgb(0, 160, 32, 240);
-	// else if (ray->current_wall == 'n')
-	// 	color = create_trgb(0, 115, 40, 40);
-	// else if (ray->current_wall == 's')
-	// 	color = create_trgb(0, 150, 105, 25);
+	int color = 0; 
+	if (ray->current_wall == 'w')
+		color = create_trgb(0, 0, 255, 0);
+	else if (ray->current_wall == 'e')
+		color = create_trgb(0, 160, 32, 240);
+	else if (ray->current_wall == 'n')
+		color = create_trgb(0, 115, 40, 40);
+	else if (ray->current_wall == 's')
+		color = create_trgb(0, 150, 105, 25);
 	
-	ray->step_y = texture->w / (WIN_H - ray->canvas_start);
+	// ray->step_y = texture->w / (ray->canvas_end - ray->canvas_start);
+	// ray->texture_y = 1;
+	// color = mlx_get_color_value(mlx->mlx_ptr, *(unsigned int*)texture->addr + (1 * texture->line_length + ray->texture_x * (texture->bpp / 8)));
 	while (ray->canvas_start < ray->canvas_end)
 	{
-		ray->texture_y = 0;
-		color = *(unsigned int*)texture->addr + (ray->texture_y * texture->line_length + ray->texture_x * (texture->bpp / 8));
+
 		my_mlx_pixel_put(mlx->surfaces->map_img, ray->canvas_x, ray->canvas_start++, color);	
-		ray->texture_y += ray->step_y;
+		// ray->texture_y += ray->step_y;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2024/01/26 00:11:21 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/26 00:33:20 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void get_current_wall(t_ray *ray, t_player *player, int side)
 	}
 	ray->wall_x = (player->pos_x_array + ray->wall_dist * ray->ray_dir_x) - (int)(player->pos_x_array + ray->wall_dist * ray->ray_dir_x);	
 
-	// printf("ray->wall_x = %lf\n", ray->wall_x);
+	printf("ray->wall_x = %lf\n", ray->wall_x);
 }
 
 void	cast_ray(t_ray *ray, t_player *player, char **map)
