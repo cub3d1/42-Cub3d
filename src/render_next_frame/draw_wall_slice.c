@@ -46,8 +46,8 @@ void	set_render_height(t_mlx *mlx, t_ray *ray)
 					(mlx->proj_plane_height / ray->wall_dist);
 	
 	// printf("ray->wall_dist: %lf\n", ray->wall_dist);
-	ray->canvas_start = (WIN_H / 2) - (ray->render_h / 2);
-	ray->canvas_end = ray->canvas_start + ray->render_h;
+	ray->canvas_end = ray->canvas_start + (ray->render_h / 2);
+	ray->canvas_start = ray->canvas_end - ray->render_h;
 	ray->canvas_y = ray->canvas_start;
 }
 
@@ -58,7 +58,7 @@ void	pre_render_slice(t_ray *ray, t_our_img *texture, t_canvas *canvas)
 
 //	printf("canvas_y: %d\n", ray->canvas_y);
 //	printf("canvas_start: %d\ncanvas_end: %d\n", ray->canvas_start, ray->canvas_end);
-	ratio = (float)texture->h / (float)ray->render_h;
+	ratio = fabs((float)texture->h / (float)ray->render_h);
 	ray->canvas_y = ray->canvas_start;
 	if (ratio < 1.0f)
 		interpolate_texture(ray, canvas, texture, ratio);
