@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2024/01/25 23:40:44 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/26 00:08:33 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void init_step_side(t_ray *ray, t_player *player)
 	}
 }
 
-void get_current_wall(t_ray *ray, int side)
+void get_current_wall(t_ray *ray, t_player *player, int side)
 {
 	if (side == 0)
 	{
@@ -67,6 +67,10 @@ void get_current_wall(t_ray *ray, int side)
 		else
 			ray->current_wall = 's';
 	}
+	ray->wall_x = player->pos_x_array + ray->wall_dist * ray->ray_dir_x;	
+
+	printf("ray->wall_x = %lf\n", ray->wall_x);
+	sleep(1);
 }
 
 void	cast_ray(t_ray *ray, t_player *player, char **map)
@@ -104,7 +108,7 @@ void	cast_ray(t_ray *ray, t_player *player, char **map)
 		ray->wall_dist = ray->side_dist_x - ray->delta_dist_x;
 	else
 		ray->wall_dist = ray->side_dist_y - ray->delta_dist_y;
-	get_current_wall(ray, side);
+	get_current_wall(ray, player, side);
 	(void)map;
 	(void)player;
 }
