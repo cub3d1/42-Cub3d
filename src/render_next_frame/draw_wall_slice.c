@@ -12,15 +12,29 @@
 
 #include "../../include/cub3d.h"
 
+int	find_texture_x(t_ray *ray, t_our_img *texture)
+{
+	if (ray->current_wall == 'n')
+		return ((int)(texture->w * (ray->wall_x - (int)ray->wall_x)));
+	else if (ray->current_wall == 's')
+		return ((int)(texture->w * (1 - (ray->wall_x - (int)ray->wall_x))));
+	else if (ray->current_wall == 'e')
+		return ((int)(texture->w * (1 - (ray->wall_y - (int)ray->wall_y))));
+	else if (ray->current_wall == 'w')
+		return ((int)(texture->w * (ray->wall_y - (int)ray->wall_y)));
+	else
+		return (0);
+}
+
 t_our_img	*select_texture(t_ray *ray, t_mlx *mlx)
 {
-	if (ray->hit == 'n')
+	if (ray->current_wall == 'n')
 		return (mlx->text_n);
-	else if (ray->hit == 's')
+	else if (ray->current_wall == 's')
 		return (mlx->text_s);
-	else if (ray->hit == 'e')
+	else if (ray->current_wall == 'e')
 		return (mlx->text_e);
-	else if (ray->hit == 'w')
+	else if (ray->current_wall == 'w')
 		return (mlx->text_w);
 	else
 		return (NULL);
@@ -37,19 +51,6 @@ void	set_render_height(t_mlx *mlx, t_ray *ray)
 	ray->canvas_y = ray->canvas_start;
 }
 
-int	find_texture_x(t_ray *ray, t_our_img *texture)
-{
-	if (ray->hit == 'n')
-		return ((int)(texture->w * (ray->wall_x - (int)ray->wall_x)));
-	else if (ray->hit == 's')
-		return ((int)(texture->w * (1 - (ray->wall_x - (int)ray->wall_x))));
-	else if (ray->hit == 'e')
-		return ((int)(texture->w * (1 - (ray->wall_y - (int)ray->wall_y))));
-	else if (ray->hit == 'w')
-		return ((int)(texture->w * (ray->wall_y - (int)ray->wall_y)));
-	else
-		return (0);
-}
 
 void	pre_render_slice(t_ray *ray, t_our_img *texture, t_canvas *canvas)
 {

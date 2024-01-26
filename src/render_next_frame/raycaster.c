@@ -16,10 +16,6 @@ static void	reset_ray(t_ray *ray, t_player *player, int x)
 {
 	ray->pos_x = (int)player->pos_x_array;
 	ray->pos_y = (int)player->pos_y_array;
-	ray->dx_pos_x = 0;
-	ray->dx_pos_y = 0;
-	ray->dy_pos_x = 0;
-	ray->dy_pos_y = 0;
 	ray->hit = '\0';
 	ray->canvas_x = x;
 	ray->camera_x = (2 * x / (double)WIN_W - 1) * -1;
@@ -60,16 +56,22 @@ int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char
 
 static void draw_wall_slice(t_ray *ray, t_mlx *mlx)
 {
-	int lineHeight = (int)(WIN_H / ray->wall_dist);
+	int 		line_height;
+	t_our_img	*texture;
 
-	ray->canvas_start = -lineHeight / 2 + WIN_H / 2;
+	line_height = (int)(WIN_H / ray->wall_dist);
+	ray->canvas_start = -line_height / 2 + WIN_H / 2;
 	if(ray->canvas_start < 0)
 		ray->canvas_start = 0;
 		
-	ray->canvas_end = lineHeight / 2 + WIN_H / 2;
+	ray->canvas_end = line_height / 2 + WIN_H / 2;
 	if(ray->canvas_end >= WIN_H)
 		ray->canvas_end = WIN_H - 1;
+	//TEXTURES
+	texture = select_texture(ray, mlx);
 
+
+	//THIS FUCKS OFF
 	int color = 0x00FFFFFF; 
 	if (ray->current_wall == 'w')
 		color = create_trgb(0, 0, 255, 0);
@@ -82,6 +84,7 @@ static void draw_wall_slice(t_ray *ray, t_mlx *mlx)
 	
 	while (ray->canvas_start < ray->canvas_end)
 		my_mlx_pixel_put(mlx->surfaces->map_img, ray->canvas_x, ray->canvas_start++, color);	
+	(void)texture;
 }
 
 
