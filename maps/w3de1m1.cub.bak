@@ -1,0 +1,8 @@
+NO ./textures/walls/North_wall_temp.xpm
+SO ./textures/walls/South_wall_temp.xpm
+WE ./textures/walls/West_wall_temp.xpm
+EA ./textures/walls/East_wall_temp.xpm
+
+C 255,255,0
+F 255,0,0
+

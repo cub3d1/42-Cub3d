@@ -23,7 +23,7 @@ static void	init_img_struct(t_our_img *img)
 	img->w = -1;
 }
 
-static void	malloc_canvas_structs(t_mlx *mlx)
+static void	malloc_canvas_structs(t_mlx *mlx, t_cubed *cubed)
 {
 	mlx->surfaces = malloc(sizeof(t_canvas));
 	mlx->automap = malloc(sizeof(t_canvas));
@@ -34,6 +34,13 @@ static void	malloc_canvas_structs(t_mlx *mlx)
 		mlx->automap->map_img = malloc(sizeof(t_our_img));
 		mlx->minimap->map_img = malloc(sizeof(t_our_img));
 	}
+	if (!mlx->surfaces || !mlx->surfaces->map_img \
+		|| !mlx->automap || !mlx->minimap \
+		|| !mlx->automap->map_img || !mlx->minimap->map_img)
+		exit_err(cubed, 5);
+	mlx->surfaces->buffer_array = ft_calloc(WIN_H, sizeof(unsigned int *));
+	if  (!mlx->surfaces->buffer_array)
+		exit_err(cubed, 5);
 }
 
 static void	malloc_img_structs(t_cubed *cubed, t_mlx *mlx)
@@ -76,19 +83,30 @@ static void	init_renderer(t_cubed *cubed, t_list *renderer)
 	renderer->next = NULL;
 }
 */
+static void	init_buffer_array(t_cubed *cubed, t_canvas *surfaces)
+{
+	unsigned int	**buffer_arr;
+	int				i;
+
+	buffer_arr = surfaces->buffer_array;
+	i = 0;
+	while (i < WIN_H)
+	{
+		buffer_arr[i] = ft_calloc(i + 1, sizeof(unsigned int));
+		if (!buffer_arr[i])
+			exit_err(cubed, 5);
+		i++;
+	}
+}
+
 void	init_mlx_struct(t_cubed *cubed)
 {
 	t_mlx	*mlx;
 
 	mlx = cubed->mlx;
 	malloc_img_structs(cubed, mlx);
-	malloc_canvas_structs(mlx);
+	malloc_canvas_structs(mlx, cubed);
 //	mlx->renderer = malloc(sizeof(t_list));
-	if (!mlx->text_n || !mlx->text_s || !mlx->text_e || !mlx->text_w \
-		|| !mlx->surfaces || !mlx->surfaces->map_img \
-		|| !mlx->automap || !mlx->minimap \
-		|| !mlx->automap->map_img || !mlx->minimap->map_img)
-		exit_err(cubed, 5);
 	mlx->proj_plane_height = WIN_H - (WIN_H / 6);
 	init_img_struct(mlx->text_n);
 	init_img_struct(mlx->text_s);
@@ -99,5 +117,6 @@ void	init_mlx_struct(t_cubed *cubed)
 	init_img_struct(mlx->automap->map_img);
 	init_img_struct(mlx->minimap->map_img);
 	init_img_struct(mlx->surfaces->map_img);
+	init_buffer_array(cubed, mlx->surfaces);
 //	init_renderer(cubed, mlx->renderer);
 }

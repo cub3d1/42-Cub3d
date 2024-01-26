@@ -122,6 +122,7 @@ typedef struct s_canvas
 	int				pos_x;
 	int				pos_y;
 	int				scale;
+	unsigned int	**buffer_array;
 	t_our_img		*map_img;
 }				t_canvas;
 
@@ -206,16 +207,6 @@ float		get_array_size(char **map);
 /*	load_textures.c	*/
 void		load_textures(t_cubed *cubed, char *arg);
 
-/*			free.c		*/
-int			free_stuff(t_cubed *cubed, int err_code);
-
-/*		free_mlx.c	*/
-void		free_mlx_images(t_mlx *mlx);
-void		free_canvases(t_mlx *mlx);
-void		free_image(t_mlx *mlx, t_our_img *img);
-
-/*			exit_err.c 	*/
-void		exit_err(t_cubed *cubed, int err_code);
 
 /*		./parser/parser.c */
 void		parser(t_cubed *cubed, char *arg);
@@ -305,6 +296,17 @@ void		show_player(t_cubed *cubed, t_our_img *player, t_canvas *map);
 void	cast_ray(t_ray *ray, t_player *player, char **map);
 
 #endif
+
+/*			free.c		*/
+int			free_stuff(t_cubed *cubed, int err_code);
+
+/*		free_mlx.c	*/
+void		free_mlx_images(t_mlx *mlx);
+void		free_canvases(t_mlx *mlx);
+void		free_image(t_mlx *mlx, t_our_img *img);
+
+/*			exit_err.c 	*/
+void		exit_err(t_cubed *cubed, int err_code);
 
 /*		error codes
  *

@@ -28,12 +28,29 @@ void	free_mlx_images(t_mlx *mlx)
 		free_image(mlx, mlx->minimap_player);
 }
 
+static void	free_lines(unsigned int **buffer_array)
+{
+	int	i;
+
+	i = 0;
+	while (i < WIN_H)
+	{
+		free(buffer_array[i]);
+		i++;
+	}
+}
+
 void	free_canvases(t_mlx *mlx)
 {
 	if (mlx->surfaces)
 	{
 		if (mlx->surfaces->map_img)
 			free_image(mlx, mlx->surfaces->map_img);
+		if (mlx->surfaces->buffer_array)
+		{
+			free_lines(mlx->surfaces->buffer_array);
+			free(mlx->surfaces->buffer_array);
+		}
 		free(mlx->surfaces);
 	}
 	if (mlx->automap)
