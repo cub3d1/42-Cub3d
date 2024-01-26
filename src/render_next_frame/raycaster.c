@@ -70,11 +70,15 @@ static void draw_wall_slice(t_ray *ray, t_mlx *mlx)
 		ray->canvas_end = WIN_H - 1;
 	//TEXTURES
 	texture = select_texture(ray, mlx);
+	ray->render_h = line_height;
 	ray->texture_x = texture->w * ray->wall_x;
 	// printf("ray->texture_x = %d\n", ray->texture_x);
 	// sleep(1);
-	//	COPY TO BUFFER
-	
+	//	COPY FROM TEXTURE TO BUFFER
+
+	//	COPY FROM BUFFER TO CANVAS
+
+
 	pre_render_slice(ray, texture, mlx->surfaces);
 /*
 	int color = 0; 
@@ -117,4 +121,5 @@ void raycaster(t_cubed *cubed)
 		draw_wall_slice(&ray, cubed->mlx);
 		x++;
 	}
+//	sleep(5);
 }
