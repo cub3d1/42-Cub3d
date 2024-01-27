@@ -1,10 +1,10 @@
 NO ./textures/w3d_n.xpm
-SO ./textures/walls/South_wall_temp.xpm
-WE ./textures/walls/West_wall_temp.xpm
-EA ./textures/walls/East_wall_temp.xpm
+SO ./textures/w3d_s.xpm
+WE ./textures/w3d_w.xpm
+EA ./textures/w3d_e.xpm
 
-C 255,255,0
-F 255,0,0
+C 63,63,127
+F 63,63,63
 
                             111111111111111
      111111                 100000000000001
@@ -56,11 +56,11 @@ F 255,0,0
             1001          10000010001000001
             1001          11111110001111111
             1111           100001000100001
-                           100000000000001
+                           10E000000000001
                            100001000100001
                            111111000111111
                            100000000000001
                            100000000000001
-                           1000000S0000001
+                           100000000000001
                            111111111111111
 
