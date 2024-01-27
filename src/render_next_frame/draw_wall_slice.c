@@ -39,7 +39,8 @@ static int	slice_on_y(int render_h, int texture_h)
 	double	height_ratio;
 
 	render_start = (render_h / 2) - (WIN_H / 2);
-	height_ratio = render_start / render_h;
+//	printf("render_h: %d\nrender_start: %d\n", render_h, render_start);
+	height_ratio = (double)render_start / (double)render_h;
 	return ((int)((double)texture_h * height_ratio));
 }
 
@@ -51,12 +52,19 @@ static void	copy_to_canvas(t_canvas *canvas, unsigned int *buffer,
 
 	i = 0;
 	y = ray->canvas_start;
+	if (y < 0)
+		y = 0;
 	while (i < size)
 	{
+//		printf("copying from buffer index: %d\n", i);
+//		printf("copying to pixel %d\n", y);
 		my_mlx_pixel_put(canvas->map_img, ray->canvas_x, y, buffer[i]);
 		i++;
 		y++;
 	}
+//	printf("ray->canvas_start: %d\n", ray->canvas_start);
+//	printf("size: %d\n", size);
+//	sleep(5);
 }
 
 void	pre_render_slice(t_canvas *canvas, t_our_img *texture, t_ray *ray)
@@ -64,16 +72,19 @@ void	pre_render_slice(t_canvas *canvas, t_our_img *texture, t_ray *ray)
 	int		copy_size;
 
 	copy_size = ray->render_h;
-	if (copy_size >= WIN_H)
+	ray->texture_y = 0;
+//	printf("ray->render_h: %d\n", ray->render_h);
+	if (copy_size > WIN_H)
 	{
-		copy_size = WIN_H - 1;
+		copy_size = WIN_H;
 		ray->texture_y = slice_on_y(ray->render_h, texture->h);
 	}
-	ray->texture_y = 0;
+//	printf("ray->texture_y: %d\n", ray->texture_y);
 	ray->render_step = (double)texture->h / (double)ray->render_h;
 	copy_to_buffer(texture, canvas->buffer_array[copy_size - 1], \
 					ray, copy_size);
-	ray->canvas_start = WIN_H / 2 - copy_size / 2;
+	ray->canvas_start = (WIN_H - 1) / 2 - copy_size / 2;
+//	printf("copy_size: %d\n]", copy_size);
 	copy_to_canvas(canvas, canvas->buffer_array[copy_size - 1], \
 					ray, copy_size);
 }
