@@ -59,11 +59,13 @@ void	pre_render_slice(t_ray *ray, t_our_img *texture, t_canvas *canvas)
 //	AM I USING THE RATIO RIGHT?
 	ratio = fabs((double)texture->h / (double)ray->render_h);
 	ray->canvas_y = ray->canvas_start;
+/*
 	printf("render_h: %d\n", ray->render_h);
 	printf("ray nr: %d\n", ray->canvas_x);
 	printf("ratio: %lf\n", ratio);
 	printf("canvas_y: %d\n", ray->canvas_y);
 	printf("canvas_start: %d\ncanvas_end: %d\n", ray->canvas_start, ray->canvas_end);
+*/
 	if (ratio < 1.0f)
 		interpolate_texture(ray, canvas, texture, ratio);
 	else if (ratio > 0.8f && ratio < 1.2f)

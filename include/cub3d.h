@@ -50,7 +50,7 @@
 # define FOV 66
 
 /*		player params	*/
-# define SENSITIVITY 0.8f
+# define SENSITIVITY 7.5f
 # define VELOCITY 0.3
 # define RAY_LENGHT 50
 

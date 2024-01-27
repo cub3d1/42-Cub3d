@@ -41,7 +41,7 @@ void	print_info(t_cubed *cubed, int frame_counter)
 
 int	render_next_frame(t_cubed *cubed)
 {
-	static int	frame_counter = 1;
+//	static int	frame_counter = 1;
 	t_mlx		*mlx;
 
 	mlx = cubed->mlx;
@@ -65,7 +65,7 @@ int	render_next_frame(t_cubed *cubed)
 		show_map2d(cubed, cubed->mlx->automap);
 		show_player(cubed, cubed->mlx->automap_player, cubed->mlx->automap);
 	}
-	print_info(cubed, frame_counter++);
+//	print_info(cubed, frame_counter++);
 	return (0);
 }
 
