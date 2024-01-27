@@ -100,8 +100,8 @@ typedef struct s_ray
 	int		canvas_y;
 	int		canvas_x;
 	int		canvas_start;
-	int		canvas_end;
 	int		render_h;
+	double	render_step;
 }				t_ray;
 
 typedef struct s_our_img
@@ -258,21 +258,11 @@ void		draw_map2d(char **map, t_canvas *map2d);
 void		draw_map2d(char **map, t_canvas *map2d);
 
 /* ./render_next_frame/draw_wall_slice.c	*/
-// START COMMENT
-t_our_img	*select_texture(t_ray *ray, t_mlx *mlx);
-void		set_render_height(t_mlx *mlx, t_ray *ray);
-int			find_texture_x(t_ray *ray, t_our_img *texture);
-void		pre_render_slice(t_ray *ray, t_our_img *texture, t_canvas *canvas);
-// END COMMENT
+void		pre_render_slice(t_canvas *canvas, t_our_img *texture, t_ray *ray);
+
 /* ./render_next_frame/draw_wall_slice_utils.c	*/
-// START COMMENT
-void		interpolate_texture(t_ray *ray, t_canvas *surfaces, \
-								t_our_img *texture, float ratio);
-void		copy_to_canvas(t_ray *ray, t_canvas *surfaces, \
-							t_our_img *texture);
-void		skip_texture_pixels(t_ray *ray, t_canvas *surfaces, \
-						t_our_img *texture, float ratio);
-// END COMMENT
+t_our_img	*select_texture(t_ray *ray, t_mlx *mlx);
+void		my_mlx_pixel_put(t_our_img *img, int x, int y, int color);
 
 /*	./render_next_frame/update.c	*/
 void		update_angle(t_cubed *cubed);
@@ -293,7 +283,7 @@ void		show_map2d(t_cubed *cubed, t_canvas *canvas);
 void		show_player(t_cubed *cubed, t_our_img *player, t_canvas *map);
 
 /*	/render_next_frame/cast_ray */
-void	cast_ray(t_ray *ray, t_player *player, char **map);
+void		cast_ray(t_ray *ray, t_player *player, char **map);
 
 #endif
 

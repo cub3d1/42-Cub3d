@@ -12,64 +12,68 @@
 
 #include "../../include/cub3d.h"
 
-int	find_texture_x(t_ray *ray, t_our_img *texture)
+static void	copy_to_buffer(t_our_img *texture, unsigned int *buffer, \
+							t_ray *ray, int size)
 {
-	if (ray->current_wall == 'n')
-		return ((int)(texture->w * ray->wall_x));
-	else if (ray->current_wall == 's')
-		return ((int)(texture->w * (1 - (ray->wall_x - (int)ray->wall_x))));
-	else if (ray->current_wall == 'e')
-		return ((int)(texture->w * (1 - (ray->wall_y - (int)ray->wall_y))));
-	else if (ray->current_wall == 'w')
-		return ((int)(texture->w * (ray->wall_y - (int)ray->wall_y)));
-	else
-		return (0);
+	int		i;
+	double	y;
+	char	*dst;
+
+	i = 0;
+	y = (double)ray->texture_y;
+	while (i < size)
+	{
+		dst = texture->addr + ((int)y * texture->line_length + \
+								ray->texture_x * (texture->bpp / 8));
+		buffer[i] = *(unsigned int *)dst;
+		i++;
+		y += ray->render_step;
+		if ((int)y > texture->h)
+			y = (double)texture->h - 1;
+	}
 }
 
-t_our_img	*select_texture(t_ray *ray, t_mlx *mlx)
+static int	slice_on_y(int render_h, int texture_h)
 {
-	if (ray->current_wall == 'n')
-		return (mlx->text_n);
-	else if (ray->current_wall == 's')
-		return (mlx->text_s);
-	else if (ray->current_wall == 'e')
-		return (mlx->text_e);
-	else if (ray->current_wall == 'w')
-		return (mlx->text_w);
-	else
-		return (NULL);
+	int		render_start;
+	double	height_ratio;
+
+	render_start = (render_h / 2) - (WIN_H / 2);
+	height_ratio = render_start / render_h;
+	return ((int)((double)texture_h * height_ratio));
 }
 
-void	set_render_height(t_mlx *mlx, t_ray *ray)
+static void	copy_to_canvas(t_canvas *canvas, unsigned int *buffer, 
+							t_ray *ray, int size)
 {
-	ray->render_h = mlx->proj_plane_height - \
-					(mlx->proj_plane_height / ray->wall_dist);
-	
-	// printf("ray->wall_dist: %lf\n", ray->wall_dist);
-	ray->canvas_end = ray->canvas_start + (ray->render_h / 2);
-	ray->canvas_start = ray->canvas_end - ray->render_h;
-	ray->canvas_y = ray->canvas_start;
+	int		i;
+	int		y;
+
+	i = 0;
+	y = ray->canvas_start;
+	while (i < size)
+	{
+		my_mlx_pixel_put(canvas->map_img, ray->canvas_x, y, buffer[i]);
+		i++;
+		y++;
+	}
 }
 
-
-void	pre_render_slice(t_ray *ray, t_our_img *texture, t_canvas *canvas)
+void	pre_render_slice(t_canvas *canvas, t_our_img *texture, t_ray *ray)
 {
-	double	ratio;
+	int		copy_size;
 
-//	AM I USING THE RATIO RIGHT?
-	ratio = fabs((double)texture->h / (double)ray->render_h);
-	ray->canvas_y = ray->canvas_start;
-/*
-	printf("render_h: %d\n", ray->render_h);
-	printf("ray nr: %d\n", ray->canvas_x);
-	printf("ratio: %lf\n", ratio);
-	printf("canvas_y: %d\n", ray->canvas_y);
-	printf("canvas_start: %d\ncanvas_end: %d\n", ray->canvas_start, ray->canvas_end);
-*/
-	if (ratio < 1.0f)
-		interpolate_texture(ray, canvas, texture, ratio);
-	else if (ratio > 0.8f && ratio < 1.2f)
-		copy_to_canvas(ray, canvas, texture);
-	else
-		skip_texture_pixels(ray, canvas, texture, ratio);
+	copy_size = ray->render_h;
+	if (copy_size >= WIN_H)
+	{
+		copy_size = WIN_H - 1;
+		ray->texture_y = slice_on_y(ray->render_h, texture->h);
+	}
+	ray->texture_y = 0;
+	ray->render_step = (double)texture->h / (double)ray->render_h;
+	copy_to_buffer(texture, canvas->buffer_array[copy_size - 1], \
+					ray, copy_size);
+	ray->canvas_start = WIN_H / 2 - copy_size / 2;
+	copy_to_canvas(canvas, canvas->buffer_array[copy_size - 1], \
+					ray, copy_size);
 }

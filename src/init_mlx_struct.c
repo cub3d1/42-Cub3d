@@ -89,11 +89,11 @@ static void	init_buffer_array(t_cubed *cubed, t_canvas *surfaces)
 	int				i;
 
 	buffer_arr = surfaces->buffer_array;
-	i = 0;
-	while (i < WIN_H)
+	i = 1;
+	while (i <= WIN_H)
 	{
-		buffer_arr[i] = ft_calloc(i + 1, sizeof(unsigned int));
-		if (!buffer_arr[i])
+		buffer_arr[i - 1] = ft_calloc(i, sizeof(unsigned int));
+		if (!buffer_arr[i - 1])
 			exit_err(cubed, 5);
 		i++;
 	}

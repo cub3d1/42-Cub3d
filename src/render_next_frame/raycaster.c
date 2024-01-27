@@ -42,14 +42,6 @@ static void	reset_ray(t_ray *ray, t_player *player, int x)
 // 	pre_render_slice(ray, texture, mlx->surfaces);
 // }
 
-void	my_mlx_pixel_put(t_our_img *img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
-	*(unsigned int*)dst = color;
-}
-
 int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
 {
 	return (*(int *)(unsigned char [4]){b, g, r, t});
@@ -57,30 +49,16 @@ int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char
 
 static void draw_wall_slice(t_ray *ray, t_mlx *mlx)
 {
-	int 		line_height;
 	t_our_img	*texture;
 
-	line_height = (int)(WIN_H / ray->wall_dist);
-	ray->canvas_start = WIN_H / 2 - line_height / 2;
-	if(ray->canvas_start < 0)
-		ray->canvas_start = 0;
-		
-	ray->canvas_end = line_height / 2 + WIN_H / 2;
-	if(ray->canvas_end >= WIN_H)
-		ray->canvas_end = WIN_H;
+	ray->render_h = (int)(WIN_H / ray->wall_dist);
 	//TEXTURES
 	texture = select_texture(ray, mlx);
-	ray->render_h = line_height;
 	ray->texture_x = texture->w * ray->wall_x;
-	// printf("ray->texture_x = %d\n", ray->texture_x);
 	// sleep(1);
 	//	COPY FROM TEXTURE TO BUFFER
-
-	//	COPY FROM BUFFER TO CANVAS
-
-
-//	pre_render_slice(ray, texture, mlx->surfaces);
-
+	pre_render_slice(mlx->surfaces, texture, ray);
+/*
 	int color = 0; 
 	if (ray->current_wall == 'w')
 		color = create_trgb(0, 0, 255, 0);
@@ -100,7 +78,7 @@ static void draw_wall_slice(t_ray *ray, t_mlx *mlx)
 		my_mlx_pixel_put(mlx->surfaces->map_img, ray->canvas_x, ray->canvas_start++, color);	
 		// ray->texture_y += ray->step_y;
 	}
-
+*/
 }
 
 
