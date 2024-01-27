@@ -70,8 +70,8 @@ void get_current_wall(t_ray *ray, t_player *player, int side)
 			ray->current_wall = 's';
 		ray->wall_x = (player->pos_x_array + ray->wall_dist * ray->ray_dir_x) - (int)(player->pos_x_array + ray->wall_dist * ray->ray_dir_x);	
 	}
-
-	printf("ray->wall_x = %lf\n", ray->wall_x);
+	if (ray->current_wall == 's' || ray->current_wall == 'w')
+		ray->wall_x = 1 - ray->wall_x;
 }
 
 void	cast_ray(t_ray *ray, t_player *player, char **map)
@@ -79,29 +79,24 @@ void	cast_ray(t_ray *ray, t_player *player, char **map)
 	int	side = 0;
 
 	init_delta_dist(ray);
-	// printf("ray->delta_dist_x = %lf\n", ray->delta_dist_x);
-	// printf("ray->delta_dist_y = %lf\n", ray->delta_dist_y);
-	// sleep(1);
-	init_step_side(ray, player);
-	// printf("ray->side_dist_x = %lf\n", ray->side_dist_x);
-	// printf("ray->side_dist_y = %lf\n", ray->side_dist_y);
-	
+	init_step_side(ray, player);	
 	ray->hit = 1;
 	while (ray->hit)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
+			// step_on_x(ray);
 			ray->side_dist_x += ray->delta_dist_x;
 			ray->pos_x += ray->step_x;
 			side = 0;
 		}
 		else
 		{
+			// step_on_y(ray);
 			ray->side_dist_y += ray->delta_dist_y;
 			ray->pos_y += ray->step_y;
 			side = 1;
 		}
-		// printf("step: %d Ray(%d,%d), map = %c\n",++step, ray->pos_x, ray->pos_y, map[ray->pos_y][ray->pos_x]);
 		if (map[ray->pos_y][ray->pos_x] == '1')
 			ray->hit = 0;
 	}
@@ -110,6 +105,4 @@ void	cast_ray(t_ray *ray, t_player *player, char **map)
 	else
 		ray->wall_dist = ray->side_dist_y - ray->delta_dist_y;
 	get_current_wall(ray, player, side);
-	(void)map;
-	(void)player;
 }
