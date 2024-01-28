@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmouronh <fmouronh@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 19:35:09 by fmouronh          #+#    #+#             */
-/*   Updated: 2023/10/03 19:35:11 by fmouronh         ###   ########.fr       */
+/*   Updated: 2024/01/28 20:17:29 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ void	update_player_pos(t_cubed *cubed, t_keys *keys, t_player *player)
 	prev_y = player->pos_y_array;
 	move_player(player, keys);
 
-	player->pos_x_array = player->pos_x * cubed->map_width / WIN_W;
-	player->pos_y_array = player->pos_y * cubed->map_height / WIN_H;
+	// player->pos_x_array = player->pos_x * cubed->map_width / WIN_W;
+	// player->pos_y_array = player->pos_y * cubed->map_height / WIN_H;
+	player->pos_x = player->pos_x_array * WIN_W / cubed->map_width;
+	player->pos_y = player->pos_y_array * WIN_H / cubed->map_height;
+		
 	check_borders(cubed, player, prev_x, prev_y);
 	update_player_dir(cubed, player);
 }

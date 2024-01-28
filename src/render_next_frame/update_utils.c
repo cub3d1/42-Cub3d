@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 20:24:24 by fmouronh          #+#    #+#             */
-/*   Updated: 2024/01/25 23:56:15 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/28 20:19:31 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,22 @@ void	move_player(t_player *player, t_keys *keys)
 {
 	if (keys->w && !keys->s)
 	{
-		player->pos_x += cos(player->angle * M_PI / 180) * VELOCITY;
-		player->pos_y -= sin(player->angle * M_PI / 180) * VELOCITY;
+		player->pos_x_array += (cos(player->angle * M_PI / 180) * VELOCITY) / 30;
+		player->pos_y_array -= (sin(player->angle * M_PI / 180) * VELOCITY) / 30;
 	}
 	if (keys->s && !keys->w)
 	{
-		player->pos_x -= cos(player->angle * M_PI / 180) * VELOCITY;
-		player->pos_y += sin(player->angle * M_PI / 180) * VELOCITY;
+		player->pos_x_array -= (cos(player->angle * M_PI / 180) * VELOCITY) / 30;
+		player->pos_y_array += (sin(player->angle * M_PI / 180) * VELOCITY) / 30;
 	}
 	if (keys->a && !keys->d)
 	{
-		player->pos_x += cos((player->angle + 90) * M_PI / 180) * VELOCITY;
-		player->pos_y -= sin((player->angle + 90) * M_PI / 180) * VELOCITY;
+		player->pos_x_array += (cos((player->angle + 90) * M_PI / 180) * VELOCITY) / 30;
+		player->pos_y_array -= (sin((player->angle + 90) * M_PI / 180) * VELOCITY) / 30;
 	}
 	if (keys->d && !keys->a)
 	{
-		player->pos_x -= cos((player->angle + 90) * M_PI / 180) * VELOCITY;
-		player->pos_y += sin((player->angle + 90) * M_PI / 180) * VELOCITY;
+		player->pos_x_array -= (cos((player->angle + 90) * M_PI / 180) * VELOCITY) / 30;
+		player->pos_y_array += (sin((player->angle + 90) * M_PI / 180) * VELOCITY) / 30;
 	}
 }
