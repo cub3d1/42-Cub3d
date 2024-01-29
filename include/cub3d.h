@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:22:26 by ddantas-          #+#    #+#             */
-/*   Updated: 2024/01/28 20:18:12 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/29 23:27:29 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -283,7 +283,7 @@ void		show_map2d(t_cubed *cubed, t_canvas *canvas);
 void		show_player(t_cubed *cubed, t_our_img *player, t_canvas *map);
 
 /*	/render_next_frame/cast_ray */
-void		cast_ray(t_ray *ray, t_player *player, char **map);
+void		cast_ray(t_cubed *cubed, t_ray *ray, t_player *player, char **map);
 
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2024/01/26 00:46:00 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/29 23:27:34 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void raycaster(t_cubed *cubed)
 	{
 //		printf("ray nr %d ==============================\n", x);
 		reset_ray(&ray, cubed->player, x);
-		cast_ray(&ray, cubed->player, cubed->map);
+		cast_ray(cubed, &ray, cubed->player, cubed->map);
 		// sleep(1);
 		draw_wall_slice(&ray, cubed->mlx);
 		x++;

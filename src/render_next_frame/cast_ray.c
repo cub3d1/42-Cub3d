@@ -6,7 +6,7 @@
 /*   By: hiper <hiper@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:38:47 by fmouronh          #+#    #+#             */
-/*   Updated: 2024/01/26 00:48:59 by hiper            ###   ########.fr       */
+/*   Updated: 2024/01/29 23:43:31 by hiper            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void get_current_wall(t_ray *ray, t_player *player, int side)
 		ray->wall_x = 1 - ray->wall_x;
 }
 
-void	cast_ray(t_ray *ray, t_player *player, char **map)
+void	cast_ray(t_cubed *cubed, t_ray *ray, t_player *player, char **map)
 {
 	int	side = 0;
 
@@ -97,8 +97,15 @@ void	cast_ray(t_ray *ray, t_player *player, char **map)
 			ray->pos_y += ray->step_y;
 			side = 1;
 		}
+		if (ray->pos_x <= 0 || ray->pos_y <= 0 || ray->pos_x >= cubed->map_width || ray->pos_y >= cubed->map_height)
+		{
+			ray->hit = 0;
+			break ;
+		}
+
 		if (map[ray->pos_y][ray->pos_x] == '1')
 			ray->hit = 0;
+
 	}
 	if (!side)
 		ray->wall_dist = ray->side_dist_x - ray->delta_dist_x;
