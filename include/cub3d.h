@@ -96,7 +96,7 @@ typedef struct s_ray
 
 	//	pre render()
 	int		texture_x;
-	int		texture_y;
+	double		texture_y;
 	int		canvas_y;
 	int		canvas_x;
 	int		canvas_start;
