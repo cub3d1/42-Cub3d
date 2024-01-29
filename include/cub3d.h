@@ -96,7 +96,7 @@ typedef struct s_ray
 
 	//	pre render()
 	int		texture_x;
-	double		texture_y;
+	double	texture_y;
 	int		canvas_y;
 	int		canvas_x;
 	int		canvas_start;
@@ -276,7 +276,7 @@ void		move_player(t_player *player, t_keys *keys);
 
 /*	./render_next_frame/collisions.c	*/
 void		check_borders(t_cubed *cubed, t_player *player, \
-	float prev_x, float prev_y);
+	double prev_x, double prev_y);
 
 /*	./render_next_frame/show_map2d.c */
 void		show_map2d(t_cubed *cubed, t_canvas *canvas);

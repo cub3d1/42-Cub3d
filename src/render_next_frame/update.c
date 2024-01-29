@@ -28,12 +28,9 @@ void	update_player_pos(t_cubed *cubed, t_keys *keys, t_player *player)
 	prev_x = player->pos_x_array;
 	prev_y = player->pos_y_array;
 	move_player(player, keys);
-
-	// player->pos_x_array = player->pos_x * cubed->map_width / WIN_W;
-	// player->pos_y_array = player->pos_y * cubed->map_height / WIN_H;
+	check_borders(cubed, player, prev_x, prev_y);
 	player->pos_x = player->pos_x_array * WIN_W / cubed->map_width;
 	player->pos_y = player->pos_y_array * WIN_H / cubed->map_height;
 		
-	check_borders(cubed, player, prev_x, prev_y);
 	update_player_dir(cubed, player);
 }
