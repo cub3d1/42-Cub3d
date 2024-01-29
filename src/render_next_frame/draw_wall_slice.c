@@ -70,6 +70,8 @@ void	pre_render_slice(t_canvas *canvas, t_our_img *texture, t_ray *ray)
 		ray->texture_y = (ray->render_h - WIN_H) / 2 * ray->render_step;
 	}
 //	printf("ray->texture_y: %d\n", ray->texture_y);
+	printf("render_h: %d\n", ray->render_h);
+	printf("copy size: %d\n", copy_size);
 	copy_to_buffer(texture, canvas->buffer_array[copy_size - 1], \
 					ray, copy_size);
 	ray->canvas_start = (WIN_H - 1) / 2 - copy_size / 2;

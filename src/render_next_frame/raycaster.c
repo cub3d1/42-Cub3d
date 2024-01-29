@@ -52,6 +52,8 @@ static void draw_wall_slice(t_ray *ray, t_mlx *mlx)
 	t_our_img	*texture;
 
 	ray->render_h = (int)(WIN_H / ray->wall_dist);
+	if (ray->render_h < 0)
+		ray->render_h = INT_MAX;
 	//TEXTURES
 	texture = select_texture(ray, mlx);
 	ray->texture_x = texture->w * ray->wall_x;
