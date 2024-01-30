@@ -57,9 +57,21 @@ void	check_borders(t_cubed *cubed, t_player *player, \
 	map = cubed->map;
 //	line_len = (int)ft_strlen(map[(int)player->pos_y_array]);
 	if (map[(int)player->pos_y_array][(int)prev_x] == '1')
+	{
+		if (player->pos_y_array > prev_y)
+			prev_y = (int)player->pos_y_array - 0.1;
+		else
+			prev_y = (int)prev_y + 0.1;
 		player->pos_y_array = prev_y;
-	if (map[(int)player->pos_y_array][(int)player->pos_x_array] == '1')
+	}
+	if (map[(int)prev_y][(int)player->pos_x_array] == '1')
+	{
+		if (player->pos_x_array > prev_x)
+			prev_x = (int)player->pos_x_array - 0.1;
+		else
+			prev_x = (int)prev_x + 0.1;
 		player->pos_x_array = prev_x;
+	}
 //	(void)prev_x;
 //	(void)prev_y;
 //	(void)map;
