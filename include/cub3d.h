@@ -272,7 +272,8 @@ void		update_player_pos(t_cubed *cubed, t_keys *keys, t_player *player);
 void		read_mouse_input(t_cubed *cubed);
 void		read_key_input(t_cubed *cubed);
 void		update_player_dir(t_cubed *cubed, t_player *player);
-void		move_player(t_player *player, t_keys *keys);
+void		player_walk(t_player *player, t_keys *keys);
+void		player_strafe(t_player *player, t_keys *keys);
 
 /*	./render_next_frame/collisions.c	*/
 void		check_borders(t_cubed *cubed, t_player *player, \
@@ -282,10 +283,13 @@ void		check_borders(t_cubed *cubed, t_player *player, \
 void		show_map2d(t_cubed *cubed, t_canvas *canvas);
 void		show_player(t_cubed *cubed, t_our_img *player, t_canvas *map);
 
-/*	/render_next_frame/cast_ray */
+/*	/render_next_frame/cast_ray.c */
 void		cast_ray(t_cubed *cubed, t_ray *ray, t_player *player, char **map);
 
-#endif
+/*	/render_next_frame/cast_ray_utils.c */
+void		zero_div_guard(t_ray *ray);
+void		init_delta_dist(t_ray *ray);
+void		init_step_side(t_ray *ray, t_player *player);
 
 /*			free.c		*/
 int			free_stuff(t_cubed *cubed, int err_code);
@@ -308,3 +312,5 @@ void		exit_err(t_cubed *cubed, int err_code);
  *	6 - Image failed to load
  *
  */
+
+#endif

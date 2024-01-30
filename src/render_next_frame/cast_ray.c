@@ -12,46 +12,7 @@
 
 #include "../../include/cub3d.h"
 
-static void	zero_div_guard(t_ray *ray)
-{
-	if (ray->ray_dir_x == 0)
-		ray->ray_dir_x = DBL_MIN;
-	if (ray->ray_dir_y == 0)
-		ray->ray_dir_y = DBL_MIN;
-}
-
-static void	init_delta_dist(t_ray *ray)
-{
-	zero_div_guard(ray);
-	ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
-	ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
-}
-
-static void init_step_side(t_ray *ray, t_player *player)
-{
-	if (ray->ray_dir_x < 0)
-	{
-		ray->step_x = -1;
-		ray->side_dist_x = (player->pos_x_array - ray->pos_x) * ray->delta_dist_x;
-	}
-	else
-	{
-		ray->step_x = 1;
-		ray->side_dist_x = (ray->pos_x + 1.0 - player->pos_x_array) * ray->delta_dist_x;
-	}
-	if (ray->ray_dir_y < 0)
-	{
-		ray->step_y = -1;
-		ray->side_dist_y = (player->pos_y_array - ray->pos_y) * ray->delta_dist_y;
-	}
-	else
-	{
-		ray->step_y = 1;
-		ray->side_dist_y = (ray->pos_y + 1.0 - player->pos_y_array) * ray->delta_dist_y;
-	}
-}
-
-void get_current_wall(t_ray *ray, t_player *player, int side)
+void	get_current_wall(t_ray *ray, t_player *player, int side)
 {
 	if (side == 0)
 	{
@@ -59,8 +20,9 @@ void get_current_wall(t_ray *ray, t_player *player, int side)
 			ray->current_wall = 'w';
 		else
 			ray->current_wall = 'e';
-		ray->wall_x = (player->pos_y_array + ray->wall_dist * ray->ray_dir_y) - (int)(player->pos_y_array + ray->wall_dist * ray->ray_dir_y);	
-
+		ray->wall_x = (player->pos_y_array + ray->wall_dist \
+			* ray->ray_dir_y) - (int)(player->pos_y_array + ray->wall_dist \
+			* ray->ray_dir_y);
 	}
 	else
 	{
@@ -68,44 +30,50 @@ void get_current_wall(t_ray *ray, t_player *player, int side)
 			ray->current_wall = 'n';
 		else
 			ray->current_wall = 's';
-		ray->wall_x = (player->pos_x_array + ray->wall_dist * ray->ray_dir_x) - (int)(player->pos_x_array + ray->wall_dist * ray->ray_dir_x);	
+		ray->wall_x = (player->pos_x_array + ray->wall_dist \
+			* ray->ray_dir_x) - (int)(player->pos_x_array + ray->wall_dist \
+			* ray->ray_dir_x);
 	}
 	if (ray->current_wall == 's' || ray->current_wall == 'w')
 		ray->wall_x = 1 - ray->wall_x;
 }
 
+static void	find_wall(t_ray *ray, int *side)
+{
+	if (ray->side_dist_x < ray->side_dist_y)
+	{
+		ray->side_dist_x += ray->delta_dist_x;
+		ray->pos_x += ray->step_x;
+		*side = 0;
+	}
+	else
+	{
+		ray->side_dist_y += ray->delta_dist_y;
+		ray->pos_y += ray->step_y;
+		*side = 1;
+	}
+}
+
 void	cast_ray(t_cubed *cubed, t_ray *ray, t_player *player, char **map)
 {
-	int	side = 0;
+	int	side;
 
 	init_delta_dist(ray);
-	init_step_side(ray, player);	
+	init_step_side(ray, player);
+	side = 0;
 	ray->hit = 1;
 	while (ray->hit)
 	{
-		if (ray->side_dist_x < ray->side_dist_y)
-		{
-			// step_on_x(ray);
-			ray->side_dist_x += ray->delta_dist_x;
-			ray->pos_x += ray->step_x;
-			side = 0;
-		}
-		else
-		{
-			// step_on_y(ray);
-			ray->side_dist_y += ray->delta_dist_y;
-			ray->pos_y += ray->step_y;
-			side = 1;
-		}
-		if (ray->pos_x <= 0 || ray->pos_y <= 0 || ray->pos_x >= cubed->map_width || ray->pos_y >= cubed->map_height)
+		find_wall(ray, &side);
+		if (ray->pos_x <= 0 || ray->pos_y <= 0 \
+			|| ray->pos_x >= cubed->map_width \
+			|| ray->pos_y >= cubed->map_height)
 		{
 			ray->hit = 0;
 			break ;
 		}
-
 		if (map[ray->pos_y][ray->pos_x] == '1')
 			ray->hit = 0;
-
 	}
 	if (!side)
 		ray->wall_dist = ray->side_dist_x - ray->delta_dist_x;

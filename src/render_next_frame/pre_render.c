@@ -65,41 +65,7 @@ static void	draw_floor(int *floor, t_our_img *canvas)
 		y++;
 	}
 }
-/*
-static void	print_struct_data(t_render *ray)
-{
-	printf("ray %d\n", ray->col);
-	printf("ray->wall_x\t=\t%f\n", ray->wall_x);
-	printf("ray->wall_y\t=\t%f\n", ray->wall_y);
-	printf("ray->plane_x\t=\t%f\n", ray->plane_x);
-	printf("ray->plane_y\t=\t%f\n", ray->plane_y);
-	printf("ray->hit\t=\t%c\n", ray->hit);
-	printf ("\n");
-	(void)ray;
-}
-*/
-/*
-static void	draw_walls(t_cubed *cubed, t_mlx *mlx, t_list *raycast)
-{
-	t_render	*ray;
-	t_our_img	*texture;
 
-	while (raycast)
-	{
-		ray = raycast->content;
-		print_struct_data(ray);
-		texture = select_texture(cubed->player, mlx, ray);
-		ray->tex_x = find_tex_x(ray, texture);
-		ray->render_h = find_render_h(mlx, ray, texture, cubed->player);
-		if (ray->render_h < 1)
-			ray->render_h = 1;
-//		ft_printf_fd(1, "%d\n", ray->render_h);
-		draw_wall_slice(ray, mlx->surfaces, texture);
-		raycast = raycast->next;
-	}
-//	exit_err(cubed, 0);
-}
-*/
 void	pre_render(t_cubed *cubed)
 {
 	t_mlx	*mlx;

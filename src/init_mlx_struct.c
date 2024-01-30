@@ -39,7 +39,7 @@ static void	malloc_canvas_structs(t_mlx *mlx, t_cubed *cubed)
 		|| !mlx->automap->map_img || !mlx->minimap->map_img)
 		exit_err(cubed, 5);
 	mlx->surfaces->buffer_array = ft_calloc(WIN_H, sizeof(unsigned int *));
-	if  (!mlx->surfaces->buffer_array)
+	if (!mlx->surfaces->buffer_array)
 		exit_err(cubed, 5);
 }
 
@@ -57,32 +57,7 @@ static void	malloc_img_structs(t_cubed *cubed, t_mlx *mlx)
 		|| !mlx->automap_player || !mlx->minimap_player)
 		exit_err(cubed, 5);
 }
-/*
-static void	init_renderer(t_cubed *cubed, t_list *renderer)
-{
-	t_render	*ray;
-	int			i;
 
-	i = 0;
-	while (i < WIN_W)
-	{
-		renderer->content = malloc(sizeof(t_render));
-		if (!renderer->content)
-			exit_err(cubed, 5);
-		ray = renderer->content;
-		ray->col = i;
-		i++;
-		if (i < WIN_W)
-		{
-			renderer->next = malloc(sizeof(t_list));
-			if (!renderer->next)
-				exit_err(cubed, 5);
-			renderer = renderer->next;
-		}
-	}
-	renderer->next = NULL;
-}
-*/
 static void	init_buffer_array(t_cubed *cubed, t_canvas *surfaces)
 {
 	unsigned int	**buffer_arr;
@@ -106,7 +81,6 @@ void	init_mlx_struct(t_cubed *cubed)
 	mlx = cubed->mlx;
 	malloc_img_structs(cubed, mlx);
 	malloc_canvas_structs(mlx, cubed);
-//	mlx->renderer = malloc(sizeof(t_list));
 	mlx->proj_plane_height = WIN_H - (WIN_H / 6);
 	init_img_struct(mlx->text_n);
 	init_img_struct(mlx->text_s);
@@ -118,5 +92,4 @@ void	init_mlx_struct(t_cubed *cubed)
 	init_img_struct(mlx->minimap->map_img);
 	init_img_struct(mlx->surfaces->map_img);
 	init_buffer_array(cubed, mlx->surfaces);
-//	init_renderer(cubed, mlx->renderer);
 }

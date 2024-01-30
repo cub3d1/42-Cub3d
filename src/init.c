@@ -12,8 +12,6 @@
 
 #include "../include/cub3d.h"
 
-/*	init all struct members to NULL or their default value	*/
-
 static void	init_key_struct(t_keys *keys)
 {
 	keys->w = false;
@@ -48,28 +46,11 @@ void	init_player_struct(t_player *player, char **map, int y)
 		x++;
 	player->pos_x_array = (double)x + (double)0.5;
 	player->pos_y_array = (double)y + (double)0.5;
-	player->pos_x = ((float)(x + 0.5) * WIN_W) / get_biggest_line(map);
-	player->pos_y = ((float)(y + 0.5) * WIN_H) / get_array_size(map);
+	player->pos_x = (((double)(x + 0.5)) * WIN_W) / get_biggest_line(map);
+	player->pos_y = (((double)(y + 0.5)) * WIN_H) / get_array_size(map);
 	set_player_direction(player, map[y][x]);
 }
 
-	//	set player->direction according to token in map_row[x]
-/*
-	idea:
-		direction can be an xy float vector with values between -1 and 1
-		where 1 points to the next tile in a given direction
-		and -1 to the prev one
-		like:
-					 x
-		*************
-		*           *
-		*           *
-		*    ^      * player is facing north
-		*           *	player->dir_x = 0
-		*           *	player->dir_y = -1
-		*************
-	   y
-*/
 void	init_cubed(t_cubed *cubed)
 {
 	cubed->mlx = malloc(sizeof(t_mlx));

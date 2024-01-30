@@ -12,36 +12,8 @@
 
 #include "../../include/cub3d.h"
 
-void	print_info(t_cubed *cubed, int frame_counter)
-{
-	char	*frame;
-
-	frame = ft_itoa(frame_counter);
-	ft_printf_fd(1, "frame = %s |", frame);
-	free(frame);
-	// printf("p.pos_x = %.1f |", cubed->player->pos_x);
-	// printf("p.pos_y = %.1f |", cubed->player->pos_y);
-	printf("p.dir_x = %.1f |", cubed->player->dir_x);
-	printf("p.dir_y = %.1f |", cubed->player->dir_y);
-	printf("p.plane_x = %.1f |", cubed->player->plane_vector_x);
-	printf("p.plane_y = %.1f |", cubed->player->plane_vector_y);
-
-	
-	// printf("p.left_planeX = %.1f |", cubed->player->left_planeX);
-	// printf("p.left_planeY = %.1f |", cubed->player->left_planeY);
-	// printf("p.right_planeX = %.1f |", cubed->player->right_planeX);
-	// printf("p.right_planeY = %.1f |", cubed->player->right_planeY);
-	// printf("p.pos_x_array = %.4f |", cubed->player->pos_x_array);
-	// printf("p.pos_y_array = %.4f |", cubed->player->pos_y_array);
-	printf("angle = %.1f |", cubed->player->angle);
-	printf("\n");
-	(void)cubed;
-//	(void)frame_counter;
-}
-
 int	render_next_frame(t_cubed *cubed)
 {
-//	static int	frame_counter = 1;
 	t_mlx		*mlx;
 
 	mlx = cubed->mlx;
@@ -65,19 +37,5 @@ int	render_next_frame(t_cubed *cubed)
 		show_map2d(cubed, cubed->mlx->automap);
 		show_player(cubed, cubed->mlx->automap_player, cubed->mlx->automap);
 	}
-//	print_info(cubed, frame_counter++);
 	return (0);
 }
-
-/*				
-
-O---------------+ x
-|
-|
-|
-|
-|
-+y
-
-
-*/

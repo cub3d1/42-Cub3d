@@ -89,7 +89,6 @@ void	init_pre_render(t_cubed *cubed)
 	init_canvas_image(cubed, mlx->minimap);
 	init_sprite(cubed, mlx->automap_player, mlx->automap);
 	init_sprite(cubed, mlx->minimap_player, mlx->minimap);
-//	printf("cubed->map ptr: %p\nmlx->automap ptr: %p\n", cubed->map, mlx->automap);
 	draw_map2d(cubed->map, mlx->automap);
 	draw_map2d(cubed->map, mlx->minimap);
 	draw_sprite(cubed->mlx->automap_player);

@@ -20,6 +20,12 @@ void	update_angle(t_cubed *cubed)
 		WIN_W / 2, WIN_H / 2);
 }
 
+static void	move_player(t_player *player, t_keys *keys)
+{
+	player_walk(player, keys);
+	player_strafe(player, keys);
+}
+
 void	update_player_pos(t_cubed *cubed, t_keys *keys, t_player *player)
 {
 	float	prev_x;
@@ -31,6 +37,5 @@ void	update_player_pos(t_cubed *cubed, t_keys *keys, t_player *player)
 	check_borders(cubed, player, prev_x, prev_y);
 	player->pos_x = player->pos_x_array * WIN_W / cubed->map_width;
 	player->pos_y = player->pos_y_array * WIN_H / cubed->map_height;
-		
 	update_player_dir(cubed, player);
 }
