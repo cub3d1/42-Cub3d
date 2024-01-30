@@ -72,8 +72,8 @@ typedef struct s_ray
 	char	current_wall;
 
 	//	ray pos on map
-	int	pos_x;
-	int	pos_y;
+	int		pos_x;
+	int		pos_y;
 
 	//	init_ray_dir();
 	double	camera_x;
@@ -89,7 +89,7 @@ typedef struct s_ray
 	double	wall_y;
 	int		step_x;
 	int		step_y;
-	char	hit;	//	n or s or e or w
+	char	hit;
 
 	//	get_dist();
 	double	wall_dist;
@@ -206,7 +206,6 @@ float		get_array_size(char **map);
 
 /*	load_textures.c	*/
 void		load_textures(t_cubed *cubed, char *arg);
-
 
 /*		./parser/parser.c */
 void		parser(t_cubed *cubed, char *arg);
