@@ -34,7 +34,6 @@
 # define ELEM_C 4
 # define ELEM_F 5
 
-
 /*		window size		*/
 # define WIN_W 1360
 # define WIN_H 768
