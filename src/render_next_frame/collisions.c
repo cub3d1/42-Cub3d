@@ -18,7 +18,8 @@ void	check_borders(t_cubed *cubed, t_player *player, \
 	char	**map;
 
 	map = cubed->map;
-	if (map[(int)player->pos_y_array][(int)prev_x] == '1')
+	if (prev_y != player->pos_y_array \
+		&& map[(int)player->pos_y_array][(int)prev_x] == '1')
 	{
 		if (player->pos_y_array > prev_y)
 			prev_y = (int)player->pos_y_array - 0.1;
@@ -26,7 +27,8 @@ void	check_borders(t_cubed *cubed, t_player *player, \
 			prev_y = (int)prev_y + 0.1;
 		player->pos_y_array = prev_y;
 	}
-	if (map[(int)prev_y][(int)player->pos_x_array] == '1')
+	if (prev_x != player->pos_x_array \
+		&& map[(int)player->pos_y_array][(int)player->pos_x_array] == '1')
 	{
 		if (player->pos_x_array > prev_x)
 			prev_x = (int)player->pos_x_array - 0.1;
