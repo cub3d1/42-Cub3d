@@ -12,32 +12,6 @@
 
 #include "../../include/cub3d.h"
 
-/*
-int	find_map_offset(char *arg)
-{
-	int		map_fd;
-	char	*line;
-	int		i;
-
-	map_fd = open(arg, O_RDONLY);
-	if (map_fd == -1)
-		exit(2);
-	line = get_next_line(map_fd);
-	i = 0;
-	while (line && (!ft_strchr(line, '1') && ft_strchr(line, '0')))
-	{
-		i++;
-		free(line);
-		line = get_next_line(map_fd);
-	}
-	if (line)
-		free(line);
-	if (close(map_fd) == -1)
-		exit(3);
-	return (i);
-}
-*/
-
 static bool	valid_tkns(char token)
 {
 	int	i;
@@ -116,19 +90,6 @@ bool	player_token_ok(t_cubed *cubed)
 		return (false);
 	return (true);
 }
-
-/*	DELETE THIS	*/
-// void	print_map(char **map)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (map[i])
-// 	{
-// 		ft_printf_fd(1, "%s", map[i]);
-// 		i++;
-// 	}
-// }
 
 bool	layout_enclosed(t_cubed *cubed)
 {

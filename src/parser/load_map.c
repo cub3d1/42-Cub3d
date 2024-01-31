@@ -66,18 +66,6 @@ static void	get_map_to_array(int map_fd, int max_line, t_cubed *cubed)
 		free(line);
 }
 
-// void print_map(t_cubed *cubed)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	while (cubed->map[i])
-// 	{
-// 		ft_printf_fd(1, "%s", cubed->map[i]);
-// 		i++;
-// 	}
-// }
-
 int	load_map(t_cubed *cubed, char *path)
 {
 	int		map_fd;
