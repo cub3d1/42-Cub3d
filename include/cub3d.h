@@ -26,6 +26,15 @@
 # include <float.h>
 # include <math.h>
 
+/*		map elements	*/
+# define ELEM_NO 0
+# define ELEM_SO 1
+# define ELEM_EA 2
+# define ELEM_WE 3
+# define ELEM_C 4
+# define ELEM_F 5
+
+
 /*		window size		*/
 # define WIN_W 1360
 # define WIN_H 768
@@ -238,7 +247,10 @@ bool		color_ok(int map_fd, t_cubed *cubed);
 int			find_map_offset(t_mlx *mlx, char *arg);
 
 /*	./parser/load_map.c	*/
-int			load_map(t_cubed *cubed, char *path);
+void		load_map(t_cubed *cubed, char *path);
+
+/*	./parser/load_map_utils.c	*/
+int			skip_elems(int map_fd);
 
 /*	./parser/load_colors.c	*/
 void		load_colors(t_cubed *cubed, char *path);

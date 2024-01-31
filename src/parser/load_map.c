@@ -12,73 +12,92 @@
 
 #include "../../include/cub3d.h"
 
-static int	get_max_map_lines(t_cubed *cubed, char *path)
+static int	find_map_start(int map_fd)
 {
-	int		map_fd;
+	int		i;
 	char	*line;
-	int		max_line;
 
-	map_fd = open(path, O_RDONLY);
-	if (map_fd == -1)
-		exit_err(cubed, 2);
-	line = NULL;
-	max_line = 0;
-	line = get_next_line(map_fd);
-	while (line)
+	i = skip_elems(map_fd);
+	while (true)
 	{
-		free(line);
 		line = get_next_line(map_fd);
-		max_line++;
-	}
-	if (close(map_fd) == -1)
-		exit_err(cubed, 3);
-	return (max_line);
-}
-
-void	advance_gnl_to_map(int map_fd)
-{
-	int	i;
-
-	i = 0;
-	while (i < 8)
-	{
-		free(get_next_line(map_fd));
 		i++;
+		if (!line || ft_strchr(line, '1'))
+			break ;
+		free(line);
 	}
+	if (line)
+		free(line);
+	return (i);
 }
 
-static void	get_map_to_array(int map_fd, int max_line, t_cubed *cubed)
+static int	get_map_height(int map_fd)
 {
 	char	*line;
 	int		i;
 
 	i = 0;
 	line = get_next_line(map_fd);
-	while (i < max_line)
+	while (line && ft_strchr(line, '1'))
 	{
-		cubed->map[i] = (char *)ft_strdup(line);
+		i++;
+		free(line);
+		line = get_next_line(map_fd);
+	}
+	if (line)
+		free(line);
+	return (i);
+}
+
+static void	skip_to_map(int map_fd, int map_offset)
+{
+	int	i;
+
+	i = 0;
+	while (i < map_offset)
+	{
+		free(get_next_line(map_fd));
+		i++;
+	}
+}
+
+static void	get_map_to_array(t_cubed *cubed, int map_fd)
+{
+	char	*line;
+	int		i;
+
+	i = 0;
+	line = NULL;
+	while (i < cubed->map_height)
+	{
+		line = get_next_line(map_fd);
+		cubed->map[i] = ft_strdup(line);
 		free(line);
 		line = NULL;
-		if (++i < max_line)
-			line = get_next_line(map_fd);
+		i++;
 	}
-	if (line != NULL)
+	if (line)
 		free(line);
 }
 
-int	load_map(t_cubed *cubed, char *path)
+void	load_map(t_cubed *cubed, char *path)
 {
 	int		map_fd;
-	int		max_line;
+	int		map_offset;
 
-	max_line = get_max_map_lines(cubed, path);
 	map_fd = open(path, O_RDONLY);
 	if (map_fd == -1)
 		exit_err(cubed, 2);
-	cubed->map = (char **)ft_calloc(sizeof(char *), (max_line - 8 + 1));
-	advance_gnl_to_map(map_fd);
-	get_map_to_array(map_fd, max_line - 8, cubed);
+	map_offset = find_map_start(map_fd) - 1;
+	cubed->map_height = get_map_height(map_fd) + 1;
 	if (close(map_fd) == -1)
 		exit_err(cubed, 3);
-	return (0);
+	map_fd = open(path, O_RDONLY);
+	if (map_fd == -1)
+		exit_err(cubed, 2);
+	cubed->map = ft_calloc(cubed->map_height + 1, sizeof(char *));
+	if (!cubed->map)
+		exit_err(cubed, 5);
+	skip_to_map(map_fd, map_offset);
+	get_map_to_array(cubed, map_fd);
 }
