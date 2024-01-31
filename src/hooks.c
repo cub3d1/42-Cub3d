@@ -19,12 +19,6 @@ int	window_cross(t_cubed *cubed)
 	return (0);
 }
 
-	// if (keycode == ON_W)
-	// {
-	// 	cubed->player->pos_x += cubed->player->dir_x * 0.1;
-	// 	cubed->player->pos_y += cubed->player->dir_y * 0.1;
-	// }
-
 static void	read_keystrokes(int keycode, t_cubed *cubed)
 {
 	if (keycode == KEY_TAB)
@@ -47,6 +41,8 @@ static void	read_keystrokes(int keycode, t_cubed *cubed)
 		cubed->player->angle += 45;
 	if (keycode == KEY_DOWN)
 		cubed->player->angle -= 45;
+	if (keycode == KEY_I)
+		cubed->keys->mouse_movement = !cubed->keys->mouse_movement;
 }
 
 int	keypress_hook(int keycode, t_cubed *cubed)

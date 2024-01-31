@@ -54,6 +54,7 @@
 # define KEY_RIGHT 65363
 # define KEY_M 109
 # define KEY_TAB 65289
+# define KEY_I 105
 
 # define FOV 66
 
@@ -163,6 +164,7 @@ typedef struct s_keys
 	bool	right;
 	bool	show_minimap;
 	bool	show_automap;
+	bool	mouse_movement;
 }				t_keys;
 
 typedef struct s_player

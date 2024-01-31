@@ -15,9 +15,15 @@
 void	update_angle(t_cubed *cubed)
 {
 	read_key_input(cubed);
-	read_mouse_input(cubed);
-	mlx_mouse_move(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, \
-		WIN_W / 2, WIN_H / 2);
+	if (cubed->keys->mouse_movement)
+	{
+		mlx_mouse_hide(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr);
+		read_mouse_input(cubed);
+		mlx_mouse_move(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr, \
+			WIN_W / 2, WIN_H / 2);
+	}
+	else
+		mlx_mouse_show(cubed->mlx->mlx_ptr, cubed->mlx->win_ptr);
 }
 
 static void	move_player(t_player *player, t_keys *keys)
