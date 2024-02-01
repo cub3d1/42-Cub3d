@@ -35,8 +35,8 @@
 # define ELEM_F 5
 
 /*		window size		*/
-# define WIN_W 1360
-# define WIN_H 768
+# define WIN_W 1920
+# define WIN_H 1080
 
 /*		keystrokes		*/
 # define ON_KEYPRESS 2
@@ -60,7 +60,7 @@
 
 /*		player params	*/
 # define SENSITIVITY 7.5f
-# define VELOCITY 1
+# define VELOCITY 0.3
 # define RAY_LENGHT 50
 
 # ifndef M_PI
