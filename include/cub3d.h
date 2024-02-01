@@ -35,8 +35,8 @@
 # define ELEM_F 5
 
 /*		window size		*/
-# define WIN_W 1920
-# define WIN_H 1080
+# define WIN_W 1360
+# define WIN_H 768
 
 /*		keystrokes		*/
 # define ON_KEYPRESS 2
@@ -48,9 +48,7 @@
 # define ON_A 97
 # define ON_S 115
 # define ON_D 100
-# define KEY_UP 65362
 # define KEY_LEFT 65361
-# define KEY_DOWN 65364
 # define KEY_RIGHT 65363
 # define KEY_M 109
 # define KEY_TAB 65289
@@ -282,8 +280,7 @@ void		player_walk(t_player *player, t_keys *keys);
 void		player_strafe(t_player *player, t_keys *keys);
 
 /*	./render_next_frame/collisions.c	*/
-void		check_borders(t_cubed *cubed, t_player *player, \
-	double prev_x, double prev_y);
+void		check_borders(t_cubed *cubed, t_player *player, t_keys *keys);
 
 /*	./render_next_frame/show_map2d.c */
 void		show_map2d(t_cubed *cubed, t_canvas *canvas);
