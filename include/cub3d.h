@@ -218,6 +218,11 @@ bool		map_pos_ok(int map_fd);
 bool		color_format_ok(char *line);
 bool		color_vals_ok(char *line);
 bool		map_start(char *line);
+bool		elems_ok(int map_fd, t_cubed *cubed);
+
+/*	./parser/file_content_check_utils_2.c	*/
+bool		valid_textures(char *line, bool elems[6]);
+bool		valid_colors(char *line, bool elems[6]);
 
 /*	./parser/map_layout_check.c	*/
 bool		map_tokens_ok(t_cubed *cubed);
