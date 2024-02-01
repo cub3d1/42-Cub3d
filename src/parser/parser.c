@@ -38,6 +38,11 @@ static bool	file_content_ok(char *arg, t_cubed *cubed)
 	map_fd = open(arg, O_RDONLY);
 	if (map_fd == -1)
 		exit_err(cubed, 2);
+	if (!elems_ok(map_fd, cubed))
+		return (false);
+	map_fd = open(arg, O_RDONLY);
+	if (map_fd == -1)
+		exit_err(cubed, 2);
 	if (!textures_ok(map_fd, cubed))
 		return (false);
 	map_fd = open(arg, O_RDONLY);

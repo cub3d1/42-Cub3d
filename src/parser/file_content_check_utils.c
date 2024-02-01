@@ -85,3 +85,43 @@ bool	map_start(char *line)
 	else
 		return (false);
 }
+
+static bool	valid_elem(char *line, bool elems[6])
+{
+	if (!*line || !ft_strncmp(line, "\n", 1))
+		return (true);
+	if (valid_textures(line, elems))
+		return (true);
+	if (valid_colors(line, elems))
+		return (true);
+	if (elems[ELEM_NO] && elems[ELEM_SO] \
+		&& elems[ELEM_EA] && elems[ELEM_WE] \
+		&& elems[ELEM_C] && elems[ELEM_F] \
+		&& (!*line || !ft_strncmp(line, "\n", 1) || ft_strchr(line, '1')))
+		return (true);
+	return (false);
+}
+
+bool	elems_ok(int map_fd, t_cubed *cubed)
+{
+	char	*line;
+	bool	elems[6];
+
+	ft_bzero(elems, 6);
+	line = get_next_line(map_fd);
+	while (line)
+	{
+		if (!valid_elem(line, elems))
+		{
+			free(line);
+			if (close(map_fd) == -1)
+				exit_err(cubed, 3);
+			return (false);
+		}
+		free(line);
+		line = get_next_line(map_fd);
+	}
+	if (close(map_fd) == -1)
+		exit_err(cubed, 3);
+	return (true);
+}

@@ -14,7 +14,7 @@ RENDERDIR = $(SRCDIR)render_next_frame/
 COREFILES = main.c hooks.c free.c free_mlx.c init.c init_mlx_struct.c \
 				init_pre_render.c map_utils.c exit_err.c load_textures.c
 
-PARSERFILES = parser.c file_content_check.c file_content_check_utils.c \
+PARSERFILES = parser.c file_content_check.c file_content_check_utils.c file_content_check_utils_2.c \
 				map_layout_check.c map_layout_check_utils.c flood_fill.c \
 				load_map.c load_map_utils.c load_colors.c
 
