@@ -12,7 +12,7 @@
 
 #include "../../include/cub3d.h"
 
-bool	valid_textures(char *line, bool elems[6])
+static bool	ns_elems_valid(char *line, bool elems[6])
 {
 	if (!ft_strncmp(line, "NO ", 3))
 	{
@@ -28,7 +28,12 @@ bool	valid_textures(char *line, bool elems[6])
 		elems[ELEM_SO] = true;
 		return (true);
 	}
-	else if (!ft_strncmp(line, "EA ", 3))
+	return (false);
+}
+
+static bool	ew_elems_valid(char *line, bool elems[6])
+{
+	if (!ft_strncmp(line, "EA ", 3))
 	{
 		if (elems[ELEM_EA])
 			return (false);
@@ -42,6 +47,15 @@ bool	valid_textures(char *line, bool elems[6])
 		elems[ELEM_WE] = true;
 		return (true);
 	}
+	return (false);
+}
+
+bool	valid_textures(char *line, bool elems[6])
+{
+	if (ns_elems_valid(line, elems))
+		return (true);
+	else if (ew_elems_valid(line, elems))
+		return (true);
 	return (false);
 }
 
