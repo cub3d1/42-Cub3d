@@ -15,9 +15,9 @@
 void	zero_div_guard(t_ray *ray)
 {
 	if (ray->ray_dir_x == 0)
-		ray->ray_dir_x = DBL_MIN;
+		ray->ray_dir_x = ((double)2.22507385850720138309023271733240406e-308L);
 	if (ray->ray_dir_y == 0)
-		ray->ray_dir_y = DBL_MIN;
+		ray->ray_dir_y = ((double)2.22507385850720138309023271733240406e-308L);
 }
 
 void	init_delta_dist(t_ray *ray)

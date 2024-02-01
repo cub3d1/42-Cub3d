@@ -12,7 +12,7 @@
 
 #include "../../include/cub3d.h"
 
-static void check_walk(t_player *player, t_keys *keys)
+static void	check_walk(t_player *player, t_keys *keys)
 {
 	if (keys->w && !keys->s)
 	{
@@ -30,7 +30,7 @@ static void check_walk(t_player *player, t_keys *keys)
 	}
 }
 
-static void check_strafe(t_player *player, t_keys *keys)
+static void	check_strafe(t_player *player, t_keys *keys)
 {
 	if (keys->a && !keys->d)
 	{
