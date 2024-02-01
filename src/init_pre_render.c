@@ -62,8 +62,8 @@ static void	draw_sprite(t_our_img *sprite)
 
 static void	init_sprite(t_cubed *cubed, t_our_img *sprite, t_canvas *map)
 {
-	sprite->w = (map->wall_w / MAP_PLAYER_SCALE) + 1;
-	sprite->h = (map->wall_h / MAP_PLAYER_SCALE) + 1;
+	sprite->w = (map->wall_w / 8) + 1;
+	sprite->h = (map->wall_h / 8) + 1;
 	sprite->img = mlx_new_image(cubed->mlx->mlx_ptr, sprite->w, sprite->h);
 	sprite->addr = mlx_get_data_addr(sprite->img, &sprite->bpp, \
 		&sprite->line_length, &sprite->endian);
@@ -82,7 +82,7 @@ void	init_pre_render(t_cubed *cubed)
 	mlx->surfaces->map_img->h = WIN_H;
 	init_canvas(cubed, mlx->automap, 1);
 	mlx->automap->pos_x = (WIN_W - mlx->automap->map_img->w) / 2;
-	init_canvas(cubed, mlx->minimap, MINIMAP_SCALE);
+	init_canvas(cubed, mlx->minimap, 4);
 	mlx->minimap->pos_y = WIN_H - mlx->minimap->map_img->h;
 	init_canvas_image(cubed, mlx->surfaces);
 	init_canvas_image(cubed, mlx->automap);

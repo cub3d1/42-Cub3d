@@ -54,8 +54,6 @@
 # define KEY_TAB 65289
 # define KEY_I 105
 
-# define FOV 66
-
 /*		player params	*/
 # define SENSITIVITY 7.5f
 # define VELOCITY 0.3
@@ -64,10 +62,6 @@
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
-
-/*		minimap scale	*/
-# define MINIMAP_SCALE 4
-# define MAP_PLAYER_SCALE 8
 
 /*		map tokens		*/
 # define MAP_TKNS "01"
