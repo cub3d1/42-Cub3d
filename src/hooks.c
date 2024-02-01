@@ -37,10 +37,6 @@ static void	read_keystrokes(int keycode, t_cubed *cubed)
 		cubed->keys->left = true;
 	if (keycode == KEY_RIGHT)
 		cubed->keys->right = true;
-	if (keycode == KEY_UP)
-		cubed->player->angle += 45;
-	if (keycode == KEY_DOWN)
-		cubed->player->angle -= 45;
 	if (keycode == KEY_I)
 		cubed->keys->mouse_movement = !cubed->keys->mouse_movement;
 }
