@@ -75,21 +75,14 @@
 # define MAP_TKNS "01"
 # define PLAYER_TKNS "NSEW"
 
-/*	PUT RAYCASTER DATA HERE	*/
 typedef struct s_ray
 {
 	char	current_wall;
-
-	//	ray pos on map
 	int		pos_x;
 	int		pos_y;
-
-	//	init_ray_dir();
 	double	camera_x;
 	double	ray_dir_x;
 	double	ray_dir_y;
-
-	//	cast_ray();
 	double	delta_dist_x;
 	double	delta_dist_y;
 	double	side_dist_x;
@@ -99,11 +92,7 @@ typedef struct s_ray
 	int		step_x;
 	int		step_y;
 	char	hit;
-
-	//	get_dist();
 	double	wall_dist;
-
-	//	pre render()
 	int		texture_x;
 	double	texture_y;
 	int		canvas_y;
